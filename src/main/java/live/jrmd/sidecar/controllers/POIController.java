@@ -32,4 +32,9 @@ public class POIController {
         model.addAttribute("points", searchPOIs);
         return "points/index";
     }
+    @GetMapping("/points/add")
+    public String add(Model model){
+        model.addAttribute("points", poiDao.findAll());
+        return "points/add";
+    }
 }
