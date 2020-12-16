@@ -55,12 +55,12 @@
         </div>
         <div id="map"></div>
         <div>
-            <form>
-                <input type="hidden" id="lat" value=""></form>
-                <input type="hidden" id="lon" value=""></form>
+            <form th:action="@{/points/add}" th:method="post" th:object="${poi}">
+                <input type="hidden" id="lat" value="" th:field="*{lat}"></form>
+                <input type="hidden" id="lng" value="" th:field="*{lon}"></form>
                 <div class="input-field col s6">
-                    <input type="text" name="title" id="title">
-                    <label for="title">Enter a Title: </label>
+                    <input type="text" th:field="*{name}" id="name">
+                    <label for="name">Enter a Name: </label>
                 </div><br>
                 <div class="input-field col s6">
                     <select id="category" name="category">
@@ -77,10 +77,12 @@
                     <label for="category">Choose a Category: </label>
                 </div><br>
                 <div class="input-field col s12">
-                    <textarea name="description" id="description" rows="20" cols="20"></textarea>
+                    <textarea th:field="*{description}" id="description" rows="20" cols="20"></textarea>
                     <label for="description">Enter a Description: </label>
                 </div>
-
+                <div class="input-field">
+                    <input type="submit">
+                </div>
             </form>
         </div>
     </div>

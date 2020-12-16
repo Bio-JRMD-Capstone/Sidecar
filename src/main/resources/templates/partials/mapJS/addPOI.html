@@ -11,6 +11,7 @@
         // failed.", it means you probably did not give permission for the browser to
         // locate you.
         let map, infoWindow, geocoder;
+        var userMarker;
 
         function initMap() {
             map = new google.maps.Map(document.getElementById("map"), {
@@ -88,6 +89,14 @@
                 }
             });
 
+            //When the map is clicked, add a point and fill in the lat/lng values in html using jQuery
+            google.maps.event.addListener(map, "click", function(event) {
+                placeMarker(event.latLng);
+                $('#lat').val(event.latLng.lat());
+                $('#lng').val(event.latLng.lng());
+            });
+
+
             //For each POI, add it to the map
             poiList.forEach(function(poi) {
                 drawPOIs(poi, icons, infoWindow, map);
@@ -140,6 +149,20 @@
                     "<p>Lat/Long: " + poi.latLng + "</p>");
                 infoWindow.open(map, marker);
             });
+        }
+
+        //if marker already exists on map, move it. if not, create it at the location
+        function placeMarker(location) {
+            if (userMarker) {
+                //if marker already was created change positon
+                userMarker.setPosition(location);
+            } else {
+                //create a marker
+                userMarker = new google.maps.Marker({
+                    position: location,
+                    map: map,
+                });
+            }
         }
     </script>
 </body>
