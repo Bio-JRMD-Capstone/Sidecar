@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="partials/head :: head('Points of Interest')">
+<head th:replace="partials/head :: head('Routes')">
     <meta charset="UTF-8">
-    <title>Points of Interest</title>
+    <title>Routes</title>
 
 </head>
 <body>
 <nav th:replace="partials/navbar :: nav"></nav>
 <main>
+<!--    Name-->
+<!--    Travel time-->
+<!--    Distance-->
 
-    <h1>Sidecar Points of Interest</h1>
-
+    <a href="/routes" class="btn btn--white btn--animated">Done</a>
 </main>
-
 <div th:include="partials/footer :: footer"></div>
 <div th:include="partials/scripts :: scripts"></div>
 </body>

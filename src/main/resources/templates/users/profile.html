@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head('My Profile')">
     <meta charset="UTF-8">
     <title>My Profile</title>
@@ -8,15 +9,23 @@
 <body>
 <nav th:replace="partials/navbar :: nav"></nav>
 
-<main class="container">
-    <div class="container p-2" sec:authorize="isAuthenticated()">
-        <p>Profile Information</p>
-<!--        <p>User: <span th:text="${user.firstName}"></span> <span th:text="${user.lastName}"></span></p>-->
-        <p>User ID: <span th:text="${user.id}"/></p>
-        <p>Username: <span th:text="${user.username}"/></p>
-        <p>Email: <span th:text="${user.email}"/></p>
+<main sec:authorize="isAuthenticated()">
+    <div class="container row">
+        <div class="col-md-3">
+            <img id="profile__image" th:src="${user.photo_url}" onerror="this.src='/images/profile.png'" />
+    <!--        <img th:if="${user.photo_url != ''}"  th:src="${user.photo_url}" alt="profile image">-->
+    <!--        <img th:if="${user.photo_url == ''}" th:src="/images/profile.png" alt="profile placeholder">-->
 
-        <button><a th:href="@{'/user/' + ${#authentication.principal.id} + '/edit'}">Update Profile</a></button>
+        </div>
+        <div class="col-md-9" >
+            <h6>Profile Information</h6>
+    <!--        <p>User: <span th:text="${user.firstName}"></span> <span th:text="${user.lastName}"></span></p>-->
+            <p>User ID: <span th:text="${user.id}"/></p>
+            <p>Username: <span th:text="${user.username}"/></p>
+            <p>Email: <span th:text="${user.email}"/></p>
+
+            <button><a th:href="@{'/user/' + ${#authentication.principal.id} + '/edit'}">Update Profile</a></button>
+        </div>
     </div>
     <div class="container p-2">
         <div class="ml-1">

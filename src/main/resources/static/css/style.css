@@ -1,0 +1,140 @@
+html,
+body {
+    margin: 0;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: .6rem;
+    line-height: 1.7;
+    color: #777;
+    padding: 1rem;
+}
+main {
+
+    flex: 1 0 auto;
+}
+#profile__image {
+    height: 150px;
+    margin-top: 1rem;
+    border-radius: 50%;
+}
+.header {
+    height: 80vh;
+    /*background-image: linear-gradient(to right bottom, rgba(247, 240, 224, 0.8), rgba(103, 74, 33, 0.8)), url(/images/harley-davidson-zGzXsJUBQfs-unsplash.jpeg);*/
+    background-image: url("/images/harley-davidson-zGzXsJUBQfs-unsplash.jpeg");
+    background-size: cover;
+    background-position: top;
+    position: relative;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%); }
+.header__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem; }
+.header__logo {
+    height: 3.5rem; }
+.header__text-box {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; }
+
+.heading-primary {
+    color: #fff;
+    text-transform: uppercase;
+    text-align: justify;
+    backface-visibility: hidden;
+    margin-bottom: 6rem; }
+.heading-primary--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 3rem;
+    letter-spacing: 3.5rem;
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    /* animation-iteration-count: 2;
+        animation-delay: 1s; */ }
+.heading-primary--sub {
+    display: block;
+    font-size: 3rem;
+    font-weight: 400;
+    letter-spacing: .8rem;
+    animation-name: moveInRight;
+    animation-duration: 1s;
+    animation-timing-function: ease-out; }
+
+.heading-secondary {
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: inline-block;
+    background-image: linear-gradient(to right, #7ed56f, #28b485);
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: .2rem;
+    transition: all .2s; }
+.heading-secondary:hover {
+    transform: skewY(2deg) skewX(15deg) scale(1.1);
+    text-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2); }
+
+.heading-tertiary {
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-transform: uppercase; }
+
+.paragraph {
+    font-size: 1.6rem; }
+.paragraph:not(:last-child) {
+    margin-bottom: 3rem; }
+
+.u-center-text {
+    text-align: center !important; }
+
+.u-margin-bottom-lg {
+    margin-bottom: 8rem !important; }
+
+.u-margin-bottom-md {
+    margin-bottom: 4rem !important; }
+
+.u-margin-bottom-sm {
+    margin-bottom: 1.25rem !important; }
+
+.u-margin-top-xl {
+    margin-top: 10rem !important; }
+
+.u-margin-top-lg {
+    margin-top: 8rem !important; }
+
+.u-margin-top-md {
+    margin-top: 4rem !important; }
+
+.u-margin-top-sm {
+    margin-top: 1.25rem !important; }
+
+
+/* Always set the map height explicitly to define the size of the div element that contains the map. */
+#map {
+    height: 600px;
+}
+
+/* Optional: Makes the sample page fill the window. */
+.custom-map-control-button {
+    appearance: button;
+    background-color: #fff;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    margin: 10px;
+    padding: 0 0.5em;
+    height: 40px;
+    font: 400 18px Roboto, Arial, sans-serif;
+    overflow: hidden;
+}
+.custom-map-control-button:hover {
+    background: #ebebeb;
+}

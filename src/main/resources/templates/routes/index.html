@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head('Routes')">
     <meta charset="UTF-8">
     <title>Routes</title>
@@ -10,7 +11,7 @@
 <main>
 
     <h1>Sidecar Routes</h1>
-
+    <a href="/create" class="btn btn--white btn--animated">Plot your route</a>
 </main>
 <div th:include="partials/footer :: footer"></div>
 <div th:include="partials/scripts :: scripts"></div>

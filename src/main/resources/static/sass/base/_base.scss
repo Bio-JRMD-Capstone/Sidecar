@@ -1,0 +1,28 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+html {
+    /* this is a % of the default value of the browser and allows users to adjust for accesibility*/
+    /* defines 1rem = 10px */
+    font-size: 62.5%;
+
+    @include respond(tab-land){
+        font-size: 56.25; //1rem = 9px, 9/16 = 50%
+    }
+
+    @include respond(tab-port){
+        font-size: 50%; //1rem = 8px, 8/16 = 50%
+    }
+
+    @include respond(big-desk){
+        font-size: 75%; //1rem = 12px, 12/16 = 75%
+    }
+
+}
+body {
+    box-sizing: border-box;
+}
