@@ -16,8 +16,8 @@ body {
     &--main {
         display: block;
         font-size: 6rem;
-        font-weight: 3rem;
-        letter-spacing: 3.5rem;
+        font-weight: 300;
+        letter-spacing: 3rem;
     
         animation-name: moveInLeft;
         animation-duration: 1s;
@@ -30,7 +30,7 @@ body {
         display: block;
         font-size: 3rem;
         font-weight: 400;
-        letter-spacing: 1.2rem;
+        letter-spacing: .5rem;
     
         animation-name: moveInRight;
         animation-duration: 1s;

@@ -18,21 +18,24 @@ public class RouteController {
         this.routeDao = routeDao;
         this.userDao = userDao;
     }
+
+    @GetMapping("/routes/create")
+    public String buildARoute(){
+        return "routes/create";
+    }
+
     @GetMapping("/routes")
     public String showAllRoutes(Model model){
         model.addAttribute("routes", routeDao.findAll());
         return "routes/index";
     }
+
     @GetMapping("/searchRoutes")
     public String search(@RequestParam(name = "term") String term, Model model){
         term = "%"+term+"%";
         List searchRoutes = routeDao.findAllByTitleIsLike(term);
         model.addAttribute("routes", searchRoutes);
         return "routes/index";
-    }
-    @GetMapping("/routes/create")
-    public String routeCreate(){
-        return "routes/create";
     }
 
 }

@@ -87,3 +87,23 @@
         transform: translateY(0);
     }
 }
+
+.btn-nav {
+    &:link,
+    &:visited {
+        font-size: $default-font-size;
+        color: $color-gray-darkest;
+        background-color: transparent !important;
+        border: none;
+        display: inline;
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+    }
+    &:hover,
+    &:active{
+        background-color: $color-gray-dark;
+        color: $color-gray-darkest;
+
+    }
+}
