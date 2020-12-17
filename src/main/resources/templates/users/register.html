@@ -11,45 +11,46 @@
 
 <main class="container">
     <h4>Create an account:</h4>
-    <form class="row g-3 align-items-center" th:action="@{/register}" method="POST" th:object="${user}">
-        <div class="col-md-6">
+    <form class="row align-items-center" th:action="@{/register}" method="POST" th:object="${user}">
+        <div class="col-1-of-2">
             <label for="username" class="form-label" th:field="*{username}">Username</label>
             <input type="text" class="form-control" id="username" name="username">
         </div>
-        <div class="col-md-6">
+        <div class="col-1-of-2">
             <label for="email" class="form-label" th:field="*{email}">Email</label>
             <input type="email" class="form-control" id="email" name="email">
         </div>
-        <div class="col-md-6">
+        <div class="col-1-of-2">
             <label for="password" class="form-label" th:field="*{password}">Password</label>
             <input type="text" class="form-control" id="password" name="password">
         </div>
-        <div class="col-md-3">
+        <div class="col-1-of-2">
             <label for="zipcode" class="form-label" th:field="*{zipcode}">Zip</label>
             <input type="text" class="form-control" id="zipcode" name="zipcode">
         </div>
-        <div class="col-3">
+<!--  filestack buttons-->
+        <div class="col-1-of-2">
+            <h4>Add a profile image: </h4>
+            <form id="pick-form">
+                <div class="field">
+                    <div class="control">
+                        <button class="button" type="button" id="picker">Pick file</button>
+                        <input type="hidden" id="fileupload">
+                    </div>
+                    <div class="control" id="nameBox"></div>
+                    <div class="control" id="urlBox"></div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <input class="button" type="submit" value="Submit">
+                    </div>
+                </div>
+            </form>
+
             <input type="submit" class="w-100" value="Register"/>
         </div>
     </form>
-<!-- filestack image picker buttons -->
-<!--    <div class="box">-->
-<!--        <form id="pick-form">-->
-<!--            <div class="field">-->
-<!--                <div class="control">-->
-<!--                    <button class="button" type="button" id="picker">Pick file</button>-->
-<!--                    <input type="hidden" id="fileupload">-->
-<!--                </div>-->
-<!--                <div class="control" id="nameBox"></div>-->
-<!--                <div class="control" id="urlBox"></div>-->
-<!--            </div>-->
-<!--            <div class="field">-->
-<!--                <div class="control">-->
-<!--                    <input class="button" type="submit" value="Submit">-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </form>-->
-<!--    </div>-->
+
 </main>
 
 
