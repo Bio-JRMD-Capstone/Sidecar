@@ -97,8 +97,31 @@ function initMap() {
             }
         );
     }
+
+    // Sets the map on all markers in the array.
+    function clearOverlays() {
+        for (var i = 0; i < markers.length; i++ ) {
+            markers[i].setMap(null);
+        }
+        markers.length = 0;
+    }
+    // Removes the markers from the map, but keeps them in the array.
+    function clearMarkers() {
+        clearOverlays(null);
+    }
+
+    function deleteMarkers() {
+        clearMarkers();
+        markers = [];
+    }
+
+
     $(function(){
         $( "#testbtn" ).on( 'click', initMapRoute);
+        $( "#clearBtn" ).on( 'click', initMap);
     });
+
+
+
     //Closing Brace of INITMAP
 }
