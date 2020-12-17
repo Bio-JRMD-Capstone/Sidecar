@@ -128,7 +128,7 @@ body {
   text-transform: uppercase;
   font-weight: 700;
   display: inline-block;
-  background-image: linear-gradient(to right, #F7F0E0, #3F3622);
+  background-image: linear-gradient(to right, #BEB6A6, #3F3622);
   -webkit-background-clip: text;
   color: transparent;
   letter-spacing: 0.2rem;
@@ -143,6 +143,12 @@ body {
   font-size: 1.6rem;
   font-weight: 700;
   text-transform: uppercase;
+}
+
+.heading-small {
+  font-size: 3rem;
+  font-weight: 400;
+  color: black;
 }
 
 .paragraph {
@@ -187,7 +193,7 @@ body {
 .btn, .btn:link, .btn:visited {
   text-transform: uppercase;
   text-decoration: none;
-  padding: 1.5rem 4rem;
+  padding: 0.25rem 4rem;
   display: inline-block;
   border-radius: 10rem;
   transition: all 0.2s;
@@ -324,7 +330,7 @@ body {
   font-size: 6rem;
   margin-bottom: 0.5rem;
   display: inline-block;
-  background-image: linear-gradient(to right, #F7F0E0, #3F3622);
+  background-image: linear-gradient(to right, #BEB6A6, #3F3622);
   -webkit-background-clip: text;
   color: transparent;
 }
@@ -360,7 +366,7 @@ body {
   background-image: linear-gradient(to right bottom, #ffb900, #ff7730);
 }
 .card__side--back-2 {
-  background-image: linear-gradient(to right bottom, #F7F0E0, #3F3622);
+  background-image: linear-gradient(to right bottom, #BEB6A6, #3F3622);
 }
 .card__side--back-3 {
   background-image: linear-gradient(to right bottom, #2998ff, #5643fa);
@@ -384,7 +390,7 @@ body {
   background-image: linear-gradient(to right bottom, #ffb900, #ff7730), url(../img/nat-5.jpg);
 }
 .card__picture--2 {
-  background-image: linear-gradient(to right bottom, #F7F0E0, #3F3622), url(../img/nat-6.jpg);
+  background-image: linear-gradient(to right bottom, #BEB6A6, #3F3622), url(../img/nat-6.jpg);
 }
 .card__picture--3 {
   background-image: linear-gradient(to right bottom, #2998ff, #5643fa), url(../img/nat-7.jpg);
@@ -409,7 +415,7 @@ body {
   background-image: linear-gradient(to right bottom, rgba(255, 185, 0, 0.85), rgba(255, 119, 48, 0.85));
 }
 .card__heading-span--2 {
-  background-image: linear-gradient(to right bottom, rgba(247, 240, 224, 0.85), rgba(63, 54, 34, 0.85));
+  background-image: linear-gradient(to right bottom, rgba(190, 182, 166, 0.85), rgba(63, 54, 34, 0.85));
 }
 .card__heading-span--3 {
   background-image: linear-gradient(to right bottom, rgba(41, 152, 255, 0.85), rgba(86, 67, 250, 0.85));
@@ -830,7 +836,7 @@ body {
   position: fixed;
   top: 6.5rem;
   right: 6.5rem;
-  background-image: radial-gradient(#F7F0E0, #3F3622);
+  background-image: radial-gradient(#BEB6A6, #3F3622);
   z-index: 1000;
   transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1);
 }
@@ -944,7 +950,7 @@ body {
 
 .section-features {
   padding: 20rem 0;
-  background-image: linear-gradient(to right bottom, rgba(247, 240, 224, 0.85), rgba(63, 54, 34, 0.85)), url(../img/nat-4.jpg);
+  background-image: linear-gradient(to right bottom, rgba(190, 182, 166, 0.85), rgba(63, 54, 34, 0.85)), url(../img/nat-4.jpg);
   background-size: cover;
   margin-top: -10rem;
   transform: skewY(-7deg);
@@ -966,20 +972,40 @@ body {
 
 .section-book {
   width: 75%;
-  margin: auto 0;
-  padding: 15rem 0;
-  background-image: linear-gradient(to right bottom, #F7F0E0, #3F3622);
+  margin: 3rem auto 1rem;
+  padding: 5rem 0;
+  background-image: linear-gradient(to right bottom, #BEB6A6, #3F3622);
 }
 
 .book {
-  background-image: linear-gradient(105deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 50%, transparent 50%), url(/images/igor-oliyarnik-kMjRyUiRtxE-unsplash2.jpeg);
-  background-size: cover;
   border-radius: 3px;
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
 }
 .book__form {
   width: 100%;
   padding: 6rem;
+}
+
+.book-login {
+  background-image: linear-gradient(105deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 50%, transparent 50%), url(/images/igor-oliyarnik-kMjRyUiRtxE-unsplash2.jpeg);
+  background-size: cover;
+}
+
+.book-register {
+  background-image: linear-gradient(105deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 50%, transparent 50%), url(/images/yury-kirillov-3L1tHL-7sS8-unsplash.jpeg);
+  background-size: cover;
+}
+
+.section-profile {
+  width: 75%;
+  margin: 3rem auto 1rem;
+  padding: 5rem 0;
+  background-image: linear-gradient(to right bottom, #BEB6A6, #3F3622);
+}
+
+#map {
+  height: 75vh;
+  width: 75%;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -60,7 +60,11 @@ body {
     font-weight: 700;
     text-transform: uppercase;
 }
-
+.heading-small {
+    font-size: 3rem;
+    font-weight: 400;
+    color: black;
+}
 .paragraph {
     font-size: $default-font-size;
     &:not(:last-child){

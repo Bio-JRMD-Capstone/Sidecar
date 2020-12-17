@@ -8,19 +8,10 @@
 </head>
 <body>
 <nav th:replace="partials/navbar :: nav"></nav>
-
-<!--<main class="container">-->
-<!--    <div class="col-6">-->
-<!--        <h1>Login</h1>-->
-<!--        <form class="d-flex ml-auto" th:action="@{/login}" th:method="post">-->
-<!--            <input class="form-control me-2" type="text" placeholder="username" name="username">-->
-<!--            <input class="form-control me-2" type="password" placeholder="password" name="password">-->
-<!--            <button class="btn-nav" type="submit">Login</button>-->
-<!--        </form>-->
-<!--    </div>-->
+<main>
     <section class="section-book">
 <!--        <div class="row">-->
-            <div class="book">
+            <div class="book-login">
                 <div class="book__form">
                     <form action="#" class="form" th:action="@{/login}" th:method="post">
                         <div class="u-margin-bottom-md">
@@ -45,7 +36,8 @@
             </div>
 <!--        </div>-->
     </section>
-<!--</main>-->
+
+</main>
 
 
 <div th:include="partials/footer :: footer"></div>

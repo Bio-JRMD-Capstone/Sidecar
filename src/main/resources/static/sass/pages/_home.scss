@@ -31,17 +31,12 @@
 }
 .section-book {
     width: 75%;
-    margin: auto 0;
-    padding: 15rem 0;
+    margin: 3rem auto 1rem;
+    padding: 5rem 0;
     background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
 }
 .book {
-    background-image: linear-gradient(105deg, 
-                                        rgba($color-white, .9) 0%, 
-                                        rgba($color-white, .9) 50%, 
-                                        transparent 50%),  
-                                    url(/images/igor-oliyarnik-kMjRyUiRtxE-unsplash2.jpeg);
-    background-size: cover;
+
     border-radius: 3px;
     box-shadow: 0 1.5rem 4rem rgba($color-black, .2);
     //height: 50rem;
@@ -50,4 +45,30 @@
         width: 100%;
         padding: 6rem;
     }
+}
+.book-login {
+    background-image: linear-gradient(105deg,
+            rgba($color-white, .9) 0%,
+            rgba($color-white, .9) 50%,
+            transparent 50%),
+            url(/images/igor-oliyarnik-kMjRyUiRtxE-unsplash2.jpeg);
+    background-size: cover;
+}
+.book-register {
+    background-image: linear-gradient(105deg,
+            rgba($color-white, .9) 0%,
+            rgba($color-white, .9) 50%,
+            transparent 50%),
+    url(/images/yury-kirillov-3L1tHL-7sS8-unsplash.jpeg);
+    background-size: cover;
+}
+.section-profile {
+    width: 75%;
+    margin: 3rem auto 1rem;
+    padding: 5rem 0;
+    background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+}
+#map {
+    height: 75vh;
+    width: 75%;
 }
