@@ -30,4 +30,9 @@ public class RouteController {
         model.addAttribute("routes", searchRoutes);
         return "routes/index";
     }
+    @GetMapping("/routes/create")
+    public String routeCreate(){
+        return "routes/create";
+    }
+
 }
