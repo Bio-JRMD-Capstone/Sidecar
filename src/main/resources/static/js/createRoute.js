@@ -1,4 +1,5 @@
 function initMap() {
+    console.log("test")
     var map;
     // var marker = new google.maps.Marker({
     //     position: {lat: 34.7062978, lng: -116.1274117},
