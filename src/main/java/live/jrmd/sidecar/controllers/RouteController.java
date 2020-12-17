@@ -23,11 +23,13 @@ public class RouteController {
     public String buildARoute(){
         return "routes/create";
     }
+
     @GetMapping("/routes")
     public String showAllRoutes(Model model){
         model.addAttribute("routes", routeDao.findAll());
         return "routes/index";
     }
+
     @GetMapping("/searchRoutes")
     public String search(@RequestParam(name = "term") String term, Model model){
         term = "%"+term+"%";
