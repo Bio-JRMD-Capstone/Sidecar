@@ -1,6 +1,8 @@
 package live.jrmd.sidecar.models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -30,6 +32,7 @@ public class User {
     private List<Motorcycle> motorcycles;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @JsonBackReference
     private List<POI> poiList;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
