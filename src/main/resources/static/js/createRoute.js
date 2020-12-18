@@ -62,6 +62,9 @@ function initMap() {
             zoom: 4,
             center: {lat: 34.7062978, lng: -116.1274117},
         });
+        if (document.getElementById("routeCheck").checked === true) {
+            markers.push(markers[0]);
+        }
         const directionsService = new google.maps.DirectionsService();
         const directionsRenderer = new google.maps.DirectionsRenderer({
             draggable: true,
