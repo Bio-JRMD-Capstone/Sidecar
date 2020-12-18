@@ -8,19 +8,41 @@
 <link href="/css/">
 <body>
 <nav th:replace="partials/navbar :: nav"></nav>
-<main>
+<main class="container">
+    <h4>Create route</h4>
+    <form class="row align-items-center" th:action="@{/routes/create}" th:method="POST" th:object="${route}">
+        <div class="col-1-of-2">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title" th:field="*{title}">
+        </div>
+        <div class="col-1-of-2">
+            <label for="description" class="form-label">Description</label>
+            <textarea type="description" class="form-control" id="description" name="description"  th:field="*{description}"></textarea>
+        </div>
+        <div class="col-1-of-2">
+            <label for="distance" class="form-label" >Distance</label>
+            <input type="text" class="form-control" id="distance" name="distance" th:field="*{distance}">
+        </div>
+        <div class="col-1-of-2">
+            <label for="api_url" class="form-label">api_url</label>
+            <input type="text" class="form-control" id="api_url" name="api_url" th:field="*{api_url}">
+        </div>
+        <div class="col-1-of-2">
+            <label for="time" class="form-label" >time</label>
+            <input type="text" class="form-control" id="time" name="time" th:field="*{time}">
+        </div>
+        <div class="field">
+            <div class="control">
+                <input class="button btn" type="submit" value="Submit">
+            </div>
+        </div>
+    </form>
+
     <input class="btn" type="button" id="clearBtn" name="clearBtn" value="Clear Route">
     <div id="map"></div>
     <div id="directions-panel"></div>
     <input class="btn" type="button" id="testbtn" name="testbtn" value="Route">
-    <p>
-        id
-        api_url
-        description
-        distance
-        time
-        title
-    </p>
+
 
 </main>
 
