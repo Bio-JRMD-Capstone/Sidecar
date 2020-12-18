@@ -125,7 +125,7 @@ function drawPOIs(poi, icons, infoWindow, map) {
     //Creates a marker and assigns some info to it
     let marker = new google.maps.Marker({
         position: coords,
-        title: poi.title,
+        title: poi.name,
         //Looks at the poi type and references the icon array to determine what icon it uses
         icon: icons[poi.category].icon
     });
