@@ -142,7 +142,7 @@ function drawPOIs(poi, icons, infoWindow, map) {
     }
     //This connects the info window to the marker, allowing information, links, any HTML really to be displayed
     google.maps.event.addListener(marker, 'click', function() {
-        infoWindow.setContent("<h6>" + poi.title + "</h6>" +
+        infoWindow.setContent("<h6>" + poi.name + "</h6>" +
                               "<p><strong>" + categoryString + "</strong><br>" +
                               poi.description + "</p>");
         infoWindow.open(map, marker);
