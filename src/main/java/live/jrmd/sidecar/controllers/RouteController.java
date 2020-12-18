@@ -32,6 +32,7 @@ public class RouteController {
     @PostMapping("/routes/create")
     public String saveRoute(@ModelAttribute Route route){
         route.setUser(userDao.getOne(1L));
+        System.out.println(route);
         routeDao.save(route);
         return "redirect:/login";
     }

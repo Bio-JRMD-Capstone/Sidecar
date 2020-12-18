@@ -54,6 +54,20 @@ public class Route {
         this.api_url = api_url;
     }
 
+    @Override
+    public String toString() {
+        return "Route{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", distance='" + distance + '\'' +
+                ", time='" + time + '\'' +
+                ", description='" + description + '\'' +
+                ", api_url='" + api_url + '\'' +
+                ", routeComments=" + routeComments +
+                ", user=" + user +
+                '}';
+    }
+
     public long getId () {
         return this.id;
     }
@@ -82,7 +96,7 @@ public class Route {
         return this.time;
     }
 
-    public void setTime(String newTime) {
+    public void setTime(String time) {
         this.time = time;
     }
 
