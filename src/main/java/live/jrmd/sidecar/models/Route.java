@@ -23,8 +23,8 @@ public class Route {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
-    @Column(nullable = false)
-    private String api_url;
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String coordinates;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "route")
     private List<RouteComment> routeComments;
@@ -36,22 +36,22 @@ public class Route {
     public Route() {}
 
     //write
-    public Route(String title, String distance, String time, String description, String api_url) {
+    public Route(String title, String distance, String time, String description, String coordinates) {
         this.title = title;
         this.distance = distance;
         this.time = time;
         this.description = description;
-        this.api_url = api_url;
+        this.coordinates = coordinates;
     }
 
     //read
-    public Route(long id, String title, String distance, String time, String description, String api_url) {
+    public Route(long id, String title, String distance, String time, String description, String coordinates) {
         this.id = id;
         this.title = title;
         this.distance = distance;
         this.time = time;
         this.description = description;
-        this.api_url = api_url;
+        this.coordinates = coordinates;
     }
 
     @Override
@@ -62,7 +62,7 @@ public class Route {
                 ", distance='" + distance + '\'' +
                 ", time='" + time + '\'' +
                 ", description='" + description + '\'' +
-                ", api_url='" + api_url + '\'' +
+                ", coordinates='" + coordinates + '\'' +
                 ", routeComments=" + routeComments +
                 ", user=" + user +
                 '}';
@@ -108,12 +108,12 @@ public class Route {
         this.description = newDescription;
     }
 
-    public String getApi_url() {
-        return this.api_url;
+    public String getCoordinates() {
+        return this.coordinates;
     }
 
-    public void setApi_url(String newApi_Url) {
-        this.api_url = newApi_Url;
+    public void setCoordinates(String coordinates) {
+        this.coordinates = coordinates;
     }
 
     public List<RouteComment> getRouteComments() {

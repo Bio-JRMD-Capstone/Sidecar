@@ -23,10 +23,9 @@
             <label for="distance" class="form-label" >Distance</label>
             <input type="text" class="form-control" id="distance" name="distance" th:field="*{distance}">
         </div>
-        <div class="col-1-of-2">
-            <label for="api_url" class="form-label">api_url</label>
-            <input type="text" class="form-control" id="api_url" name="api_url" th:field="*{api_url}">
-        </div>
+
+        <input type="hidden" class="form-control" id="coordinates" name="coordinates" th:field="*{coordinates}">
+
         <div class="col-1-of-2">
             <label for="time" class="form-label" >time</label>
             <input type="text" class="form-control" id="time" name="time" th:field="*{time}">

@@ -65,12 +65,14 @@ function initMap() {
         if (document.getElementById("routeCheck").checked === true) {
             markers.push(markers[0]);
         }
+
         const directionsService = new google.maps.DirectionsService();
         const directionsRenderer = new google.maps.DirectionsRenderer({
             draggable: true,
             map,
             panel: document.getElementById("right-panel"),
         });
+        console.log(markers)
         displayRoute(
             markers[0],
             markers[markers.length-1],
@@ -83,6 +85,18 @@ function initMap() {
             const markerMapped = {location: n};
             return markerMapped
         });
+
+        console.log(markers[0].location.lat)
+
+        let markersString = [];
+        for(let i = 0; i < markers.length; i++){
+
+            markersString.push("{location: {lat: " + markers[i].location.lat + ", " + markers[i].location.lng + " }}");
+            console.log(markersString)
+        }
+        console.log("{location: {lat: " + markers[0].location.lat + ", lng: " + markers[0].location.lng + " }}");
+
+        document.getElementById("coordinates").value = markersString;
         console.log(markers)
         service.route(
             {
