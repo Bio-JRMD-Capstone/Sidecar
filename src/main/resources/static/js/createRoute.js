@@ -91,7 +91,7 @@ function initMap() {
         let markersString = [];
         for(let i = 0; i < markers.length; i++){
 
-            markersString.push("{location: {lat: " + markers[i].location.lat + ", " + markers[i].location.lng + " }}");
+            markersString.push("{location: {lat: " + markers[i].location.lat + ", lng: " + markers[i].location.lng + " }}");
             console.log(markersString)
         }
         console.log("{location: {lat: " + markers[0].location.lat + ", lng: " + markers[0].location.lng + " }}");
@@ -165,7 +165,7 @@ function initMap() {
             // calculateAndDisplayRoute();
             initMapRoute();
         });
-        // $("#testbtn").on('click', calculateAndDisplayRoute)
+
         $( "#clearBtn" ).on( 'click', initMap);
     });
 
