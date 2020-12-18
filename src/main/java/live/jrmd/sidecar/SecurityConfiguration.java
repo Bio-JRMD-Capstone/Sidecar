@@ -48,7 +48,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/",
                                         "/routes",
                                         "/points",
-                                        "/events"
+                                        "/events",
+                                        "/js/**",
+                                        "/css/**"
                 )
                 .permitAll()
 

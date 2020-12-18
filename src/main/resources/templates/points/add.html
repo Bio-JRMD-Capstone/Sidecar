@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head('Add a Point of Interest')">
     <meta charset="UTF-8">
@@ -56,14 +56,12 @@
         <div id="map"></div>
         <div>
             <form th:action="@{/points/add}" th:method="post" th:object="${poi}">
-                <input type="hidden" id="lat" value="" th:field="*{lat}"></form>
-                <input type="hidden" id="lng" value="" th:field="*{lon}"></form>
                 <div class="input-field col s6">
                     <input type="text" th:field="*{name}" id="name">
                     <label for="name">Enter a Name: </label>
                 </div><br>
                 <div class="input-field col s6">
-                    <select id="category" name="category">
+                    <select id="category" name="category" th:field="*{category}">
                     <!-- Can't seem to get the disabled part to work correctly. I don't like materialize tbh. -->
                     <!-- Also it looks different than the text input because of the label -->
                     <!-- <option value="" disabled selected>Choose an Option</option> -->
@@ -80,22 +78,23 @@
                     <textarea th:field="*{description}" id="description" rows="20" cols="20"></textarea>
                     <label for="description">Enter a Description: </label>
                 </div>
+                <input type="hidden" id="lat" value="" th:field="*{lat}">
+                <input type="hidden" id="lon" value="" th:field="*{lon}">
+                <input type="hidden" id="image" th:field="*{photo_url}">
+                <img id="imagePreview" src="" alt="">
+                <button id="imageButton">Add a Picture</button>
                 <div class="input-field">
                     <input type="submit">
                 </div>
             </form>
         </div>
     </div>
-
-
 </main>
-<script>
-    $(document).ready(function(){
-        $('select').formSelect();
-    });
-</script>
-<div th:replace="partials/mapJS/addPOI :: addPOI"></div>
+<script src="/keys.js"></script>
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 <div th:include="partials/footer :: footer"></div>
 <div th:include="partials/scripts :: scripts"></div>
+<script src="/js/filestack.js"></script>
+<script src="/js/addPOI.js"></script>
 </body>
 </html>

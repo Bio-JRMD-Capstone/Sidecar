@@ -1,10 +1,13 @@
 package live.jrmd.sidecar.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "POI")
+@Table(name = "POIS")
 public class POI {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,20 +28,25 @@ public class POI {
     @Column
     private String photo_url;
 
+    @Column
+    private String category;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "poi")
+    @JsonBackReference
     private List<POIComment> poiComments;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name="pois_categories",
-            joinColumns={@JoinColumn(name="poi_id")},
-            inverseJoinColumns={@JoinColumn(name="category_id")}
-    )
-    private List<POICategory> pCategoryList;
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(
+//            name="pois_categories",
+//            joinColumns={@JoinColumn(name="poi_id")},
+//            inverseJoinColumns={@JoinColumn(name="category_id")}
+//    )
+//    private List<POICategory> pCategoryList;
 
     public List<POIComment> getPoiComments() {
         return poiComments;
@@ -79,6 +87,8 @@ public class POI {
         description = copy.description;
         photo_url = copy.photo_url;
     }
+
+
 
     public Long getId() {
         return id;
@@ -128,13 +138,21 @@ public class POI {
         this.photo_url = photo_url;
     }
 
-    public List<POICategory> getpCategoryList() {
-        return pCategoryList;
+    public String getCategory() {
+        return category;
     }
 
-    public void setpCategoryList(List<POICategory> pCategoryList) {
-        this.pCategoryList = pCategoryList;
+    public void setCategory(String category) {
+        this.category = category;
     }
+
+//    public List<POICategory> getpCategoryList() {
+//        return pCategoryList;
+//    }
+
+//    public void setpCategoryList(List<POICategory> pCategoryList) {
+//        this.pCategoryList = pCategoryList;
+//    }
 
     public User getUser() {
         return user;

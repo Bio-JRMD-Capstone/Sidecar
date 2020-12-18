@@ -6,10 +6,7 @@ import live.jrmd.sidecar.repositories.POIRepository;
 import live.jrmd.sidecar.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,10 +32,14 @@ public class POIController {
         model.addAttribute("points", searchPOIs);
         return "points/index";
     }
+    @GetMapping("/points.json")
+    public @ResponseBody List<POI> viewAllPOIInJSONFormat() {
+        return poiDao.findAll();
+    }
     @GetMapping("/points/add")
     public String add(Model model) {
-        model.addAttribute("poi", new POI());
-        model.addAttribute("points", poiDao.findAll());
+        POI newPoi = new POI();
+        model.addAttribute("poi", newPoi);
         return "points/add";
     }
     @PostMapping("/points/add")
