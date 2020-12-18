@@ -582,7 +582,9 @@ body {
 }
 
 .feature-box {
-  background-color: rgba(255, 255, 255, 0.8);
+  color: #3F3622;
+  border: 2px solid #3F3622;
+  background-color: rgba(190, 182, 166, 0.8);
   font-size: 1.5rem;
   padding: 2.5rem;
   text-align: center;
@@ -594,13 +596,17 @@ body {
   font-size: 6rem;
   margin-bottom: 0.5rem;
   display: inline-block;
-  background-image: linear-gradient(to right, #BEB6A6, #3F3622);
+  background-image: linear-gradient(to right, #674A21, #3F3622);
   -webkit-background-clip: text;
   color: transparent;
 }
 .feature-box:hover {
   transform: translateY(-1.5rem) scale(1.03);
 }
+.feature-box__text {
+  margin-bottom: 2rem;
+}
+
 .form__group:not(:last-child) {
   margin-bottom: 2rem;
 }
