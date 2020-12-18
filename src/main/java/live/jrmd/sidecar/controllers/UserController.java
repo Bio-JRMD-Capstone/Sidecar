@@ -2,6 +2,7 @@ package live.jrmd.sidecar.controllers;
 
 import live.jrmd.sidecar.models.User;
 import live.jrmd.sidecar.repositories.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -9,10 +10,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
 public class UserController {
+
+    @Value("${fileStackAPI.key}")
+    private String fileStackApiKey;
+
     private final UserRepository userDao;
     private final RouteRepository routeDao;
     private final POIRepository poiDao;
@@ -47,6 +53,13 @@ public class UserController {
         user.setPassword(hash);
         users.save(user);
         return "redirect:/login";
+    }
+
+    @GetMapping("/keys.js")
+    @ResponseBody
+    public String apikey(){
+        System.out.println(fileStackApiKey);
+        return "const FileStackApiKey = \"" + fileStackApiKey + "\"";
     }
 
     @GetMapping("/profile")

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head('Register')">
     <meta charset="UTF-8">
     <title>Register</title>
@@ -8,29 +9,39 @@
 <body>
 <nav th:replace="partials/navbar :: nav"></nav>
 
-<main class="container">
-    <h4>Create an account:</h4>
-    <form class="row g-3 align-items-center" th:action="@{/register}" method="POST" th:object="${user}">
-        <div class="col-md-6">
-            <label for="username" class="form-label" th:field="*{username}">Username</label>
-            <input type="text" class="form-control" id="username" name="username">
+<main>
+    <section class="section-box">
+        <div class="box-register">
+            <div class="box__form">
+                <form class="form" th:action="@{/register}" method="POST" th:object="${user}">
+                    <div class="u-margin-bottom-md">
+                        <h2 class="heading-secondary">Create an account:</h2>
+                    </div>
+                    <div class="form__group">
+                        <input type="text" class="form__input" placeholder="username" id="username" name="username" required>
+                        <label for="username" class="form__label"  th:field="*{username}">Username</label>
+                    </div>
+                    <div class="col-1-of-2">
+                        <input type="email" class="form__input" placeholder="email" id="email" name="email" required>
+                        <label for="email" class="form__label" th:field="*{email}">Email</label>
+                    </div>
+                    <div class="col-1-of-2">
+                        <input type="text" class="form__input" placeholder="zip code" id="zipcode" name="zipcode" required>
+                        <label for="zipcode" class="form__label" th:field="*{zipcode}">Zip</label>
+
+                    </div>
+                    <div class="form__group">
+                        <input type="text" class="form__input" placeholder="password" id="password" name="password" required>
+                        <label for="password" class="form__label" th:field="*{password}">Password</label>
+                    </div>
+                    <div class="form__group">
+                        <button type="submit" class="btn btn--green">Sign up</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="col-md-6">
-            <label for="email" class="form-label" th:field="*{email}">Email</label>
-            <input type="email" class="form-control" id="email" name="email">
-        </div>
-        <div class="col-md-6">
-            <label for="password" class="form-label" th:field="*{password}">Password</label>
-            <input type="text" class="form-control" id="password" name="password">
-        </div>
-        <div class="col-md-3">
-            <label for="zipcode" class="form-label" th:field="*{zipcode}">Zip</label>
-            <input type="text" class="form-control" id="zipcode" name="zipcode">
-        </div>
-        <div class="col-3">
-            <input type="submit" class="w-100" value="Register"/>
-        </div>
-    </form>
+    </section>
+
 </main>
 
 

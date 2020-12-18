@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/icon-font.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png">
+    <title>Document</title>
+</head>
+<body>
+<nav th:replace="partials/navbar :: nav"></nav>
+<!-- Map w/ input fields and button to create -->
+<div class="map">
+    <div class="map-box">
+        <div class="col-map-1">
+            <div class="map__input">
+                <h3>Route Data</h3>
+                <form class="map-data">
+                    <input class="map__input" type="text"  id="map-title" name="title" placeholder="title">
+                    <label class="map__label" for="map-title"></label>
+
+                    <input class="map__input" type="text" id="map-distance" name="distance" placeholder="distance">
+                    <label class="map__label" for="map-distance"></label>
+
+                    <input class="map__input" type="text" id="map-time" name="time" placeholder="time" >
+                    <label class="map__label" for="map-time"></label>
+
+                    <input class="map__input-long" type="text" id="map-description" name="description" placeholder="description" >
+                    <label class="map__label" for="map-description"></label>
+                </form>
+                <input class="btn btn--white" type="button" id="testbtn" name="testbtn" value="Save Route">
+            </div>
+        </div>
+        <div class="col-map-2">
+            <div class="map__input">
+                <div id="map">Map</div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

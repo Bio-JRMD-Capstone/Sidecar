@@ -82,7 +82,7 @@ public class Route {
         return this.time;
     }
 
-    public void setTime(String newTime) {
+    public void setTime(String time) {
         this.time = time;
     }
 

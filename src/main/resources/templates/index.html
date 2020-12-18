@@ -4,61 +4,78 @@
 <head th:replace="partials/head :: head('Sidecar')">
     <meta charset="UTF-8">
     <title>Index</title>
-    <script
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMpJ-NawmnjMOSlkw5uXkLYjDTSzEmvag&callback=initMap&libraries=&v=weekly"
-            defer
-    ></script>
-    <style>
-        /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-        #map {
-            height: 600px;
-        }
 
-        /* Optional: Makes the sample page fill the window. */
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-        .custom-map-control-button {
-            appearance: button;
-            background-color: #fff;
-            border: 0;
-            border-radius: 2px;
-            box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
-            margin: 10px;
-            padding: 0 0.5em;
-            height: 40px;
-            font: 400 18px Roboto, Arial, sans-serif;
-            overflow: hidden;
-        }
-        .custom-map-control-button:hover {
-            background: #ebebeb;
-        }
-    </style>
 </head>
 <body>
     <nav th:replace="partials/navbar :: nav"></nav>
-
-    <main class="row w-100">
-        <div class="col-md-3" sec:authorize="isAuthenticated()">
-            <h5>Left column</h5>
+    <header class="header">
+        <div class="header__logo-box">
+            <img src="/images/compass-rose.jpeg" alt="Logo" class="header__logo">
+            <h1 class="heading-primary--logo header__text">Sidecar</h1>
         </div>
-        <div class="col-md-9">
-            <h4>Sidecar Landing Page</h4>
-            <div id="floating-panel">
-                <input id="address" type="textbox" placeholder="Enter a location" />
-                <input id="submit" type="button" value="View Location" />
+        <div class="header__text-box">
+            <h1 class="heading-primary">
+                <span class="heading-primary--main">Life</span>
+                <span class="heading-primary--sub">it's just better on two wheels</span>
+            </h1>
+        </div>
+    </header>
+    <main>
+        <section class="section-features">
+
+            <div class="row">
+                <div class="col-1-of-3">
+                    <div class="feature-box">
+                        <i class="feature-box__icon icon-basic-map"></i>
+                        <h3 class="heading-tertiary u-margin-bottom-sm">Find your route</h3>
+                        <p class="feature-box__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae perspiciatis laudantium repellat.</p>
+                        <a href="/routeIndex.html" class="btn btn--white">Go!</a>
+                    </div>
+                </div>
+                <div class="col-1-of-3">
+                    <div class="feature-box">
+                        <i class="feature-box__icon icon-basic-compass"></i>
+                        <h3 class="heading-tertiary u-margin-bottom-sm">Points of Interest</h3>
+                        <p class="feature-box__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo ullam odit assumenda amet.</p>
+                        <a href="pointOfInterest.html" class="btn btn--white">Go!</a>
+                    </div>
+                </div>
+                <div class="col-1-of-3">
+                    <div class="feature-box">
+                        <i class="feature-box__icon icon-basic-world"></i>
+                        <h3 class="heading-tertiary u-margin-bottom-sm">Events</h3>
+                        <p class="feature-box__text">Aliquid delectus, blanditiis similique officia quasi repudiandae numquam rem molestiae? Similique, facilis?</p>
+                        <a href="/events.html" class="btn btn--white">Go!</a>
+                    </div>
+                </div>
             </div>
-            <div id="map"></div>
-        </div>
-
-
+        </section>
     </main>
-    <div th:replace="partials/mapJS/indexMap :: indexMap"></div>
+
+    <footer class="footer">
+        <div class="footer__logo-box">
+            <img src="images/compass-rose.jpeg" alt="Full Logo" class="footer__logo">
+            <span class="heading-primary--logo">Sidecar</span>
+        </div>
+        <div class="row">
+            <div class="col-1-of-2">
+                <div class="footer__navigation">
+                    <ul class="footer__list">
+                        <li class="footer__item"><a href="#" class="footer__link">Jason Carrillo</a></li>
+                        <li class="footer__item"><a href="#" class="footer__link">Ryan Kendall</a></li>
+                        <li class="footer__item"><a href="#" class="footer__link">Michael Meyer</a></li>
+                        <li class="footer__item"><a href="#" class="footer__link">Donelle Harris</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-1-of-2">
+                <p class="footer__copyright">
+                    A <a href="https://codeup.com/" class="footer__link">Codeup</a> Capstone Project.
+                </p>
+            </div>
+        </div>
+    </footer>
+
     <div th:include="partials/footer :: footer"></div>
     <div th:include="partials/scripts :: scripts"></div>
 </body>
