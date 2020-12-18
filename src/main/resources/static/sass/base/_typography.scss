@@ -16,13 +16,13 @@ body {
     &--main {
         display: block;
         font-size: 6rem;
-        font-weight: 300;
-        letter-spacing: 3rem;
-    
+        font-weight: 3rem;
+        letter-spacing: 2.5rem;
+
         animation-name: moveInLeft;
         animation-duration: 1s;
         animation-timing-function: ease-out;
-    
+
         /* animation-iteration-count: 2;
         animation-delay: 1s; */
     }
@@ -31,10 +31,18 @@ body {
         font-size: 3rem;
         font-weight: 400;
         letter-spacing: .5rem;
-    
+
         animation-name: moveInRight;
         animation-duration: 1s;
         animation-timing-function: ease-out;
+    }
+    &--logo {
+        display: block;
+        font-size: 3rem;
+        font-weight: 400;
+        letter-spacing: .5rem;
+        text-transform: uppercase;
+        z-index: 2000;
     }
 
 }
@@ -60,14 +68,10 @@ body {
     font-weight: 700;
     text-transform: uppercase;
 }
-.heading-small {
-    font-size: 3rem;
-    font-weight: 400;
-    color: black;
-}
+
 .paragraph {
     font-size: $default-font-size;
     &:not(:last-child){
-    margin-bottom: 3rem;
+        margin-bottom: 3rem;
     }
 }
