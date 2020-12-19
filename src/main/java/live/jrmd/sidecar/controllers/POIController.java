@@ -23,7 +23,6 @@ public class POIController {
 
     @GetMapping("/points")
     public String showAllPOIs(Model model){
-        model.addAttribute("points", poiDao.findAll());
         return "points/index";
     }
     @GetMapping("/searchPOIs")
