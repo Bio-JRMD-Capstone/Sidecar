@@ -4,6 +4,7 @@ import live.jrmd.sidecar.models.POI;
 import live.jrmd.sidecar.models.User;
 import live.jrmd.sidecar.repositories.POIRepository;
 import live.jrmd.sidecar.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,6 @@ public class POIController {
 
     @GetMapping("/points")
     public String showAllPOIs(Model model){
-        model.addAttribute("points", poiDao.findAll());
         return "points/index";
     }
     @GetMapping("/searchPOIs")
@@ -44,8 +44,8 @@ public class POIController {
     }
     @PostMapping("/points/add")
     public String create(@ModelAttribute POI poiToBeSaved) {
-        User user = userDao.getOne(1L);
-        poiToBeSaved.setUser(user);
+        User userDb = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        poiToBeSaved.setUser(userDb);
         POI dbPOI = poiDao.save(poiToBeSaved);
         return "redirect:/points";
     }

@@ -1,10 +1,6 @@
 let map, infoWindow, geocoder;
 var userMarker;
 
-$(document).ready(function(){
-    $('select').formSelect();
-});
-
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: 29.4241, lng: -98.4936 },
@@ -69,13 +65,6 @@ function initMap() {
             // Browser doesn't support Geolocation
             handleLocationError(false, infoWindow, map.getCenter());
         }
-    });
-
-    //When the map is clicked, add a point and fill in the lat/lng values in html using jQuery
-    google.maps.event.addListener(map, "click", function(event) {
-        placeMarker(event.latLng);
-        $('#lat').val(event.latLng.lat());
-        $('#lon').val(event.latLng.lng());
     });
 
     //This is supposed to retrieve the list of POIs in JSON format so we can work with it to display them on the map.
@@ -143,22 +132,8 @@ function drawPOIs(poi, icons, infoWindow, map) {
     //This connects the info window to the marker, allowing information, links, any HTML really to be displayed
     google.maps.event.addListener(marker, 'click', function() {
         infoWindow.setContent("<h6>" + poi.name + "</h6>" +
-                              "<p><strong>" + categoryString + "</strong><br>" +
-                              poi.description + "</p>");
+            "<p><strong>" + categoryString + "</strong><br>" +
+            poi.description + "</p>");
         infoWindow.open(map, marker);
     });
-}
-
-//if marker already exists on map, move it. if not, create it at the location
-function placeMarker(location) {
-    if (userMarker) {
-        //if marker already was created change positon
-        userMarker.setPosition(location);
-    } else {
-        //create a marker
-        userMarker = new google.maps.Marker({
-            position: location,
-            map: map,
-        });
-    }
 }
