@@ -122,10 +122,10 @@ function initMap() {
         const waypts = [];
 
         for (let i = 0; i < markers.length; i++) {
-                waypts.push({
-                    location: markers[i],
-                    stopover: true,
-                });
+            waypts.push({
+                location: markers[i],
+                stopover: true,
+            });
 
         }
         directionsService.route(

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="partials/head :: head('Routes')">
+<head th:replace="partials/head :: head('All Routes')">
     <meta charset="UTF-8">
-    <title>Routes</title>
+    <title>All Routes</title>
 
 </head>
 <body>
@@ -13,7 +13,7 @@
     <h1>Sidecar Routes</h1>
     <a href="routes/create">Plot your route</a>
 </main>
-<div th:include="partials/footer :: footer"></div>
-<div th:include="partials/scripts :: scripts"></div>
+<div th:replace="partials/footer :: footer"></div>
+<div th:replace="partials/scripts :: scripts"></div>
 </body>
 </html>

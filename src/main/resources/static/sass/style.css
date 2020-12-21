@@ -83,7 +83,7 @@ body {
 }
 
 main {
-  height: 80vh;
+  min-height: 90vh;
 }
 
 body {
@@ -619,7 +619,7 @@ body {
   background-color: rgba(255, 255, 255, 0.5);
   border: none;
   border-bottom: 3px solid transparent;
-  width: 40%;
+  width: 40% !important;
   display: block;
   transition: all 0.3s;
 }
@@ -689,12 +689,13 @@ body {
 }
 
 #map {
-  height: 75vh;
-  width: 75%;
+  height: 60vh;
+  width: 95%;
+  margin: auto;
 }
 
 .map {
-  max-width: 80%;
+  max-width: 90%;
   margin: 5rem auto;
 }
 .map-data {
@@ -718,7 +719,10 @@ body {
 .map-box {
   padding: 3rem;
   background-color: #BEB6A6;
-  min-height: 80vh;
+  height: 100%;
+  display: block;
+  overflow: auto;
+  margin-bottom: 3rem;
 }
 .map__group:not(:last-child) {
   margin-bottom: 2rem;
@@ -757,8 +761,9 @@ body {
   border: none;
   border-bottom: 3px solid transparent;
   width: 100%;
-  min-height: 20rem;
+  min-height: 15rem;
   display: block;
+  overflow: scroll;
   transition: all 0.3s;
 }
 .map__input-long:focus {
@@ -787,11 +792,32 @@ body {
 }
 
 .col-map-1 {
-  width: calc((100% - 2 * 6rem) / 3);
+  width: calc((100% - 3 * 6rem) / 4);
 }
 
 .col-map-2 {
-  width: calc(2* ((100% - 2 * 6rem) / 3) + 6rem);
+  width: calc(2 * ((100% - 3 * 6rem) / 4) + 6rem);
+}
+
+.col-map-3 {
+  width: calc((100% - 3 * 6rem) / 4);
+}
+
+.custom-map-control-button {
+  background-color: #fff;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  margin: 10px;
+  padding: 0 0.5em;
+  height: 40px;
+  font: 400 18px Roboto, Arial, sans-serif;
+  overflow: hidden;
+}
+
+.custom-map-control-button:hover {
+  background: #ebebeb;
 }
 
 .popup {
@@ -986,12 +1012,21 @@ body {
   padding: 5rem 0;
   font-size: 1.4rem;
   color: #f7f7f7;
+  text-align: center;
 }
 .footer__logo-box {
-  text-align: center;
+  display: flex;
+  align-content: center;
+  align-items: center;
   margin-bottom: 4rem;
 }
+.footer__logo-box span {
+  margin-right: auto;
+  text-align: center;
+  padding-left: 3rem;
+}
 .footer__logo {
+  margin-left: auto;
   width: 8rem;
   border-radius: 50%;
   height: auto;
