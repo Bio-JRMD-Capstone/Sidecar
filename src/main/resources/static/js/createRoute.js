@@ -2,10 +2,8 @@ function initMap() {
 
     console.log("test")
     var map;
-    // var marker = new google.maps.Marker({
-    //     position: {lat: 34.7062978, lng: -116.1274117},
-    //     map: map,
-    // });
+    let markers = []
+
     var lat_lng = { lat: 29.4241, lng: -98.4936 };
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 7,
@@ -45,7 +43,7 @@ function initMap() {
             map: map
         });
     }
-    let markers = [];
+    ;
     var objLoc = {};
     // Create new marker on single click event on the map
     google.maps.event.addListener(map, 'click', function (event) {
