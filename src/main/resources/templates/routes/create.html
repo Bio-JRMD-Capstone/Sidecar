@@ -12,6 +12,7 @@
     <link rel="shortcut icon" type="image/png" href="img/favicon.png">
     <title>Document</title>
 </head>
+
 <link href="/css/">
 <body>
 <nav th:replace="partials/navbar :: nav"></nav>
@@ -35,8 +36,8 @@
         <input type="hidden" class="form-control" id="coordinates" name="coordinates" th:field="*{coordinates}">
 
         <div class="col-1-of-2">
-            <label for="time" class="form-label" >time</label>
-            <input type="text" class="form-control" id="time" name="time" th:field="*{time}">
+            <label for="time" class="form-label" >Time (Hours)</label>
+            <input type="text" class="form-control" id="time" name="time" th:field="*{time}" readonly>
         </div>
         <div class="field">
             <div class="control">
@@ -47,7 +48,7 @@
 
     <input class="btn" type="button" id="clearBtn" name="clearBtn" value="Clear Route">
     <div id="map"></div>
-    <h1 id="directions-panel"></h1>
+    <h3 id="directions-panel"></h3>
     <p>
         <label>
             <input id="routeCheck" type="checkbox" />

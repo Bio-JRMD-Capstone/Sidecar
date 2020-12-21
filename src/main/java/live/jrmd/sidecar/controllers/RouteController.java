@@ -34,7 +34,7 @@ public class RouteController {
         route.setUser(userDao.getOne(1L));
         System.out.println(route);
         routeDao.save(route);
-        return "redirect:/login";
+        return "redirect:/routes";
     }
 
     @GetMapping("/routes")
