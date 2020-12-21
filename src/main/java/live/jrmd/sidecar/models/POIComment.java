@@ -1,5 +1,7 @@
 package live.jrmd.sidecar.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -20,6 +22,7 @@ public class POIComment {
     private User user;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name = "poi_id")
     private POI poi;
 

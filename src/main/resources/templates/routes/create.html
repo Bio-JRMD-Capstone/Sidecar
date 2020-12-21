@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="partials/head :: head('Routes')">
+<head>
     <meta charset="UTF-8">
-    <title>Routes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/icon-font.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png">
+    <title>Document</title>
 </head>
 <link href="/css/">
 <body>
 <nav th:replace="partials/navbar :: nav"></nav>
+  
 <main class="container">
     <h4>Create route</h4>
     <form class="row align-items-center" th:action="@{/routes/create}" th:method="POST" th:object="${route}">
@@ -48,15 +56,12 @@
     </p>
     <input class="btn" type="button" id="testbtn" name="testbtn" value="Route">
 
-
 </main>
-
-
-
 
 <script src="/js/createRoute.js"></script>
 <div th:include="partials/footer :: footer"></div>
 <div th:include="partials/scripts :: scripts"></div>
+
 </body>
 
 

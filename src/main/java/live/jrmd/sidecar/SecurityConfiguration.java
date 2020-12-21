@@ -62,7 +62,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/route/{id}/edit",
                         "/events/create",
                         "/event/{id}/edit",
-                        "/points/create",
+                        "/points/add",
                         "/point/{id}/edit",
                         "/profile",
                         "/user/{id}/edit"
