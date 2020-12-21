@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="navigation" class="navigation">
+    <input type="checkbox" class="navigation__checkbox" id="navi-toggle">
+    <label for="navi-toggle" class="navigation__button">
+        <span class="navigation__icon">&nbsp;</span>
+    </label>
+    <div class="navigation__background">&nbsp;</div>
+
+    <div class="navigation__nav">
+        <ul class="navigation__list">
+            <li class="navigation__item"><a href="/register" class="navigation__link" sec:authorize="!isAuthenticated()"><span>01</span>Register</a></li>
+            <li class="navigation__item"><a href="/login" class="navigation__link" sec:authorize="!isAuthenticated()"><span>02</span> Login</a></li>
+            <li class="navigation__item"><a href="/profile" class="navigation__link" sec:authorize="isAuthenticated()"><span>01</span>My Profile</a></li>
+            <li class="navigation__item"><form th:action="@{/logout}" th:method="post"><button class="navigation__link navigation__link-btn" sec:authorize="isAuthenticated()"><span>02</span> Logout</button></form></li>
+            <li class="navigation__item"><a href="/routes" class="navigation__link"><span>03</span>Routes</a></li>
+            <li class="navigation__item"><a href="/events" class="navigation__link"><span>04</span>Events</a></li>
+            <li class="navigation__item"><a href="/points" class="navigation__link"><span>05</span>Points of Interest</a></li>
+
+        </ul>
+    </div>
+</div>
+</body>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head('Points of Interest')">
 
@@ -8,11 +8,12 @@
     <title>Index</title>
 </head>
 <body>
-<nav th:replace="partials/navbar :: nav"></nav>
+<!--    <nav th:replace="partials/navbar :: nav"></nav>-->
+<div th:replace="partials/expand-nav :: navigation"></div>
 
 <main class="row w-100">
     <div class="col-md-3" sec:authorize="isAuthenticated()">
-        <h5>Left column</h5>
+        <div class="btn btn-white"><a th:href="@{/points/create}">Add a Point of Interest</a></div>
     </div>
     <div class="col-md-9">
         <h4>Find a Point of Interest</h4>
