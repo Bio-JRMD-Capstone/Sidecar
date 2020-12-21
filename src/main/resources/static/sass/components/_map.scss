@@ -48,6 +48,21 @@
     display: block;
     transition: all .3s;
 
+    &--map-btn {
+      display: flex;
+      flex-direction: row;
+      padding: 1rem 2rem;
+      & .btn-lt {
+        height: 3rem;
+        padding: .5rem;
+        margin-right: auto;
+      }
+      & .btn-rt {
+        height: 3rem;
+        padding: .5rem;
+        margin-left: auto;
+      }
+    }
     &:focus {
       outline: none;
       box-shadow: 0 1rem 2rem rgba($color-black, .1);
@@ -73,7 +88,7 @@
       width: 100%;
       min-height: 15rem;
       display: block;
-      overflow: scroll;
+      text-wrap: normal;
       transition: all .3s;
 
       &:focus {

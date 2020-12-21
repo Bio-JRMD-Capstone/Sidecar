@@ -735,6 +735,21 @@ body {
   display: block;
   transition: all 0.3s;
 }
+.map__input--map-btn {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem 2rem;
+}
+.map__input--map-btn .btn-lt {
+  height: 3rem;
+  padding: 0.5rem;
+  margin-right: auto;
+}
+.map__input--map-btn .btn-rt {
+  height: 3rem;
+  padding: 0.5rem;
+  margin-left: auto;
+}
 .map__input:focus {
   outline: none;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
@@ -758,7 +773,7 @@ body {
   width: 100%;
   min-height: 15rem;
   display: block;
-  overflow: scroll;
+  text-wrap: normal;
   transition: all 0.3s;
 }
 .map__input-long:focus {
