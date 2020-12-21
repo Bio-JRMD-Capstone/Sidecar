@@ -156,7 +156,7 @@ function initMap() {
                     for (let i = 0; i < route.legs.length-1; i++) {
                         const routeSegment = i + 1;
 
-                        totalDistance += parseInt(route.legs[i].distance.text);
+                        totalDistance += parseFloat(route.legs[i].distance.text);
                         totalDuration += parseInt(route.legs[i].duration.text);
 
 
@@ -169,6 +169,8 @@ function initMap() {
                         summaryPanel.innerHTML += route.legs[i].distance.text + "<br>";
                         summaryPanel.innerHTML += route.legs[i].duration.text + "<br><hr><br>"
                     }
+
+                    console.log(totalDuration)
 
                     distance.value = totalDistance;
                     time.value = totalDuration;
