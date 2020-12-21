@@ -19,9 +19,10 @@
             <li class="navigation__item"><a href="/login" class="navigation__link" sec:authorize="!isAuthenticated()"><span>02</span> Login</a></li>
             <li class="navigation__item"><a href="/profile" class="navigation__link" sec:authorize="isAuthenticated()"><span>01</span>My Profile</a></li>
             <li class="navigation__item"><form th:action="@{/logout}" th:method="post"><button class="navigation__link navigation__link-btn" sec:authorize="isAuthenticated()"><span>02</span> Logout</button></form></li>
-            <li class="navigation__item"><a href="/routes" class="navigation__link"><span>03</span>Routes</a></li>
-            <li class="navigation__item"><a href="/events" class="navigation__link"><span>04</span>Events</a></li>
-            <li class="navigation__item"><a href="/points" class="navigation__link"><span>05</span>Points of Interest</a></li>
+            <li class="navigation__item"><a href="/" class="navigation__link"><span>03</span>Home</a></li>
+            <li class="navigation__item"><a href="/routes" class="navigation__link"><span>04</span>Routes</a></li>
+            <li class="navigation__item"><a href="/events" class="navigation__link"><span>05</span>Events</a></li>
+            <li class="navigation__item"><a href="/points" class="navigation__link"><span>06</span>Points of Interest</a></li>
 
         </ul>
     </div>
