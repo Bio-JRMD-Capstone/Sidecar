@@ -15,6 +15,10 @@ function initMap() {
     map.addListener('click', function(event) {
         addMarker(event.latLng);
     });
+
+    const summaryPanel = document.getElementById("directions-panel");
+    summaryPanel.innerHTML = "";
+
     // Adds a marker at the center of the map.
     // addMarker(lat_lng);
     // Update lat/long value of div when you move the mouse over the map
@@ -38,7 +42,7 @@ function initMap() {
             map: map
         });
     }
-    var markers = [];
+    let markers = [];
     var objLoc = {};
     // Create new marker on single click event on the map
     google.maps.event.addListener(map, 'click', function (event) {
@@ -121,7 +125,7 @@ function initMap() {
     function calculateAndDisplayRoute(directionsService, directionsRenderer) {
         const waypts = [];
 
-        for (let i = 0; i < markers.length; i++) {
+        for (let i = 1; i < markers.length; i++) {
                 waypts.push({
                     location: markers[i],
                     stopover: true,
@@ -143,24 +147,32 @@ function initMap() {
                     const summaryPanel = document.getElementById("directions-panel");
                     summaryPanel.innerHTML = "";
                     let distance = document.getElementById("distance");
+                    let time = document.getElementById("time");
+
                     let totalDistance = 0;
+                    let totalDuration = 0;
 
                     // For each route, display summary information.
                     for (let i = 0; i < route.legs.length-1; i++) {
                         const routeSegment = i + 1;
 
                         totalDistance += parseInt(route.legs[i].distance.text);
+                        totalDuration += parseInt(route.legs[i].duration.text);
 
 
                         console.log(route.legs[i].distance.text)
 
                         summaryPanel.innerHTML +=
                             "<b>Route Segment: " + routeSegment + "</b><br>";
-                        summaryPanel.innerHTML += route.legs[i].start_address + " to ";
+                        summaryPanel.innerHTML += route.legs[i].start_address + "<br> to <br>";
                         summaryPanel.innerHTML += route.legs[i].end_address + "<br>";
-                        summaryPanel.innerHTML += route.legs[i].distance.text + "<br><br>";
+                        summaryPanel.innerHTML += route.legs[i].distance.text + "<br>";
+                        summaryPanel.innerHTML += route.legs[i].duration.text + "<br><hr><br>"
                     }
+
                     distance.value = totalDistance;
+                    time.value = totalDuration;
+
 
 
                 } else {
