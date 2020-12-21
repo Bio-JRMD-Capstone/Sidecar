@@ -1,4 +1,6 @@
 function initMap() {
+
+    console.log("test")
     var map;
     // var marker = new google.maps.Marker({
     //     position: {lat: 34.7062978, lng: -116.1274117},
@@ -60,24 +62,42 @@ function initMap() {
             zoom: 4,
             center: {lat: 34.7062978, lng: -116.1274117},
         });
+        if (document.getElementById("routeCheck").checked === true) {
+            markers.push(markers[0]);
+        }
+
         const directionsService = new google.maps.DirectionsService();
         const directionsRenderer = new google.maps.DirectionsRenderer({
             draggable: true,
             map,
             panel: document.getElementById("right-panel"),
         });
+        console.log(markers)
         displayRoute(
             markers[0],
             markers[markers.length-1],
             directionsService,
             directionsRenderer
         );
+        calculateAndDisplayRoute(directionsService, directionsRenderer);
     }
     function displayRoute(origin, destination, service, display) {
         markers = markers.map(n => {
             const markerMapped = {location: n};
             return markerMapped
         });
+
+        console.log(markers[0].location.lat)
+
+        let markersString = [];
+        for(let i = 0; i < markers.length; i++){
+
+            markersString.push("{location: {lat: " + markers[i].location.lat + ", lng: " + markers[i].location.lng + " }}");
+            console.log(markersString)
+        }
+        console.log("{location: {lat: " + markers[0].location.lat + ", lng: " + markers[0].location.lng + " }}");
+
+        document.getElementById("coordinates").value = markersString;
         console.log(markers)
         service.route(
             {
@@ -96,8 +116,69 @@ function initMap() {
             }
         );
     }
+
+
+    function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+        const waypts = [];
+
+        for (let i = 0; i < markers.length; i++) {
+                waypts.push({
+                    location: markers[i],
+                    stopover: true,
+                });
+
+        }
+        directionsService.route(
+            {
+                origin: markers[0],
+                destination: markers[markers.length-1],
+                waypoints: waypts,
+                optimizeWaypoints: true,
+                travelMode: google.maps.TravelMode.DRIVING,
+            },
+            (response, status) => {
+                if (status === "OK") {
+                    directionsRenderer.setDirections(response);
+                    const route = response.routes[0];
+                    const summaryPanel = document.getElementById("directions-panel");
+                    summaryPanel.innerHTML = "";
+                    let distance = document.getElementById("distance");
+                    let totalDistance = 0;
+
+                    // For each route, display summary information.
+                    for (let i = 0; i < route.legs.length-1; i++) {
+                        const routeSegment = i + 1;
+
+                        totalDistance += parseInt(route.legs[i].distance.text);
+
+
+                        console.log(route.legs[i].distance.text)
+
+                        summaryPanel.innerHTML +=
+                            "<b>Route Segment: " + routeSegment + "</b><br>";
+                        summaryPanel.innerHTML += route.legs[i].start_address + " to ";
+                        summaryPanel.innerHTML += route.legs[i].end_address + "<br>";
+                        summaryPanel.innerHTML += route.legs[i].distance.text + "<br><br>";
+                    }
+                    distance.value = totalDistance;
+
+
+                } else {
+                    window.alert("Directions request failed due to " + status);
+                }
+            }
+        );
+    }
+
     $(function(){
-        $( "#testbtn" ).on( 'click', initMapRoute);
+        $( "#testbtn" ).on( 'click', function (){
+            initMapRoute();
+        });
+
+        $( "#clearBtn" ).on( 'click', initMap);
     });
+
+
+
     //Closing Brace of INITMAP
 }
