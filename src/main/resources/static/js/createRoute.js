@@ -19,6 +19,9 @@ function initMap() {
     const summaryPanel = document.getElementById("directions-panel");
     summaryPanel.innerHTML = "";
 
+    document.getElementById("distance").value = "";
+    document.getElementById("time").value = "";
+
     // Adds a marker at the center of the map.
     // addMarker(lat_lng);
     // Update lat/long value of div when you move the mouse over the map
@@ -69,6 +72,7 @@ function initMap() {
         if (document.getElementById("routeCheck").checked === true) {
             markers.push(markers[0]);
         }
+
 
         const directionsService = new google.maps.DirectionsService();
         const directionsRenderer = new google.maps.DirectionsRenderer({
