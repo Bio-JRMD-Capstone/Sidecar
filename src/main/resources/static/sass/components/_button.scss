@@ -14,6 +14,10 @@
         border: none;
         cursor: pointer;
     }
+    &-nav {
+        border: none !important;
+        background-color: transparent !important;
+    }
     &-edit {
         border-radius: 3px !important;
         padding: .5rem !important;
