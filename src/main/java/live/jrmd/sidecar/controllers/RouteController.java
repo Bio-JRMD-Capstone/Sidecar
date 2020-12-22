@@ -35,7 +35,7 @@ public class RouteController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         route.setUser(user);
         routeDao.save(route);
-        return "redirect:/login";
+        return "redirect:/routes";
     }
 
     @GetMapping("/routes")
