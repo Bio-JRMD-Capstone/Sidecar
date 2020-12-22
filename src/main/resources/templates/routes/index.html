@@ -12,7 +12,24 @@
 <main>
 
     <h1>Sidecar Routes</h1>
-    <a href="routes/create">Plot your route</a>
+    <a class="btn" href="/routes/create">Plot your route</a>
+
+    <h1 class="text-center">All Posts</h1>
+    <div class="row justify-space-around col-12">
+        <div class="col-3" th:each="route : ${routes}">
+            <h3 th:text="${route.title}"></h3>
+            <p th:text="${route.description}"></p>
+            <a th:href="@{/route/{id}(id=${route.id})}">
+                View Route
+            </a>
+            <form th:action="@{'/posts/' + ${route.id} + '/delete'}" th:method="post">
+                <button class="btn btn-primary">Delete</button>
+            </form>
+            <form th:action="@{'/posts/' + ${route.id} + '/edit'}" th:method="get">
+                <button class="btn btn-primary">Edit</button>
+            </form>
+        </div>
+    </div>
 </main>
 <div th:replace="partials/footer :: footer"></div>
 <div th:replace="partials/scripts :: scripts"></div>

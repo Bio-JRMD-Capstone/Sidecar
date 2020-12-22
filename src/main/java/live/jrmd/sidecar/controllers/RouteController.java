@@ -7,10 +7,7 @@ import live.jrmd.sidecar.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -50,6 +47,13 @@ public class RouteController {
         List searchRoutes = routeDao.findAllByTitleIsLike(term);
         model.addAttribute("routes", searchRoutes);
         return "routes/index";
+    }
+
+    @GetMapping("/route/{id}")
+    public String viewPost(@PathVariable(name= "id") long id, Model model ) {
+        model.addAttribute("post", routeDao.getOne(id));
+
+        return "posts/show";
     }
 
 }
