@@ -51,9 +51,9 @@ public class RouteController {
 
     @GetMapping("/route/{id}")
     public String viewPost(@PathVariable(name= "id") long id, Model model ) {
-        model.addAttribute("post", routeDao.getOne(id));
+        model.addAttribute("route", routeDao.getOne(id));
 
-        return "posts/show";
+        return "routes/showRoute";
     }
 
 }

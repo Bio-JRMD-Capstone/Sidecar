@@ -12,8 +12,12 @@
     <div clas="row">
         <div class="col-8">
             <h3 th:text="${route.title}"></h3>
-            <p th:text="${route.body}"></p>
-            <p th:text="${route.getOwner().getEmail()}" ></p>
+            <p th:text="${route.description}"></p>
+            <p th:text="${route.coordinates}"></p>
+            <p th:text="${route.time}"></p>
+            <p th:text="${route.distance}"></p>
+            <p th:text="${route.getUser()}" ></p>
+            <p th:text="${route.getUser().getEmail()}" ></p>
         </div>
     </div>
 </div>
