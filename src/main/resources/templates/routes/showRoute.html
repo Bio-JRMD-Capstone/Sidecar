@@ -9,11 +9,52 @@
 <body>
 <h1>Single</h1>
 <div class="container">
+    <div class="map">
+        <div class="map-box">
+            <div class="col-map-1">
+                <div class="map__input">
+                    <h3>Route Info</h3>
+                    <form class="map-data"  th:action="@{/routes/create}" th:method="POST" th:object="${route}">
+
+                        <input class="map__input" type="text"  id="title" name="title" placeholder="Title" th:field="*{title}">
+
+                        <textarea class="map__input-long" type="text" id="description" name="description" placeholder="Description" th:field="*{description}"></textarea>
+
+                        <input class="map__input" type="text" id="distance" name="distance" placeholder="Distance" th:field="*{distance}" readonly>
+
+                        <input type="hidden" class="form-control" id="coordinates" name="coordinates" th:field="*{coordinates}">
+
+                        <input class="map__input" type="text" id="time" name="time"  placeholder="Time(Hours)" th:field="*{time}" readonly>
+
+                    </form>
+
+                </div>
+            </div>
+            <!-- Map -->
+            <div class="col-map-2">
+                <div class="map__input ">
+                    <div class="map__input--map-btn">
+
+                        <div class="field">
+                        </div>
+                    </div>
+                    <div id="map"></div>
+
+                </div>
+            </div>
+            <div class="col-map-3">
+                <div class="map__input">
+                    <p id="directions-panel"></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
     <div clas="row">
         <div class="col-8">
             <h3 th:text="${route.title}"></h3>
             <h2 th:text="${route.description}"></h2>
-            <h2 th:text="${route.coordinates}"></h2>
+            <h2 th:text="${route.coordinates}" id="coord"></h2>
             <h2 th:text="${route.time}"></h2>
             <h2 th:text="${route.distance}"></h2>
             <h2 th:text="${route.getUser().getUsername()}" ></h2>
@@ -23,4 +64,6 @@
 </div>
 
 </body>
+
+<script src="/js/showRoute.js"></script>
 </html>
