@@ -51,6 +51,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                                         "/points",
 //                                        "/points/add",
                                         "/events",
+//                                        "/events/create",
                                         "/js/**",
                                         "/css/**"
                 )
