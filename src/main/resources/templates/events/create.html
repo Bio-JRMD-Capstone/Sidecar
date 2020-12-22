@@ -10,45 +10,54 @@
     <nav th:replace="partials/navbar :: nav"></nav>
 <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
 <main>
-    <div class="container" id="inputForm">
-        <form th:action="@{/events/create}" th:method="post" th:object="${event}">
-            <input type="hidden" th:field="*{user}">
-            <label for="name"><h4>Event Title:</h4></label>
-            <input type="text" th:field="*{name}" name="name" id="name" class=""/>
-<!--            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" />-->
-            <br />
-            <label for="description"><h4>Event Description:</h4></label>
-            <textarea th:field="*{description}" name="description" id="description" class="" ></textarea>
-<!--            <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" />-->
-            <br />
-            <label for="date"><h4>Event Date:</h4></label>
-            <input type="date" th:field="*{date}" name="date" id="date" class="" />
-<!--            <p th:if="${#fields.hasErrors('date')}" th:errors="*{date}" />-->
-            <br />
-            <label for="zipcode"><h4>Event Zipcode:</h4></label>
-            <input type="text" th:field="*{zipcode}" name="date" id="zipcode" class="" />
-<!--            <p th:if="${#fields.hasErrors('zipcode')}" th:errors="*{zipcode}" />-->
-            <br />
-<!--            Checkboxes for categories-->
-            <h4>Select Event Category(ies): </h4>
+    <div class="event">
+        <div class="event-box">
+            <form th:action="@{/events/create}" th:method="post" th:object="${event}">
+                <div class="col-event">
+                    <div class="event__input">
+                        <div id="inputForm">
+                            <input type="hidden" th:field="*{user}">
+                            <label for="name"><h4>Event Title:</h4></label>
+                            <input type="text" th:field="*{name}" name="name" id="name" class=""/>
+                            <!--            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" />-->
+                            <br />
+                            <label for="description"><h4>Event Description:</h4></label>
+                            <textarea th:field="*{description}" name="description" id="description" class="" ></textarea>
+                            <!--            <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" />-->
+                            <br />
+                            <label for="date"><h4>Event Date:</h4></label>
+                            <input type="date" th:field="*{date}" name="date" id="date" class="" />
+                            <!--            <p th:if="${#fields.hasErrors('date')}" th:errors="*{date}" />-->
+                            <br />
+                            <label for="zipcode"><h4>Event Zipcode:</h4></label>
+                            <input type="text" th:field="*{zipcode}" name="date" id="zipcode" class="" />
+                            <!--            <p th:if="${#fields.hasErrors('zipcode')}" th:errors="*{zipcode}" />-->
+                            <br />
 
-            <div th:each="category : ${eventCategories}" >
-                <input type="radio" id="categories" name="category" th:field="*{eventType}" th:value="${category.name}" />
-                <label for="categories" th:text="'   ' + ${category.name} + '  '"></label>
-            </div>
-<!--            <input type="hidden" id="category" name="category" class="" value="Other" />-->
-            <div>
-                <input type="hidden" id="image" th:field="*{filePath}">
-
-                <button class="btn btn--white" id="imageButton">Add Flyer</button>
-
-                <img class="poi-img" id="imagePreview" src="" alt="">
-            </div>
-            <div><input type="submit" class=""/></div>
-        </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-event">
+                    <div class="event__input">
+            <!--    Radio buttons for categories-->
+                        <h4>Select Event Category: </h4>
+                        <div th:each="category : ${eventCategories}" >
+                            <input type="radio" id="categories" name="category" th:field="*{eventType}" th:value="${category.name}" />
+                            <label for="categories" th:text="'   ' + ${category.name} + '  '"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-event">
+                    <div>
+                        <input type="hidden" id="image" th:field="*{filePath}">
+                        <button class="btn btn--white " id="imageButton">Add Flyer Image</button>
+                        <img class="poi-img" id="imagePreview" src="" alt="">
+                    </div>
+                    <input type="submit" class="btn btn--white event__submit"/>
+                </div>
+            </form>
+        </div>
     </div>
-
-
 </main>
 <div th:include="partials/footer :: footer"></div>
     <script src="/js/keys.js"></script>
