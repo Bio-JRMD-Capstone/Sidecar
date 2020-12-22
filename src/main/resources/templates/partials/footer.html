@@ -1,13 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
+<head th:replace="partials/head :: head('test routes')">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<div th:fragment="footer" class="bg-light border-top-1">
-    <p class="text-center">&copy; Sidecar</p>
+<div th:fragment="footer" class="u-center-text bg-light border-top-1">
+    <footer class="footer">
+        <div class="footer__logo-box">
+            <img src="images/compass-rose.jpeg" alt="Full Logo" class="footer__logo">
+            <span class="heading-primary--logo">Sidecar</span>
+        </div>
+        <div class="row">
+            <div class="col-1-of-2">
+                <div class="footer__navigation">
+                    <ul class="footer__list">
+                        <li class="footer__item"><a href="#" class="footer__link">Jason Carrillo</a></li>
+                        <li class="footer__item"><a href="#" class="footer__link">Ryan Kendall</a></li>
+                        <li class="footer__item"><a href="#" class="footer__link">Michael Meyer</a></li>
+                        <li class="footer__item"><a href="#" class="footer__link">Donelle Harris</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-1-of-2">
+                <p class="footer__copyright">
+                    A <a href="https://codeup.com/" class="footer__link">Codeup</a> Capstone Project.
+                </p>
+            </div>
+        </div>
+    </footer>
 </div>
 </body>
 </html>

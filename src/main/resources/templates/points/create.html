@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="partials/head :: head('Add a POI')">
+    <meta charset="UTF-8">
+    <title>Add a POI</title>
+
+</head>
+<body>
+<!--    <nav th:replace="partials/navbar :: nav"></nav>-->
+<div th:replace="partials/expand-nav :: navigation"></div>
+<!-- Map w/ input fields and button to create -->
+<div class="poi">
+    <div class="poi-box">
+        <div class="col-poi-1">
+            <div class="poi__input">
+                <h3>Location Data</h3>
+                <form th:action="@{/points/create}" th:method="post" th:object="${poi}" class="poi-data">
+
+                    <input class="poi__input" type="text"  th:field="*{name}" id="name" name="name" placeholder="title">
+                    <label class="poi__label" for="name">Enter a name:</label>
+
+                    <!--Need a dropdown or other menu for POI category: Bar, Restaurant, Scenic View, Repair Shop, Other-->
+
+                    <input class="poi__input-long" type="text" id="description" name="description" placeholder="description" >
+                    <label class="poi__label" for="description">Enter a description:</label>
+
+                    <input type="hidden" id="lat" value="" th:field="*{lat}">
+                    <input type="hidden" id="lon" value="" th:field="*{lon}">
+                    <input type="hidden" id="image" th:field="*{photo_url}">
+
+                    <button class="btn btn--white" id="imageButton">Add a Picture</button>
+                    <img class="poi-img" id="imagePreview" src="" alt="">
+
+                    <div class="input-field">
+                        <input class="btn btn--white" type="submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-poi-2">
+            <div class="poi__input">
+                <div id="floating-panel">
+                    <input id="address" type="textbox" placeholder="Enter a location" />
+                    <input id="submit" type="button" value="View Location" />
+                </div>
+                <div id="map">Map</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/keys.js"></script>
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script src="/js/filestack.js"></script>
+<script src="/js/addPOI.js"></script>
+<div th:include="partials/footer :: footer"></div>
+<div th:include="partials/scripts :: scripts"></div>
+</body>
+</html>

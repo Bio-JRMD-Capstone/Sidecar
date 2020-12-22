@@ -36,13 +36,13 @@ public class POIController {
     public @ResponseBody List<POI> viewAllPOIInJSONFormat() {
         return poiDao.findAll();
     }
-    @GetMapping("/points/add")
+    @GetMapping("/points/create")
     public String add(Model model) {
         POI newPoi = new POI();
         model.addAttribute("poi", newPoi);
-        return "points/add";
+        return "points/create";
     }
-    @PostMapping("/points/add")
+    @PostMapping("/points/create")
     public String create(@ModelAttribute POI poiToBeSaved) {
         User userDb = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         poiToBeSaved.setUser(userDb);

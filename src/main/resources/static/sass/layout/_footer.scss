@@ -3,13 +3,23 @@
     padding: 5rem 0;
     font-size: 1.4rem;
     color: $color-gray-light-1;
+    text-align: center;
 
     &__logo-box {
-        text-align: center;
+
+        display: flex;
+        align-content: center;
+        align-items: center;
         margin-bottom: 4rem;
+        & span {
+            margin-right: auto;
+            text-align: center;
+            padding-left: 3rem;
+        }
     }
 
     &__logo {
+        margin-left: auto;
         width: 8rem;
         border-radius: 50%;
         height: auto;

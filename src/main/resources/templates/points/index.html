@@ -1,56 +1,22 @@
 <!DOCTYPE html>
 
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head('Points of Interest')">
 
     <meta charset="UTF-8">
     <title>Index</title>
-    <script
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMpJ-NawmnjMOSlkw5uXkLYjDTSzEmvag&callback=initMap&libraries=&v=weekly"
-            defer
-    ></script>
-    <style>
-        /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-        #map {
-            height: 600px;
-        }
-
-        /* Optional: Makes the sample page fill the window. */
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-        .custom-map-control-button {
-            appearance: button;
-            background-color: #fff;
-            border: 0;
-            border-radius: 2px;
-            box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
-            margin: 10px;
-            padding: 0 0.5em;
-            height: 40px;
-            font: 400 18px Roboto, Arial, sans-serif;
-            overflow: hidden;
-        }
-        .custom-map-control-button:hover {
-            background: #ebebeb;
-        }
-    </style>
 </head>
 <body>
-<nav th:replace="partials/navbar :: nav"></nav>
+<!--    <nav th:replace="partials/navbar :: nav"></nav>-->
+<div th:replace="partials/expand-nav :: navigation"></div>
 
 <main class="row w-100">
     <div class="col-md-3" sec:authorize="isAuthenticated()">
-        <h5>Left column</h5>
+        <div class="btn btn-white"><a th:href="@{/points/create}">Add a Point of Interest</a></div>
     </div>
     <div class="col-md-9">
-        <h4>Add a Point of Interest</h4>
+        <h4>Find a Point of Interest</h4>
         <div id="floating-panel">
             <input id="address" type="textbox" placeholder="Enter a location" />
             <input id="submit" type="button" value="View Location" />

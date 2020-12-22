@@ -1,13 +1,9 @@
-#map {
-  height: 70vh;
-  width: 95%;
-  margin: auto;
-}
-.map {
-  max-width: 90%;
+.poi {
+  width: 90%;
   margin: 5rem auto;
-
-
+  &-img {
+    height: 20rem;
+  }
   &-data {
     display: flex;
     flex-direction: column;
@@ -27,7 +23,7 @@
     padding: 3rem;
     background-color: $color-primary-light;
     height: 100%;
-    display: flex;
+    display: block;
     overflow: auto;
     margin-bottom: 3rem;
   }
@@ -48,21 +44,6 @@
     display: block;
     transition: all .3s;
 
-    &--map-btn {
-      display: flex;
-      flex-direction: row;
-      padding: 1rem 2rem;
-      & .btn-lt {
-        height: 3rem;
-        padding: .5rem;
-        margin-right: auto;
-      }
-      & .btn-rt {
-        height: 3rem;
-        padding: .5rem;
-        margin-left: auto;
-      }
-    }
     &:focus {
       outline: none;
       box-shadow: 0 1rem 2rem rgba($color-black, .1);
@@ -86,9 +67,8 @@
       border: none;
       border-bottom: 3px solid transparent;
       width: 100%;
-      min-height: 15rem;
+      min-height: 20rem;
       display: block;
-      text-wrap: normal;
       transition: all .3s;
 
       &:focus {
@@ -122,14 +102,11 @@
     transform: translateY(-4rem);
   }
 }
-.col-map-1 {
-  width: calc((98% - (3 * #{$gutter-horizontal})) / 4);
+.col-poi-1 {
+  width: calc((100% - 2 * #{$gutter-horizontal}) / 3);
 }
-.col-map-2{
-  width: calc(2 * ((98% - (3 * #{$gutter-horizontal})) / 4) + #{$gutter-horizontal});
-}
-.col-map-3 {
-  width: calc((98% - (3 * #{$gutter-horizontal})) / 4);
+.col-poi-2 {
+  width: calc(2* ((100% - 2 * #{$gutter-horizontal}) / 3) + #{$gutter-horizontal});
 }
 .custom-map-control-button {
   background-color: #fff;
