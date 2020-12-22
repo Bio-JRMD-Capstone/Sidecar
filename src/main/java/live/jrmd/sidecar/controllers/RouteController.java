@@ -4,6 +4,7 @@ import live.jrmd.sidecar.models.Route;
 import live.jrmd.sidecar.models.User;
 import live.jrmd.sidecar.repositories.RouteRepository;
 import live.jrmd.sidecar.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,8 +32,8 @@ public class RouteController {
 
     @PostMapping("/routes/create")
     public String saveRoute(@ModelAttribute Route route){
-        route.setUser(userDao.getOne(1L));
-        System.out.println(route);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        route.setUser(user);
         routeDao.save(route);
         return "redirect:/login";
     }

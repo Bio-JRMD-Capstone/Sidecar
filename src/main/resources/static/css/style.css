@@ -576,6 +576,11 @@ body {
   opacity: 1;
 }
 
+.event {
+  background-color: #3F3622;
+  color: #ffffff;
+}
+
 .feature-box {
   color: #3F3622;
   border: 2px solid #3F3622;
