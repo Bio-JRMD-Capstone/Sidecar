@@ -10,9 +10,10 @@
 <!--    <nav th:replace="partials/navbar :: nav"></nav>-->
 <div th:replace="partials/expand-nav :: navigation"></div>
 <main>
-
-    <h1>Sidecar Routes</h1>
-    <a class="btn" th:href="@{/routes/create}">Plot your route</a>
+    <div class="map">
+        <h1>Sidecar Routes</h1>
+        <a class="btn" th:href="@{/routes/create}">Plot your route</a>
+    </div>
 </main>
 <div th:replace="partials/footer :: footer"></div>
 <div th:replace="partials/scripts :: scripts"></div>

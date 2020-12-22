@@ -15,14 +15,15 @@
 
     <div class="navigation__nav">
         <ul class="navigation__list">
-            <li class="navigation__item"><a href="/register" class="navigation__link" sec:authorize="!isAuthenticated()"><span>01</span>Register</a></li>
-            <li class="navigation__item"><a href="/login" class="navigation__link" sec:authorize="!isAuthenticated()"><span>02</span> Login</a></li>
-            <li class="navigation__item"><a href="/profile" class="navigation__link" sec:authorize="isAuthenticated()"><span>01</span>My Profile</a></li>
-            <li class="navigation__item"><form th:action="@{/logout}" th:method="post"><button class="navigation__link navigation__link-btn" sec:authorize="isAuthenticated()"><span>02</span> Logout</button></form></li>
-            <li class="navigation__item"><a href="/" class="navigation__link"><span>03</span>Home</a></li>
-            <li class="navigation__item"><a href="/routes" class="navigation__link"><span>04</span>Routes</a></li>
-            <li class="navigation__item"><a href="/events" class="navigation__link"><span>05</span>Events</a></li>
-            <li class="navigation__item"><a href="/points" class="navigation__link"><span>06</span>Points of Interest</a></li>
+            <li class="navigation__item"><a href="/register" class="navigation__link" sec:authorize="!isAuthenticated()"><i class="basic-sheet-pencil"></i>  Register</a></li>
+            <li class="navigation__item"><a href="/login" class="navigation__link" sec:authorize="!isAuthenticated()"><i class="icon-arrows-right-double"></i>  Login</a></li>
+            <li class="navigation__item"><a href="/" class="navigation__link"><i class="icon-basic-home"></i>   Home</a></li>
+            <li class="navigation__item"><a href="/routes" class="navigation__link"><i class="icon-basic-map"></i>  Routes</a></li>
+            <li class="navigation__item"><a href="/events" class="navigation__link"><i class="icon-basic-world"></i>   Events</a></li>
+            <li class="navigation__item"><a href="/points" class="navigation__link"><i class="icon-basic-compass"></i>Points of Interest</a></li>
+            <li class="navigation__item"><a href="/profile" class="navigation__link" sec:authorize="isAuthenticated()"><i class="basic-pencil-ruler-pen"></i>  My Profile</a></li>
+            <li class="navigation__item"><form th:action="@{/logout}" th:method="post"><button class="navigation__link navigation__link-btn" sec:authorize="isAuthenticated()"><span></span>   Logout</button></form></li>
+
 
         </ul>
     </div>
