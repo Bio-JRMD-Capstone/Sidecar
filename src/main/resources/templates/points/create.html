@@ -9,7 +9,7 @@
 <body>
     <nav th:replace="partials/navbar :: nav"></nav>
 <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
-<!-- Map w/ input fields and button to create -->
+<!-- -->
 <div class="poi">
     <div class="poi-box">
         <div class="col-poi-1">
@@ -29,11 +29,11 @@
                     <input type="hidden" id="lon" value="" th:field="*{lon}">
                     <input type="hidden" id="image" th:field="*{photo_url}">
 
-                    <button class="btn btn--white" id="imageButton">Add a Picture</button>
+                    <button class="btn" id="imageButton">Add a Picture</button>
                     <img class="poi-img" id="imagePreview" src="" alt="">
 
                     <div class="input-field">
-                        <input class="btn btn--white" type="submit">
+                        <input class="btn" type="submit">
                     </div>
                 </form>
             </div>

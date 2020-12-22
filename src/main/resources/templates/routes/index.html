@@ -7,12 +7,12 @@
 
 </head>
 <body>
-    <nav th:replace="partials/navbar :: nav"></nav>
-<!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+<!--    <nav th:replace="partials/navbar :: nav"></nav>-->
+<div th:replace="partials/expand-nav :: navigation"></div>
 <main>
 
     <h1>Sidecar Routes</h1>
-    <a href="routes/create">Plot your route</a>
+    <a class="btn" th:href="@{/routes/create}">Plot your route</a>
 </main>
 <div th:replace="partials/footer :: footer"></div>
 <div th:replace="partials/scripts :: scripts"></div>
