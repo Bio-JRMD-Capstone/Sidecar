@@ -35,6 +35,14 @@
                         <input type="text" class="form__input" placeholder="password" id="password" name="password" required>
                         <label for="password" class="form__label" th:field="*{password}">Password</label>
                     </div>
+                    <div class="u-margin-top-sm u-margin-bottom-md">
+                        <div>
+                            <input type="hidden" id="image" th:field="*{photo_url}">
+                            <button class="btn btn--white " id="imageButton">Add Flyer Image</button>
+                            <img class="poi-img" id="imagePreview" src="" alt="">
+                        </div>
+                    </div>
+
                     <div class="form__group">
                         <button type="submit" class="btn btn--green">Sign up</button>
                         <p class="fs-3">Already have an account? Please <a href="/login">Login</a></p>
@@ -48,6 +56,11 @@
 
 
 <div th:include="partials/footer :: footer"></div>
+
+<script src="/js/keys.js"></script>
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script src="/js/filestack.js"></script>
+
 <div th:include="partials/scripts :: scripts"></div>
 </body>
 </html>

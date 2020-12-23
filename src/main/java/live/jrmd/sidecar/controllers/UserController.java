@@ -7,10 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
@@ -26,7 +23,13 @@ public class UserController {
     private final UsersRepository users;
     private PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepository userDao, RouteRepository routeDao, POIRepository poiDao, EventRepository eventDao, UsersRepository users, PasswordEncoder passwordEncoder) {
+    public UserController(UserRepository userDao,
+                          RouteRepository routeDao,
+                          POIRepository poiDao,
+                          EventRepository eventDao,
+                          UsersRepository users,
+                          PasswordEncoder passwordEncoder
+    ) {
         this.userDao = userDao;
         this.routeDao = routeDao;
         this.poiDao = poiDao;
@@ -70,5 +73,18 @@ public class UserController {
         model.addAttribute("pois", poiDao.findAllByUser(user));
         model.addAttribute("events", eventDao.findAllByUser(user));
         return "users/profile";
+    }
+    @GetMapping("/user/{id}/edit")
+    public String editUser(@PathVariable(value = "id") long id, Model model){
+        model.addAttribute("userToEdit", userDao.getUserById(id));
+        return "users/edit";
+    }
+
+    @PostMapping("/user/{id}/edit")
+    public String editUser (@ModelAttribute User user){
+        String hash = passwordEncoder.encode(user.getPassword());
+        user.setPassword(hash);
+        userDao.save(user);
+        return "redirect:/profile";
     }
 }

@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="u-center-text u-margin-top-md">
-                    <a href="#" class="btn-text">Edit profile &rarr;</a>
+                    <a th:href="@{'/user/' + ${#authentication.principal.id} + '/edit'}" class="btn-text">Edit profile &rarr;</a>
                 </div>
             </div>
         </div>
@@ -55,7 +55,7 @@
                             <td th:text="${route.distance}" name="distance"></td>
                             <td th:text="${route.time}" name="time"></td>
                             <td th:text="${route.description}" name="description"></td>
-                            <td><a href="/route/{id}" class="btn btn-edit">Edit</a></td>
+                            <td><a th:href="'/route/' + ${route.id} + '/edit'" class="btn btn-edit">Edit</a></td>
                         </tr>
                         </tbody>
                     </table>
@@ -85,7 +85,7 @@
                             <td th:text="${poi.lat}" name="lat"></td>
                             <td th:text="${poi.lon}" name="lon"></td>
                             <td th:text="${poi.description}" name="description"></td>
-                            <td><a href="/poi/{id}" class="btn btn-edit">Edit</a></td>
+                            <td><a th:href="'/route/' + ${poi.id} + '/edit'" class="btn btn-edit">Edit</a></td>
                         </tr>
                         </tbody>
                     </table>
@@ -113,7 +113,7 @@
                             <td th:text="${event.id}" name="id"></td>
                             <td th:text="${event.date}" name="date"></td>
                             <td th:text="${event.description}" name="description"></td>
-                            <td><a href="/event/{id}" class="btn btn-edit">Edit</a></td>
+                            <td><a th:href="'/route/' + ${event.id} + '/edit'" class="btn btn-edit">Edit</a></td>
                         </tr>
                         </tbody>
                     </table>

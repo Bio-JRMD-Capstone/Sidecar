@@ -136,7 +136,7 @@ body {
   text-transform: uppercase;
   font-weight: 700;
   display: inline-block;
-  background-image: linear-gradient(to right, #BEB6A6, #3F3622);
+  background-color: #3F3622;
   -webkit-background-clip: text;
   color: transparent;
   letter-spacing: 0.2rem;
@@ -1573,7 +1573,7 @@ body {
 }
 
 .section-profile {
-  width: 80%;
+  width: 90%;
   margin: 3rem auto 1rem;
   padding: 5rem 0;
   background-image: linear-gradient(to right bottom, #BEB6A6, #3F3622);
