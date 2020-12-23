@@ -4,10 +4,8 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 src/main/resources/application.properties
-
 src/main/resources/static/js/keys.js
 
-src/main/resources/static/keys.js
 
 
 ### STS ###

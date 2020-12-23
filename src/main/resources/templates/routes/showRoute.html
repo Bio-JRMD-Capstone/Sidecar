@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="partials/head :: head('Route')">
+    <meta charset="UTF-8">
+    <title>All Routes</title>
+
+</head>
+<body>
+<h1>Single</h1>
+<div class="container">
+    <div clas="row">
+        <div class="col-8">
+            <h3 th:text="${route.title}"></h3>
+            <p th:text="${route.description}"></p>
+            <p th:text="${route.coordinates}"></p>
+            <p th:text="${route.time}"></p>
+            <p th:text="${route.distance}"></p>
+            <p th:text="${route.getUser()}" ></p>
+            <p th:text="${route.getUser().getEmail()}" ></p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,11 +1,13 @@
 package live.jrmd.sidecar.controllers;
 
+import live.jrmd.sidecar.models.Route;
+import live.jrmd.sidecar.models.User;
 import live.jrmd.sidecar.repositories.RouteRepository;
 import live.jrmd.sidecar.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,8 +22,17 @@ public class RouteController {
     }
 
     @GetMapping("/routes/create")
-    public String buildARoute(){
+    public String buildARoute(Model model){
+        model.addAttribute("route", new Route());
         return "routes/create";
+    }
+
+    @PostMapping("/routes/create")
+    public String saveRoute(@ModelAttribute Route route){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        route.setUser(user);
+        routeDao.save(route);
+        return "redirect:/routes";
     }
 
     @GetMapping("/routes")
@@ -37,4 +48,12 @@ public class RouteController {
         model.addAttribute("routes", searchRoutes);
         return "routes/index";
     }
+
+    @GetMapping("/route/{id}")
+    public String viewPost(@PathVariable(name= "id") long id, Model model ) {
+        model.addAttribute("route", routeDao.getOne(id));
+
+        return "routes/showRoute";
+    }
+
 }

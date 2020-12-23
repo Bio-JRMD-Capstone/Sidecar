@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head('Register')">
     <meta charset="UTF-8">
@@ -7,7 +7,8 @@
 
 </head>
 <body>
-<nav th:replace="partials/navbar :: nav"></nav>
+<!--    <nav th:replace="partials/navbar :: nav"></nav>-->
+<div th:replace="partials/expand-nav :: navigation"></div>
 
 <main>
     <section class="section-box">
@@ -36,6 +37,7 @@
                     </div>
                     <div class="form__group">
                         <button type="submit" class="btn btn--green">Sign up</button>
+                        <p class="fs-3">Already have an account? Please <a href="/login">Login</a></p>
                     </div>
                 </form>
             </div>
