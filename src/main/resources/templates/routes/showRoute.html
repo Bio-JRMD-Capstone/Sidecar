@@ -19,6 +19,12 @@
             <p th:text="${route.getUser()}" ></p>
             <p th:text="${route.getUser().getEmail()}" ></p>
         </div>
+        <form th:action="@{'/posts/' + ${route.id} + '/delete'}" th:method="post">
+            <button class="btn btn-primary">Delete</button>
+        </form>
+        <form th:action="@{'/posts/' + ${route.id} + '/edit'}" th:method="get">
+            <button class="btn btn-primary">Edit</button>
+        </form>
     </div>
 </div>
 

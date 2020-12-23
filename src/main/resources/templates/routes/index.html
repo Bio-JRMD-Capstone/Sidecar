@@ -22,12 +22,7 @@
             <a th:href="@{/route/{id}(id=${route.id})}">
                 View Route
             </a>
-            <form th:action="@{'/posts/' + ${route.id} + '/delete'}" th:method="post">
-                <button class="btn btn-primary">Delete</button>
-            </form>
-            <form th:action="@{'/posts/' + ${route.id} + '/edit'}" th:method="get">
-                <button class="btn btn-primary">Edit</button>
-            </form>
+
         </div>
     </div>
 </main>
