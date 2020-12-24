@@ -576,6 +576,128 @@ body {
   opacity: 1;
 }
 
+.event {
+  max-width: 90%;
+  margin: 5rem auto;
+}
+.event-data {
+  display: flex;
+  flex-direction: column;
+}
+.event:not(:last-child) {
+  margin-bottom: 8rem;
+}
+.event::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.event [class^=col-] {
+  float: left;
+}
+.event [class^=col-]:not(:last-child) {
+  margin-right: 6rem;
+}
+.event-box {
+  padding: 3rem;
+  background-color: #BEB6A6;
+  height: 100%;
+  display: flex;
+  overflow: auto;
+  margin-bottom: 3rem;
+}
+.event__group:not(:last-child) {
+  margin-bottom: 2rem;
+}
+.event__submit {
+  margin: 5rem;
+  position: fixed;
+  right: 6rem;
+  border: 0.5px solid #3F3622;
+}
+.event__input {
+  font-size: 1.5rem;
+  font-family: inherit;
+  color: inherit;
+  padding: 1.5rem 2rem;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-bottom: 3px solid transparent;
+  width: 100%;
+  display: block;
+  transition: all 0.3s;
+}
+.event__input--map-btn {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem 2rem;
+}
+.event__input--map-btn .btn-lt {
+  height: 3rem;
+  padding: 0.5rem;
+  margin-right: auto;
+}
+.event__input--map-btn .btn-rt {
+  height: 3rem;
+  padding: 0.5rem;
+  margin-left: auto;
+}
+.event__input:focus {
+  outline: none;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+  border-bottom: 3px solid #674A21;
+}
+.event__input:focus:invalid {
+  border-bottom: 3px solid #192304;
+}
+.event__input::-webkit-input-placeholder {
+  color: #999;
+}
+.event__input-long {
+  font-size: 1.5rem;
+  font-family: inherit;
+  color: inherit;
+  padding: 1.5rem 2rem;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-bottom: 3px solid transparent;
+  width: 100%;
+  min-height: 15rem;
+  display: block;
+  text-wrap: normal;
+  transition: all 0.3s;
+}
+.event__input-long:focus {
+  outline: none;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+  border-bottom: 3px solid #674A21;
+}
+.event__input-long:focus:invalid {
+  border-bottom: 3px solid #192304;
+}
+.event__input-long::-webkit-input-placeholder {
+  color: #999;
+}
+.event__label {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-left: 2rem;
+  margin-top: 0.7rem;
+  display: block;
+  transition: all 0.3s;
+}
+.event__input:placeholder-shown + .event__label {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4rem);
+}
+
+.col-event {
+  position: relative;
+}
+
 .feature-box {
   color: #3F3622;
   border: 2px solid #3F3622;
