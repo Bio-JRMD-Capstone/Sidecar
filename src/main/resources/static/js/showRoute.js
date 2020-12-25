@@ -1,4 +1,43 @@
 let markers = [{location: {lat: 31.165141833483684, lng: -99.27938967601061 }},{location: {lat: 31.052265437002188, lng: -97.46664553538561 }},{location: {lat: 30.24890311353849, lng: -97.86215334788561 }}]
+let coords = document.getElementById("coords").textContent.split("},")
+
+// coords.replace("{location: { lat:", "")
+
+
+
+console.log(coords)
+
+let repMark = []
+
+for (let i = 0; i < coords.length; i++){
+    repMark.push(coords[i].replace("{location: {lat: ", ""))
+}
+
+console.log(repMark)
+
+let lngRep = []
+
+for (let i = 0; i < coords.length; i++){
+    lngRep.push(repMark[i].replace("lng: ", ""))
+}
+
+console.log(lngRep)
+
+let coordsOnly = []
+
+for (let i = 0; i < coords.length; i++){
+    coordsOnly.push(lngRep[i].replace(" }", ""))
+}
+
+console.log(coordsOnly)
+
+console.log(parseFloat(coordsOnly));
+
+
+// let icoords = document.getElementById("coords").value.split("},")
+
+console.log(coords)
+
 
 function initMap() {
     const map = new google.maps.Map(document.getElementById("map"), {
