@@ -29,9 +29,18 @@ for (let i = 0; i < coords.length; i++){
     coordsOnly.push(lngRep[i].replace(" }", ""))
 }
 
-console.log(coordsOnly)
+let markTest = []
 
-console.log(parseFloat(coordsOnly));
+for (let i = 0; i < coords.length; i++){
+    let obj = {}
+    coordsOnly[i].split(",")
+    obj["lat"] = coordsOnly[0]
+    obj["lng"] = coordsOnly[1]
+    markTest.push(obj)
+}
+
+console.log(markTest)
+
 
 
 // let icoords = document.getElementById("coords").value.split("},")
