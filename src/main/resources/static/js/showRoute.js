@@ -29,13 +29,26 @@ for (let i = 0; i < coords.length; i++){
     coordsOnly.push(lngRep[i].replace(" }", ""))
 }
 
+console.log(coordsOnly)
+
+let coordsSelf = []
+
+for (let i = 0; i < coords.length; i++){
+    coordsSelf.push(coordsOnly[i].replace("}", ""))
+}
+
+console.log(coordsSelf)
+
 let markTest = []
+
+console.log(coordsOnly[0].split(", "));
+console.log(coordsOnly[0][0])
 
 for (let i = 0; i < coords.length; i++){
     let obj = {}
     coordsOnly[i].split(",")
-    obj["lat"] = coordsOnly[0]
-    obj["lng"] = coordsOnly[1]
+    obj["lat"] = coordsOnly[i]
+    obj["lng"] = coordsOnly[i+1]
     markTest.push(obj)
 }
 
