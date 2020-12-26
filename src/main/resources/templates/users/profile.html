@@ -10,12 +10,12 @@
 <!--    <nav th:replace="partials/navbar :: nav"></nav>-->
 <div th:replace="partials/expand-nav :: navigation"></div>
 
-<main sec:authorize="isAuthenticated()">
+<main>
     <section class="section-profile">
         <div class="row">
             <div class="profile">
                 <figure class="profile__shape">
-                    <img src="images/ben-sweet-2LowviVHZ-E-unsplash.jpg" alt="profile image" class="profile__image">
+                    <img th:src="${user.photo_url}" alt="profile image" class="profile__image">
                 </figure>
                 <div class="profile__text">
                     <h3 class="heading-tertiary u-margin-bottom-sm">Profile Information</h3>
