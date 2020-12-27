@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head('Login')">
     <meta charset="UTF-8">
@@ -7,45 +7,38 @@
 
 </head>
 <body>
-<nav th:replace="partials/navbar :: nav"></nav>
+<!--    <nav th:replace="partials/navbar :: nav"></nav>-->
+<div th:replace="partials/expand-nav :: navigation"></div>
+<main>
+    <section class="section-box">
+        <!--        <div class="row">-->
+        <div class="box-login">
+            <div class="box__form">
+                <form action="#" class="form" th:action="@{/login}" th:method="post">
+                    <div class="u-margin-bottom-md">
+                        <h2 class="heading-secondary">
+                            Login:
+                        </h2>
+                    </div>
+                    <div class="form__group">
+                        <input type="text" class="form__input" placeholder="username" id="username" name="username" required>
+                        <label for="username" class="form__label">Username:</label>
+                    </div>
+                    <div class="form__group">
+                        <input type="password" class="form__input" placeholder="password" id="password" name="password" required>
+                        <label for="password" class="form__label">Password</label>
+                    </div>
 
-<!--<main class="container">-->
-<!--    <div class="col-6">-->
-<!--        <h1>Login</h1>-->
-<!--        <form class="d-flex ml-auto" th:action="@{/login}" th:method="post">-->
-<!--            <input class="form-control me-2" type="text" placeholder="username" name="username">-->
-<!--            <input class="form-control me-2" type="password" placeholder="password" name="password">-->
-<!--            <button class="btn-nav" type="submit">Login</button>-->
-<!--        </form>-->
-<!--    </div>-->
-    <section class="section-book">
-<!--        <div class="row">-->
-            <div class="book">
-                <div class="book__form">
-                    <form action="#" class="form" th:action="@{/login}" th:method="post">
-                        <div class="u-margin-bottom-md">
-                            <h2 class="heading-secondary">
-                                Login:
-                            </h2>
-                        </div>
-                        <div class="form__group">
-                            <input type="text" class="form__input" placeholder="username" id="username" name="username" required>
-                            <label for="username" class="form__label">Username:</label>
-                        </div>
-                        <div class="form__group">
-                            <input type="password" class="form__input" placeholder="password" id="password" name="password" required>
-                            <label for="password" class="form__label">Password</label>
-                        </div>
-
-                        <div class="form__group">
-                            <button type="submit" class="btn btn--green">Login</button>
-                        </div>
-                    </form>
-                </div>
+                    <div class="form__group">
+                        <button type="submit" class="btn btn--green">Login</button>
+                    </div>
+                </form>
             </div>
-<!--        </div>-->
+        </div>
+        <!--        </div>-->
     </section>
-<!--</main>-->
+
+</main>
 
 
 <div th:include="partials/footer :: footer"></div>

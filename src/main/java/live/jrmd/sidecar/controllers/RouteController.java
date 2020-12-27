@@ -4,12 +4,10 @@ import live.jrmd.sidecar.models.Route;
 import live.jrmd.sidecar.models.User;
 import live.jrmd.sidecar.repositories.RouteRepository;
 import live.jrmd.sidecar.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,8 +29,8 @@ public class RouteController {
 
     @PostMapping("/routes/create")
     public String saveRoute(@ModelAttribute Route route){
-        route.setUser(userDao.getOne(1L));
-        System.out.println(route);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        route.setUser(user);
         routeDao.save(route);
         return "redirect:/routes";
     }
@@ -49,6 +47,13 @@ public class RouteController {
         List searchRoutes = routeDao.findAllByTitleIsLike(term);
         model.addAttribute("routes", searchRoutes);
         return "routes/index";
+    }
+
+    @GetMapping("/route/{id}")
+    public String viewPost(@PathVariable(name= "id") long id, Model model ) {
+        model.addAttribute("route", routeDao.getOne(id));
+
+        return "routes/showRoute";
     }
 
 }

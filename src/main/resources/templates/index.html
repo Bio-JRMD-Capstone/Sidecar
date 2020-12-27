@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
                 xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head('Sidecar')">
     <meta charset="UTF-8">
@@ -7,33 +7,53 @@
 
 </head>
 <body>
-    <nav th:replace="partials/navbar :: nav"></nav>
+<!--    <nav th:replace="partials/navbar :: nav"></nav>-->
+    <div th:replace="partials/expand-nav :: navigation"></div>
+
     <header class="header">
         <div class="header__logo-box">
-            <img src="./img/logo-white.png" alt="Logo" class="header__logo">
+            <img src="/images/compass-rose.jpeg" alt="Logo" class="header__logo">
+            <h1 class="heading-primary--logo header__text">Sidecar</h1>
         </div>
         <div class="header__text-box">
             <h1 class="heading-primary">
                 <span class="heading-primary--main">Life</span>
                 <span class="heading-primary--sub">it's just better on two wheels</span>
             </h1>
-
-<!--            <a href="/routes" class="btn btn&#45;&#45;white btn&#45;&#45;animated">&nbsp;</a>-->
         </div>
     </header>
-<!--    <main class="row w-100">-->
-<!--        <div class="col-md-3" sec:authorize="isAuthenticated()">-->
-<!--            <h5>Left column</h5>-->
-<!--        </div>-->
-<!--        <div class="col-md-9">-->
-<!--            <h4>Sidecar Landing Page</h4>-->
-<!--            <div id="floating-panel">-->
-<!--                <input id="address" type="textbox" placeholder="Enter a location" />-->
-<!--                <input id="submit" type="button" value="View Location" />-->
-<!--            </div>-->
-<!--            <div id="map"></div>-->
-<!--        </div>-->
-<!--    </main>-->
+    <main>
+        <section class="section-features">
+
+            <div class="row">
+                <div class="col-1-of-3">
+                    <div class="feature-box">
+                        <i class="feature-box__icon icon-basic-map"></i>
+                        <h3 class="heading-tertiary u-margin-bottom-sm">Find your route</h3>
+                        <p class="feature-box__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae perspiciatis laudantium repellat.</p>
+                        <a href="/routes" class="btn btn--white">Go!</a>
+                    </div>
+                </div>
+                <div class="col-1-of-3">
+                    <div class="feature-box">
+                        <i class="feature-box__icon icon-basic-compass"></i>
+                        <h3 class="heading-tertiary u-margin-bottom-sm">Points of Interest</h3>
+                        <p class="feature-box__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo ullam odit assumenda amet.</p>
+                        <a href="/points" class="btn btn--white">Go!</a>
+                    </div>
+                </div>
+                <div class="col-1-of-3">
+                    <div class="feature-box">
+                        <i class="feature-box__icon icon-basic-world"></i>
+                        <h3 class="heading-tertiary u-margin-bottom-sm">Events</h3>
+                        <p class="feature-box__text">Aliquid delectus, blanditiis similique officia quasi repudiandae numquam rem molestiae? Similique, facilis?</p>
+                        <a href="/events" class="btn btn--white">Go!</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
     <div th:include="partials/footer :: footer"></div>
     <div th:include="partials/scripts :: scripts"></div>
 </body>

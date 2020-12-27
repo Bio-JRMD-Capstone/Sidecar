@@ -1,63 +1,73 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="partials/head :: head('Routes')">
+<head th:replace="partials/head :: head('Sidecar')">
     <meta charset="UTF-8">
-    <title>Routes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
-
-<link href="/css/">
 <body>
-<nav th:replace="partials/navbar :: nav"></nav>
-<main class="container">
-    <h4>Create route</h4>
-    <form class="row align-items-center" th:action="@{/routes/create}" th:method="POST" th:object="${route}">
-        <div class="col-1-of-2">
-            <label for="title" class="form-label">Title</label>
-            <input type="text" class="form-control" id="title" name="title" th:field="*{title}">
-        </div>
-        <div class="col-1-of-2">
-            <label for="description" class="form-label">Description</label>
-            <textarea type="description" class="form-control" id="description" name="description"  th:field="*{description}"></textarea>
-        </div>
-        <div class="col-1-of-2">
-            <label for="distance" class="form-label" >Distance</label>
-            <input type="text" class="form-control" id="distance" name="distance" th:field="*{distance}" readonly>
-        </div>
+<!--    <nav th:replace="partials/navbar :: nav"></nav>-->
+<div th:replace="partials/expand-nav :: navigation"></div>
+<main>
+    <!-- Map w/ input fields and button to create -->
+    <div class="map">
+        <div class="map-box">
+            <div class="col-map-1">
+                <div class="map__input">
+                    <h3>Route Info</h3>
+                    <form class="map-data"  th:action="@{/routes/create}" th:method="POST" th:object="${route}">
 
-        <input type="hidden" class="form-control" id="coordinates" name="coordinates" th:field="*{coordinates}">
+                        <input class="map__input" type="text"  id="title" name="title" placeholder="Title" th:field="*{title}">
 
-        <div class="col-1-of-2">
-            <label for="time" class="form-label" >Time (Hours)</label>
-            <input type="text" class="form-control" id="time" name="time" th:field="*{time}" readonly>
-        </div>
-        <div class="field">
-            <div class="control">
-                <input class="button btn" type="submit" value="Submit">
+                        <textarea class="map__input-long" type="text" id="description" name="description" placeholder="Description" th:field="*{description}"></textarea>
+
+                        <input class="map__input" type="text" id="distance" name="distance" placeholder="Distance" th:field="*{distance}" readonly>
+
+                        <input type="hidden" class="form-control" id="coordinates" name="coordinates" th:field="*{coordinates}">
+
+                        <input class="map__input" type="text" id="time" name="time"  placeholder="Time(Hours)" th:field="*{time}" readonly>
+                        <div class="control">
+                            <input class="btn btn--white" type="submit" value="Save Route">
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            <!-- Map -->
+            <div class="col-map-2">
+                <div class="map__input ">
+                    <div class="map__input--map-btn">
+                        <input class="btn-lt" type="button" id="clearBtn" name="clearBtn" value="Clear Route">
+                        <div class="field">
+                            <div class="control">
+                                <input class="btn-rt" type="button" id="testbtn" name="testbtn" value="See Route">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="map"></div>
+                    <p>
+                        <label>
+                            <input id="routeCheck" type="checkbox" />
+                            <span> Route end point matches start point</span>
+                        </label>
+                    </p>
+                </div>
+            </div>
+            <div class="col-map-3">
+                <div class="map__input">
+                    <p id="directions-panel"></p>
+
+                </div>
             </div>
         </div>
-    </form>
-
-    <input class="btn" type="button" id="clearBtn" name="clearBtn" value="Clear Route">
-    <div id="map"></div>
-    <h3 id="directions-panel"></h3>
-    <p>
-        <label>
-            <input id="routeCheck" type="checkbox" />
-            <span> Route end point matches start point</span>
-        </label>
-    </p>
-    <input class="btn" type="button" id="testbtn" name="testbtn" value="Route">
-
-
+    </div>
 </main>
 
-
-
-
+<div th:replace="partials/footer :: footer"></div>
 <script src="/js/createRoute.js"></script>
-<div th:include="partials/footer :: footer"></div>
-<div th:include="partials/scripts :: scripts"></div>
+<div th:replace="partials/scripts :: scripts"></div>
+
 </body>
 
 

@@ -1,45 +1,28 @@
 const client = filestack.init(fileStackAPI);
 
 const options = {
-    onUploadDone: updateForm,
-    maxSize: 10 * 1024 * 1024,
-    accept: 'image/*',
-    uploadInBackground: false,
-};
-const picker = client.picker(options);
+    //onFileUploadFinished is called when the the user uploads a image in the
+    // picker and they have successfully uploaded the image to filestack servers.
+    onFileUploadFinished: callback =>{
+        // I save the filestack image url to a const because I plan to use it in multiple places.
+        const newImageUrl = callback.url;
+        // this sets my hidden input to the value of my new image url.
+        $('#image').val(newImageUrl);
+        // this lets the user see a preview of the image that they uploaded.
+        $('#imagePreview').attr('src', newImageUrl);
+        //Change the button to say "Change Picture" instead of "Add a Picture"
+        $('#imageButton').text('Change Picture')
+    }
+}
 
-// Get references to the DOM elements
-
-const form = document.getElementById('pick-form');
-const fileInput = document.getElementById('fileupload');
-const btn = document.getElementById('picker');
-const nameBox = document.getElementById('nameBox');
-const urlBox = document.getElementById('urlBox');
-
-// Add our event listeners
-
-btn.addEventListener('click', function (e) {
+$('#imageButton').click(function(e){
+    // this is what prevents the button from submitting the form
     e.preventDefault();
-    picker.open();
-});
 
-form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    alert('Submitting: ' + fileInput.value);
-});
 
-// Helper to overwrite the field input value
 
-function updateForm (result) {
-    const fileData = result.filesUploaded[0];
-    fileInput.value = fileData.url;
-
-    // Some ugly DOM code to show some data.
-    const name = document.createTextNode('Selected: ' + fileData.filename);
-    const url = document.createElement('a');
-    url.href = fileData.url;
-    url.appendChild(document.createTextNode(fileData.url));
-    nameBox.appendChild(name);
-    urlBox.appendChild(document.createTextNode('Uploaded to: '));
-    urlBox.appendChild(url);
-};
+    //we use this to tell filestack to open their file picker interface.
+    // the picker method can take an argument of a options object
+    // where you can specify what you want the picker to do
+    client.picker(options).open();
+})

@@ -4,15 +4,23 @@
     &:visited {
         text-transform: uppercase;
         text-decoration: none;
-        padding: 1.5rem 4rem;
+        padding: 1rem 4rem;
         display: inline-block;
         border-radius: 10rem;
         transition: all .2s;
         position: relative;
-    
+
         //Change for the <button> element
         border: none;
         cursor: pointer;
+    }
+    &-nav {
+        border: none !important;
+        background-color: transparent !important;
+    }
+    &-edit {
+        border-radius: 3px !important;
+        padding: .5rem !important;
     }
     &--animated {
         animation-name: moveInBottom;
@@ -52,6 +60,14 @@
             background-color: $color-primary;
         }
     }
+    &--light {
+        background-color: $color-primary-light;
+        color: $color-black;
+
+        &::after {
+            background-color: $color-primary;
+        }
+    }
     &::after {
         content: "";
         display: inline-block;
@@ -63,6 +79,29 @@
         left: 0;
         z-index: -1;
         transition: all .4s;
+    }
+}
+
+.btn-text-light {
+    &:link,
+    &:visited {
+        font-size: $default-font-size;
+        color: $color-primary-light;
+        display: inline-block;
+        text-decoration: none;
+        border-bottom: 1px solid $color-primary;
+        padding: 3px;
+        transition: all .2s;
+    }
+    &:hover {
+        background-color: $color-primary;
+        color: $color-white;
+        box-shadow: 0 1rem 2rem rgba($color-black, .15);
+        transform: translateY(-2px);
+    }
+    &:active {
+        box-shadow: 0 .5rem 2rem rgba($color-black, .15);
+        transform: translateY(0);
     }
 }
 .btn-text {
@@ -87,23 +126,8 @@
         transform: translateY(0);
     }
 }
-
-.btn-nav {
-    &:link,
-    &:visited {
-        font-size: $default-font-size;
-        color: $color-gray-darkest;
-        background-color: transparent !important;
-        border: none;
-        display: inline;
-        margin: 0;
-        padding: 0;
-        text-decoration: none;
-    }
-    &:hover,
-    &:active{
-        background-color: $color-gray-dark;
-        color: $color-gray-darkest;
-
-    }
+.btn-sm {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 5px;
 }

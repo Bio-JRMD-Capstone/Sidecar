@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="partials/head :: head('Add Event')">
+    <meta charset="UTF-8">
+    <title>Add Event</title>
+
+</head>
+<body>
+<!--    <nav th:replace="partials/navbar :: nav"></nav>-->
+<div th:replace="partials/expand-nav :: navigation"></div>
+<main>
+    <div class="container" id="inputForm">
+        <form th:action="@{/events/create}" th:method="post" th:object="${event}">
+            <input type="hidden" th:field="*{user}">
+            <label for="name"><h4>Event Title:</h4></label>
+            <input type="text" th:field="*{name}" name="name" id="name" class=""/>
+<!--            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" />-->
+            <br />
+            <label for="description"><h4>Event Description:</h4></label>
+            <textarea th:field="*{description}" name="description" id="description" class="" ></textarea>
+<!--            <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" />-->
+            <br />
+            <label for="date"><h4>Event Date:</h4></label>
+            <input type="date" th:field="*{date}" name="date" id="date" class="" />
+<!--            <p th:if="${#fields.hasErrors('date')}" th:errors="*{date}" />-->
+            <br />
+            <label for="zipcode"><h4>Event Zipcode:</h4></label>
+            <input type="text" th:field="*{zipcode}" name="date" id="zipcode" class="" />
+<!--            <p th:if="${#fields.hasErrors('zipcode')}" th:errors="*{zipcode}" />-->
+            <br />
+<!--            Checkboxes for categories-->
+            <h4>Select Event Category(ies): </h4>
+
+            <div th:each="category : ${eventCategories}" >
+                <input type="checkbox" id="categories" name="category" th:field="*{eventCategories}" th:value="${category.id}" />
+                <label for="categories" th:text="'   ' + ${category.name} + '  '"></label>
+            </div>
+            <input type="hidden" id="category" name="category" class="" value="Other" />
+
+            <input type="hidden" id="image" th:field="*{filePath}">
+
+            <button class="btn btn--white" id="imageButton">Add a Picture</button>
+            <img class="poi-img" id="imagePreview" src="" alt="">
+            <input type="submit" class=""/>
+        </form>
+    </div>
+
+
+</main>
+<div th:include="partials/footer :: footer"></div>
+<script src="/js/keys.js"></script>
+<script src="/js/filestack.js"></script>
+<div th:include="partials/scripts :: scripts"></div>
+</body>
+</html>

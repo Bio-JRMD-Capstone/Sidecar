@@ -6,6 +6,8 @@ target/
 src/main/resources/application.properties
 src/main/resources/static/js/keys.js
 
+
+
 ### STS ###
 .apt_generated
 .classpath
@@ -33,3 +35,4 @@ build/
 
 ### VS Code ###
 .vscode/
+

@@ -6,12 +6,12 @@
     box-sizing: inherit;
 }
 html {
-    /* this is a % of the default value of the browser and allows users to adjust for accesibility*/
+    /* this is a % of the default value of the browser and allows users to adjust for accessibility*/
     /* defines 1rem = 10px */
     font-size: 62.5%;
 
     @include respond(tab-land){
-        font-size: 56.25; //1rem = 9px, 9/16 = 50%
+        font-size: 56.25%; //1rem = 9px, 9/16 = 50%
     }
 
     @include respond(tab-port){
@@ -27,5 +27,5 @@ body {
     box-sizing: border-box;
 }
 main {
-    height: 80vh;
+    min-height: 90vh;
 }

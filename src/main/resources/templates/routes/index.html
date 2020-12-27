@@ -1,19 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="partials/head :: head('Routes')">
+<head th:replace="partials/head :: head('All Routes')">
     <meta charset="UTF-8">
-    <title>Routes</title>
+    <title>All Routes</title>
 
 </head>
 <body>
-<nav th:replace="partials/navbar :: nav"></nav>
+<!--    <nav th:replace="partials/navbar :: nav"></nav>-->
+<div th:replace="partials/expand-nav :: navigation"></div>
 <main>
 
     <h1>Sidecar Routes</h1>
-    <a href="routes/create">Plot your route</a>
+    <a class="btn" href="/routes/create">Plot your route</a>
+
+    <h1 class="text-center">All Routes</h1>
+    <div class="row justify-space-around col-12">
+        <div class="col-3" th:each="route : ${routes}">
+            <h3 th:text="${route.title}"></h3>
+            <p th:text="${route.description}"></p>
+            <a th:href="@{/route/{id}(id=${route.id})}">
+                View Route
+            </a>
+            <form th:action="@{'/posts/' + ${route.id} + '/delete'}" th:method="post">
+                <button class="btn btn-primary">Delete</button>
+            </form>
+            <form th:action="@{'/posts/' + ${route.id} + '/edit'}" th:method="get">
+                <button class="btn btn-primary">Edit</button>
+            </form>
+        </div>
+    </div>
 </main>
-<div th:include="partials/footer :: footer"></div>
-<div th:include="partials/scripts :: scripts"></div>
+<div th:replace="partials/footer :: footer"></div>
+<div th:replace="partials/scripts :: scripts"></div>
 </body>
 </html>
