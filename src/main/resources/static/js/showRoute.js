@@ -42,18 +42,12 @@ console.log(coordsSelf)
 let markTest = []
 
 console.log(coordsOnly[0].split(", "));
-console.log(coordsOnly[0][0])
 
-for (let i = 0; i < coords.length; i++){
-    let obj = {}
-    coordsOnly[i].split(",")
-    obj["lat"] = coordsOnly[i]
-    obj["lng"] = coordsOnly[i+1]
-    markTest.push(obj)
+for (let i = 0; i < coordsOnly.length; i++){
+    markTest.push(coordsOnly[i].split(", "))
 }
 
-console.log(markTest)
-
+console.log(markTest);
 
 
 // let icoords = document.getElementById("coords").value.split("},")
