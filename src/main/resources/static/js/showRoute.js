@@ -1,4 +1,4 @@
-let markers = [{location: {lat: 31.165141833483684, lng: -99.27938967601061 }},{location: {lat: 31.052265437002188, lng: -97.46664553538561 }},{location: {lat: 30.24890311353849, lng: -97.86215334788561 }}]
+// let markers = [{location: {lat: 31.165141833483684, lng: -99.27938967601061 }},{location: {lat: 31.052265437002188, lng: -97.46664553538561 }},{location: {lat: 30.24890311353849, lng: -97.86215334788561 }}]
 let coords = document.getElementById("coords").textContent.split("},")
 
 // coords.replace("{location: { lat:", "")
@@ -48,6 +48,23 @@ for (let i = 0; i < coordsOnly.length; i++){
 }
 
 console.log(markTest);
+
+let markParsed = []
+
+for (let i = 0; i < markTest.length; i++){
+    let obj = {}
+    obj["lat"] = parseFloat(markTest[i][0])
+    obj["lng"] = parseFloat(markTest[i][1])
+    markParsed.push(obj)
+}
+
+console.log(markParsed)
+
+markers = markParsed.map(n => {
+    return {location: n}
+});
+
+console.log(markers)
 
 
 // let icoords = document.getElementById("coords").value.split("},")
