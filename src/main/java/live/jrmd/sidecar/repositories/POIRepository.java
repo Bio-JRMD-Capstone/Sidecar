@@ -9,5 +9,5 @@ import java.util.List;
 public interface POIRepository extends JpaRepository<POI, Long> {
     List<POI> findAllByNameIsLike(String term);
 
-    Object findAllByUser(User user);
+    List<POI> findAllByUser(User user);
 }
