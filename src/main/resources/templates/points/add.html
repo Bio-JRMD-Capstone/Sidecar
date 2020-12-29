@@ -6,7 +6,8 @@
     <title>Index</title>
 </head>
 <body>
-<nav th:replace="partials/navbar :: nav"></nav>
+<!--    <nav th:replace="partials/navbar :: nav"></nav>-->
+<div th:replace="partials/expand-nav :: navigation"></div>
 
 <main class="row w-100">
     <div class="col-md-3" sec:authorize="isAuthenticated()">
