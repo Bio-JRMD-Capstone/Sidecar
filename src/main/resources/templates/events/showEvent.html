@@ -25,15 +25,8 @@
                     <hr>
                     <p class="text-muted" th:text="${event.description}"></p>
                 </div>
+
             </div>
-        </div>
-        <div >
-            <form th:action="@{'/event/' + ${event.id} + '/delete'}" th:method="post">
-                <button class="btn btn-primary">Delete</button>
-            </form>
-            <form th:action="@{'/event/' + ${event.id} + '/edit'}" th:method="get">
-                <button class="btn btn-primary">Edit</button>
-            </form>
         </div>
     </main>
 <div th:include="partials/footer :: footer"></div>

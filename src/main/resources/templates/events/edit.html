@@ -16,7 +16,9 @@
                     <div class="col-event">
                         <div class="event__input">
                             <div id="inputForm">
+
                                 <input type="hidden" th:field="${eventToEdit}">
+                                <input type="hidden" th:field="${eventToEdit.user.id}">
                                 <label for="name"><h4>Event Title:</h4></label>
                                 <input type="text" th:field="${eventToEdit.name}" name="name" id="name" class=""/>
                                 <!--            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" />-->

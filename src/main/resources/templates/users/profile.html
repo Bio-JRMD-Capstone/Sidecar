@@ -44,7 +44,8 @@
                             <th class="profile__table--col">Distance</th>
                             <th class="profile__table--col">Time</th>
                             <th class="profile__table--colD">Description</th>
-                            <th class="profile__table--col">Edit</th>
+                            <th class="profile__table--col"></th>
+                            <th class="profile__table--col"></th>
                         </tr>
                         </thead>
 
@@ -54,8 +55,13 @@
                             <td th:text="${route.id}" name="id"></td>
                             <td th:text="${route.distance}" name="distance"></td>
                             <td th:text="${route.time}" name="time"></td>
-                            <td th:text="${route.description}" name="description"></td>
+                            <td class="mr-auto" th:text="${route.description}" name="description"></td>
                             <td><a th:href="'/route/' + ${route.id} + '/edit'" class="btn btn-edit">Edit</a></td>
+                            <td>
+                                <form th:action="@{'/route/' + ${route.id} + '/delete'}" th:method="post">
+                                <button class="btn btn-edit">Delete</button>
+                            </form>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -74,7 +80,8 @@
                             <th class="profile__table--col">Latitude</th>
                             <th class="profile__table--col">Longitude</th>
                             <th class="profile__table--colD">Description</th>
-                            <th class="profile__table--col">Edit</th>
+                            <th class="profile__table--col"></th>
+                            <th class="profile__table--col"></th>
                         </tr>
                         </thead>
 
@@ -84,8 +91,13 @@
                             <td th:text="${poi.id}" name="id"></td>
                             <td th:text="${poi.lat}" name="lat"></td>
                             <td th:text="${poi.lon}" name="lon"></td>
-                            <td th:text="${poi.description}" name="description"></td>
-                            <td><a th:href="'/route/' + ${poi.id} + '/edit'" class="btn btn-edit">Edit</a></td>
+                            <td class="mr-auto" th:text="${poi.description}" name="description"></td>
+                            <td><a th:href="'/poi/' + ${poi.id} + '/edit'" class="btn btn-edit">Edit</a></td>
+                            <td>
+                                <form th:action="@{'/poi/' + ${poi.id} + '/delete'}" th:method="post">
+                                    <button class="btn btn-edit">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -103,7 +115,8 @@
                             <th class="profile__table--col">Id</th>
                             <th class="profile__table--col">Date</th>
                             <th class="profile__table--colD">Description</th>
-                            <th class="profile__table--col">Edit</th>
+                            <th class="profile__table--col"></th>
+                            <th class="profile__table--col"></th>
                         </tr>
                         </thead>
 
@@ -112,8 +125,13 @@
                             <td th:text="${event.name}" name="name"></td>
                             <td th:text="${event.id}" name="id"></td>
                             <td th:text="${event.date}" name="date"></td>
-                            <td th:text="${event.description}" name="description"></td>
-                            <td><a th:href="'/route/' + ${event.id} + '/edit'" class="btn btn-edit">Edit</a></td>
+                            <td class="mr-auto" th:text="${event.description}" name="description"></td>
+                            <td><a th:href="'/event/' + ${event.id} + '/edit'" class="btn btn-edit">Edit</a></td>
+                            <td>
+                                <form th:action="@{'/event/' + ${event.id} + '/delete'}" th:method="post">
+                                    <button class="btn btn-edit">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
