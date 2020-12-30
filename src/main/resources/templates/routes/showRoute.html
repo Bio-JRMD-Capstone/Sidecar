@@ -16,13 +16,13 @@
                     <h3>Route Info</h3>
                     <form class="map-data"  th:action="@{/routes/create}" th:method="POST" th:object="${route}">
 
-                        <input class="map__input" type="text"  id="title" name="title" placeholder="Title" th:field="*{title}">
+                        <input class="map__input" type="text"  id="title" name="title" placeholder="Title" th:field="*{title}" readonly>
 
-                        <textarea class="map__input-long" type="text" id="description" name="description" placeholder="Description" th:field="*{description}"></textarea>
+                        <textarea class="map__input-long" type="text" id="description" name="description" placeholder="Description" th:field="*{description}" readonly></textarea>
 
                         <input class="map__input" type="text" id="distance" name="distance" placeholder="Distance" th:field="*{distance}" readonly>
 
-                        <input type="hidden" class="form-control" id="coordinates" name="coordinates" th:field="*{coordinates}">
+                        <input type="hidden" class="form-control" id="coordinates" name="coordinates" th:field="*{coordinates}" readonly>
 
                         <input class="map__input" type="text" id="time" name="time"  placeholder="Time(Hours)" th:field="*{time}" readonly>
 
