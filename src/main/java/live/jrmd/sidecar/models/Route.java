@@ -14,7 +14,7 @@ public class Route {
     @Column(nullable = false, length = 50)
     private String title;
 
-    @Column(nullable = false, length = 15)
+    @Column(nullable = false, length = 255)
     private String distance;
 
     @Column(nullable = false, length = 25)
