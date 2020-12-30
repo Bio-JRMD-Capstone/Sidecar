@@ -1,6 +1,7 @@
 package live.jrmd.sidecar.controllers;
 
 import live.jrmd.sidecar.models.POI;
+import live.jrmd.sidecar.models.Route;
 import live.jrmd.sidecar.models.User;
 import live.jrmd.sidecar.repositories.POIRepository;
 import live.jrmd.sidecar.repositories.UserRepository;
@@ -48,5 +49,11 @@ public class POIController {
         poiToBeSaved.setUser(userDb);
         POI dbPOI = poiDao.save(poiToBeSaved);
         return "redirect:/points";
+    }
+    @PostMapping("/point/{id}/delete")
+    public String deleteRoute (@PathVariable(value = "id") long id) {
+        POI poiToDelete = poiDao.getPOIById(id);
+        poiDao.delete(poiToDelete);
+        return "redirect:/profile";
     }
 }

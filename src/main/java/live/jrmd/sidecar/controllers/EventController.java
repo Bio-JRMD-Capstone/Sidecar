@@ -82,6 +82,6 @@ public class EventController {
     public String deleteEvent (@PathVariable(value = "id") long id) {
         Event event = eventDao.getEventById(id);
         eventDao.delete(event);
-        return "redirect:/events";
+        return "redirect:/profile";
     }
 }

@@ -92,9 +92,9 @@
                             <td th:text="${poi.lat}" name="lat"></td>
                             <td th:text="${poi.lon}" name="lon"></td>
                             <td class="mr-auto" th:text="${poi.description}" name="description"></td>
-                            <td><a th:href="'/poi/' + ${poi.id} + '/edit'" class="btn btn-edit">Edit</a></td>
+                            <td><a th:href="'/point/' + ${poi.id} + '/edit'" class="btn btn-edit">Edit</a></td>
                             <td>
-                                <form th:action="@{'/poi/' + ${poi.id} + '/delete'}" th:method="post">
+                                <form th:action="@{'/point/' + ${poi.id} + '/delete'}" th:method="post">
                                     <button class="btn btn-edit">Delete</button>
                                 </form>
                             </td>
