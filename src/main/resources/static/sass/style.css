@@ -492,6 +492,9 @@ body {
   transform: scale(0.95);
 }
 
+.edit {
+  z-index: 3000;
+}
 .edit__group:not(:last-child) {
   margin-bottom: 2rem;
 }
@@ -579,6 +582,7 @@ body {
 .event {
   max-width: 90%;
   margin: 5rem auto;
+  z-index: 3000;
 }
 .event-data {
   display: flex;
@@ -817,6 +821,7 @@ body {
 .map {
   max-width: 90%;
   margin: 5rem auto;
+  z-index: 3000;
 }
 .map-data {
   display: flex;
@@ -962,6 +967,7 @@ body {
 .poi {
   width: 90%;
   margin: 5rem auto;
+  z-index: 3000;
 }
 .poi-img {
   height: 20rem;
