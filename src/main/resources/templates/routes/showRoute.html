@@ -9,67 +9,48 @@
 <body>
 <!--    <nav th:replace="partials/navbar :: nav"></nav>-->
 <div th:replace="partials/expand-nav :: navigation"></div>
-<h1>Single</h1>
-<div class="container">
+<main>
+
     <div class="map">
+        <h3 class="heading-tertiary">Route Info</h3>
         <div class="map-box">
-            <div class="col-map-1">
+        <!-- Route Data-->
+            <div class="col-map-show">
                 <div class="map__input">
-                    <h3>Route Info</h3>
                     <form class="map-data"  th:action="@{/routes/create}" th:method="POST" th:object="${route}">
-
+                        <label for="title">Title: </label>
                         <input class="map__input" type="text"  id="title" name="title" placeholder="Title" th:field="*{title}" readonly>
-
+                        <label for="description">Route Description: </label>
                         <textarea class="map__input-long" type="text" id="description" name="description" placeholder="Description" th:field="*{description}" readonly></textarea>
-
+                        <label for="distance">Aproximate Distance: </label>
                         <input class="map__input" type="text" id="distance" name="distance" placeholder="Distance" th:field="*{distance}" readonly>
-
-                        <input type="hidden" class="form-control" id="coordinates" name="coordinates" th:field="*{coordinates}" readonly>
-
+                        <label for="time">Aproximate time to ride: </label>
                         <input class="map__input" type="text" id="time" name="time"  placeholder="Time(Hours)" th:field="*{time}" readonly>
-
+                        <label for="coordinates">Route Coordinates: </label><p th:text="${route.coordinates}" id="coords"></p>
+                        <input type="hidden" class="map__input" id="coordinates" name="coordinates" th:field="*{coordinates}" readonly>
                     </form>
-
                 </div>
-            </div>
-            <!-- Map -->
-            <div class="col-map-2">
-                <div class="map__input ">
-                    <div class="map__input--map-btn">
-
-                        <div class="field">
-                        </div>
-                    </div>
-                    <div id="map"></div>
-
-                </div>
-            </div>
-            <div class="col-map-3">
+                <hr>
                 <div class="map__input">
                     <p id="directions-panel"></p>
-
                 </div>
+            </div>
+        <!-- Map -->
+            <div class="col-map-show">
+                <div class="map__input ">
+                    <div class="map__input--map-btn">
+                        <div class="field"></div>
+                    </div>
+                    <div id="map"></div>
+                </div>
+                <div class="u-margin-top-sm u-center-text">
+                    <button class="btn btn--light">Open in Google Maps</button>
+                </div>
+
             </div>
         </div>
     </div>
-    <div clas="row">
-        <div class="col-8">
-            <h3 th:text="${route.title}"></h3>
-            <h2 th:text="${route.description}"></h2>
-            <h2 th:text="${route.coordinates}" id="coords"></h2>
-            <h2 th:text="${route.time}"></h2>
-            <h2 th:text="${route.distance}"></h2>
-            <h2 th:text="${route.getUser().getUsername()}" ></h2>
-            <h2 th:text="${route.getUser().getEmail()}" ></h2>
-        </div>
-        <form th:action="@{'/posts/' + ${route.id} + '/delete'}" th:method="post">
-            <button class="btn btn-primary">Delete</button>
-        </form>
-        <form th:action="@{'/posts/' + ${route.id} + '/edit'}" th:method="get">
-            <button class="btn btn-primary">Edit</button>
-        </form>
-    </div>
-</div>
+</main>
 
 </body>
 

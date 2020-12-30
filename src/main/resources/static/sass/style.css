@@ -938,6 +938,10 @@ body {
   width: calc((98% - (3 * 6rem)) / 4);
 }
 
+.col-map-show {
+  width: calc((100% - 6rem) / 2);
+}
+
 .custom-map-control-button {
   background-color: #fff;
   border: 0;

@@ -131,6 +131,9 @@
 .col-map-3 {
   width: calc((98% - (3 * #{$gutter-horizontal})) / 4);
 }
+.col-map-show {
+  width: calc((100% - #{$gutter-horizontal}) / 2);
+}
 .custom-map-control-button {
   background-color: #fff;
   border: 0;
