@@ -9,10 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -65,5 +62,26 @@ public class EventController {
             eventDao.save(newEvent);
             return "redirect:/events";
         }
+    }
+    @GetMapping("/event/{id}")
+    public String showIndividualEvent (@PathVariable(value = "id") long id, Model model){
+        model.addAttribute("event", eventDao.getEventById(id));
+        return "/events/showEvent";
+    }
+    @GetMapping("/event/{id}/edit")
+    public String editEvent(@PathVariable(value = "id") long id, Model model) {
+        model.addAttribute("eventToEdit", eventDao.getEventById(id));
+        return "/events/edit";
+    }
+    @PostMapping("/event/{id}/edit")
+    public String editEvent(@ModelAttribute Event event) {
+        eventDao.save(event);
+        return "redirect:/event/" + event.getId();
+    }
+    @PostMapping("/event/{id}/delete")
+    public String deleteEvent (@PathVariable(value = "id") long id) {
+        Event event = eventDao.getEventById(id);
+        eventDao.delete(event);
+        return "redirect:/events";
     }
 }

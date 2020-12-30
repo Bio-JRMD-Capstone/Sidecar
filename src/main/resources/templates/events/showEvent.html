@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="partials/head :: head('Add Event')">
+    <meta charset="UTF-8">
+    <title>Add Event</title>
+
+</head>
+<body>
+<!--    <nav th:replace="partials/navbar :: nav"></nav>-->
+<div th:replace="partials/expand-nav :: navigation"></div>
+    <main class="container">
+        <a th:href="@{/events}">Back to all events</a>
+        <div class="event">
+            <div class="card col-4 my-2">
+                <img th:src="${event.filePath}" class="card-img-top" th:alt="${event.name}">
+                <div class="card-body text-center">
+                    <a th:href="@{'/event/' + ${event.id}}">
+                        <h5 class="card-title" th:text="${event.name}"></h5>
+                    </a>
+
+                    <p class="text-muted" th:text="'Category: '+ ${event.eventType}">
+
+                    </p>
+                    <hr>
+                    <p class="text-muted" th:text="${event.description}"></p>
+                </div>
+            </div>
+        </div>
+        <div >
+            <form th:action="@{'/event/' + ${event.id} + '/delete'}" th:method="post">
+                <button class="btn btn-primary">Delete</button>
+            </form>
+            <form th:action="@{'/event/' + ${event.id} + '/edit'}" th:method="get">
+                <button class="btn btn-primary">Edit</button>
+            </form>
+        </div>
+    </main>
+<div th:include="partials/footer :: footer"></div>
+<div th:include="partials/scripts :: scripts"></div>
+</body>
+</html>

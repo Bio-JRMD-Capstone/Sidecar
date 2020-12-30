@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="partials/head :: head('Events')">
+    <meta charset="UTF-8">
+    <title>Events</title>
+
+</head>
+<body>
+<!--    <nav th:replace="partials/navbar :: nav"></nav>-->
+<div th:replace="partials/expand-nav :: navigation"></div>
+    <main>
+        <div class="event">
+            <div class="event-box">
+                <form th:action="@{'/event/' + ${eventToEdit.id} + '/edit'}" th:method="post" th:object="${event}">
+                    <div class="col-event">
+                        <div class="event__input">
+                            <div id="inputForm">
+                                <input type="hidden" th:field="${eventToEdit}">
+                                <label for="name"><h4>Event Title:</h4></label>
+                                <input type="text" th:field="${eventToEdit.name}" name="name" id="name" class=""/>
+                                <!--            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" />-->
+                                <br />
+                                <label for="description"><h4>Event Description:</h4></label>
+                                <textarea th:field="${eventToEdit.description}" name="description" id="description" class="" ></textarea>
+                                <!--            <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" />-->
+                                <br />
+                                <label for="date"><h4>Event Date:</h4></label>
+                                <input type="date" th:field="${eventToEdit.date}" name="date" id="date" class="" />
+                                <!--            <p th:if="${#fields.hasErrors('date')}" th:errors="*{date}" />-->
+                                <br />
+                                <label for="zipcode"><h4>Event Zipcode:</h4></label>
+                                <input type="text" th:field="${eventToEdit.zipcode}" name="date" id="zipcode" class="" />
+                                <!--            <p th:if="${#fields.hasErrors('zipcode')}" th:errors="*{zipcode}" />-->
+                                <br />
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-event">
+                        <div class="event__input">
+                            <!--    Radio buttons for categories-->
+                            <h4>Select Event Category: </h4>
+                            <div class="form-check">
+                                <input class="form-check-input" th:field="${eventToEdit.eventType}" th:value="LookingToRide" type="radio" name="event_type" id="looking">
+                                <label class="form-check-label" for="looking">
+                                    Looking to ride
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" th:field="${eventToEdit.eventType}" th:value="CharityRide" type="radio" name="event_type" id="charity">
+                                <label class="form-check-label" for="charity">
+                                    Charity Ride
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" th:field="${eventToEdit.eventType}" th:value="ClubMeeting" type="radio" name="event_type" id="meeting">
+                                <label class="form-check-label" for="meeting">
+                                    Club Meeting
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" th:field="${eventToEdit.eventType}" th:value="FundRaiser" type="radio" name="event_type" id="fund_raiser">
+                                <label class="form-check-label" for="fund_raiser">
+                                    Fund Raiser
+                                </label>
+                            </div>
+                        </div>
+                        <div class="u-center-text u-margin-top-sm">
+
+                            <img class="event-img" th:src="${eventToEdit.filePath}" alt="Event Flyer">
+
+                            <button class="btn btn--white" id="imageButton">Change Flyer</button>
+                        </div>
+                    </div>
+                    <div class="col-event">
+                        <div class="col-1-of-2 u-center-text u-margin-top-sm">
+                            <div>
+                                <label for="newImage"><img class="poi-img" id="imagePreview" src="" alt=""></label>
+                                <input type="hidden" id="newImage" th:field="${eventToEdit.filePath}" th:value="${eventToEdit.filePath}" name="filePath">
+                            </div>
+
+                            <div>
+                                <input class="btn btn--white u-margin-top-sm" type="submit" value="Update"/>
+                                <a class="btn btn--green u-margin-top-sm" href="/profile">Cancel</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+<div th:include="partials/footer :: footer"></div>
+
+<script src="/js/keys.js"></script>
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script src="/js/filestack.js"></script>
+<div th:include="partials/scripts :: scripts"></div>
+</body>
+</html>
