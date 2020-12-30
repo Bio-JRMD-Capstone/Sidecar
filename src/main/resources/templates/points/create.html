@@ -21,7 +21,37 @@
                     <label class="poi__label" for="name">Enter a name:</label>
 
                     <!--Need a dropdown or other menu for POI category: Bar, Restaurant, Scenic View, Repair Shop, Other-->
-
+                    <h4>Select Category: </h4>
+                    <div class="form-check">
+                        <input class="form-check-input" th:field="*{category}" th:value="Bar" type="radio" name="category" id="bar">
+                        <label class="form-check-label" for="bar">
+                            Bar
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" th:field="*{category}" th:value="Restaurant" type="radio" name="category" id="restaurant">
+                        <label class="form-check-label" for="restaurant">
+                            Restaurant
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" th:field="*{category}" th:value="ScenicView" type="radio" name="category" id="ScenicView">
+                        <label class="form-check-label" for="ScenicView">
+                            Scenic View
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" th:field="*{category}" th:value="RepairShop" type="radio" name="category" id="RepairShop">
+                        <label class="form-check-label" for="RepairShop">
+                            Repair Shop
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" th:field="*{category}" th:value="Other" type="radio" name="category" id="Other">
+                        <label class="form-check-label" for="Other">
+                            Other
+                        </label>
+                    </div>
                     <input class="poi__input-long" type="text" id="description" name="description" placeholder="description" >
                     <label class="poi__label" for="description">Enter a description:</label>
 
