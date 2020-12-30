@@ -492,6 +492,9 @@ body {
   transform: scale(0.95);
 }
 
+.edit {
+  z-index: 3000;
+}
 .edit__group:not(:last-child) {
   margin-bottom: 2rem;
 }
@@ -579,6 +582,7 @@ body {
 .event {
   max-width: 90%;
   margin: 5rem auto;
+  z-index: 3000;
 }
 .event-data {
   display: flex;
@@ -817,6 +821,7 @@ body {
 .map {
   max-width: 90%;
   margin: 5rem auto;
+  z-index: 3000;
 }
 .map-data {
   display: flex;
@@ -938,6 +943,10 @@ body {
   width: calc((98% - (3 * 6rem)) / 4);
 }
 
+.col-map-show {
+  width: calc((100% - 6rem) / 2);
+}
+
 .custom-map-control-button {
   background-color: #fff;
   border: 0;
@@ -958,6 +967,7 @@ body {
 .poi {
   width: 90%;
   margin: 5rem auto;
+  z-index: 3000;
 }
 .poi-img {
   height: 20rem;
@@ -1459,7 +1469,7 @@ body {
   height: 100vh;
   position: fixed;
   top: 0;
-  left: 0;
+  right: 0;
   z-index: 1500;
   opacity: 0;
   width: 0;

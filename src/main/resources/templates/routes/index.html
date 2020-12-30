@@ -19,7 +19,7 @@
         <div class="col-3" th:each="route : ${routes}">
             <h3 th:text="${route.title}"></h3>
             <p th:text="${route.description}"></p>
-            <a th:href="@{/route/{id}(id=${route.id})}">
+            <a th:href="@{'/route/'+${route.id}}">
                 View Route
             </a>
 

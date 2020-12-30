@@ -1,7 +1,7 @@
 .event {
   max-width: 90%;
   margin: 5rem auto;
-
+  z-index: 3000;
   &-data {
     display: flex;
     flex-direction: column;

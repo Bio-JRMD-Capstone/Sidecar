@@ -20,14 +20,12 @@
                 <a th:href="@{'/event/' + ${event.id}}">
                     <h5 class="card-title" th:text="${event.name}"></h5>
                 </a>
+
                 <p class="text-muted" th:text="'Category: '+ ${event.eventType}">
 
-<!--                    <span th:each="category : ${event.categories}">-->
-<!--                        <span th:text="${category.name} + ', '"></span>-->
-<!--                    </span>-->
                 </p>
                 <hr>
-                <!--                <p th:text="${post.body}" class="truncate"></p>-->
+                <p class="text-muted" th:text="${event.description}"></p>
             </div>
         </div>
     </div>
