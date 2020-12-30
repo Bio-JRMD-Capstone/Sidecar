@@ -41,9 +41,29 @@
                     <div class="event__input">
             <!--    Radio buttons for categories-->
                         <h4>Select Event Category: </h4>
-                        <div th:each="category : ${eventCategories}" >
-                            <input type="radio" id="categories" name="category" th:field="*{eventType}" th:value="${category.name}" />
-                            <label for="categories" th:text="'   ' + ${category.name} + '  '"></label>
+                        <div class="form-check">
+                            <input class="form-check-input" th:field="*{eventType}" th:value="LookingToRide" type="radio" name="event_type" id="looking">
+                            <label class="form-check-label" for="looking">
+                                Looking to ride
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" th:field="*{eventType}" th:value="CharityRide" type="radio" name="event_type" id="charity">
+                            <label class="form-check-label" for="charity">
+                                Charity Ride
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" th:field="*{eventType}" th:value="ClubMeeting" type="radio" name="event_type" id="meeting">
+                            <label class="form-check-label" for="meeting">
+                                Club Meeting
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" th:field="*{eventType}" th:value="FundRaiser" type="radio" name="event_type" id="fund_raiser">
+                            <label class="form-check-label" for="fund_raiser">
+                                Fund Raiser
+                            </label>
                         </div>
                     </div>
                 </div>

@@ -45,12 +45,10 @@ public class EventController {
     @GetMapping("/events/create")
     public String showCreateEventForm(Model model){
         model.addAttribute("event", new Event());
-        model.addAttribute("eventCategories", eCatDao.findAll());
         return "events/create";
     }
     @PostMapping("/events/create")
     public String submitEvent(
-
             @Valid Event event,
             Errors validation,
             Model model,
