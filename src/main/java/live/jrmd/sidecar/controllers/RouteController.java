@@ -55,5 +55,10 @@ public class RouteController {
 
         return "routes/showRoute";
     }
-
+    @PostMapping("/route/{id}/delete")
+    public String deleteRoute (@PathVariable(value = "id") long id) {
+        Route routeToDelete = routeDao.getRouteById(id);
+        routeDao.delete(routeToDelete);
+        return "redirect:/profile";
+    }
 }

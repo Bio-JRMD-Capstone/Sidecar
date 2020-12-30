@@ -11,4 +11,6 @@ import java.util.List;
 public interface RouteRepository extends JpaRepository<Route, Long> {
     List<Route> findAllByTitleIsLike(String term);
     List<Route> findAllByUser(User user);
+
+    Route getRouteById(long id);
 }

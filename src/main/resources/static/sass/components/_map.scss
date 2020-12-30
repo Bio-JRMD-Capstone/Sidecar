@@ -6,7 +6,7 @@
 .map {
   max-width: 90%;
   margin: 5rem auto;
-
+  z-index: 3000;
 
   &-data {
     display: flex;
@@ -130,6 +130,9 @@
 }
 .col-map-3 {
   width: calc((98% - (3 * #{$gutter-horizontal})) / 4);
+}
+.col-map-show {
+  width: calc((100% - #{$gutter-horizontal}) / 2);
 }
 .custom-map-control-button {
   background-color: #fff;
