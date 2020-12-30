@@ -10,6 +10,8 @@ const options = {
         $('#image').val(newImageUrl);
         // this lets the user see a preview of the image that they uploaded.
         $('#imagePreview').attr('src', newImageUrl);
+        // this lets the user change their profile image in users/edit
+        $('#profileImg').val(newImageUrl);
         //Change the button to say "Change Picture" instead of "Add a Picture"
         $('#imageButton').text('Change Picture')
     }

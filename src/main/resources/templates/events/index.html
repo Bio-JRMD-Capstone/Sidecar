@@ -7,8 +7,8 @@
 
 </head>
 <body>
-    <nav th:replace="partials/navbar :: nav"></nav>
-<!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+<!--    <nav th:replace="partials/navbar :: nav"></nav>-->
+<div th:replace="partials/expand-nav :: navigation"></div>
 <main>
     <h4>The Latest Events</h4>
     <a th:href="@{/events/create}">Add an Event</a>

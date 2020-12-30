@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface RouteRepository extends JpaRepository<Route, Long> {
     List<Route> findAllByTitleIsLike(String term);
-    Object findAllByUser(User user);
+    List<Route> findAllByUser(User user);
 }
