@@ -1,6 +1,7 @@
 package live.jrmd.sidecar.controllers;
 
 import live.jrmd.sidecar.models.Event;
+import live.jrmd.sidecar.models.EventCategory;
 import live.jrmd.sidecar.models.User;
 import live.jrmd.sidecar.repositories.EventCatRepository;
 import live.jrmd.sidecar.repositories.EventRepository;
@@ -29,6 +30,7 @@ public class EventController {
     @GetMapping("/events")
     public String showAllEvents(Model model){
         model.addAttribute("events", eventDao.findAll());
+        model.addAttribute("categories", eCatDao.findAll());
         return "events/index";
     }
     @GetMapping("/searchEvents")
@@ -42,6 +44,7 @@ public class EventController {
     @GetMapping("/events/create")
     public String showCreateEventForm(Model model){
         model.addAttribute("event", new Event());
+        model.addAttribute("categories", eCatDao.findAll());
         return "events/create";
     }
     @PostMapping("/events/create")
