@@ -41,35 +41,9 @@
                     <div class="event__input">
             <!--    Radio buttons for categories-->
                         <h4>Select Event Category: </h4>
-                        <div class="form-check">
-                            <input class="form-check-input" th:field="*{eventType}" th:value="1" type="radio" name="event_type" id="1">
-                            <label class="form-check-label" for="1">
-                                Looking to ride
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" th:field="*{eventType}" th:value="2" type="radio" name="event_type" id="2">
-                            <label class="form-check-label" for="2">
-                                Charity Ride
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" th:field="*{eventType}" th:value="3" type="radio" name="event_type" id="3">
-                            <label class="form-check-label" for="3">
-                                Club Meeting
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" th:field="*{eventType}" th:value="4" type="radio" name="event_type" id="4">
-                            <label class="form-check-label" for="4">
-                                Fundraiser
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" th:field="*{eventType}" th:value="5" type="radio" name="event_type" id="5">
-                            <label class="form-check-label" for="5">
-                                Group Ride
-                            </label>
+                        <div class="form-check" th:each="category : ${categories}">
+                            <input class="form-check-input" th:field="*{eventType}" th:value="${category.name}" type="radio" name="event_type" id="${category.id}">
+                            <label class="form-check-label" th:for="${category.id}" th:value="${category.name}" th:text=" ${category.name}"></label>
                         </div>
                     </div>
                 </div>
