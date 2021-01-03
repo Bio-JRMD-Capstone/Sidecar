@@ -40,13 +40,13 @@ public class POI {
     @JoinColumn(name = "user_id")
     private User user;
 
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(
-//            name="pois_categories",
-//            joinColumns={@JoinColumn(name="poi_id")},
-//            inverseJoinColumns={@JoinColumn(name="category_id")}
-//    )
-//    private List<POICategory> pCategoryList;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="pois_categories",
+            joinColumns={@JoinColumn(name="poi_id")},
+            inverseJoinColumns={@JoinColumn(name="category_id")}
+    )
+    private List<POICategory> pCategoryList;
 
     public List<POIComment> getPoiComments() {
         return poiComments;
@@ -146,13 +146,13 @@ public class POI {
         this.category = category;
     }
 
-//    public List<POICategory> getpCategoryList() {
-//        return pCategoryList;
-//    }
+    public List<POICategory> getpCategoryList() {
+        return pCategoryList;
+    }
 
-//    public void setpCategoryList(List<POICategory> pCategoryList) {
-//        this.pCategoryList = pCategoryList;
-//    }
+    public void setpCategoryList(List<POICategory> pCategoryList) {
+        this.pCategoryList = pCategoryList;
+    }
 
     public User getUser() {
         return user;

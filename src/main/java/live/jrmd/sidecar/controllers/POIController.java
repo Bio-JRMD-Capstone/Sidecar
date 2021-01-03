@@ -1,8 +1,8 @@
 package live.jrmd.sidecar.controllers;
 
 import live.jrmd.sidecar.models.POI;
-import live.jrmd.sidecar.models.Route;
 import live.jrmd.sidecar.models.User;
+import live.jrmd.sidecar.repositories.POICatRepository;
 import live.jrmd.sidecar.repositories.POIRepository;
 import live.jrmd.sidecar.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,10 +16,12 @@ import java.util.List;
 public class POIController {
     private final POIRepository poiDao;
     private final UserRepository userDao;
+    private final POICatRepository pCatDao;
 
-    public POIController(POIRepository poiDao, UserRepository userDao) {
+    public POIController(POIRepository poiDao, UserRepository userDao, POICatRepository pCatDao) {
         this.poiDao = poiDao;
         this.userDao = userDao;
+        this.pCatDao = pCatDao;
     }
 
     @GetMapping("/points")
@@ -38,9 +40,9 @@ public class POIController {
         return poiDao.findAll();
     }
     @GetMapping("/points/create")
-    public String add(Model model) {
-        POI newPoi = new POI();
-        model.addAttribute("poi", newPoi);
+    public String addPOIs(Model model) {
+        model.addAttribute("poi", new POI());
+        model.addAttribute("pCategories", pCatDao.findAll());
         return "points/create";
     }
     @PostMapping("/points/create")
