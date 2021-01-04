@@ -1,105 +1,146 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head('My Profile')">
     <meta charset="UTF-8">
     <title>My Profile</title>
 
 </head>
 <body>
-<nav th:replace="partials/navbar :: nav"></nav>
+<!--    <nav th:replace="partials/navbar :: nav"></nav>-->
+<div th:replace="partials/expand-nav :: navigation"></div>
 
-<main class="container">
-    <div class="container p-2" sec:authorize="isAuthenticated()">
-        <p>Profile Information</p>
-<!--        <p>User: <span th:text="${user.firstName}"></span> <span th:text="${user.lastName}"></span></p>-->
-        <p>User ID: <span th:text="${user.id}"/></p>
-        <p>Username: <span th:text="${user.username}"/></p>
-        <p>Email: <span th:text="${user.email}"/></p>
-
-        <button><a th:href="@{'/user/' + ${#authentication.principal.id} + '/edit'}">Update Profile</a></button>
-    </div>
-    <div class="container p-2">
-        <div class="ml-1">
-            <h5>Routes posted</h5>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Id</th>
-                        <th>Distance</th>
-                        <th>Time</th>
-                        <th>Description</th>
-                        <th>Edit</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr th:each="route : ${routes}">
-                        <td th:text="${route.title}" name="title"></td>
-                        <td th:text="${route.id}" name="id"></td>
-                        <td th:text="${route.distance}" name="distance"></td>
-                        <td th:text="${route.time}" name="time"></td>
-                        <td th:text="${route.description}" name="description"></td>
-                        <td><a href="/route/{id}" class="btn btn-sm">Edit</a></td>
-                    </tr>
-                </tbody>
-            </table>
+<main>
+    <section class="section-profile">
+        <div class="row">
+            <div class="profile">
+                <figure class="profile__shape">
+                    <img th:src="${user.photo_url}" alt="profile image" class="profile__image">
+                </figure>
+                <div class="profile__text">
+                    <h3 class="heading-tertiary u-margin-bottom-sm">Profile Information</h3>
+                    <div class="profile__user">
+                        <hr />
+                        <p class="heading-small">User ID: <span th:text="${user.id}"/></p>
+                        <p class="heading-small">Username: <span th:text="${user.username}"/></p>
+                        <p class="heading-small">Email: <span th:text="${user.email}"/></p>
+                    </div>
+                </div>
+                <div class="u-center-text u-margin-top-md">
+                    <a th:href="@{'/user/' + ${#authentication.principal.id} + '/edit'}" class="btn-text">Edit profile &rarr;</a>
+                </div>
+            </div>
         </div>
-        <div class="p-2">
-            <h5>POI's posted</h5>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Id</th>
-                        <th>Latitude</th>
-                        <th>Longitude</th>
-                        <th>Description</th>
-                        <th>Edit</th>
-                    </tr>
-                </thead>
 
-                <tbody>
-                    <tr th:each="poi : ${pois}">
-                        <td th:text="${poi.name}" name="name"></td>
-                        <td th:text="${poi.id}" name="id"></td>
-                        <td th:text="${poi.lat}" name="lat"></td>
-                        <td th:text="${poi.lon}" name="lon"></td>
-                        <td th:text="${poi.description}" name="description"></td>
-                        <td><a href="/poi/{id}" class="btn btn-sm">Edit</a></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="p-2">
-            <h5>Events posted</h5>
-            <table>
-                <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Id</th>
-                    <th>Date</th>
-                    <th>Description</th>
-                    <th>Edit</th>
-                </tr>
-                </thead>
+        <div class="row">
+            <div class="profile">
+                <div class="profile__text">
+                    <h3 class="heading-tertiary u-margin-bottom-sm">Routes posted</h3>
+                    <table class="profile__table">
+                        <thead>
+                        <tr >
+                            <th class="profile__table--col">Title</th>
+                            <th class="profile__table--col">Id</th>
+                            <th class="profile__table--col">Distance</th>
+                            <th class="profile__table--col">Time</th>
+                            <th class="profile__table--colD">Description</th>
+                            <th class="profile__table--col"></th>
+                            <th class="profile__table--col"></th>
+                        </tr>
+                        </thead>
 
-                <tbody>
-                <tr th:each="event : ${events}">
-                    <td th:text="${event.name}" name="name"></td>
-                    <td th:text="${event.id}" name="id"></td>
-                    <td th:text="${event.date}" name="date"></td>
-                    <td th:text="${event.description}" name="description"></td>
-                    <td><a href="/event/{id}" class="btn btn-sm">Edit</a></td>
-                </tr>
-                </tbody>
-            </table>
+                        <tbody>
+                        <tr th:each="route : ${routes}">
+                            <td th:text="${route.title}" name="title"></td>
+                            <td th:text="${route.id}" name="id"></td>
+                            <td th:text="${route.distance}" name="distance"></td>
+                            <td th:text="${route.time}" name="time"></td>
+                            <td class="mr-auto" th:text="${route.description}" name="description"></td>
+                            <td><a th:href="'/route/' + ${route.id} + '/edit'" class="btn btn-edit">Edit</a></td>
+                            <td>
+                                <form th:action="@{'/route/' + ${route.id} + '/delete'}" th:method="post">
+                                <button class="btn btn-edit">Delete</button>
+                            </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="profile">
+                <div class="profile__text">
+                    <h3 class="heading-tertiary u-margin-bottom-sm">POI's posted</h3>
+                    <table class="profile__table">
+                        <thead>
+                        <tr >
+                            <th class="profile__table--col">Title</th>
+                            <th class="profile__table--col">Id</th>
+                            <th class="profile__table--col">Latitude</th>
+                            <th class="profile__table--col">Longitude</th>
+                            <th class="profile__table--colD">Description</th>
+                            <th class="profile__table--col"></th>
+                            <th class="profile__table--col"></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr th:each="poi : ${pois}" >
+                            <td th:text="${poi.name}" name="name"></td>
+                            <td th:text="${poi.id}" name="id"></td>
+                            <td th:text="${poi.lat}" name="lat"></td>
+                            <td th:text="${poi.lon}" name="lon"></td>
+                            <td class="mr-auto" th:text="${poi.description}" name="description"></td>
+                            <td><a th:href="'/point/' + ${poi.id} + '/edit'" class="btn btn-edit">Edit</a></td>
+                            <td>
+                                <form th:action="@{'/point/' + ${poi.id} + '/delete'}" th:method="post">
+                                    <button class="btn btn-edit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="profile">
+                <div class="profile__text">
+                    <h3 class="heading-tertiary u-margin-bottom-sm">Events posted</h3>
+                    <table class="profile__table">
+                        <thead>
+                        <tr >
+                            <th class="profile__table--col">Title</th>
+                            <th class="profile__table--col">Id</th>
+                            <th class="profile__table--col">Date</th>
+                            <th class="profile__table--colD">Description</th>
+                            <th class="profile__table--col"></th>
+                            <th class="profile__table--col"></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr th:each="event : ${events}" >
+                            <td th:text="${event.name}" name="name"></td>
+                            <td th:text="${event.id}" name="id"></td>
+                            <td th:text="${event.date}" name="date"></td>
+                            <td class="mr-auto" th:text="${event.description}" name="description"></td>
+                            <td><a th:href="'/event/' + ${event.id} + '/edit'" class="btn btn-edit">Edit</a></td>
+                            <td>
+                                <form th:action="@{'/event/' + ${event.id} + '/delete'}" th:method="post">
+                                    <button class="btn btn-edit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
 
 </main>
-
-
 <div th:include="partials/footer :: footer"></div>
 <div th:include="partials/scripts :: scripts"></div>
 </body>

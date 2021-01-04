@@ -1,40 +1,66 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head('Register')">
     <meta charset="UTF-8">
     <title>Register</title>
 
 </head>
 <body>
-<nav th:replace="partials/navbar :: nav"></nav>
+<!--    <nav th:replace="partials/navbar :: nav"></nav>-->
+<div th:replace="partials/expand-nav :: navigation"></div>
 
-<main class="container">
-    <h4>Create an account:</h4>
-    <form class="row g-3 align-items-center" th:action="@{/register}" method="POST" th:object="${user}">
-        <div class="col-md-6">
-            <label for="username" class="form-label" th:field="*{username}">Username</label>
-            <input type="text" class="form-control" id="username" name="username">
+<main>
+    <section class="section-box">
+        <div class="box-register">
+            <div class="box__form">
+                <form class="form" th:action="@{/register}" method="POST" th:object="${user}">
+                    <div class="u-margin-bottom-md">
+                        <h2 class="heading-secondary">Create an account:</h2>
+                    </div>
+                    <div class="form__group">
+                        <input type="text" class="form__input" placeholder="username" id="username" name="username" required>
+                        <label for="username" class="form__label"  th:field="*{username}">Username</label>
+                    </div>
+                    <div class="col-1-of-2">
+                        <input type="email" class="form__input" placeholder="email" id="email" name="email" required>
+                        <label for="email" class="form__label" th:field="*{email}">Email</label>
+                    </div>
+                    <div class="col-1-of-2">
+                        <input type="text" class="form__input" placeholder="zip code" id="zipcode" name="zipcode" required>
+                        <label for="zipcode" class="form__label" th:field="*{zipcode}">Zip</label>
+
+                    </div>
+                    <div class="form__group">
+                        <input type="text" class="form__input" placeholder="password" id="password" name="password" required>
+                        <label for="password" class="form__label" th:field="*{password}">Password</label>
+                    </div>
+                    <div class="u-margin-top-sm u-margin-bottom-md">
+                        <div>
+                            <input type="hidden" id="image" th:field="*{photo_url}">
+                            <img id="imagePreview" src="" alt="" class="w-25">
+                            <button id="imageButton">Add a Profile Picture</button>
+                        </div>
+                    </div>
+
+                    <div class="form__group">
+                        <button type="submit" class="btn btn--green">Sign up</button>
+                        <p class="fs-3">Already have an account? Please <a href="/login">Login</a></p>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="col-md-6">
-            <label for="email" class="form-label" th:field="*{email}">Email</label>
-            <input type="email" class="form-control" id="email" name="email">
-        </div>
-        <div class="col-md-6">
-            <label for="password" class="form-label" th:field="*{password}">Password</label>
-            <input type="text" class="form-control" id="password" name="password">
-        </div>
-        <div class="col-md-3">
-            <label for="zipcode" class="form-label" th:field="*{zipcode}">Zip</label>
-            <input type="text" class="form-control" id="zipcode" name="zipcode">
-        </div>
-        <div class="col-3">
-            <input type="submit" class="w-100" value="Register"/>
-        </div>
-    </form>
+    </section>
+
 </main>
 
 
 <div th:include="partials/footer :: footer"></div>
+
+<script src="/js/keys.js"></script>
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script src="/js/filestack.js"></script>
+
 <div th:include="partials/scripts :: scripts"></div>
 </body>
 </html>

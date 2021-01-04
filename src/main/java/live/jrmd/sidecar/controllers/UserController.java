@@ -2,17 +2,17 @@ package live.jrmd.sidecar.controllers;
 
 import live.jrmd.sidecar.models.User;
 import live.jrmd.sidecar.repositories.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
 public class UserController {
+
     private final UserRepository userDao;
     private final RouteRepository routeDao;
     private final POIRepository poiDao;
@@ -20,7 +20,13 @@ public class UserController {
     private final UsersRepository users;
     private PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepository userDao, RouteRepository routeDao, POIRepository poiDao, EventRepository eventDao, UsersRepository users, PasswordEncoder passwordEncoder) {
+    public UserController(UserRepository userDao,
+                          RouteRepository routeDao,
+                          POIRepository poiDao,
+                          EventRepository eventDao,
+                          UsersRepository users,
+                          PasswordEncoder passwordEncoder
+    ) {
         this.userDao = userDao;
         this.routeDao = routeDao;
         this.poiDao = poiDao;
@@ -32,7 +38,7 @@ public class UserController {
     @GetMapping("/logout")
     public String logout(){
         //remove session user
-        return "redirect:/index";
+        return "redirect:/";
     }
 
     @GetMapping("/register")
@@ -57,5 +63,18 @@ public class UserController {
         model.addAttribute("pois", poiDao.findAllByUser(user));
         model.addAttribute("events", eventDao.findAllByUser(user));
         return "users/profile";
+    }
+    @GetMapping("/user/{id}/edit")
+    public String editUser(@PathVariable(value = "id") long id, Model model){
+        model.addAttribute("userToEdit", userDao.getUserById(id));
+        return "users/edit";
+    }
+
+    @PostMapping("/user/{id}/edit")
+    public String editUser (@ModelAttribute User user){
+        String hash = passwordEncoder.encode(user.getPassword());
+        user.setPassword(hash);
+        userDao.save(user);
+        return "redirect:/profile";
     }
 }
