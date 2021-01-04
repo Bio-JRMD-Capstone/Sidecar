@@ -125,19 +125,33 @@ function initMap() {
 
 
     function calculateAndDisplayRoute(directionsService, directionsRenderer) {
-        const waypts = [];
+        let wayptsCoords = [];
 
-        for (let i = 1; i < markers.length; i++) {
-                waypts.push({
+        for (let i = 0; i < markers.length; i++) {
+                wayptsCoords.push({
                     location: markers[i],
                     stopover: true,
                 });
 
         }
+
+        let waypts = wayptsCoords;
+
+        console.log(waypts)
+
+        waypts.shift()
+
+        console.log(waypts)
+
+        waypts.pop()
+
+        console.log(waypts)
+        console.log(wayptsCoords)
+
         directionsService.route(
             {
-                origin: markers[0],
-                destination: markers[markers.length-1],
+                origin: wayptsCoords[0],
+                destination: wayptsCoords[markers.length-1],
                 waypoints: waypts,
                 optimizeWaypoints: true,
                 travelMode: google.maps.TravelMode.DRIVING,
