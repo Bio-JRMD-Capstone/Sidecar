@@ -19,15 +19,10 @@
         <div class="col-3" th:each="route : ${routes}">
             <h3 th:text="${route.title}"></h3>
             <p th:text="${route.description}"></p>
-            <a th:href="@{/route/{id}(id=${route.id})}">
+            <a th:href="@{'/route/'+${route.id}}">
                 View Route
             </a>
-            <form th:action="@{'/posts/' + ${route.id} + '/delete'}" th:method="post">
-                <button class="btn btn-primary">Delete</button>
-            </form>
-            <form th:action="@{'/posts/' + ${route.id} + '/edit'}" th:method="get">
-                <button class="btn btn-primary">Edit</button>
-            </form>
+
         </div>
     </div>
 </main>

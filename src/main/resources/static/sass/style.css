@@ -136,7 +136,7 @@ body {
   text-transform: uppercase;
   font-weight: 700;
   display: inline-block;
-  background-image: linear-gradient(to right, #BEB6A6, #3F3622);
+  background-color: #3F3622;
   -webkit-background-clip: text;
   color: transparent;
   letter-spacing: 0.2rem;
@@ -492,6 +492,9 @@ body {
   transform: scale(0.95);
 }
 
+.edit {
+  z-index: 3000;
+}
 .edit__group:not(:last-child) {
   margin-bottom: 2rem;
 }
@@ -576,6 +579,129 @@ body {
   opacity: 1;
 }
 
+.event {
+  max-width: 90%;
+  margin: 5rem auto;
+  z-index: 3000;
+}
+.event-data {
+  display: flex;
+  flex-direction: column;
+}
+.event:not(:last-child) {
+  margin-bottom: 8rem;
+}
+.event::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.event [class^=col-] {
+  float: left;
+}
+.event [class^=col-]:not(:last-child) {
+  margin-right: 6rem;
+}
+.event-box {
+  padding: 3rem;
+  background-color: #BEB6A6;
+  height: 100%;
+  display: flex;
+  overflow: auto;
+  margin-bottom: 3rem;
+}
+.event__group:not(:last-child) {
+  margin-bottom: 2rem;
+}
+.event__submit {
+  margin: 5rem;
+  position: fixed;
+  right: 6rem;
+  border: 0.5px solid #3F3622;
+}
+.event__input {
+  font-size: 1.5rem;
+  font-family: inherit;
+  color: inherit;
+  padding: 1.5rem 2rem;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-bottom: 3px solid transparent;
+  width: 100%;
+  display: block;
+  transition: all 0.3s;
+}
+.event__input--map-btn {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem 2rem;
+}
+.event__input--map-btn .btn-lt {
+  height: 3rem;
+  padding: 0.5rem;
+  margin-right: auto;
+}
+.event__input--map-btn .btn-rt {
+  height: 3rem;
+  padding: 0.5rem;
+  margin-left: auto;
+}
+.event__input:focus {
+  outline: none;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+  border-bottom: 3px solid #674A21;
+}
+.event__input:focus:invalid {
+  border-bottom: 3px solid #192304;
+}
+.event__input::-webkit-input-placeholder {
+  color: #999;
+}
+.event__input-long {
+  font-size: 1.5rem;
+  font-family: inherit;
+  color: inherit;
+  padding: 1.5rem 2rem;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-bottom: 3px solid transparent;
+  width: 100%;
+  min-height: 15rem;
+  display: block;
+  text-wrap: normal;
+  transition: all 0.3s;
+}
+.event__input-long:focus {
+  outline: none;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+  border-bottom: 3px solid #674A21;
+}
+.event__input-long:focus:invalid {
+  border-bottom: 3px solid #192304;
+}
+.event__input-long::-webkit-input-placeholder {
+  color: #999;
+}
+.event__label {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-left: 2rem;
+  margin-top: 0.7rem;
+  display: block;
+  transition: all 0.3s;
+}
+.event__input:placeholder-shown + .event__label {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4rem);
+}
+
+.col-event {
+  position: relative;
+}
+
 .feature-box {
   color: #3F3622;
   border: 2px solid #3F3622;
@@ -617,6 +743,9 @@ body {
   width: 40% !important;
   display: block;
   transition: all 0.3s;
+}
+.form__input--edit-profile {
+  width: 100%;
 }
 .form__input:focus {
   outline: none;
@@ -692,6 +821,7 @@ body {
 .map {
   max-width: 90%;
   margin: 5rem auto;
+  z-index: 3000;
 }
 .map-data {
   display: flex;
@@ -813,6 +943,10 @@ body {
   width: calc((98% - (3 * 6rem)) / 4);
 }
 
+.col-map-show {
+  width: calc((100% - 6rem) / 2);
+}
+
 .custom-map-control-button {
   background-color: #fff;
   border: 0;
@@ -833,6 +967,7 @@ body {
 .poi {
   width: 90%;
   margin: 5rem auto;
+  z-index: 3000;
 }
 .poi-img {
   height: 20rem;
@@ -1043,6 +1178,10 @@ body {
   transform: skewX(-12deg);
   position: relative;
 }
+.profile-edit {
+  margin: 3rem;
+  padding: 3rem;
+}
 .profile__table--col {
   min-width: 10rem;
 }
@@ -1062,7 +1201,6 @@ body {
 }
 .profile__image {
   height: 100%;
-  transform: translateX(-6rem) scale(1.4);
   transition: all 0.5s;
 }
 .profile__text {
@@ -1090,6 +1228,12 @@ body {
   margin: auto;
   border-radius: 50%;
   padding: 5rem;
+  width: 30rem;
+}
+
+.col-profile-edit {
+  width: 45%;
+  margin: 0 auto;
 }
 
 .story {
@@ -1325,7 +1469,7 @@ body {
   height: 100vh;
   position: fixed;
   top: 0;
-  left: 0;
+  right: 0;
   z-index: 1500;
   opacity: 0;
   width: 0;
@@ -1451,7 +1595,14 @@ body {
 }
 
 .section-profile {
-  width: 80%;
+  width: 90%;
+  margin: 3rem auto 1rem;
+  padding: 5rem 0;
+  background-image: linear-gradient(to right bottom, #BEB6A6, #3F3622);
+}
+
+.section-profile-edit {
+  width: 75%;
   margin: 3rem auto 1rem;
   padding: 5rem 0;
   background-image: linear-gradient(to right bottom, #BEB6A6, #3F3622);

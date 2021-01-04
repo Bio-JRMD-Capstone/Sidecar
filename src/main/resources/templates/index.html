@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head('Sidecar')">
     <meta charset="UTF-8">
     <title>Index</title>
@@ -8,53 +8,53 @@
 </head>
 <body>
 <!--    <nav th:replace="partials/navbar :: nav"></nav>-->
-    <div th:replace="partials/expand-nav :: navigation"></div>
+<div th:replace="partials/expand-nav :: navigation"></div>
 
-    <header class="header">
-        <div class="header__logo-box">
-            <img src="/images/compass-rose.jpeg" alt="Logo" class="header__logo">
-            <h1 class="heading-primary--logo header__text">Sidecar</h1>
-        </div>
-        <div class="header__text-box">
-            <h1 class="heading-primary">
-                <span class="heading-primary--main">Life</span>
-                <span class="heading-primary--sub">it's just better on two wheels</span>
-            </h1>
-        </div>
-    </header>
-    <main>
-        <section class="section-features">
+<header class="header">
+    <div class="header__logo-box">
+        <img src="/images/compass-rose.jpeg" alt="Logo" class="header__logo">
+        <h1 class="heading-primary--logo header__text">Sidecar</h1>
+    </div>
+    <div class="header__text-box">
+        <h1 class="heading-primary">
+            <span class="heading-primary--main">Life</span>
+            <span class="heading-primary--sub">it's just better on two wheels</span>
+        </h1>
+    </div>
+</header>
+<main>
+    <section class="section-features">
 
-            <div class="row">
-                <div class="col-1-of-3">
-                    <div class="feature-box">
-                        <i class="feature-box__icon icon-basic-map"></i>
-                        <h3 class="heading-tertiary u-margin-bottom-sm">Find your route</h3>
-                        <p class="feature-box__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae perspiciatis laudantium repellat.</p>
-                        <a href="/routes" class="btn btn--white">Go!</a>
-                    </div>
-                </div>
-                <div class="col-1-of-3">
-                    <div class="feature-box">
-                        <i class="feature-box__icon icon-basic-compass"></i>
-                        <h3 class="heading-tertiary u-margin-bottom-sm">Points of Interest</h3>
-                        <p class="feature-box__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo ullam odit assumenda amet.</p>
-                        <a href="/points" class="btn btn--white">Go!</a>
-                    </div>
-                </div>
-                <div class="col-1-of-3">
-                    <div class="feature-box">
-                        <i class="feature-box__icon icon-basic-world"></i>
-                        <h3 class="heading-tertiary u-margin-bottom-sm">Events</h3>
-                        <p class="feature-box__text">Aliquid delectus, blanditiis similique officia quasi repudiandae numquam rem molestiae? Similique, facilis?</p>
-                        <a href="/events" class="btn btn--white">Go!</a>
-                    </div>
+        <div class="row">
+            <div class="col-1-of-3">
+                <div class="feature-box">
+                    <i class="feature-box__icon icon-basic-map"></i>
+                    <h3 class="heading-tertiary u-margin-bottom-sm">Find your route</h3>
+                    <p class="feature-box__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae perspiciatis laudantium repellat.</p>
+                    <a href="/routes" class="btn btn--white">Go!</a>
                 </div>
             </div>
-        </section>
-    </main>
+            <div class="col-1-of-3">
+                <div class="feature-box">
+                    <i class="feature-box__icon icon-basic-compass"></i>
+                    <h3 class="heading-tertiary u-margin-bottom-sm">Points of Interest</h3>
+                    <p class="feature-box__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo ullam odit assumenda amet.</p>
+                    <a href="/points" class="btn btn--white">Go!</a>
+                </div>
+            </div>
+            <div class="col-1-of-3">
+                <div class="feature-box">
+                    <i class="feature-box__icon icon-basic-world"></i>
+                    <h3 class="heading-tertiary u-margin-bottom-sm">Events</h3>
+                    <p class="feature-box__text">Aliquid delectus, blanditiis similique officia quasi repudiandae numquam rem molestiae? Similique, facilis?</p>
+                    <a href="/events" class="btn btn--white">Go!</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
 
-    <div th:include="partials/footer :: footer"></div>
-    <div th:include="partials/scripts :: scripts"></div>
+<div th:include="partials/footer :: footer"></div>
+<div th:include="partials/scripts :: scripts"></div>
 </body>
 </html>

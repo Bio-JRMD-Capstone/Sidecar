@@ -40,7 +40,13 @@
     background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
 }
 .section-profile {
-    width: 80%;
+    width: 90%;
+    margin: 3rem auto 1rem;
+    padding: 5rem 0;
+    background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+}
+.section-profile-edit {
+    width: 75%;
     margin: 3rem auto 1rem;
     padding: 5rem 0;
     background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);

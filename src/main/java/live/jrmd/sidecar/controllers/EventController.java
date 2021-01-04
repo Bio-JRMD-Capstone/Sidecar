@@ -1,6 +1,7 @@
 package live.jrmd.sidecar.controllers;
 
 import live.jrmd.sidecar.models.Event;
+import live.jrmd.sidecar.models.EventCategory;
 import live.jrmd.sidecar.models.User;
 import live.jrmd.sidecar.repositories.EventCatRepository;
 import live.jrmd.sidecar.repositories.EventRepository;
@@ -9,10 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -32,6 +30,7 @@ public class EventController {
     @GetMapping("/events")
     public String showAllEvents(Model model){
         model.addAttribute("events", eventDao.findAll());
+        model.addAttribute("categories", eCatDao.findAll());
         return "events/index";
     }
     @GetMapping("/searchEvents")
@@ -45,12 +44,11 @@ public class EventController {
     @GetMapping("/events/create")
     public String showCreateEventForm(Model model){
         model.addAttribute("event", new Event());
-        model.addAttribute("eventCategories", eCatDao.findAll());
+        model.addAttribute("categories", eCatDao.findAll());
         return "events/create";
     }
     @PostMapping("/events/create")
     public String submitEvent(
-
             @Valid Event event,
             Errors validation,
             Model model,
@@ -67,5 +65,26 @@ public class EventController {
             eventDao.save(newEvent);
             return "redirect:/events";
         }
+    }
+    @GetMapping("/event/{id}")
+    public String showIndividualEvent (@PathVariable(value = "id") long id, Model model){
+        model.addAttribute("event", eventDao.getEventById(id));
+        return "/events/showEvent";
+    }
+    @GetMapping("/event/{id}/edit")
+    public String editEvent(@PathVariable(value = "id") long id, Model model) {
+        model.addAttribute("eventToEdit", eventDao.getEventById(id));
+        return "/events/edit";
+    }
+    @PostMapping("/event/{id}/edit")
+    public String editEvent(@ModelAttribute Event event) {
+        eventDao.save(event);
+        return "redirect:/event/" + event.getId();
+    }
+    @PostMapping("/event/{id}/delete")
+    public String deleteEvent (@PathVariable(value = "id") long id) {
+        Event event = eventDao.getEventById(id);
+        eventDao.delete(event);
+        return "redirect:/profile";
     }
 }

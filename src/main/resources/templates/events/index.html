@@ -15,18 +15,14 @@
     <h3 th:if="${events.isEmpty()}">No Events Found</h3>
     <div class="row d-flex flex-wrap align-content-between">
         <div class="card col-4 my-2" th:each="event : ${events}">
-            <img src="https://picsum.photos/150/100" class="card-img-top" alt="...">
+            <img th:src="${event.filePath}" class="card-img-top" th:alt="${event.name}">
             <div class="card-body text-center">
                 <a th:href="@{'/event/' + ${event.id}}">
                     <h5 class="card-title" th:text="${event.name}"></h5>
                 </a>
-<!--                <p class="text-muted">Tags:-->
-<!--                    <span th:each="category : ${event.categories}">-->
-<!--                        <span th:text="${category.name} + ', '"></span>-->
-<!--                    </span>-->
-<!--                </p>-->
+                <p class="text-muted" th:text="'Category: ' + ${event.eventType}"></p>
                 <hr>
-                <!--                <p th:text="${post.body}" class="truncate"></p>-->
+                <p class="text-muted" th:text="${event.description}"></p>
             </div>
         </div>
     </div>
