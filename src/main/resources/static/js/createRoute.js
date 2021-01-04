@@ -201,7 +201,7 @@ function initMap() {
 
                     console.log(totalDuration)
 
-                    distance.value = totalDistance;
+                    distance.value = totalDistance.toFixed(2);
                     time.value = totalDuration;
 
 
