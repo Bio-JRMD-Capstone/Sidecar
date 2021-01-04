@@ -1,16 +1,31 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head('Events')">
     <meta charset="UTF-8">
     <title>Events</title>
 
 </head>
 <body>
-<nav th:replace="partials/navbar :: nav"></nav>
+<!--    <nav th:replace="partials/navbar :: nav"></nav>-->
+<div th:replace="partials/expand-nav :: navigation"></div>
 <main>
-
-    <h1>Sidecar Events Page</h1>
-
+    <h4>The Latest Events</h4>
+    <a th:href="@{/events/create}">Add an Event</a>
+    <h3 th:if="${events.isEmpty()}">No Events Found</h3>
+    <div class="row d-flex flex-wrap align-content-between">
+        <div class="card col-4 my-2" th:each="event : ${events}">
+            <img th:src="${event.filePath}" class="card-img-top" th:alt="${event.name}">
+            <div class="card-body text-center">
+                <a th:href="@{'/event/' + ${event.id}}">
+                    <h5 class="card-title" th:text="${event.name}"></h5>
+                </a>
+                <p class="text-muted" th:text="'Category: ' + ${event.eventType}"></p>
+                <hr>
+                <p class="text-muted" th:text="${event.description}"></p>
+            </div>
+        </div>
+    </div>
 </main>
 <div th:include="partials/footer :: footer"></div>
 <div th:include="partials/scripts :: scripts"></div>

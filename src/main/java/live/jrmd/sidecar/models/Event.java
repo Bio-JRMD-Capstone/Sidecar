@@ -25,6 +25,9 @@ public class Event {
     @Column(nullable = false)
     private String eventType;
 
+    @Column(nullable = true, columnDefinition = "TEXT")
+    private String filePath;
+
     @ManyToOne
     @JoinColumn()
     private User user;
@@ -40,29 +43,32 @@ public class Event {
     public Event(){}
 
     //read
-    public Event(Long id, String name, String description, String date, String zipcode, String eventType, User user) {
+    public Event(Long id, String name, String description, String date, String zipcode, String eventType, String filePath, User user) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.date = date;
         this.zipcode = zipcode;
         this.eventType = eventType;
+        this.filePath = filePath;
         this.user = user;
     }
     //create
-    public Event(String name, String description, String date, String zipcode, String eventType) {
+    public Event(String name, String description, String date, String zipcode, String eventType, String filePath) {
         this.name = name;
         this.description = description;
         this.date = date;
         this.zipcode = zipcode;
         this.eventType = eventType;
+        this.filePath = filePath;
     }
-    public Event (Event copy){
+    public Event(Event copy, String filePath){
         this.name = copy.name;
         this.description = copy.description;
         this.date = copy.date;
         this.zipcode = copy.zipcode;
         this.eventType = copy.eventType;
+        this.filePath = filePath;
     }
 
     public Long getId() {
@@ -127,5 +133,13 @@ public class Event {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 }
