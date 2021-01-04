@@ -26,7 +26,7 @@
                         <input class="map__input" type="text" id="distance" name="distance" placeholder="Distance" th:field="*{distance}" readonly>
                         <label for="time">Aproximate time to ride: </label>
                         <input class="map__input" type="text" id="time" name="time"  placeholder="Time(Hours)" th:field="*{time}" readonly>
-                        <label for="coordinates">Route Coordinates: </label><p th:text="${route.coordinates}" id="coords"></p>
+                        <label class="d-none" for="coordinates">Route Coordinates: </label><p class="d-none" th:text="${route.coordinates}" id="coords"></p>
                         <input type="hidden" class="map__input" id="coordinates" name="coordinates" th:field="*{coordinates}" readonly>
                     </form>
                 </div>
