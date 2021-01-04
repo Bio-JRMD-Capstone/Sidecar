@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class UserController {
 
-    @Value("${fileStackAPI.key}")
-    private String fileStackApiKey;
-
     private final UserRepository userDao;
     private final RouteRepository routeDao;
     private final POIRepository poiDao;
@@ -56,13 +53,6 @@ public class UserController {
         user.setPassword(hash);
         users.save(user);
         return "redirect:/login";
-    }
-
-    @GetMapping("/keys.js")
-    @ResponseBody
-    public String apikey(){
-        System.out.println(fileStackApiKey);
-        return "const FileStackApiKey = \"" + fileStackApiKey + "\"";
     }
 
     @GetMapping("/profile")

@@ -39,6 +39,7 @@ public class POIController {
     public @ResponseBody List<POI> viewAllPOIInJSONFormat() {
         return poiDao.findAll();
     }
+
     @GetMapping("/points/create")
     public String addPOIs(Model model) {
         model.addAttribute("poi", new POI());
@@ -49,7 +50,7 @@ public class POIController {
     public String create(@ModelAttribute POI poiToBeSaved) {
         User userDb = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         poiToBeSaved.setUser(userDb);
-        POI dbPOI = poiDao.save(poiToBeSaved);
+        poiDao.save(poiToBeSaved);
         return "redirect:/points";
     }
     @PostMapping("/point/{id}/delete")

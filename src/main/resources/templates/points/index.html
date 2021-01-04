@@ -12,7 +12,7 @@
 <div th:replace="partials/expand-nav :: navigation"></div>
 
 <main class="row w-100">
-    <div class="col-md-3" sec:authorize="isAuthenticated()">
+    <div class="col-md-3">
         <div class="btn btn-white"><a th:href="@{/points/create}">Add a Point of Interest</a></div>
     </div>
     <div class="col-md-9">
