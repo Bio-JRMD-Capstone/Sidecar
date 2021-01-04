@@ -2,6 +2,8 @@ package live.jrmd.sidecar.models;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.List;
@@ -29,23 +31,16 @@ public class User {
     private String photo_url;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Motorcycle> motorcycles;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     @JsonBackReference
     private List<POI> poiList;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<POIComment> poiComments;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @JsonIgnore
     private List<Event> events;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @JsonIgnore
     private List<Route> routes;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<RouteComment> routeComments;
 
     public User(){}
     //read
@@ -131,36 +126,12 @@ public class User {
         this.routes = routes;
     }
 
-    public List<RouteComment> getRouteComments() {
-        return routeComments;
-    }
-
-    public void setRouteComments(List<RouteComment> routeComments) {
-        this.routeComments = routeComments;
-    }
-
-    public List<Motorcycle> getMotorcycles() {
-        return motorcycles;
-    }
-
-    public void setMotorcycles(List<Motorcycle> motorcycles) {
-        this.motorcycles = motorcycles;
-    }
-
     public List<POI> getPoiList() {
         return poiList;
     }
 
     public void setPoiList(List<POI> poiList) {
         this.poiList = poiList;
-    }
-
-    public List<POIComment> getPoiComments() {
-        return poiComments;
-    }
-
-    public void setPoiComments(List<POIComment> poiComments) {
-        this.poiComments = poiComments;
     }
 
     public List<Event> getEvents() {

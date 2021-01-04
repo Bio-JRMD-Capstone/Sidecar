@@ -23,34 +23,41 @@
                     <!--Need a dropdown or other menu for POI category: Bar, Restaurant, Scenic View, Repair Shop, Other-->
 
                     <h4>Select Category: </h4>
-                    <div class="form-check" th:each="pCategory : ${pCategories}">
-                        <input class="form-check-input" type="radio" th:field="*{category}" th:value="${pCategory.name}" name="category" th:id="${pCategory.id}">
-                        <label class="form-check-label" th:for="${pCategory.id}" th:value="${pCategory.name}" th:text=" ${pCategory.name}"></label>
+                    <div class="form-check">
+                        <input class="form-check-input" th:field="*{category}" th:value="bar" type="radio" name="category" id="bar">
+                        <label class="form-check-label" for="bar">
+                            Bar
+                        </label>
                     </div>
-<!--                    <div class="form-check">-->
-<!--                        <input class="form-check-input" th:field="*{category}" th:value="Restaurant" type="radio" name="category" id="restaurant">-->
-<!--                        <label class="form-check-label" for="restaurant">-->
-<!--                            Restaurant-->
-<!--                        </label>-->
-<!--                    </div>-->
-<!--                    <div class="form-check">-->
-<!--                        <input class="form-check-input" th:field="*{category}" th:value="ScenicView" type="radio" name="category" id="ScenicView">-->
-<!--                        <label class="form-check-label" for="ScenicView">-->
-<!--                            Scenic View-->
-<!--                        </label>-->
-<!--                    </div>-->
-<!--                    <div class="form-check">-->
-<!--                        <input class="form-check-input" th:field="*{category}" th:value="RepairShop" type="radio" name="category" id="RepairShop">-->
-<!--                        <label class="form-check-label" for="RepairShop">-->
-<!--                            Repair Shop-->
-<!--                        </label>-->
-<!--                    </div>-->
-<!--                    <div class="form-check">-->
-<!--                        <input class="form-check-input" th:field="*{category}" th:value="Other" type="radio" name="category" id="Other">-->
-<!--                        <label class="form-check-label" for="Other">-->
-<!--                            Other-->
-<!--                        </label>-->
-<!--                    </div>-->
+                    <div class="form-check">
+                        <input class="form-check-input" th:field="*{category}" th:value="restaurant" type="radio" name="category" id="restaurant">
+                        <label class="form-check-label" for="restaurant">
+                            Restaurant
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" th:field="*{category}" th:value="scenic_view" type="radio" name="category" id="scenic_view">
+                        <label class="form-check-label" for="scenic_view">
+                            Scenic View
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" th:field="*{category}" th:value="repair_shop" type="radio" name="category" id="repair_shop">
+                        <label class="form-check-label" for="repair_shop">
+                            Repair Shop
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" th:field="*{category}" th:value="motorcycle_shop" type="radio" name="category" id="motorcycle_shop">
+                        <label class="form-check-label" for="motorcycle_shop">
+                            Motor Shop
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" th:field="*{category}" th:value="other" type="radio" name="category" id="other">
+                        <label class="form-check-label" for="other">
+                            Other
+                        </label>
                     <input class="poi__input-long" type="text" id="description" name="description" placeholder="description" >
                     <label class="poi__label" for="description">Enter a description:</label>
 
