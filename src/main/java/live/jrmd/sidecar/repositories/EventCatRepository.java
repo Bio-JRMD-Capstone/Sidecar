@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface EventCatRepository extends JpaRepository<EventCategory, Long> {
     List<EventCategory> findAll();
+    EventCategory findById(long id);
 }
