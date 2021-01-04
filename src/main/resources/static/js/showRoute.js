@@ -126,7 +126,7 @@ function displayRoute(origin, destination, service, display) {
 function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     const waypts = [];
 
-    for (let i = 0; i < markers.length; i++) {
+    for (let i = 1; i < markers.length-1; i++) {
         waypts.push({
             location: markers[i],
             stopover: true,
