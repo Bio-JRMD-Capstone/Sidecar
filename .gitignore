@@ -4,6 +4,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 src/main/resources/application.properties
+src/main/resources/static/js/keys.js
+
+
 
 ### STS ###
 .apt_generated
@@ -32,3 +35,4 @@ build/
 
 ### VS Code ###
 .vscode/
+

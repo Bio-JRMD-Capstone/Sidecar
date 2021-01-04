@@ -1,5 +1,8 @@
 package live.jrmd.sidecar.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -25,10 +28,15 @@ public class POI {
     @Column
     private String photo_url;
 
+    @Column
+    private String category;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "poi")
+    @JsonBackReference
     private List<POIComment> poiComments;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -80,6 +88,8 @@ public class POI {
         photo_url = copy.photo_url;
     }
 
+
+
     public Long getId() {
         return id;
     }
@@ -126,6 +136,14 @@ public class POI {
 
     public void setPhoto_url(String photo_url) {
         this.photo_url = photo_url;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public List<POICategory> getpCategoryList() {
