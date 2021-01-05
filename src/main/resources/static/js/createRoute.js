@@ -71,7 +71,6 @@ function initMap() {
             let objRepeat = {}
             objRepeat["lat"] = markers[0].lat + .000000000000001
             objRepeat["lng"] = markers[0].lng
-            // markers.push("lat: " + (markers[0].lat + .000000000000001) + ", lng:"  + markers[0].lng);
 
             markers.push(objRepeat)
         }

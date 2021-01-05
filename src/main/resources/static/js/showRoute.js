@@ -154,7 +154,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
                 let totalDuration = 0;
 
                 // For each route, display summary information.
-                if (markers[0] == markers[markers.length-1]) {
+                if (markers[markers.length-1].lat === markers[0].lat + .000000000000001) {
                     for (let i = 1; i < route.legs.length; i++) {
                         const routeSegment = i;
 
@@ -172,7 +172,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
                         summaryPanel.innerHTML += route.legs[i].duration.text + "<br><hr><br>"
                     }
                 } else {
-                    for (let i = 0; i < route.legs.length-1; i++) {
+                    for (let i = 0; i < route.legs.length; i++) {
                         const routeSegment = i + 1;
 
                         totalDistance += parseFloat(route.legs[i].distance.text);
