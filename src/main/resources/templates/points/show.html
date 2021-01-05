@@ -12,7 +12,9 @@
 <div th:replace="partials/expand-nav :: navigation"></div>
 
 <main class="row w-100">
-        <div id="map"></div>
+    <div id="map"></div>
+    <input type="hidden" name="lat" th:value="${point.lat}">
+    <input type="hidden" name="lng" th:value="${point.lon}">
 </main>
 <div th:include="partials/footer :: footer"></div>
 <div th:include="partials/scripts :: scripts"></div>
