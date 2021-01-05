@@ -53,7 +53,7 @@ public class POIController {
         poiDao.save(poiToBeSaved);
         return "redirect:/points";
     }
-    @PostMapping("/points/{id}")
+    @GetMapping("/points/{id}")
     public String singlePOI(@PathVariable long id, Model model) {
         model.addAttribute("point", poiDao.getPOIById(id));
         return "points/show";

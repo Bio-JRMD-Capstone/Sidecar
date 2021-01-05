@@ -1,14 +1,13 @@
 let map, infoWindow, geocoder;
-var userMarker;
+let pointLat = parseFloat($("#lat").val());
+let pointLng = parseFloat($("#lng").val());
+
 
 function initMap() {
+    //Taking the values of the lat and lng of the point we need, then centering the map on the point
     map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 29.4241, lng: -98.4936 },
-        zoom: 10,
-    });
-    geocoder = new google.maps.Geocoder();
-    document.getElementById("submit").addEventListener("click", () => {
-        geocodeAddress(geocoder, map);
+        center: { lat: pointLat, lng: pointLng },
+        zoom: 15,
     });
     infoWindow = new google.maps.InfoWindow();
 
