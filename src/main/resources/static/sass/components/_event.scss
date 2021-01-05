@@ -24,10 +24,11 @@
     flex-wrap: wrap;
   }
   &__card {
-    display: flex;
-    flex-direction: row;
     padding: 2rem;
     width: 32%;
+    background-color: $color-white;
+    max-height: 25em;
+    flex-direction: row;
     color: $color-gray-darker;
     border: $color-gray-dark solid 1px;
     border-radius: .5em;
@@ -49,11 +50,13 @@
     }
     &--title{
       margin-top: 1rem;
+      margin-left: 2rem;
       font-size: $default-font-size;
       text-transform: uppercase;
     }
     &--text {
       font-size: $default-font-size;
+      margin-left: 2rem;
     }
   }
 

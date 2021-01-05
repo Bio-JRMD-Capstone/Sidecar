@@ -634,10 +634,11 @@ body {
   flex-wrap: wrap;
 }
 .event__card {
-  display: flex;
-  flex-direction: row;
   padding: 2rem;
   width: 32%;
+  background-color: #fff;
+  max-height: 25em;
+  flex-direction: row;
   color: #333;
   border: #555 solid 1px;
   border-radius: 0.5em;
@@ -660,11 +661,13 @@ body {
 }
 .event__card--title {
   margin-top: 1rem;
+  margin-left: 2rem;
   font-size: 1.6rem;
   text-transform: uppercase;
 }
 .event__card--text {
   font-size: 1.6rem;
+  margin-left: 2rem;
 }
 .event:not(:last-child) {
   margin-bottom: 8rem;
