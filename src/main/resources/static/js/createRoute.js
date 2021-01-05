@@ -78,7 +78,7 @@ function initMap() {
 
         const directionsService = new google.maps.DirectionsService();
         const directionsRenderer = new google.maps.DirectionsRenderer({
-            draggable: true,
+            draggable: false,
             map,
             panel: document.getElementById("right-panel"),
         });
