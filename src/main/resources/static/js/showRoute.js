@@ -81,7 +81,7 @@ function initMap() {
 
     const directionsService = new google.maps.DirectionsService();
     const directionsRenderer = new google.maps.DirectionsRenderer({
-        draggable: true,
+        draggable: false,
         map,
         panel: document.getElementById("right-panel"),
     });
@@ -190,10 +190,6 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
                     }
                 }
 
-                console.log(totalDuration)
-
-                distance.value = totalDistance;
-                time.value = totalDuration;
 
 
 
