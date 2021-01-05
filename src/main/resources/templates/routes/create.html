@@ -7,8 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-<!--    <nav th:replace="partials/navbar :: nav"></nav>-->
-<div th:replace="partials/expand-nav :: navigation"></div>
+    <nav th:replace="partials/navbar :: nav"></nav>
+<!--<div th:replace="partials/expand-nav :: navigation"></div>-->
 <main>
     <!-- Map w/ input fields and button to create -->
     <div class="map">
@@ -26,7 +26,7 @@
 
                         <input type="hidden" class="form-control" id="coordinates" name="coordinates" th:field="*{coordinates}">
 
-                        <input class="map__input" type="text" id="time" name="time"  placeholder="Time(Hours)" th:field="*{time}" readonly>
+                        <input class="map__input" type="text" id="time" name="time"  placeholder="Time(Hours)" th:field="*{time}">
                         <div class="control">
                             <input class="btn btn--white" type="submit" value="Save Route">
                         </div>
