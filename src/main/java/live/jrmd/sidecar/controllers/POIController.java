@@ -60,7 +60,7 @@ public class POIController {
     }
     @GetMapping("/points/{id}/edit")
     public String viewUpdatePOIForm(@PathVariable long id, Model model) {
-        model.addAttribute("point", poiDao.getPOIById(id));
+        model.addAttribute("poi", poiDao.getPOIById(id));
         return "points/edit";
     }
     @PostMapping("/points/{id}/edit")
@@ -70,7 +70,7 @@ public class POIController {
         poiDao.save(poiToBeUpdated);
         return "redirect:/points/" + id;
     }
-    @PostMapping("/point/{id}/delete")
+    @PostMapping("/points/{id}/delete")
     public String deletePoint (@PathVariable(value = "id") long id) {
         POI poiToDelete = poiDao.getPOIById(id);
         poiDao.delete(poiToDelete);
