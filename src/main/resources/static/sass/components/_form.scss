@@ -17,7 +17,8 @@
         display: block;
         transition: all .3s;
         &--edit-profile{
-            width: 100%;
+            width: 65%;
+            padding-left: 1.5rem;
         }
         &:focus {
             outline: none;
@@ -42,6 +43,10 @@
         margin-top: .7rem;
         display: block;
         transition: all .3s;
+        &--edit-profile {
+            color: #111;
+            padding-right: 1rem;
+        }
     }
 
     &__input:placeholder-shown + &__label {
