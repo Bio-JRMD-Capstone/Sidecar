@@ -164,6 +164,14 @@ body {
   text-align: center !important;
 }
 
+.u-right-align {
+  text-align: right !important;
+}
+
+.u-left-align {
+  text-align: left !important;
+}
+
 .u-margin-bottom-lg {
   margin-bottom: 8rem !important;
 }
@@ -190,6 +198,18 @@ body {
 
 .u-margin-top-sm {
   margin-top: 1.25rem !important;
+}
+
+.u-margin-y-sm {
+  margin: 0 1.5rem;
+}
+
+.u-margin-y-md {
+  margin: 0 4rem;
+}
+
+.u-margin-y-lg {
+  margin: 0 8rem;
 }
 
 .bg-video {
@@ -745,7 +765,8 @@ body {
   transition: all 0.3s;
 }
 .form__input--edit-profile {
-  width: 100%;
+  width: 65%;
+  padding-left: 1.5rem;
 }
 .form__input:focus {
   outline: none;
@@ -765,6 +786,10 @@ body {
   margin-top: 0.7rem;
   display: block;
   transition: all 0.3s;
+}
+.form__label--edit-profile {
+  color: #111;
+  padding-right: 1rem;
 }
 .form__input:placeholder-shown + .form__label {
   opacity: 0;
@@ -1230,10 +1255,28 @@ body {
   padding: 5rem;
   width: 30rem;
 }
+.profile-img-edit {
+  width: 30rem;
+  padding-bottom: 2rem;
+}
 
-.col-profile-edit {
-  width: 45%;
-  margin: 0 auto;
+.image-stack {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  position: relative;
+  margin: auto;
+}
+.image-stack__item--top {
+  width: 30rem !important;
+  grid-column: 2/span 1;
+  grid-row: 1;
+  padding: 0;
+}
+.image-stack__item--bottom {
+  width: 30rem !important;
+  grid-column: 2/span 1;
+  grid-row: 1;
+  z-index: 1;
 }
 
 .story {
@@ -1286,7 +1329,7 @@ body {
   backface-visibility: hidden;
 }
 .footer {
-  background-color: #333;
+  background-color: #111;
   padding: 5rem 0;
   font-size: 1.4rem;
   color: #f7f7f7;
@@ -1329,7 +1372,7 @@ body {
   text-transform: uppercase;
   display: inline-block;
   transition: all 0.2s;
-  background-color: #333;
+  background-color: #111;
 }
 .footer__link:hover, .footer__link:active {
   color: #674A21;
@@ -1346,6 +1389,7 @@ body {
 .row {
   max-width: 125rem;
   margin: 0 auto;
+  display: flex;
 }
 .row:not(:last-child) {
   margin-bottom: 8rem;
@@ -1523,7 +1567,7 @@ body {
 .navigation__icon, .navigation__icon::before, .navigation__icon::after {
   width: 3rem;
   height: 2px;
-  background-color: #333;
+  background-color: #111;
   display: inline-block;
 }
 .navigation__icon::before, .navigation__icon::after {

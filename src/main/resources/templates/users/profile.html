@@ -56,7 +56,6 @@
                             <td th:text="${route.distance}" name="distance"></td>
                             <td th:text="${route.time}" name="time"></td>
                             <td class="mr-auto" th:text="${route.description}" name="description"></td>
-                            <td><a th:href="'/route/' + ${route.id} + '/edit'" class="btn btn-edit">Edit</a></td>
                             <td>
                                 <form th:action="@{'/route/' + ${route.id} + '/delete'}" th:method="post">
                                 <button class="btn btn-edit">Delete</button>
