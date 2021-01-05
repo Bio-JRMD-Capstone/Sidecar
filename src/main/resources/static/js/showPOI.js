@@ -1,6 +1,18 @@
 let map, infoWindow, geocoder;
 let pointLat = parseFloat($("#lat").val());
 let pointLng = parseFloat($("#lng").val());
+let category = $("#category").text();
+
+
+//Formatting the category correctly for the card
+var categoryString = category.replace(category.charAt(0), category.charAt(0).toUpperCase());
+if(categoryString.includes("_")) {
+    categoryString = categoryString.replace(
+        categoryString.charAt(categoryString.indexOf("_") + 1),
+        categoryString.charAt(categoryString.indexOf("_") + 1).toUpperCase());
+    categoryString = categoryString.replace("_", " ");
+}
+$("#category").text(categoryString);
 
 
 function initMap() {

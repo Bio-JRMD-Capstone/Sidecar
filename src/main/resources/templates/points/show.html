@@ -15,7 +15,7 @@
     <div id="map"></div>
     <div class="card">
         <h2 th:text="${point.name}"></h2>
-        <h4 th:text="${point.category}"></h4>
+        <h4 th:text="${point.category}" id="category"></h4>
         <p th:text="${point.description}"></p>
     </div>
     <input type="hidden" id="lat" th:value="${point.lat}">
