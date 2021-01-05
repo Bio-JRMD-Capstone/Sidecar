@@ -134,7 +134,7 @@ function drawPOIs(poi, icons, infoWindow, map) {
         infoWindow.setContent("<h6>" + poi.name + "</h6>" +
             "<p><strong>" + categoryString + "</strong><br>" +
             poi.description + "</p>" +
-            "<a href='points/" + poi.id + "'>More Info</a>");
+            "<a href='/points/" + poi.id + "'>More Info</a>");
         infoWindow.open(map, marker);
     });
 }
