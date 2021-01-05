@@ -1,6 +1,5 @@
 function initMap() {
 
-    console.log("test")
     var map;
     let markers = []
 
@@ -50,6 +49,10 @@ function initMap() {
         console.log(objLoc)
         console.log(markers)
     });
+
+    document.getElementById("routeCheck").checked = false
+
+
     function initMapRoute() {
         const map = new google.maps.Map(document.getElementById("map"), {
             zoom: 4,
@@ -83,6 +86,16 @@ function initMap() {
         markers = markers.map(n => {
             const markerMapped = {location: n};
             return markerMapped
+        });
+
+        console.log(markers)
+
+        let marker = new google.maps.Marker({
+            map: map,
+            position: {lat: 34.7062978, lng: -116.1274117},
+            icon: {
+                url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+            }
         });
 
         console.log(markers[0].location.lat)
@@ -126,6 +139,8 @@ function initMap() {
                 });
 
         }
+
+
 
 
         directionsService.route(
