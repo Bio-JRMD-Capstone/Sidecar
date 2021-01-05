@@ -24,6 +24,8 @@
     flex-wrap: wrap;
   }
   &__card {
+    display: flex;
+    flex-direction: row;
     padding: 2rem;
     width: 32%;
     color: $color-gray-darker;
@@ -34,10 +36,10 @@
       margin-bottom: 1em;
     }
     &--text-col {
-
+      width: calc((100% - 2 * #{$gutter-small}) / 3) + #{$gutter-small};
     }
     &--image-col {
-      
+      width: calc((100% - 2 * #{$gutter-small}) / 3);
     }
     &--image {
       margin: 1rem;

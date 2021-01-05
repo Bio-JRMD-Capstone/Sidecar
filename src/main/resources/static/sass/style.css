@@ -634,6 +634,8 @@ body {
   flex-wrap: wrap;
 }
 .event__card {
+  display: flex;
+  flex-direction: row;
   padding: 2rem;
   width: 32%;
   color: #333;
@@ -643,6 +645,12 @@ body {
 .event__card:not(:last-child) {
   margin-right: 1em;
   margin-bottom: 1em;
+}
+.event__card--text-col {
+  width: calc((100% - 2 * 3rem) / 3)3rem;
+}
+.event__card--image-col {
+  width: calc((100% - 2 * 3rem) / 3);
 }
 .event__card--image {
   margin: 1rem;

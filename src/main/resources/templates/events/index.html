@@ -17,7 +17,7 @@
         <a class="btn btn--white" th:href="@{/events/create}">Add an Event</a>
     </div>
     <section class="event__cards u-margin-top-sm">
-        <div class="event__card" th:each="event : ${events}">
+        <div class="event__card row" th:each="event : ${events}">
             <a th:href="@{'/event/' + ${event.id}}">
                 <div class="event__card--image-col">
                     <img class="event__card--image" th:src="${event.filePath}" th:alt="${event.name}">
