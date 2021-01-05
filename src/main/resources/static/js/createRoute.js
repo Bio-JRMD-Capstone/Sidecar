@@ -14,6 +14,16 @@ function initMap() {
         zoom: 7,
         center: lat_lng,
     });
+
+
+
+    let marker = new google.maps.Marker({
+        map: map,
+        position: lat_lng,
+        icon: {
+            url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+        }
+    });
     // This event listener will call addMarker() when the map is clicked.
     map.addListener('click', function(event) {
         addMarker(event.latLng);
@@ -45,8 +55,10 @@ function initMap() {
             id: id,
             position: event.latLng,
             map: map,
-            title: event.latLng.lat() + ', ' + event.latLng.lng()
+            title: event.latLng.lat() + ', ' + event.latLng.lng(),
+
         });
+
         var obj = {};
         obj["lat"] = event.latLng.lat();
         obj["lng"] = event.latLng.lng();
@@ -96,15 +108,9 @@ function initMap() {
 
         console.log(markers)
 
-        let marker = new google.maps.Marker({
-            map: map,
-            position: {lat: 34.7062978, lng: -116.1274117},
-            icon: {
-                url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
-            }
-        });
-
         console.log(markers[0].location.lat)
+
+
 
         let markersString = [];
         for(let i = 0; i < markers.length; i++){
