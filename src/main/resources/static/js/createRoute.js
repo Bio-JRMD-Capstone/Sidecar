@@ -1,6 +1,11 @@
-function initMap() {
+let loadTotal = 0;
 
-    console.log("test")
+function initMap() {
+    loadTotal++;
+    console.log(loadTotal)
+    if (loadTotal > 3){
+        window.location.reload();
+    }
     var map;
     let markers = []
 
@@ -20,18 +25,6 @@ function initMap() {
     document.getElementById("distance").value = "";
     document.getElementById("time").value = "";
 
-    // Adds a marker at the center of the map.
-    // addMarker(lat_lng);
-    // Update lat/long value of div when you move the mouse over the map
-    // google.maps.event.addListener(map, 'mousemove', function (event) {
-    //     document.getElementById('latmoved').innerHTML = event.latLng.lat();
-    //     document.getElementById('longmoved').innerHTML = event.latLng.lng();
-    // });
-    // Update lat/long value of div when the marker is clicked
-    // marker.addListener('click', function (event) {
-    //     document.getElementById('latclicked').innerHTML = event.latLng.lat();
-    //     document.getElementById('longclicked').innerHTML = event.latLng.lng();
-    // });
     var currentId = 0;
     var uniqueId = function () {
         return ++currentId;
@@ -62,6 +55,10 @@ function initMap() {
         console.log(objLoc)
         console.log(markers)
     });
+
+    document.getElementById("routeCheck").checked = false
+
+
     function initMapRoute() {
         const map = new google.maps.Map(document.getElementById("map"), {
             zoom: 4,
@@ -78,7 +75,7 @@ function initMap() {
 
         const directionsService = new google.maps.DirectionsService();
         const directionsRenderer = new google.maps.DirectionsRenderer({
-            draggable: true,
+            draggable: false,
             map,
             panel: document.getElementById("right-panel"),
         });
@@ -95,6 +92,16 @@ function initMap() {
         markers = markers.map(n => {
             const markerMapped = {location: n};
             return markerMapped
+        });
+
+        console.log(markers)
+
+        let marker = new google.maps.Marker({
+            map: map,
+            position: {lat: 34.7062978, lng: -116.1274117},
+            icon: {
+                url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+            }
         });
 
         console.log(markers[0].location.lat)
@@ -140,6 +147,8 @@ function initMap() {
         }
 
 
+
+
         directionsService.route(
             {
                 origin: markers[0],
@@ -155,7 +164,6 @@ function initMap() {
                     const summaryPanel = document.getElementById("directions-panel");
                     summaryPanel.innerHTML = "";
                     let distance = document.getElementById("distance");
-                    let time = document.getElementById("time");
 
                     let totalDistance = 0;
                     let totalDuration = 0;
@@ -166,7 +174,6 @@ function initMap() {
                             const routeSegment = i;
 
                             totalDistance += parseFloat(route.legs[i].distance.text);
-                            totalDuration += parseInt(route.legs[i].duration.text);
 
 
                             console.log(route.legs[i].distance.text)
@@ -186,7 +193,6 @@ function initMap() {
                             totalDuration += parseInt(route.legs[i].duration.text);
 
 
-                            console.log(route.legs[i].distance.text)
 
                             summaryPanel.innerHTML +=
                                 "<b>Route Segment: " + routeSegment + "</b><br>";
@@ -198,10 +204,9 @@ function initMap() {
                     }
 
 
-                    console.log(totalDuration)
 
                     distance.value = totalDistance.toFixed(2);
-                    time.value = totalDuration;
+
 
 
 
