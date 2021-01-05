@@ -6,8 +6,6 @@ function initMap() {
     if (loadTotal > 3){
         window.location.reload();
     }
-
-
     var map;
     let markers = []
 

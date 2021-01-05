@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="partials/head :: head('Point of Interest')">
+
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+    <nav th:replace="partials/navbar :: nav"></nav>
+<!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+
+<main class="row w-100">
+    <div id="map"></div>
+    <div class="card">
+<!--   Trying to get conditional if statements working for the img tag, can't figure out how to get it to work     -->
+        <img th:src="${point.photo_url}">
+        <h2 th:text="${point.name}"></h2>
+        <h4 th:text="${point.category}" id="category"></h4>
+        <p th:text="${point.description}"></p>
+    </div>
+    <input type="hidden" id="lat" th:value="${point.lat}">
+    <input type="hidden" id="lng" th:value="${point.lon}">
+</main>
+<div th:include="partials/footer :: footer"></div>
+<div th:include="partials/scripts :: scripts"></div>
+<script src="/js/showPOI.js"></script>
+</body>
+</html>
