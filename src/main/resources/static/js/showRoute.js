@@ -81,7 +81,7 @@ function initMap() {
 
     const directionsService = new google.maps.DirectionsService();
     const directionsRenderer = new google.maps.DirectionsRenderer({
-        draggable: true,
+        draggable: false,
         map,
         panel: document.getElementById("right-panel"),
     });
@@ -126,7 +126,7 @@ function displayRoute(origin, destination, service, display) {
 function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     const waypts = [];
 
-    for (let i = 0; i < markers.length; i++) {
+    for (let i = 1; i < markers.length-1; i++) {
         waypts.push({
             location: markers[i],
             stopover: true,
@@ -154,27 +154,42 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
                 let totalDuration = 0;
 
                 // For each route, display summary information.
-                for (let i = 0; i < route.legs.length-1; i++) {
-                    const routeSegment = i + 1;
+                if (markers[markers.length-1].lat === markers[0].lat + .000000000000001) {
+                    for (let i = 1; i < route.legs.length; i++) {
+                        const routeSegment = i;
 
-                    totalDistance += parseFloat(route.legs[i].distance.text);
-                    totalDuration += parseInt(route.legs[i].duration.text);
+                        totalDistance += parseFloat(route.legs[i].distance.text);
+                        totalDuration += parseInt(route.legs[i].duration.text);
 
 
-                    console.log(route.legs[i].distance.text)
+                        console.log(route.legs[i].distance.text)
 
-                    summaryPanel.innerHTML +=
-                        "<b>Route Segment: " + routeSegment + "</b><br>";
-                    summaryPanel.innerHTML += route.legs[i].start_address + "<br> to <br>";
-                    summaryPanel.innerHTML += route.legs[i].end_address + "<br>";
-                    summaryPanel.innerHTML += route.legs[i].distance.text + "<br>";
-                    summaryPanel.innerHTML += route.legs[i].duration.text + "<br><hr><br>"
+                        summaryPanel.innerHTML +=
+                            "<b>Route Segment: " + routeSegment + "</b><br>";
+                        summaryPanel.innerHTML += route.legs[i].start_address + "<br> to <br>";
+                        summaryPanel.innerHTML += route.legs[i].end_address + "<br>";
+                        summaryPanel.innerHTML += route.legs[i].distance.text + "<br>";
+                        summaryPanel.innerHTML += route.legs[i].duration.text + "<br><hr><br>"
+                    }
+                } else {
+                    for (let i = 0; i < route.legs.length; i++) {
+                        const routeSegment = i + 1;
+
+                        totalDistance += parseFloat(route.legs[i].distance.text);
+                        totalDuration += parseInt(route.legs[i].duration.text);
+
+
+                        console.log(route.legs[i].distance.text)
+
+                        summaryPanel.innerHTML +=
+                            "<b>Route Segment: " + routeSegment + "</b><br>";
+                        summaryPanel.innerHTML += route.legs[i].start_address + "<br> to <br>";
+                        summaryPanel.innerHTML += route.legs[i].end_address + "<br>";
+                        summaryPanel.innerHTML += route.legs[i].distance.text + "<br>";
+                        summaryPanel.innerHTML += route.legs[i].duration.text + "<br><hr><br>"
+                    }
                 }
 
-                console.log(totalDuration)
-
-                distance.value = totalDistance;
-                time.value = totalDuration;
 
 
 
