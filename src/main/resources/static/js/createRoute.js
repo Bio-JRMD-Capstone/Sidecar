@@ -20,18 +20,6 @@ function initMap() {
     document.getElementById("distance").value = "";
     document.getElementById("time").value = "";
 
-    // Adds a marker at the center of the map.
-    // addMarker(lat_lng);
-    // Update lat/long value of div when you move the mouse over the map
-    // google.maps.event.addListener(map, 'mousemove', function (event) {
-    //     document.getElementById('latmoved').innerHTML = event.latLng.lat();
-    //     document.getElementById('longmoved').innerHTML = event.latLng.lng();
-    // });
-    // Update lat/long value of div when the marker is clicked
-    // marker.addListener('click', function (event) {
-    //     document.getElementById('latclicked').innerHTML = event.latLng.lat();
-    //     document.getElementById('longclicked').innerHTML = event.latLng.lng();
-    // });
     var currentId = 0;
     var uniqueId = function () {
         return ++currentId;
@@ -68,13 +56,17 @@ function initMap() {
             center: {lat: 34.7062978, lng: -116.1274117},
         });
         if (document.getElementById("routeCheck").checked === true) {
-            markers.push(markers[0]);
+            let objRepeat = {}
+            objRepeat["lat"] = markers[0].lat + .000000000000001
+            objRepeat["lng"] = markers[0].lng
+
+            markers.push(objRepeat)
         }
 
 
         const directionsService = new google.maps.DirectionsService();
         const directionsRenderer = new google.maps.DirectionsRenderer({
-            draggable: true,
+            draggable: false,
             map,
             panel: document.getElementById("right-panel"),
         });
@@ -125,7 +117,7 @@ function initMap() {
 
 
     function calculateAndDisplayRoute(directionsService, directionsRenderer) {
-        const waypts = [];
+        let waypts = [];
 
         for (let i = 1; i < markers.length; i++) {
                 waypts.push({
@@ -134,6 +126,8 @@ function initMap() {
                 });
 
         }
+
+
         directionsService.route(
             {
                 origin: markers[0],
@@ -149,33 +143,49 @@ function initMap() {
                     const summaryPanel = document.getElementById("directions-panel");
                     summaryPanel.innerHTML = "";
                     let distance = document.getElementById("distance");
-                    let time = document.getElementById("time");
 
                     let totalDistance = 0;
                     let totalDuration = 0;
 
                     // For each route, display summary information.
-                    for (let i = 0; i < route.legs.length-1; i++) {
-                        const routeSegment = i + 1;
+                    if (document.getElementById("routeCheck").checked === true) {
+                        for (let i = 1; i < route.legs.length; i++) {
+                            const routeSegment = i;
 
-                        totalDistance += parseFloat(route.legs[i].distance.text);
-                        totalDuration += parseInt(route.legs[i].duration.text);
+                            totalDistance += parseFloat(route.legs[i].distance.text);
 
 
-                        console.log(route.legs[i].distance.text)
+                            console.log(route.legs[i].distance.text)
 
-                        summaryPanel.innerHTML +=
-                            "<b>Route Segment: " + routeSegment + "</b><br>";
-                        summaryPanel.innerHTML += route.legs[i].start_address + "<br> to <br>";
-                        summaryPanel.innerHTML += route.legs[i].end_address + "<br>";
-                        summaryPanel.innerHTML += route.legs[i].distance.text + "<br>";
-                        summaryPanel.innerHTML += route.legs[i].duration.text + "<br><hr><br>"
+                            summaryPanel.innerHTML +=
+                                "<b>Route Segment: " + routeSegment + "</b><br>";
+                            summaryPanel.innerHTML += route.legs[i].start_address + "<br> to <br>";
+                            summaryPanel.innerHTML += route.legs[i].end_address + "<br>";
+                            summaryPanel.innerHTML += route.legs[i].distance.text + "<br>";
+                            summaryPanel.innerHTML += route.legs[i].duration.text + "<br><hr><br>"
+                        }
+                    } else {
+                        for (let i = 0; i < route.legs.length-1; i++) {
+                            const routeSegment = i + 1;
+
+                            totalDistance += parseFloat(route.legs[i].distance.text);
+                            totalDuration += parseInt(route.legs[i].duration.text);
+
+
+
+                            summaryPanel.innerHTML +=
+                                "<b>Route Segment: " + routeSegment + "</b><br>";
+                            summaryPanel.innerHTML += route.legs[i].start_address + "<br> to <br>";
+                            summaryPanel.innerHTML += route.legs[i].end_address + "<br>";
+                            summaryPanel.innerHTML += route.legs[i].distance.text + "<br>";
+                            summaryPanel.innerHTML += route.legs[i].duration.text + "<br><hr><br>"
+                        }
                     }
 
-                    console.log(totalDuration)
 
-                    distance.value = totalDistance;
-                    time.value = totalDuration;
+
+                    distance.value = totalDistance.toFixed(2);
+
 
 
 
