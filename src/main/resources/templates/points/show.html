@@ -14,6 +14,8 @@
 <main class="row w-100">
     <div id="map"></div>
     <div class="card">
+<!--   Trying to get conditional if statements working for the img tag, can't figure out how to get it to work     -->
+        <img th:src="${point.photo_url}">
         <h2 th:text="${point.name}"></h2>
         <h4 th:text="${point.category}" id="category"></h4>
         <p th:text="${point.description}"></p>
