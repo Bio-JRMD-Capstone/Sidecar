@@ -53,8 +53,14 @@ public class POIController {
         poiDao.save(poiToBeSaved);
         return "redirect:/points";
     }
+    @GetMapping("/points/{id}")
+    public String singlePOI(@PathVariable long id, Model model) {
+        model.addAttribute("point", poiDao.getPOIById(id));
+        return "points/show";
+    }
+
     @PostMapping("/point/{id}/delete")
-    public String deleteRoute (@PathVariable(value = "id") long id) {
+    public String deletePoint (@PathVariable(value = "id") long id) {
         POI poiToDelete = poiDao.getPOIById(id);
         poiDao.delete(poiToDelete);
         return "redirect:/profile";
