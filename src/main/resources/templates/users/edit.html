@@ -8,62 +8,72 @@
         <title>Edit Profile</title>
     </head>
 <body>
-<!--    <nav th:replace="partials/navbar :: nav"></nav>-->
-<div th:replace="partials/expand-nav :: navigation"></div>
+    <nav th:replace="partials/navbar :: nav"></nav>
+<!--<div th:replace="partials/expand-nav :: navigation"></div>-->
 <main>
 
     <div class="section-profile-edit">
         <div class="box">
-            <div class="row">
+            <div class="form">
                 <form class="w-100" th:action="@{'/user/' + ${userToEdit.id} +'/edit'}" method="POST" th:object="${user}">
-                    <div class="col-1-of-2 u-center-text">
-                        <div class="u-margin-bottom-md">
-                            <h2 class="">Edit Profile:</h2>
-                        </div>
+                    <div class="u-margin-bottom-md u-center-text">
+                        <h2 class="heading-tertiary">Edit Profile:</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-1-of-2">
 
                             <input type="hidden" th:field="${userToEdit.id}" th:value="${userToEdit.id}" name="userId">
 
-                            <div>
-                                <label class="form__label--edit-profile"  for="username">Username:</label>
-                                <input class="form__input--edit-profile"  id="username" type="text" th:field="${userToEdit.username}" th:value="${userToEdit.username}" name="username">
+                            <div class="u-right-align">
+                                <label class="form__label--edit-profile paragraph"  for="username">Username:</label>
+                                <input class="form__input--edit-profile paragraph"  id="username" type="text" th:field="${userToEdit.username}" th:value="' ' + ${userToEdit.username}" name="username">
                                 <br />
                             </div>
 
-                            <div>
-                                <label class="form__label--edit-profile" for="email">Email:</label>
-                                <input class="form__input--edit-profile"  id="email" type="text" th:field="${userToEdit.email}" th:value="${userToEdit.email}" name="email">
+                            <div class="u-right-align">
+                                <label class="form__label--edit-profile paragraph" for="email">Email:</label>
+                                <input class="form__input--edit-profile paragraph"  id="email" type="text" th:field="${userToEdit.email}" th:value="' ' + ${userToEdit.getEmail()}" name="email">
                                 <br />
                             </div>
 
-                            <div >
-                                <label class="form__label--edit-profile" for="zipcode">Username:</label>
-                                <input class="form__input--edit-profile"  id="zipcode" type="text" th:field="${userToEdit.zipcode}" th:value="${userToEdit.zipcode}" name="zipcode">
+                            <div class="u-right-align">
+                                <label class="form__label--edit-profile paragraph" for="zipcode">Zipcode:</label>
+                                <input class="form__input--edit-profile paragraph"  id="zipcode" type="text" th:field="${userToEdit.zipcode}" th:value="' ' + ${userToEdit.getZipcode()}" name="zipcode">
+                                <br />
+                            </div>
+                            <p class="form__label--edit-profile paragraph p-3">Re-enter password to confirm changes:</p>
+                            <div class="u-right-align">
+                                <label class="form__label--edit-profile paragraph" for="password">Password:</label>
+                                <input class="form__input--edit-profile paragraph" id="password" type="password" th:field="${userToEdit.password}" th:value="' ' + ${userToEdit.getPassword()}" name="password">
                                 <br />
                             </div>
 
+                            <div class="u-right-align">
+                                <label class="form__label--edit-profile paragraph" for="password_confirm">Password Confirmation:</label>
+                                <input class="form__input--edit-profile paragraph" id="password_confirm" type="password" th:field="${userToEdit.password_confirm}" th:value="' ' + ${userToEdit.getPassword_confirm()}" name="password_confirm">
+                                <br />
+                            </div>
+                        </div>
+                        <div class="col-1-of-2 u-center-text u-margin-top-sm">
+                            <div class="image-stack">
+                                <div class="image-stack__item--top">
+                                    <img class="poi-img" th:src="${userToEdit.photo_url}" alt="profile image">
+                                </div>
+                                <div class="image-stack__item--bottom">
+                                    <label for="newImage"><img class="poi-img" id="imagePreview" src="" alt=""></label>
+                                    <input class="profile-img-edit new-img" type="hidden" id="newImage" th:field="${userToEdit.photo_url}" th:value="${userToEdit.photo_url}" name="photo_url">
+                                </div>
+                            </div>
 
-                        <div class="u-center-text u-margin-top-sm">
-
-                            <img class="profile-img" th:src="${userToEdit.photo_url}" alt="profile image">
-
-                            <button class="btn btn--white" id="imageButton">Change picture</button>
+                            <div class="u-center-text u-margin-top-md">
+                                <button class="btn btn--white" id="imageButton">Add/Change Image</button>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="col-1-of-2 u-center-text u-margin-top-sm">
-                        <div>
-                            <label for="newImage"><img class="poi-img" id="imagePreview" src="" alt=""></label>
-                            <input type="hidden" id="newImage" th:field="${userToEdit.photo_url}" th:value="${userToEdit.photo_url}" name="photo_url">
-                        </div>
-                        <div >
-                            <label class="form__label--edit-profile" for="password">Enter password to update:</label>
-                            <input class="form__input--edit-profile" id="password" type="password" th:field="${userToEdit.password}" th:value="${userToEdit.password}" name="password">
-                            <br />
-                        </div>
-                        <div>
-                            <input class="btn btn--white u-margin-top-sm" type="submit" value="Update"/>
-                            <a class="btn btn--green u-margin-top-sm" href="/profile">Cancel</a>
-                        </div>
+                    <div class="u-center-text u-margin-top-sm">
+                        <input class="btn btn--white u-margin-y-md" type="submit" value="Update"/>
+                        <a class="btn btn--green u-margin-y-md" href="/profile">Cancel</a>
                     </div>
                 </form>
             </div>
