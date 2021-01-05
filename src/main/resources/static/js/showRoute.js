@@ -190,10 +190,6 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
                     }
                 }
 
-                console.log(totalDuration)
-
-                distance.value = totalDistance;
-                time.value = totalDuration;
 
 
 
