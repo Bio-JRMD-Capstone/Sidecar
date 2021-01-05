@@ -13,6 +13,9 @@ public class POICategory {
     @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
+    private String iconName;
+
     @ManyToMany(mappedBy = "pCategoryList")
     private List<POI> poiList;
 
@@ -45,6 +48,14 @@ public class POICategory {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getIconName() {
+        return iconName;
+    }
+
+    public void setIconName(String iconName) {
+        this.iconName = iconName;
     }
 
     public List<POI> getPoiList() {
