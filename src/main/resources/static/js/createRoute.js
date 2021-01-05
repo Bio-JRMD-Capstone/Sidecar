@@ -1,5 +1,11 @@
-function initMap() {
+let loadTotal = 0;
 
+function initMap() {
+    loadTotal++;
+    console.log(loadTotal)
+    if (loadTotal > 3){
+        window.location.reload();
+    }
     var map;
     let markers = []
 
