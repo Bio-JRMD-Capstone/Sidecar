@@ -7,7 +7,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 
 @Controller
@@ -48,11 +51,24 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String saveUser(@ModelAttribute User user){
-        String hash = passwordEncoder.encode(user.getPassword());
-        user.setPassword(hash);
-        users.save(user);
-        return "redirect:/login";
+    public String saveUser(@Valid User user,
+                           Errors validation,
+                           Model model,
+                           @ModelAttribute User newUser
+    ){
+        if(validation.hasErrors()){
+            model.addAttribute("errors", validation);
+            model.addAttribute("user", user);
+            return "/register";
+        } else {
+            if (newUser.getPassword().equals(newUser.getPassword_confirm())) {
+                String hash = passwordEncoder.encode(newUser.getPassword());
+                newUser.setPassword(hash);
+                newUser.setPassword_confirm(hash);
+            }
+            users.save(newUser);
+            return "redirect:/login";
+        }
     }
 
     @GetMapping("/profile")
@@ -72,9 +88,15 @@ public class UserController {
 
     @PostMapping("/user/{id}/edit")
     public String editUser (@ModelAttribute User user){
-        String hash = passwordEncoder.encode(user.getPassword());
-        user.setPassword(hash);
-        userDao.save(user);
-        return "redirect:/profile";
+        if (user.getPassword() != null && user.getPassword().equals(user.getPassword_confirm())) {
+            String hash = passwordEncoder.encode(user.getPassword());
+            user.setPassword(hash);
+            user.setPassword_confirm(hash);
+        } else {
+            user.setPassword(userDao.getUserById(user.getId()).getPassword());
+        }
+            userDao.save(user);
+            return "redirect:/profile";
+
     }
 }
