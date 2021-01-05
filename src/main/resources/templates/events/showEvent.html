@@ -10,8 +10,7 @@
     <nav th:replace="partials/navbar :: nav"></nav>
 <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
 <main>
-    <a class="btn btn--light" th:href="@{/events}">Back to all events</a>
-    <section class="event">
+    <section class="event"><a class="btn btn--white" th:href="@{/events}">Back to all events</a>
         <div class="event__single row u-margin-top-md">
             <div class="col-1-of-3">
                 <img class="event__single--image" th:src="${event.filePath}" th:alt="${event.name}">

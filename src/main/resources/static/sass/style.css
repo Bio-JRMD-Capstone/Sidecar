@@ -619,6 +619,10 @@ body {
   display: flex;
   flex-direction: column;
 }
+.event__single {
+  padding: 3rem;
+  background-color: #BEB6A6;
+}
 .event__single--image {
   max-height: 50rem;
   background-color: #999;
