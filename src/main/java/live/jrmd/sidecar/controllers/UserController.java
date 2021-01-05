@@ -56,10 +56,10 @@ public class UserController {
                            Model model,
                            @ModelAttribute User newUser
     ){
-        if(validation.hasErrors()){
+        if(validation.hasErrors() || (!newUser.getPassword().equals(newUser.getPassword_confirm()))){
             model.addAttribute("errors", validation);
             model.addAttribute("user", user);
-            return "/register";
+            return "users/register";
         } else {
             if (newUser.getPassword().equals(newUser.getPassword_confirm())) {
                 String hash = passwordEncoder.encode(newUser.getPassword());
