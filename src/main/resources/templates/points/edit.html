@@ -59,7 +59,7 @@
                             Other
                         </label>
                     </div>
-                    <input class="poi__input-long" type="text" id="description" name="description" placeholder="description" >
+                    <input class="poi__input-long" th:field="*{description}" type="text" id="description" name="description" placeholder="description" >
                     <label class="poi__label" for="description">Enter a description:</label>
 
                     <input type="hidden" id="lat" value="" th:field="*{lat}">
