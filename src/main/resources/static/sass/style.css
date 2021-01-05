@@ -619,31 +619,43 @@ body {
   display: flex;
   flex-direction: column;
 }
+.event__single--image {
+  max-height: 50rem;
+  background-color: #999;
+}
+.event__single--title {
+  font-size: 2.4rem;
+}
+.event__single--text {
+  font-size: 1.6rem;
+}
 .event__cards {
   display: flex;
   flex-wrap: wrap;
 }
 .event__card {
   padding: 2rem;
+  width: 32%;
   color: #333;
-  border: #111 solid 1px;
-  border-radius: 2em;
+  border: #555 solid 1px;
+  border-radius: 0.5em;
 }
 .event__card:not(:last-child) {
-  margin-right: 2em;
+  margin-right: 1em;
+  margin-bottom: 1em;
 }
 .event__card--image {
+  margin: 1rem;
   max-height: 20em;
   max-width: 13em;
-  border-radius: 1em;
+  border-radius: 0.5em;
 }
 .event__card--title {
-  margin-left: 3rem;
+  margin-top: 1rem;
   font-size: 1.6rem;
   text-transform: uppercase;
 }
 .event__card--text {
-  margin-left: 3rem;
   font-size: 1.6rem;
 }
 .event:not(:last-child) {

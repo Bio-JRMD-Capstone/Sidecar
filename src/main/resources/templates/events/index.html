@@ -19,15 +19,15 @@
     <section class="event__cards u-margin-top-sm">
         <div class="event__card" th:each="event : ${events}">
             <a th:href="@{'/event/' + ${event.id}}">
-                <div class="col-1-of-3">
+                <div class="event__card--image-col">
                     <img class="event__card--image" th:src="${event.filePath}" th:alt="${event.name}">
                 </div>
-                <div class="col-2-of-3 u-margin-right-sm">
+                <div class="event__card--text-col">
                     <div class="event__card--title">
                         <h3 class="" th:text="${event.name}"></h3>
                     </div>
                     <div class="event__card--text">
-                        <p th:text="'Category: ' + ${event.eventType}"></p>
+                        <p th:text="'Date: ' + ${event.date}"></p>
                         <hr>
                         <p th:text="${event.description}"></p>
                     </div>
