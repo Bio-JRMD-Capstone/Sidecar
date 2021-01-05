@@ -24,6 +24,9 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
+    private String password_confirm;
+
     @Column(length = 10)
     private String zipcode;
 
@@ -44,19 +47,21 @@ public class User {
 
     public User(){}
     //read
-    public User(Long id, String username, String email, String password, String zipcode, String photo_url) {
+    public User(Long id, String username, String email, String password, String password_confirm, String zipcode, String photo_url) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.password_confirm = password_confirm;
         this.zipcode = zipcode;
         this.photo_url = photo_url;
     }
     //create
-    public User(String username, String email, String password, String zipcode, String photo_url) {
+    public User(String username, String email, String password, String password_confirm, String zipcode, String photo_url) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.password_confirm = password_confirm;
         this.zipcode = zipcode;
         this.photo_url = photo_url;
     }
@@ -66,6 +71,7 @@ public class User {
         username = copy.username;
         email = copy.email;
         password = copy.password;
+        password_confirm = copy.password_confirm;
         zipcode = copy.zipcode;
         photo_url = copy.photo_url;
     }
@@ -100,6 +106,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPassword_confirm() {
+        return password_confirm;
+    }
+
+    public void setPassword_confirm(String password_confirm) {
+        this.password_confirm = password_confirm;
     }
 
     public String getZipcode() {
