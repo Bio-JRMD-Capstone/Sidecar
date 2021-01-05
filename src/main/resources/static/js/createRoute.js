@@ -7,6 +7,7 @@ function initMap() {
         window.location.reload();
     }
 
+
     var map;
     let markers = []
 
