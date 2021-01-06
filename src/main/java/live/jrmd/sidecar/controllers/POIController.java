@@ -47,11 +47,11 @@ public class POIController {
         return "points/create";
     }
     @PostMapping("/points/create")
-    public String create(@ModelAttribute POI poiToBeSaved, @PathVariable long id) {
+    public String create(@ModelAttribute POI poiToBeSaved) {
         User userDb = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         poiToBeSaved.setUser(userDb);
         poiDao.save(poiToBeSaved);
-        return "redirect:/points/" + id;
+        return "redirect:/points/";
     }
     @GetMapping("/points/{id}")
     public String singlePOI(@PathVariable long id, Model model) {
