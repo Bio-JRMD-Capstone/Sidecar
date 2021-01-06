@@ -1,7 +1,9 @@
 package live.jrmd.sidecar.models;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "events")
@@ -23,7 +25,7 @@ public class Event {
     private String zipcode;
 
     @Column(nullable = false)
-    private String eventType;
+    private Long eventCategoryFk;
 
     @Column(nullable = true, columnDefinition = "TEXT")
     private String filePath;
@@ -32,7 +34,7 @@ public class Event {
     @JoinColumn()
     private User user;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY,  cascade = CascadeType.ALL)
     @JoinTable(
         name = "events_categories",
         joinColumns = {@JoinColumn(name = "event_id")},
@@ -41,25 +43,25 @@ public class Event {
     private List<EventCategory> eventCategories;
 
     public Event(){}
-
+///
     //read
-    public Event(Long id, String name, String description, String date, String zipcode, String eventType, String filePath, User user) {
+    public Event(Long id, String name, String description, String date, String zipcode, String eventCatFK, String filePath, User user) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.date = date;
         this.zipcode = zipcode;
-        this.eventType = eventType;
+        this.eventCategoryFk = Long.parseLong(eventCatFK);
         this.filePath = filePath;
         this.user = user;
     }
     //create
-    public Event(String name, String description, String date, String zipcode, String eventType, String filePath) {
+    public Event(String name, String description, String date, String zipcode, String eventCatFK, String filePath) {
         this.name = name;
         this.description = description;
         this.date = date;
         this.zipcode = zipcode;
-        this.eventType = eventType;
+        this.eventCategoryFk = Long.parseLong(eventCatFK);
         this.filePath = filePath;
     }
     public Event(Event copy, String filePath){
@@ -67,7 +69,7 @@ public class Event {
         this.description = copy.description;
         this.date = copy.date;
         this.zipcode = copy.zipcode;
-        this.eventType = copy.eventType;
+        this.eventCategoryFk = copy.eventCategoryFk;
         this.filePath = filePath;
     }
 
@@ -111,21 +113,13 @@ public class Event {
         this.zipcode = zipcode;
     }
 
-    public String getEventType() {
-        return eventType;
-    }
+    public Long getEventCategoryFk() { return eventCategoryFk; }
 
-    public void setEventType(String eventType) {
-        this.eventType = eventType;
-    }
+    public void setEventCategoryFk(Long eventCategoryFk) { this.eventCategoryFk = eventCategoryFk; }
 
-    public List<EventCategory> getEventCategories() {
-        return eventCategories;
-    }
+    public List<EventCategory> getEventCategories() { return eventCategories; }
 
-    public void setEventCategories(List<EventCategory> eventCategories) {
-        this.eventCategories = eventCategories;
-    }
+    public void setEventCategories(List<EventCategory> eventCategories) { this.eventCategories = eventCategories; }
 
     public User getUser() {
         return user;
