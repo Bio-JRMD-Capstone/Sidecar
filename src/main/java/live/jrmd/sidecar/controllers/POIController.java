@@ -51,15 +51,26 @@ public class POIController {
         User userDb = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         poiToBeSaved.setUser(userDb);
         poiDao.save(poiToBeSaved);
-        return "redirect:/points";
+        return "redirect:/points/";
     }
     @GetMapping("/points/{id}")
     public String singlePOI(@PathVariable long id, Model model) {
         model.addAttribute("point", poiDao.getPOIById(id));
         return "points/show";
     }
-
-    @PostMapping("/point/{id}/delete")
+    @GetMapping("/points/{id}/edit")
+    public String viewUpdatePOIForm(@PathVariable long id, Model model) {
+        model.addAttribute("poi", poiDao.getPOIById(id));
+        return "points/edit";
+    }
+    @PostMapping("/points/{id}/edit")
+    public String updatePOI(@ModelAttribute POI poiToBeUpdated, @PathVariable long id) {
+        User userDb = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        poiToBeUpdated.setUser(userDb);
+        poiDao.save(poiToBeUpdated);
+        return "redirect:/points/" + id;
+    }
+    @PostMapping("/points/{id}/delete")
     public String deletePoint (@PathVariable(value = "id") long id) {
         POI poiToDelete = poiDao.getPOIById(id);
         poiDao.delete(poiToDelete);

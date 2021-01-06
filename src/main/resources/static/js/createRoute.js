@@ -152,9 +152,6 @@ function initMap() {
 
         }
 
-
-
-
         directionsService.route(
             {
                 origin: markers[0],
@@ -181,7 +178,6 @@ function initMap() {
 
                             totalDistance += parseFloat(route.legs[i].distance.text);
 
-
                             console.log(route.legs[i].distance.text)
 
                             summaryPanel.innerHTML +=
@@ -197,8 +193,6 @@ function initMap() {
 
                             totalDistance += parseFloat(route.legs[i].distance.text);
                             totalDuration += parseInt(route.legs[i].duration.text);
-
-
 
                             summaryPanel.innerHTML +=
                                 "<b>Route Segment: " + routeSegment + "</b><br>";
