@@ -24,9 +24,6 @@ public class Event {
     @Column(length = 10, nullable = false)
     private String zipcode;
 
-    @Column(nullable = false)
-    private Long eventCategoryFk;
-
     @Column(nullable = true, columnDefinition = "TEXT")
     private String filePath;
 
@@ -34,7 +31,7 @@ public class Event {
     @JoinColumn()
     private User user;
 
-    @ManyToMany(fetch = FetchType.LAZY,  cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
         name = "events_categories",
         joinColumns = {@JoinColumn(name = "event_id")},
@@ -45,31 +42,32 @@ public class Event {
     public Event(){}
 ///
     //read
-    public Event(Long id, String name, String description, String date, String zipcode, String eventCatFK, String filePath, User user) {
+    public Event(Long id, String name, String description, String date, String zipcode, String filePath, User user, List<EventCategory> categories) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.date = date;
         this.zipcode = zipcode;
-        this.eventCategoryFk = Long.parseLong(eventCatFK);
         this.filePath = filePath;
         this.user = user;
+        this.eventCategories = categories;
     }
+
     //create
-    public Event(String name, String description, String date, String zipcode, String eventCatFK, String filePath) {
+    public Event(String name, String description, String date, String zipcode, String filePath, List<EventCategory> categories) {
         this.name = name;
         this.description = description;
         this.date = date;
         this.zipcode = zipcode;
-        this.eventCategoryFk = Long.parseLong(eventCatFK);
         this.filePath = filePath;
+        this.eventCategories = categories;
     }
+
     public Event(Event copy, String filePath){
         this.name = copy.name;
         this.description = copy.description;
         this.date = copy.date;
         this.zipcode = copy.zipcode;
-        this.eventCategoryFk = copy.eventCategoryFk;
         this.filePath = filePath;
     }
 
@@ -112,10 +110,6 @@ public class Event {
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
     }
-
-    public Long getEventCategoryFk() { return eventCategoryFk; }
-
-    public void setEventCategoryFk(Long eventCategoryFk) { this.eventCategoryFk = eventCategoryFk; }
 
     public List<EventCategory> getEventCategories() { return eventCategories; }
 

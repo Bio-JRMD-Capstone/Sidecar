@@ -53,16 +53,17 @@ public class EventController {
             @Valid Event event,
             Errors validation,
             Model model,
-            @ModelAttribute Event newEvent
+            @ModelAttribute Event newEvent,
+            @RequestParam(name= "eventCategories") List<EventCategory> categories
     ){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        EventCategory eventCategory = new EventCategory((String) model.getAttribute("eventCategory"));
+
         if(validation.hasErrors()){
             model.addAttribute("errors", validation);
             model.addAttribute("event", newEvent);
             return "events/create";
         } else {
-            newEvent.getEventCategories().add(eventCategory);
+            newEvent.setEventCategories(categories);
             newEvent.setUser(user);
             eventDao.save(newEvent);
             return "redirect:/events";
