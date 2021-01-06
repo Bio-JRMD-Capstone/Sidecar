@@ -11,18 +11,22 @@
     <nav th:replace="partials/navbar :: nav"></nav>
 <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
 
-<main class="row w-100">
-    <div class="col-md-3">
-        <div class="btn btn-white"><a th:href="@{/points/create}">Add a Point of Interest</a></div>
+<main class="poi">
+    <div class="">
+        <div class="btn"><a th:href="@{/points/create}">Add a Point of Interest</a></div>
     </div>
-    <div class="col-md-9">
+    <section class="poi-box">
+    <div class="poi__location">
         <h4>Find a Point of Interest</h4>
         <div id="floating-panel">
             <input id="address" type="textbox" placeholder="Enter a location" />
             <input id="submit" type="button" value="View Location" />
         </div>
-        <div id="map"></div>
     </div>
+        <div class="poi__map">
+            <div id="map"></div>
+        </div>
+    </section>
 </main>
 <div th:include="partials/footer :: footer"></div>
 <div th:include="partials/scripts :: scripts"></div>
