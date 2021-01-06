@@ -74,6 +74,7 @@ function initMap() {
         request.done(function (points) {
             points.forEach(function(point) {
                 drawPOIs(point, icons, infoWindow, map);
+                console.log(request)
             });
         });
     })(jQuery);
