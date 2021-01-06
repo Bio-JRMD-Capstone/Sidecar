@@ -144,7 +144,8 @@ function drawPOIs(poi, icons, infoWindow, map) {
     google.maps.event.addListener(marker, 'click', function() {
         infoWindow.setContent("<h6>" + poi.name + "</h6>" +
             "<p><strong>" + categoryString + "</strong><br>" +
-            poi.description + "</p>");
+            poi.description + "</p>" +
+            "<a href='/points/" + poi.id + "'>More Info</a>");
         infoWindow.open(map, marker);
     });
 }
