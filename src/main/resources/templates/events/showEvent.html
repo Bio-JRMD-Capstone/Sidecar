@@ -9,27 +9,23 @@
 <body>
     <nav th:replace="partials/navbar :: nav"></nav>
 <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
-
-    <main class="container">
-        <a th:href="@{/events}">Back to all events</a>
-        <div class="event">
-            <div class="card col-4 my-2">
-                <img th:src="${event.filePath}" class="card-img-top" th:alt="${event.name}">
-                <div class="card-body text-center">
-                    <a th:href="@{'/event/' + ${event.id}}">
-                        <h5 class="card-title" th:text="${event.name}"></h5>
-                    </a>
-
-                    <p class="text-muted" th:text="'Category: '+ ${event.eventType}">
-
-                    </p>
-                    <hr>
-                    <p class="text-muted" th:text="${event.description}"></p>
-                </div>
-
+<main>
+    <section class="event"><a class="btn btn--white" th:href="@{/events}">Back to all events</a>
+        <div class="event__single row u-margin-top-md">
+            <div class="col-1-of-3">
+                <img class="event__single--image" th:src="${event.filePath}" th:alt="${event.name}">
+            </div>
+            <div class="col-2-of-3">
+                <p class="event__single--title" th:text="${event.name}"></p>
+                <p class="event__single--text" th:text="'Category: '+ ${event.eventType}"></p>
+                <p class="event__single--text" th:text="'Date: ' + ${event.date}"></p>
+                <hr>
+                <p class="event__single--text" th:text="${event.description}"></p>
             </div>
         </div>
-    </main>
+    </section>
+</main>
+
 <div th:include="partials/footer :: footer"></div>
 <div th:include="partials/scripts :: scripts"></div>
 </body>
