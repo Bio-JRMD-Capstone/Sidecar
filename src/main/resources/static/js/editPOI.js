@@ -1,18 +1,25 @@
 let map, infoWindow, geocoder;
-var userMarker;
+let pointLat = parseFloat($("#lat").val());
+let pointLng = parseFloat($("#lon").val());
+let userMarker;
+let category = $("#category").text();
 
-$(document).ready(function(){
-    $('select').formSelect();
-});
+//Formatting the category correctly for the card
+var categoryString = category.replace(category.charAt(0), category.charAt(0).toUpperCase());
+if(categoryString.includes("_")) {
+    categoryString = categoryString.replace(
+        categoryString.charAt(categoryString.indexOf("_") + 1),
+        categoryString.charAt(categoryString.indexOf("_") + 1).toUpperCase());
+    categoryString = categoryString.replace("_", " ");
+}
+$("#category").text(categoryString);
+
 
 function initMap() {
+    //Taking the values of the lat and lng of the point we need, then centering the map on the point
     map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 29.4241, lng: -98.4936 },
-        zoom: 10,
-    });
-    geocoder = new google.maps.Geocoder();
-    document.getElementById("submit").addEventListener("click", () => {
-        geocodeAddress(geocoder, map);
+        center: { lat: pointLat, lng: pointLng },
+        zoom: 15,
     });
     infoWindow = new google.maps.InfoWindow();
 
@@ -71,6 +78,17 @@ function initMap() {
         }
     });
 
+    //Set the POI to be edited on the map
+    let editPOICoords = {
+        'lat': pointLat,
+        'lng': pointLng
+    }
+    userMarker = new google.maps.Marker({
+        position: editPOICoords,
+        draggable: true
+    });
+    userMarker.setMap(map);
+
     //When the map is clicked, add a point and fill in the lat/lng values in html using jQuery
     google.maps.event.addListener(map, "click", function(event) {
         placeMarker(event.latLng);
@@ -79,12 +97,15 @@ function initMap() {
     });
 
     //This is supposed to retrieve the list of POIs in JSON format so we can work with it to display them on the map.
+    //For this page, it skips over the POI to be edited, because we need to treat that one differently.
     // See https://java.codeup.com/spring/extra-features/json-response/ for more info
     (function($) {
         var request = $.ajax({'url': '/points.json'});
         request.done(function (points) {
             points.forEach(function(point) {
-                drawPOIs(point, icons, infoWindow, map);
+                if(point.lat != pointLat && point.lng != pointLng) {
+                    drawPOIs(point, icons, infoWindow, map);
+                }
             });
         });
     })(jQuery);
@@ -143,9 +164,9 @@ function drawPOIs(poi, icons, infoWindow, map) {
     //This connects the info window to the marker, allowing information, links, any HTML really to be displayed
     google.maps.event.addListener(marker, 'click', function() {
         infoWindow.setContent("<h6>" + poi.name + "</h6>" +
-                              "<p><strong>" + categoryString + "</strong><br>" +
-                              poi.description + "</p>" +
-                              "<a href='/points/" + poi.id + "'>More Info</a>");
+            "<p><strong>" + categoryString + "</strong><br>" +
+            poi.description + "</p>" +
+            "<a href='points/" + poi.id + "'>More Info</a>");
         infoWindow.open(map, marker);
     });
 }
@@ -153,7 +174,7 @@ function drawPOIs(poi, icons, infoWindow, map) {
 //if marker already exists on map, move it. if not, create it at the location
 function placeMarker(location) {
     if (userMarker) {
-        //if marker already was created change positon
+        //if marker already was created change position
         userMarker.setPosition(location);
     } else {
         //create a marker
