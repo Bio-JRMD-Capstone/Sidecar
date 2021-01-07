@@ -4,7 +4,6 @@ body {
     /* font-size: 1.6rem; */
     line-height: 1.7;
     color: $color-gray-dark;
-    padding: 3rem;
 }
 
 .heading-primary {
@@ -23,6 +22,10 @@ body {
         animation-duration: 1s;
         animation-timing-function: ease-out;
 
+        @include respond(phone) {
+            letter-spacing: 1rem;
+            font-size: 5rem;
+        }
         /* animation-iteration-count: 2;
         animation-delay: 1s; */
     }
@@ -35,6 +38,10 @@ body {
         animation-name: moveInRight;
         animation-duration: 1s;
         animation-timing-function: ease-out;
+
+        @include respond(phone) {
+            letter-spacing: .5rem;
+        }
     }
     &--logo {
         display: block;

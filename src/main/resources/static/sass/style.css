@@ -80,6 +80,13 @@ html {
 
 body {
   box-sizing: border-box;
+  padding: 3rem;
+}
+@media (max-width: 56.25em) {
+  body {
+    font-size: 50%;
+    padding: 0;
+  }
 }
 
 main {
@@ -92,7 +99,6 @@ body {
   /* font-size: 1.6rem; */
   line-height: 1.7;
   color: #555;
-  padding: 3rem;
 }
 
 .heading-primary {
@@ -113,6 +119,12 @@ body {
   /* animation-iteration-count: 2;
   animation-delay: 1s; */
 }
+@media (max-width: 37.5em) {
+  .heading-primary--main {
+    letter-spacing: 1rem;
+    font-size: 5rem;
+  }
+}
 .heading-primary--sub {
   display: block;
   font-size: 3rem;
@@ -121,6 +133,11 @@ body {
   animation-name: moveInRight;
   animation-duration: 1s;
   animation-timing-function: ease-out;
+}
+@media (max-width: 37.5em) {
+  .heading-primary--sub {
+    letter-spacing: 0.5rem;
+  }
 }
 .heading-primary--logo {
   display: block;

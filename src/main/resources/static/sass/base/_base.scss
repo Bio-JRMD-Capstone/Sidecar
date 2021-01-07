@@ -25,6 +25,13 @@ html {
 }
 body {
     box-sizing: border-box;
+    padding: 3rem;
+
+    @include respond(tab-port){
+        font-size: 50%;
+        padding: 0;
+    }
+
 }
 main {
     min-height: 90vh;
