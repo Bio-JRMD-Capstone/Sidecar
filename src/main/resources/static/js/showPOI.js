@@ -23,6 +23,15 @@ function initMap() {
     });
     infoWindow = new google.maps.InfoWindow();
 
+    //Pans the map back to the point if the center of the map changes
+    map.addListener("center_changed", () => {
+        // 5 seconds after the center of the map has changed, pan back to the
+        // marker.
+        window.setTimeout(() => {
+            map.panTo({ lat: pointLat, lng: pointLng});
+        }, 5000);
+    });
+
     //To save on typing, I save the relative filepath as a variable since we will be using it a lot just below
     const iconBase = "/css/images/";
 
