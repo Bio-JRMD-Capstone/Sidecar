@@ -9,10 +9,10 @@ function initMap() {
     var map;
     let markers = []
 
-    var lat_lng = { lat: 29.4241, lng: -98.4936 };
+    var lat_lng = {lat: 39.63476588674744, lng: -101.15442912683487 };
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 7,
-        center: lat_lng,
+        zoom: 5,
+        center: lat_lng
     });
 
 
