@@ -43,30 +43,11 @@
                         <div class="event__input">
                             <!--    Radio buttons for categories-->
                             <h4>Select Event Category: </h4>
-                            <div class="form-check">
-                                <input class="form-check-input" th:field="${eventToEdit.eventType}" th:value="LookingToRide" type="radio" name="event_type" id="looking">
-                                <label class="form-check-label" for="looking">
-                                    Looking to ride
-                                </label>
+                            <div class="form-check" th:each="category : ${categories}">
+                                <input class="form-check-input" th:value="${category.id}" type="radio" name="eventCategories" th:id="${category.id}">
+                                <label class="form-check-label" th:for="${category.id}" th:text=" ${category.name}"></label>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" th:field="${eventToEdit.eventType}" th:value="CharityRide" type="radio" name="event_type" id="charity">
-                                <label class="form-check-label" for="charity">
-                                    Charity Ride
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" th:field="${eventToEdit.eventType}" th:value="ClubMeeting" type="radio" name="event_type" id="meeting">
-                                <label class="form-check-label" for="meeting">
-                                    Club Meeting
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" th:field="${eventToEdit.eventType}" th:value="FundRaiser" type="radio" name="event_type" id="fund_raiser">
-                                <label class="form-check-label" for="fund_raiser">
-                                    Fund Raiser
-                                </label>
-                            </div>
+
                         </div>
                         <div class="u-center-text u-margin-top-sm">
 

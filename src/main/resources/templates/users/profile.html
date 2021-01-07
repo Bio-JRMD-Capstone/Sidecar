@@ -35,12 +35,12 @@
         <div class="row">
             <div class="profile">
                 <div class="profile__text">
-                    <h3 class="heading-tertiary u-margin-bottom-sm">Routes posted</h3>
+                    <h3 class="heading-tertiary u-margin-bottom-sm">Your Routes</h3>
                     <table class="profile__table">
                         <thead>
                         <tr >
                             <th class="profile__table--col">Title</th>
-                            <th class="profile__table--col">Id</th>
+<!--                            <th class="profile__table&#45;&#45;col">Id</th>-->
                             <th class="profile__table--col">Distance</th>
                             <th class="profile__table--col">Time</th>
                             <th class="profile__table--colD">Description</th>
@@ -52,7 +52,7 @@
                         <tbody>
                         <tr th:each="route : ${routes}">
                             <td th:text="${route.title}" name="title"></td>
-                            <td th:text="${route.id}" name="id"></td>
+<!--                            <td th:text="${route.id}" name="id"></td>-->
                             <td th:text="${route.distance}" name="distance"></td>
                             <td th:text="${route.time}" name="time"></td>
                             <td class="mr-auto" th:text="${route.description}" name="description"></td>
@@ -70,14 +70,14 @@
         <div class="row">
             <div class="profile">
                 <div class="profile__text">
-                    <h3 class="heading-tertiary u-margin-bottom-sm">POI's posted</h3>
+                    <h3 class="heading-tertiary u-margin-bottom-sm">Your Points of Interest</h3>
                     <table class="profile__table">
                         <thead>
                         <tr >
                             <th class="profile__table--col">Title</th>
-                            <th class="profile__table--col">Id</th>
-                            <th class="profile__table--col">Latitude</th>
-                            <th class="profile__table--col">Longitude</th>
+<!--                            <th class="profile__table&#45;&#45;col">Id</th>-->
+<!--                            <th class="profile__table&#45;&#45;col">Latitude</th>-->
+<!--                            <th class="profile__table&#45;&#45;col">Longitude</th>-->
                             <th class="profile__table--colD">Description</th>
                             <th class="profile__table--col"></th>
                             <th class="profile__table--col"></th>
@@ -87,9 +87,9 @@
                         <tbody>
                         <tr th:each="poi : ${pois}" >
                             <td th:text="${poi.name}" name="name"></td>
-                            <td th:text="${poi.id}" name="id"></td>
-                            <td th:text="${poi.lat}" name="lat"></td>
-                            <td th:text="${poi.lon}" name="lon"></td>
+<!--                            <td th:text="${poi.id}" name="id"></td>-->
+<!--                            <td th:text="${poi.lat}" name="lat"></td>-->
+<!--                            <td th:text="${poi.lon}" name="lon"></td>-->
                             <td class="mr-auto" th:text="${poi.description}" name="description"></td>
                             <td><a th:href="'/points/' + ${poi.id} + '/edit'" class="btn btn-edit">Edit</a></td>
                             <td>
@@ -106,12 +106,12 @@
         <div class="row">
             <div class="profile">
                 <div class="profile__text">
-                    <h3 class="heading-tertiary u-margin-bottom-sm">Events posted</h3>
+                    <h3 class="heading-tertiary u-margin-bottom-sm">Your Events</h3>
                     <table class="profile__table">
                         <thead>
                         <tr >
                             <th class="profile__table--col">Title</th>
-                            <th class="profile__table--col">Id</th>
+<!--                            <th class="profile__table&#45;&#45;col">Id</th>-->
                             <th class="profile__table--col">Date</th>
                             <th class="profile__table--colD">Description</th>
                             <th class="profile__table--col"></th>
@@ -122,7 +122,7 @@
                         <tbody>
                         <tr th:each="event : ${events}" >
                             <td th:text="${event.name}" name="name"></td>
-                            <td th:text="${event.id}" name="id"></td>
+<!--                            <td th:text="${event.id}" name="id"></td>-->
                             <td th:text="${event.date}" name="date"></td>
                             <td class="mr-auto" th:text="${event.description}" name="description"></td>
                             <td><a th:href="'/event/' + ${event.id} + '/edit'" class="btn btn-edit">Edit</a></td>

@@ -19,19 +19,19 @@
                             <input type="hidden" th:field="*{user}">
                             <label for="name"><h4>Event Title:</h4></label>
                             <input type="text" th:field="*{name}" name="name" id="name" class=""/>
-                            <!--            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" />-->
+                                        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" />
                             <br />
                             <label for="description"><h4>Event Description:</h4></label>
                             <textarea th:field="*{description}" name="description" id="description" class="" ></textarea>
-                            <!--            <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" />-->
+                                        <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" />
                             <br />
                             <label for="date"><h4>Event Date:</h4></label>
                             <input type="date" th:field="*{date}" name="date" id="date" class="" />
-                            <!--            <p th:if="${#fields.hasErrors('date')}" th:errors="*{date}" />-->
+                                        <p th:if="${#fields.hasErrors('date')}" th:errors="*{date}" />
                             <br />
                             <label for="zipcode"><h4>Event Zipcode:</h4></label>
                             <input type="text" th:field="*{zipcode}" name="date" id="zipcode" class="" />
-                            <!--            <p th:if="${#fields.hasErrors('zipcode')}" th:errors="*{zipcode}" />-->
+                                        <p th:if="${#fields.hasErrors('zipcode')}" th:errors="*{zipcode}" />
                             <br />
 
                         </div>
@@ -42,8 +42,8 @@
             <!--    Radio buttons for categories-->
                         <h4>Select Event Category: </h4>
                         <div class="form-check" th:each="category : ${categories}">
-                            <input class="form-check-input" th:field="*{eventType}" th:value="${category.name}" type="radio" name="event_type" th:id="${category.id}">
-                            <label class="form-check-label" th:for="${category.id}" th:value="${category.name}" th:text="'  ' + ${category.name}"></label>
+                            <input class="form-check-input" th:value="${category.id}" type="radio" name="eventCategories" th:id="${category.id}">
+                            <label class="form-check-label" th:for="${category.id}" th:text=" ${category.name}"></label>
                         </div>
                     </div>
                 </div>

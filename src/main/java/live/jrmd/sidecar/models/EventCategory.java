@@ -1,5 +1,7 @@
 package live.jrmd.sidecar.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,7 +15,8 @@ public class EventCategory {
     @Column(nullable = false)
     private String name;
 
-    @ManyToMany(mappedBy = "eventCategories")
+    @ManyToMany(mappedBy = "eventCategories", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Event> events;
 
     public EventCategory(){}
