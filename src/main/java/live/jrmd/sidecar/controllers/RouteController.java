@@ -1,5 +1,6 @@
 package live.jrmd.sidecar.controllers;
 
+import live.jrmd.sidecar.models.POI;
 import live.jrmd.sidecar.models.Route;
 import live.jrmd.sidecar.models.User;
 import live.jrmd.sidecar.repositories.RouteRepository;
@@ -39,6 +40,11 @@ public class RouteController {
     public String showAllRoutes(Model model){
         model.addAttribute("routes", routeDao.findAll());
         return "routes/index";
+    }
+
+    @GetMapping("/routes.json")
+    public @ResponseBody List<Route> viewAllRoutesInJSONFormat() {
+        return routeDao.findAll();
     }
 
     @GetMapping("/searchRoutes")
