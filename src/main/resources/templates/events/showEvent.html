@@ -20,9 +20,7 @@
                         <h5 class="card-title" th:text="${event.name}"></h5>
                     </a>
 
-                    <p class="text-muted" th:text="'Category: '+ ${event.eventCategories}">
-
-                    </p>
+                    <p class="text-muted">Category: <span th:each="eventCategory : ${event.eventCategories}" th:text=" ${eventCategory.name}"></span></p>
                     <hr>
                     <p class="text-muted" th:text="${event.description}"></p>
                 </div>
