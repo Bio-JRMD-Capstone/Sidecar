@@ -74,6 +74,6 @@ public class POIController {
     public String deletePoint (@PathVariable(value = "id") long id) {
         POI poiToDelete = poiDao.getPOIById(id);
         poiDao.delete(poiToDelete);
-        return "redirect:/profile";
+        return "redirect:/users/profile";
     }
 }
