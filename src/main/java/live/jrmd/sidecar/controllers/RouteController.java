@@ -62,17 +62,16 @@ public class RouteController {
         return "routes/showRoute";
     }
     @GetMapping("/route/{id}/edit")
-    public String editEvent(@PathVariable(value = "id") long id, Model model) {
+    public String editRoute(@PathVariable(value = "id") long id, Model model) {
         model.addAttribute("routeToEdit", routeDao.getRouteById(id));
         return "/routes/edit";
     }
     @PostMapping("/route/{id}/edit")
-    public String editEvent(
+    public String editRoute(
             @Valid Route route,
             Errors validation,
             Model model,
-            @ModelAttribute Route amendedRoute,
-            @RequestParam(name= "eventCategories") List<EventCategory> categories) {
+            @ModelAttribute Route amendedRoute) {
 
         if(validation.hasErrors()){
             model.addAttribute("errors", validation);
@@ -80,7 +79,7 @@ public class RouteController {
             return "route/{id}/edit";
         } else {
             routeDao.save(amendedRoute);
-            return "redirect:/event/" + route.getId();
+            return "redirect:/route/" + route.getId();
         }
     }
 
