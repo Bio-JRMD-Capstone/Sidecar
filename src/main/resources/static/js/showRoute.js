@@ -78,6 +78,14 @@ function initMap() {
         center: {lat: 34.7062978, lng: -116.1274117},
     });
 
+    let markerBlue = new google.maps.Marker({
+        map: map,
+        position: markers[0].location,
+        icon: {
+            url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+        }
+    });
+
 
     const directionsService = new google.maps.DirectionsService();
     const directionsRenderer = new google.maps.DirectionsRenderer({

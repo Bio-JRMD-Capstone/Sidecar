@@ -1,18 +1,25 @@
 let map, infoWindow, geocoder;
-var userMarker;
+let pointLat = parseFloat($("#lat").val());
+let pointLng = parseFloat($("#lng").val());
+let category = $("#category").text();
 
-$(document).ready(function(){
-    $('select').formSelect();
-});
+
+//Formatting the category correctly for the card
+var categoryString = category.replace(category.charAt(0), category.charAt(0).toUpperCase());
+if(categoryString.includes("_")) {
+    categoryString = categoryString.replace(
+        categoryString.charAt(categoryString.indexOf("_") + 1),
+        categoryString.charAt(categoryString.indexOf("_") + 1).toUpperCase());
+    categoryString = categoryString.replace("_", " ");
+}
+$("#category").text(categoryString);
+
 
 function initMap() {
+    //Taking the values of the lat and lng of the point we need, then centering the map on the point
     map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 29.4241, lng: -98.4936 },
-        zoom: 10,
-    });
-    geocoder = new google.maps.Geocoder();
-    document.getElementById("submit").addEventListener("click", () => {
-        geocodeAddress(geocoder, map);
+        center: { lat: pointLat, lng: pointLng },
+        zoom: 15,
     });
     infoWindow = new google.maps.InfoWindow();
 
@@ -69,13 +76,6 @@ function initMap() {
             // Browser doesn't support Geolocation
             handleLocationError(false, infoWindow, map.getCenter());
         }
-    });
-
-    //When the map is clicked, add a point and fill in the lat/lng values in html using jQuery
-    google.maps.event.addListener(map, "click", function(event) {
-        placeMarker(event.latLng);
-        $('#lat').val(event.latLng.lat());
-        $('#lon').val(event.latLng.lng());
     });
 
     //This is supposed to retrieve the list of POIs in JSON format so we can work with it to display them on the map.
@@ -143,23 +143,9 @@ function drawPOIs(poi, icons, infoWindow, map) {
     //This connects the info window to the marker, allowing information, links, any HTML really to be displayed
     google.maps.event.addListener(marker, 'click', function() {
         infoWindow.setContent("<h6>" + poi.name + "</h6>" +
-                              "<p><strong>" + categoryString + "</strong><br>" +
-                              poi.description + "</p>" +
-                              "<a href='/points/" + poi.id + "'>More Info</a>");
+            "<p><strong>" + categoryString + "</strong><br>" +
+            poi.description + "</p>" +
+            "<a href='/points/" + poi.id + "'>More Info</a>");
         infoWindow.open(map, marker);
     });
-}
-
-//if marker already exists on map, move it. if not, create it at the location
-function placeMarker(location) {
-    if (userMarker) {
-        //if marker already was created change positon
-        userMarker.setPosition(location);
-    } else {
-        //create a marker
-        userMarker = new google.maps.Marker({
-            position: location,
-            map: map,
-        });
-    }
 }
