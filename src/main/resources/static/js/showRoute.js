@@ -79,9 +79,19 @@ function initMap() {
     });
 
 
+    // Blur marker on the map
+    // let markerBlue = new google.maps.Marker({
+    //     map: map,
+    //     position: markers[0].location,
+    //     icon: {
+    //         url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+    //     }
+    // });
+
+
     const directionsService = new google.maps.DirectionsService();
     const directionsRenderer = new google.maps.DirectionsRenderer({
-        draggable: true,
+        draggable: false,
         map,
         panel: document.getElementById("right-panel"),
     });
@@ -190,10 +200,6 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
                     }
                 }
 
-                console.log(totalDuration)
-
-                distance.value = totalDistance;
-                time.value = totalDuration;
 
 
 

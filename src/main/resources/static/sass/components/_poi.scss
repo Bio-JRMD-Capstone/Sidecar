@@ -1,25 +1,7 @@
 .poi {
   width: 90%;
   margin: 5rem auto;
-  z-index: 3000;
-  &-img {
-    height: 20rem;
-  }
-  &-data {
-    display: flex;
-    flex-direction: column;
-  }
 
-  &:not(:last-child) {
-    margin-bottom: $gutter-vertical;
-  }
-  @include clearfix;
-  [class^="col-"]{
-    float: left;
-    &:not(:last-child) {
-      margin-right: $gutter-horizontal;
-    }
-  }
   &-box {
     padding: 3rem;
     background-color: $color-primary-light;
@@ -28,6 +10,33 @@
     overflow: auto;
     margin-bottom: 3rem;
   }
+  &__map {
+    height: 100%;
+  }
+  &__info {
+    padding-right: 3rem;
+    flex-direction: column;
+    &-img {
+      max-height: 300rem;
+    }
+    &-text {
+      font-size: $default-font-size;
+      margin-top: 2em;
+    }
+
+  }
+  &__location{
+    margin-left: 4rem;
+    margin-bottom: 2rem;
+  }
+  @include clearfix;
+  [class^="col-"]{
+    float: left;
+    &:not(:last-child) {
+      margin-right: $gutter-horizontal;
+    }
+  }
+
   &__group:not(:last-child) {
     margin-bottom: 2rem;
   }

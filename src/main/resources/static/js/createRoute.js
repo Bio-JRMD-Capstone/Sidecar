@@ -1,14 +1,52 @@
-function initMap() {
+let loadTotal = 0;
 
-    console.log("test")
+function initMap() {
+    loadTotal++;
+    console.log(loadTotal)
+    if (loadTotal > 2){
+        window.location.reload();
+    }
+
+    document.getElementById("address").value = "";
+
     var map;
     let markers = []
 
-    var lat_lng = { lat: 29.4241, lng: -98.4936 };
+    var lat_lng = {lat: 39.63476588674744, lng: -101.15442912683487 };
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 7,
-        center: lat_lng,
+        zoom: 5,
+        center: lat_lng
     });
+
+    geocoder = new google.maps.Geocoder();
+    document.getElementById("submit").addEventListener("click", () => {
+        geocodeAddress(geocoder, map);
+    });
+
+    //Geocoder, searches for input location and centers map on it
+    function geocodeAddress(geocoder, resultsMap) {
+        const address = document.getElementById("address").value;
+
+        geocoder.geocode({address: address}, (results, status) => {
+            if (status === "OK") {
+                resultsMap.setCenter(results[0].geometry.location);
+                resultsMap.setZoom(10);
+            } else {
+                alert(
+                    "Geocode was not successful for the following reason: " + status
+                );
+            }
+        });
+    }
+
+
+    // let marker = new google.maps.Marker({
+    //     map: map,
+    //     position: lat_lng,
+    //     icon: {
+    //         url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+    //     }
+    // });
     // This event listener will call addMarker() when the map is clicked.
     map.addListener('click', function(event) {
         addMarker(event.latLng);
@@ -20,18 +58,6 @@ function initMap() {
     document.getElementById("distance").value = "";
     document.getElementById("time").value = "";
 
-    // Adds a marker at the center of the map.
-    // addMarker(lat_lng);
-    // Update lat/long value of div when you move the mouse over the map
-    // google.maps.event.addListener(map, 'mousemove', function (event) {
-    //     document.getElementById('latmoved').innerHTML = event.latLng.lat();
-    //     document.getElementById('longmoved').innerHTML = event.latLng.lng();
-    // });
-    // Update lat/long value of div when the marker is clicked
-    // marker.addListener('click', function (event) {
-    //     document.getElementById('latclicked').innerHTML = event.latLng.lat();
-    //     document.getElementById('longclicked').innerHTML = event.latLng.lng();
-    // });
     var currentId = 0;
     var uniqueId = function () {
         return ++currentId;
@@ -52,8 +78,10 @@ function initMap() {
             id: id,
             position: event.latLng,
             map: map,
-            title: event.latLng.lat() + ', ' + event.latLng.lng()
+            title: event.latLng.lat() + ', ' + event.latLng.lng(),
+
         });
+
         var obj = {};
         obj["lat"] = event.latLng.lat();
         obj["lng"] = event.latLng.lng();
@@ -62,6 +90,10 @@ function initMap() {
         console.log(objLoc)
         console.log(markers)
     });
+
+    document.getElementById("routeCheck").checked = false
+
+
     function initMapRoute() {
         const map = new google.maps.Map(document.getElementById("map"), {
             zoom: 4,
@@ -78,7 +110,7 @@ function initMap() {
 
         const directionsService = new google.maps.DirectionsService();
         const directionsRenderer = new google.maps.DirectionsRenderer({
-            draggable: true,
+            draggable: false,
             map,
             panel: document.getElementById("right-panel"),
         });
@@ -97,7 +129,11 @@ function initMap() {
             return markerMapped
         });
 
+        console.log(markers)
+
         console.log(markers[0].location.lat)
+
+
 
         let markersString = [];
         for(let i = 0; i < markers.length; i++){
@@ -139,7 +175,6 @@ function initMap() {
 
         }
 
-
         directionsService.route(
             {
                 origin: markers[0],
@@ -155,7 +190,6 @@ function initMap() {
                     const summaryPanel = document.getElementById("directions-panel");
                     summaryPanel.innerHTML = "";
                     let distance = document.getElementById("distance");
-                    let time = document.getElementById("time");
 
                     let totalDistance = 0;
                     let totalDuration = 0;
@@ -166,8 +200,6 @@ function initMap() {
                             const routeSegment = i;
 
                             totalDistance += parseFloat(route.legs[i].distance.text);
-                            totalDuration += parseInt(route.legs[i].duration.text);
-
 
                             console.log(route.legs[i].distance.text)
 
@@ -185,9 +217,6 @@ function initMap() {
                             totalDistance += parseFloat(route.legs[i].distance.text);
                             totalDuration += parseInt(route.legs[i].duration.text);
 
-
-                            console.log(route.legs[i].distance.text)
-
                             summaryPanel.innerHTML +=
                                 "<b>Route Segment: " + routeSegment + "</b><br>";
                             summaryPanel.innerHTML += route.legs[i].start_address + "<br> to <br>";
@@ -198,10 +227,9 @@ function initMap() {
                     }
 
 
-                    console.log(totalDuration)
 
                     distance.value = totalDistance.toFixed(2);
-                    time.value = totalDuration;
+
 
 
 
