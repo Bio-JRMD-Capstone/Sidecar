@@ -3,9 +3,12 @@ let loadTotal = 0;
 function initMap() {
     loadTotal++;
     console.log(loadTotal)
-    if (loadTotal > 3){
+    if (loadTotal > 2){
         window.location.reload();
     }
+
+    document.getElementById("address").value = "";
+
     var map;
     let markers = []
 
