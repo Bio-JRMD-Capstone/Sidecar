@@ -9,6 +9,7 @@
 <body>
 <nav th:replace="partials/navbar :: nav"></nav>
 <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+
 <main class="event">
 
     <p class="heading-secondary">The Latest Events</p>
@@ -29,7 +30,7 @@
                     <div class="event__card--text">
                         <p th:text="'Date: ' + ${event.date}"></p>
                         <hr>
-                        <p>Category: <span th:each="eventCategory : ${event.eventCategories}" th:text=" ${eventCategory.name}"></span></p>
+                        <p class="event__card--text">Category: <span th:each="eventCategory : ${event.eventCategories}" th:text=" ${eventCategory.name}"></span></p>
                     </div>
                 </div>
             </a>

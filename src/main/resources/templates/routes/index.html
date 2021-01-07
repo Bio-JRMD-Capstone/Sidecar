@@ -13,7 +13,11 @@
 
     <h1>Sidecar Routes</h1>
     <a class="btn" href="/routes/create">Plot your route</a>
-
+    <div id="floating-panel">
+        <input id="address" type="textbox" placeholder="Enter a location" />
+        <input id="submit" type="button" value="View Location" />
+    </div>
+    <div id="map"></div>
     <h1 class="text-center">All Routes</h1>
     <div class="row justify-space-around col-12">
         <div class="col-3" th:each="route : ${routes}">
@@ -28,5 +32,6 @@
 </main>
 <div th:replace="partials/footer :: footer"></div>
 <div th:replace="partials/scripts :: scripts"></div>
+    <script src="/js/allRoutes.js"></script>
 </body>
 </html>
