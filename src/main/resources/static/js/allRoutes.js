@@ -48,8 +48,23 @@ function initMap() {
             });
         });
     })(jQuery);
-}
 
+    //Geocoder, searches for input location and centers map on it
+    function geocodeAddress(geocoder, resultsMap) {
+        const address = document.getElementById("address").value;
+
+        geocoder.geocode({address: address}, (results, status) => {
+            if (status === "OK") {
+                resultsMap.setCenter(results[0].geometry.location);
+                resultsMap.setZoom(10);
+            } else {
+                alert(
+                    "Geocode was not successful for the following reason: " + status
+                );
+            }
+        });
+    }
+}
 
 //Adds markers for the POIs on the map and assigns their infowindow information
 function drawRoutes(route, infoWindow, map) {

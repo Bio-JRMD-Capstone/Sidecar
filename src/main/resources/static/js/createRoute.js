@@ -17,13 +17,13 @@ function initMap() {
 
 
 
-    let marker = new google.maps.Marker({
-        map: map,
-        position: lat_lng,
-        icon: {
-            url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
-        }
-    });
+    // let marker = new google.maps.Marker({
+    //     map: map,
+    //     position: lat_lng,
+    //     icon: {
+    //         url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+    //     }
+    // });
     // This event listener will call addMarker() when the map is clicked.
     map.addListener('click', function(event) {
         addMarker(event.latLng);
