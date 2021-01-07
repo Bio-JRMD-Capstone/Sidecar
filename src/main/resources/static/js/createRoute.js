@@ -15,6 +15,26 @@ function initMap() {
         center: lat_lng
     });
 
+    geocoder = new google.maps.Geocoder();
+    document.getElementById("submit").addEventListener("click", () => {
+        geocodeAddress(geocoder, map);
+    });
+
+    //Geocoder, searches for input location and centers map on it
+    function geocodeAddress(geocoder, resultsMap) {
+        const address = document.getElementById("address").value;
+
+        geocoder.geocode({address: address}, (results, status) => {
+            if (status === "OK") {
+                resultsMap.setCenter(results[0].geometry.location);
+                resultsMap.setZoom(10);
+            } else {
+                alert(
+                    "Geocode was not successful for the following reason: " + status
+                );
+            }
+        });
+    }
 
 
     // let marker = new google.maps.Marker({
