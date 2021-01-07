@@ -6,6 +6,7 @@ import live.jrmd.sidecar.models.User;
 import live.jrmd.sidecar.repositories.EventCatRepository;
 import live.jrmd.sidecar.repositories.EventRepository;
 import live.jrmd.sidecar.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,7 +53,8 @@ public class EventController {
             @Valid Event event,
             Errors validation,
             Model model,
-            @ModelAttribute Event newEvent
+            @ModelAttribute Event newEvent,
+            @RequestParam(name= "eventCategories") List<EventCategory> categories
     ){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -61,6 +63,7 @@ public class EventController {
             model.addAttribute("event", newEvent);
             return "events/create";
         } else {
+            newEvent.setEventCategories(categories);
             newEvent.setUser(user);
             eventDao.save(newEvent);
             return "redirect:/events";
@@ -69,17 +72,31 @@ public class EventController {
     @GetMapping("/event/{id}")
     public String showIndividualEvent (@PathVariable(value = "id") long id, Model model){
         model.addAttribute("event", eventDao.getEventById(id));
-        return "/events/showEvent";
+        return "events/showEvent";
     }
     @GetMapping("/event/{id}/edit")
     public String editEvent(@PathVariable(value = "id") long id, Model model) {
         model.addAttribute("eventToEdit", eventDao.getEventById(id));
-        return "/events/edit";
+        model.addAttribute("categories", eCatDao.findAll());
+        return "events/edit";
     }
     @PostMapping("/event/{id}/edit")
-    public String editEvent(@ModelAttribute Event event) {
-        eventDao.save(event);
-        return "redirect:/event/" + event.getId();
+    public String editEvent(
+            @Valid Event event,
+            Errors validation,
+            Model model,
+            @ModelAttribute Event amendedEvent,
+            @RequestParam(name= "eventCategories") List<EventCategory> categories) {
+
+        if(validation.hasErrors()){
+            model.addAttribute("errors", validation);
+            model.addAttribute("event", event);
+            return "event/{id}/edit";
+        } else {
+            amendedEvent.setEventCategories(categories);
+            eventDao.save(amendedEvent);
+            return "redirect:/event/" + event.getId();
+        }
     }
     @PostMapping("/event/{id}/delete")
     public String deleteEvent (@PathVariable(value = "id") long id) {
