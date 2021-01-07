@@ -72,13 +72,13 @@ public class EventController {
     @GetMapping("/event/{id}")
     public String showIndividualEvent (@PathVariable(value = "id") long id, Model model){
         model.addAttribute("event", eventDao.getEventById(id));
-        return "/events/showEvent";
+        return "events/showEvent";
     }
     @GetMapping("/event/{id}/edit")
     public String editEvent(@PathVariable(value = "id") long id, Model model) {
         model.addAttribute("eventToEdit", eventDao.getEventById(id));
         model.addAttribute("categories", eCatDao.findAll());
-        return "/events/edit";
+        return "events/edit";
     }
     @PostMapping("/event/{id}/edit")
     public String editEvent(
