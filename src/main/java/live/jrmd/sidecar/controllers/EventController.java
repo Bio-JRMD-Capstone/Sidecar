@@ -6,6 +6,7 @@ import live.jrmd.sidecar.models.User;
 import live.jrmd.sidecar.repositories.EventCatRepository;
 import live.jrmd.sidecar.repositories.EventRepository;
 import live.jrmd.sidecar.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,7 +53,8 @@ public class EventController {
             @Valid Event event,
             Errors validation,
             Model model,
-            @ModelAttribute Event newEvent
+            @ModelAttribute Event newEvent,
+            @RequestParam(name= "eventCategories") List<EventCategory> categories
     ){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -61,6 +63,7 @@ public class EventController {
             model.addAttribute("event", newEvent);
             return "events/create";
         } else {
+            newEvent.setEventCategories(categories);
             newEvent.setUser(user);
             eventDao.save(newEvent);
             return "redirect:/events";

@@ -9,30 +9,21 @@
 <body>
     <nav th:replace="partials/navbar :: nav"></nav>
 <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
-<main class="event">
-
-    <p class="heading-secondary">The Latest Events</p>
-    <div>
-        <h3 class="heading-tertiary" th:if="${events.isEmpty()}">No Events Found</h3>
-        <a class="btn btn--white" th:href="@{/events/create}">Add an Event</a>
-    </div>
-    <section class="event-box event__cards u-margin-top-sm">
-        <div class="event__card row" th:each="event : ${events}">
-            <a th:href="@{'/event/' + ${event.id}}">
-                <div class="col-1-of-3">
-                    <img class="event__card--image" th:src="${event.filePath}" th:alt="${event.name}">
-                </div>
-                <div class="col-2-of-3">
-                    <div class="event__card--title">
-                        <h3 class="" th:text="${event.name}"></h3>
-                    </div>
-                    <div class="event__card--text">
-                        <p th:text="'Date: ' + ${event.date}"></p>
-                        <hr>
-                        <p th:text="${event.eventType}"></p>
-                    </div>
-                </div>
-            </a>
+<main>
+    <h4>The Latest Events</h4>
+    <a th:href="@{/events/create}">Add an Event</a>
+    <h3 th:if="${events.isEmpty()}">No Events Found</h3>
+    <div class="row d-flex flex-wrap align-content-between">
+        <div class="card col-4 my-2" th:each="event : ${events}">
+            <img th:src="${event.filePath}" class="card-img-top" th:alt="${event.name}">
+            <div class="card-body text-center">
+                <a th:href="@{'/event/' + ${event.id}}">
+                    <h5 class="card-title" th:text="${event.name}"></h5>
+                </a>
+                <p class="text-muted">Category: <span th:each="eventCategory : ${event.eventCategories}" th:text=" ${eventCategory.name}"></span></p>
+                <hr>
+                <p class="text-muted" th:text="${event.description}"></p>
+            </div>
         </div>
     </section>
 </main>

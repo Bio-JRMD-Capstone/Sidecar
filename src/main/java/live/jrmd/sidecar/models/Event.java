@@ -1,7 +1,9 @@
 package live.jrmd.sidecar.models;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "events")
@@ -22,9 +24,6 @@ public class Event {
     @Column(length = 10, nullable = false)
     private String zipcode;
 
-    @Column(nullable = false)
-    private String eventType;
-
     @Column(nullable = true, columnDefinition = "TEXT")
     private String filePath;
 
@@ -32,7 +31,7 @@ public class Event {
     @JoinColumn()
     private User user;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
         name = "events_categories",
         joinColumns = {@JoinColumn(name = "event_id")},
@@ -41,33 +40,34 @@ public class Event {
     private List<EventCategory> eventCategories;
 
     public Event(){}
-
+///
     //read
-    public Event(Long id, String name, String description, String date, String zipcode, String eventType, String filePath, User user) {
+    public Event(Long id, String name, String description, String date, String zipcode, String filePath, User user, List<EventCategory> categories) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.date = date;
         this.zipcode = zipcode;
-        this.eventType = eventType;
         this.filePath = filePath;
         this.user = user;
+        this.eventCategories = categories;
     }
+
     //create
-    public Event(String name, String description, String date, String zipcode, String eventType, String filePath) {
+    public Event(String name, String description, String date, String zipcode, String filePath, List<EventCategory> categories) {
         this.name = name;
         this.description = description;
         this.date = date;
         this.zipcode = zipcode;
-        this.eventType = eventType;
         this.filePath = filePath;
+        this.eventCategories = categories;
     }
+
     public Event(Event copy, String filePath){
         this.name = copy.name;
         this.description = copy.description;
         this.date = copy.date;
         this.zipcode = copy.zipcode;
-        this.eventType = copy.eventType;
         this.filePath = filePath;
     }
 
@@ -111,21 +111,9 @@ public class Event {
         this.zipcode = zipcode;
     }
 
-    public String getEventType() {
-        return eventType;
-    }
+    public List<EventCategory> getEventCategories() { return eventCategories; }
 
-    public void setEventType(String eventType) {
-        this.eventType = eventType;
-    }
-
-    public List<EventCategory> getEventCategories() {
-        return eventCategories;
-    }
-
-    public void setEventCategories(List<EventCategory> eventCategories) {
-        this.eventCategories = eventCategories;
-    }
+    public void setEventCategories(List<EventCategory> eventCategories) { this.eventCategories = eventCategories; }
 
     public User getUser() {
         return user;
