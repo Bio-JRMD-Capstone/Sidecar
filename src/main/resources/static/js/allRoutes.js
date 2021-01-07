@@ -116,8 +116,9 @@ function drawRoutes(route, infoWindow, map) {
     }
     //This connects the info window to the marker, allowing information, links, any HTML really to be displayed
     google.maps.event.addListener(marker, 'click', function() {
-        infoWindow.setContent("<h6>" + route.title + "</h6>" +
-            route.description + "</p>" +
+        infoWindow.setContent("<h4>" + route.title + "</h4>" +
+            "</p>" + "Distance" + "</p>" +
+            "</p>" + route.distance + "</p>" +
             "<a href='/route/" + route.id + "'>View Route</a>");
         infoWindow.open(map, marker);
     });
