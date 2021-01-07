@@ -48,8 +48,23 @@ function initMap() {
             });
         });
     })(jQuery);
-}
 
+    //Geocoder, searches for input location and centers map on it
+    function geocodeAddress(geocoder, resultsMap) {
+        const address = document.getElementById("address").value;
+
+        geocoder.geocode({address: address}, (results, status) => {
+            if (status === "OK") {
+                resultsMap.setCenter(results[0].geometry.location);
+                resultsMap.setZoom(10);
+            } else {
+                alert(
+                    "Geocode was not successful for the following reason: " + status
+                );
+            }
+        });
+    }
+}
 
 //Adds markers for the POIs on the map and assigns their infowindow information
 function drawRoutes(route, infoWindow, map) {
@@ -101,8 +116,9 @@ function drawRoutes(route, infoWindow, map) {
     }
     //This connects the info window to the marker, allowing information, links, any HTML really to be displayed
     google.maps.event.addListener(marker, 'click', function() {
-        infoWindow.setContent("<h6>" + route.title + "</h6>" +
-            route.description + "</p>" +
+        infoWindow.setContent("<h4>" + route.title + "</h4>" +
+            "</p>" + "Distance" + "</p>" +
+            "</p>" + route.distance + "</p>" +
             "<a href='/route/" + route.id + "'>View Route</a>");
         infoWindow.open(map, marker);
     });
