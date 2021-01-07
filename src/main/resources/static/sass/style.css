@@ -1057,17 +1057,32 @@ body {
 .poi {
   width: 90%;
   margin: 5rem auto;
-  z-index: 3000;
 }
-.poi-img {
-  height: 20rem;
+.poi-box {
+  padding: 3rem;
+  background-color: #BEB6A6;
+  height: 100%;
+  display: block;
+  overflow: auto;
+  margin-bottom: 3rem;
 }
-.poi-data {
-  display: flex;
+.poi__map {
+  height: 100%;
+}
+.poi__info {
+  padding-right: 3rem;
   flex-direction: column;
 }
-.poi:not(:last-child) {
-  margin-bottom: 8rem;
+.poi__info-img {
+  max-height: 300rem;
+}
+.poi__info-text {
+  font-size: 1.6rem;
+  margin-top: 2em;
+}
+.poi__location {
+  margin-left: 4rem;
+  margin-bottom: 2rem;
 }
 .poi::after {
   content: "";
@@ -1079,14 +1094,6 @@ body {
 }
 .poi [class^=col-]:not(:last-child) {
   margin-right: 6rem;
-}
-.poi-box {
-  padding: 3rem;
-  background-color: #BEB6A6;
-  height: 100%;
-  display: block;
-  overflow: auto;
-  margin-bottom: 3rem;
 }
 .poi__group:not(:last-child) {
   margin-bottom: 2rem;

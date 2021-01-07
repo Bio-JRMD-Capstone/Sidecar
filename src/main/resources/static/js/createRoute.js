@@ -3,17 +3,50 @@ let loadTotal = 0;
 function initMap() {
     loadTotal++;
     console.log(loadTotal)
-    if (loadTotal > 3){
+    if (loadTotal > 2){
         window.location.reload();
     }
+
+    document.getElementById("address").value = "";
+
     var map;
     let markers = []
 
-    var lat_lng = { lat: 29.4241, lng: -98.4936 };
+    var lat_lng = {lat: 39.63476588674744, lng: -101.15442912683487 };
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 7,
-        center: lat_lng,
+        zoom: 5,
+        center: lat_lng
     });
+
+    geocoder = new google.maps.Geocoder();
+    document.getElementById("submit").addEventListener("click", () => {
+        geocodeAddress(geocoder, map);
+    });
+
+    //Geocoder, searches for input location and centers map on it
+    function geocodeAddress(geocoder, resultsMap) {
+        const address = document.getElementById("address").value;
+
+        geocoder.geocode({address: address}, (results, status) => {
+            if (status === "OK") {
+                resultsMap.setCenter(results[0].geometry.location);
+                resultsMap.setZoom(10);
+            } else {
+                alert(
+                    "Geocode was not successful for the following reason: " + status
+                );
+            }
+        });
+    }
+
+
+    // let marker = new google.maps.Marker({
+    //     map: map,
+    //     position: lat_lng,
+    //     icon: {
+    //         url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+    //     }
+    // });
     // This event listener will call addMarker() when the map is clicked.
     map.addListener('click', function(event) {
         addMarker(event.latLng);
@@ -45,8 +78,10 @@ function initMap() {
             id: id,
             position: event.latLng,
             map: map,
-            title: event.latLng.lat() + ', ' + event.latLng.lng()
+            title: event.latLng.lat() + ', ' + event.latLng.lng(),
+
         });
+
         var obj = {};
         obj["lat"] = event.latLng.lat();
         obj["lng"] = event.latLng.lng();
@@ -96,15 +131,9 @@ function initMap() {
 
         console.log(markers)
 
-        let marker = new google.maps.Marker({
-            map: map,
-            position: {lat: 34.7062978, lng: -116.1274117},
-            icon: {
-                url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
-            }
-        });
-
         console.log(markers[0].location.lat)
+
+
 
         let markersString = [];
         for(let i = 0; i < markers.length; i++){

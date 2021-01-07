@@ -77,12 +77,26 @@ public class EventController {
     @GetMapping("/event/{id}/edit")
     public String editEvent(@PathVariable(value = "id") long id, Model model) {
         model.addAttribute("eventToEdit", eventDao.getEventById(id));
+        model.addAttribute("categories", eCatDao.findAll());
         return "/events/edit";
     }
     @PostMapping("/event/{id}/edit")
-    public String editEvent(@ModelAttribute Event event) {
-        eventDao.save(event);
-        return "redirect:/event/" + event.getId();
+    public String editEvent(
+            @Valid Event event,
+            Errors validation,
+            Model model,
+            @ModelAttribute Event amendedEvent,
+            @RequestParam(name= "eventCategories") List<EventCategory> categories) {
+
+        if(validation.hasErrors()){
+            model.addAttribute("errors", validation);
+            model.addAttribute("event", event);
+            return "event/{id}/edit";
+        } else {
+            amendedEvent.setEventCategories(categories);
+            eventDao.save(amendedEvent);
+            return "redirect:/event/" + event.getId();
+        }
     }
     @PostMapping("/event/{id}/delete")
     public String deleteEvent (@PathVariable(value = "id") long id) {
