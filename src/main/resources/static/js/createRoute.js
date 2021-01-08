@@ -1,14 +1,52 @@
-function initMap() {
+let loadTotal = 0;
 
-    console.log("test")
+function initMap() {
+    loadTotal++;
+    console.log(loadTotal)
+    if (loadTotal > 2){
+        window.location.reload();
+    }
+
+    document.getElementById("address").value = "";
+
     var map;
     let markers = []
 
-    var lat_lng = { lat: 29.4241, lng: -98.4936 };
+    var lat_lng = {lat: 39.63476588674744, lng: -101.15442912683487 };
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 7,
-        center: lat_lng,
+        zoom: 5,
+        center: lat_lng
     });
+
+    geocoder = new google.maps.Geocoder();
+    document.getElementById("submit").addEventListener("click", () => {
+        geocodeAddress(geocoder, map);
+    });
+
+    //Geocoder, searches for input location and centers map on it
+    function geocodeAddress(geocoder, resultsMap) {
+        const address = document.getElementById("address").value;
+
+        geocoder.geocode({address: address}, (results, status) => {
+            if (status === "OK") {
+                resultsMap.setCenter(results[0].geometry.location);
+                resultsMap.setZoom(10);
+            } else {
+                alert(
+                    "Geocode was not successful for the following reason: " + status
+                );
+            }
+        });
+    }
+
+
+    // let marker = new google.maps.Marker({
+    //     map: map,
+    //     position: lat_lng,
+    //     icon: {
+    //         url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+    //     }
+    // });
     // This event listener will call addMarker() when the map is clicked.
     map.addListener('click', function(event) {
         addMarker(event.latLng);
@@ -40,8 +78,10 @@ function initMap() {
             id: id,
             position: event.latLng,
             map: map,
-            title: event.latLng.lat() + ', ' + event.latLng.lng()
+            title: event.latLng.lat() + ', ' + event.latLng.lng(),
+
         });
+
         var obj = {};
         obj["lat"] = event.latLng.lat();
         obj["lng"] = event.latLng.lng();
@@ -50,6 +90,10 @@ function initMap() {
         console.log(objLoc)
         console.log(markers)
     });
+
+    document.getElementById("routeCheck").checked = false
+
+
     function initMapRoute() {
         const map = new google.maps.Map(document.getElementById("map"), {
             zoom: 4,
@@ -85,7 +129,11 @@ function initMap() {
             return markerMapped
         });
 
+        console.log(markers)
+
         console.log(markers[0].location.lat)
+
+
 
         let markersString = [];
         for(let i = 0; i < markers.length; i++){
@@ -127,7 +175,6 @@ function initMap() {
 
         }
 
-
         directionsService.route(
             {
                 origin: markers[0],
@@ -154,7 +201,6 @@ function initMap() {
 
                             totalDistance += parseFloat(route.legs[i].distance.text);
 
-
                             console.log(route.legs[i].distance.text)
 
                             summaryPanel.innerHTML +=
@@ -170,8 +216,6 @@ function initMap() {
 
                             totalDistance += parseFloat(route.legs[i].distance.text);
                             totalDuration += parseInt(route.legs[i].duration.text);
-
-
 
                             summaryPanel.innerHTML +=
                                 "<b>Route Segment: " + routeSegment + "</b><br>";
