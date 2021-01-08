@@ -1,8 +1,51 @@
 .event {
   max-width: 90%;
   margin: 5rem auto;
-  z-index: 3000;
 
+  &-box {
+    padding: 3rem;
+    background-color: $color-primary-light;
+    height: 100%;
+    display: flex;
+    overflow: auto;
+    margin-bottom: 3rem;
+
+    @include respond(tab-land){
+      width: 100%;
+      padding: 1.5rem 0;
+      margin: 2rem auto;
+    }
+  }
+
+  &__cards {
+    display: flex;
+    flex-wrap: wrap;
+
+    @include respond(tab-land){
+      width: 100%;
+      margin: 2rem auto;
+    }
+  }
+
+  &__card {
+    padding: 2rem;
+    width: 32%;
+    background-color: $color-white;
+    max-height: 25em;
+    flex-direction: row;
+    color: $color-gray-darker;
+    border: $color-gray-dark solid 1px;
+    border-radius: .5em;
+    @include respond(tab-port){
+      width: 100%;
+    }
+    &:not(:last-child) {
+      margin-right: 1em;
+      margin-bottom: 1em;
+      @include respond(tab-port){
+        width: 100%;
+      }
+    }
   &-data {
     display: flex;
     flex-direction: column;
@@ -23,23 +66,7 @@
       font-size: $default-font-size;
     }
   }
-  &__cards {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  &__card {
-    padding: 2rem;
-    width: 32%;
-    background-color: $color-white;
-    max-height: 25em;
-    flex-direction: row;
-    color: $color-gray-darker;
-    border: $color-gray-dark solid 1px;
-    border-radius: .5em;
-    &:not(:last-child) {
-      margin-right: 1em;
-      margin-bottom: 1em;
-    }
+
     &--text-col {
       width: calc((100% - 2 * #{$gutter-small}) / 3) + #{$gutter-small};
     }
@@ -78,14 +105,7 @@
       margin-right: $gutter-horizontal;
     }
   }
-  &-box {
-    padding: 3rem;
-    background-color: $color-primary-light;
-    height: 100%;
-    display: flex;
-    overflow: auto;
-    margin-bottom: 3rem;
-  }
+
   &__group:not(:last-child) {
     margin-bottom: 2rem;
   }
