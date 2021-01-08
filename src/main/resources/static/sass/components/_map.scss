@@ -60,6 +60,9 @@
     flex-wrap: wrap;
     overflow: auto;
     margin-bottom: 3rem;
+    @include respond(tab-port) {
+      padding: 2rem;
+    }
   }
   &__group:not(:last-child) {
     margin-bottom: 2rem;

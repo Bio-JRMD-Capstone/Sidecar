@@ -14,6 +14,13 @@
         <main>
             <div class="poi">
                 <div class="poi-box">
+                    <div class="col-poi-2">
+                        <div id="floating-panel">
+                            <input class="poi__input u-margin-right-sm" id="address" type="textbox" placeholder="Enter a location" />
+                            <input class="map__input--map-btn" id="submit" type="button" value="View Location" />
+                        </div>
+                        <div id="map">Map</div>
+                    </div>
                     <div class="col-poi-1">
                         <div class="poi__input">
 
@@ -70,11 +77,11 @@
                                 <!-- Current and updated image -->
                                 <div class="image-stack">
                                     <div class="image-stack__item--top">
-                                        <img class="event__card--image-edit" th:src="${poi.photo_url}" alt="POI Image" />
+                                        <img class="poi__card--image-edit image-stack__item--top poi-img" th:src="${poi.photo_url}" alt="POI Image" />
                                     </div>
 
                                     <div class="image-stack__item--bottom">
-                                        <label for="newImage"><img class="poi-img event__card--image-edit" id="imagePreview" src="" alt=""></label>
+                                        <label for="newImage"><img class="poi-img image-stack__item--bottom poi__card--image-edit" id="imagePreview" src="" alt=""></label>
                                         <input type="hidden" id="newImage" th:field="*{photo_url}" th:value="${poi.photo_url}" name="filePath">
                                     </div>
                                 </div>
@@ -89,17 +96,6 @@
                                 </div>
 
                             </form>
-                        </div>
-                    </div>
-
-                    <div class="col-poi-2">
-                        <div class="poi__input">
-                            <div id="floating-panel">
-                                <input id="address" type="textbox" placeholder="Enter a location" />
-                                <input id="submit" type="button" value="View Location" />
-                            </div>
-
-                            <div id="map">Map</div>
                         </div>
                     </div>
                 </div>
