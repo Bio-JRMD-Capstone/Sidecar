@@ -73,11 +73,14 @@ public class RouteController {
             Model model,
             @ModelAttribute Route amendedRoute) {
 
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         if(validation.hasErrors()){
             model.addAttribute("errors", validation);
             model.addAttribute("route", route);
             return "route/{id}/edit";
         } else {
+            amendedRoute.setUser(user);
             routeDao.save(amendedRoute);
             return "redirect:/route/" + route.getId();
         }

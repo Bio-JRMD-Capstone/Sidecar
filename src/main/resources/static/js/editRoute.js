@@ -225,6 +225,8 @@ function initMapClear() {
     //     window.location.reload();
     // }
 
+    document.getElementById("clearBtn").disabled = true;
+
     document.getElementById("address").value = "";
 
     var map;
@@ -265,6 +267,8 @@ function initMapClear() {
     //         url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
     //     }
     // });
+
+
     // This event listener will call addMarker() when the map is clicked.
     map.addListener('click', function(event) {
         addMarker(event.latLng);
@@ -313,6 +317,8 @@ function initMapClear() {
 
 
     function initMapRoute() {
+        document.getElementById("clearBtn").disabled = false;
+
         const map = new google.maps.Map(document.getElementById("map"), {
             zoom: 4,
             center: {lat: 34.7062978, lng: -116.1274117},
@@ -387,6 +393,20 @@ function initMapClear() {
             });
 
         }
+
+        markers = markers.map(n => {
+            const markerMapped = {location: n};
+            return markerMapped
+        });
+
+        let markersString = [];
+        for(let i = 0; i < markers.length; i++){
+
+            markersString.push("{location: {lat: " + markers[i].location.lat + ", lng: " + markers[i].location.lng + " }}");
+            console.log(markersString)
+        }
+
+        document.getElementById("coordinates").value = markersString;
 
         directionsService.route(
             {
