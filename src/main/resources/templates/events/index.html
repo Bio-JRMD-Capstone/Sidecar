@@ -1,44 +1,51 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="partials/head :: head('Events')">
-    <meta charset="UTF-8">
-    <title>Events</title>
 
-</head>
-<body>
-<nav th:replace="partials/navbar :: nav"></nav>
-<!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+    <head th:replace="partials/head :: head('All Events')">
+        <meta charset="UTF-8">
+        <title>Events</title>
+    </head>
 
-<main class="event">
+    <body>
+        <nav th:replace="partials/navbar :: nav"></nav>
+        <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
 
-    <p class="heading-secondary">The Latest Events</p>
-    <div>
-        <h3 class="heading-tertiary" th:if="${events.isEmpty()}">No Events Found</h3>
-        <a class="btn btn--white" th:href="@{/events/create}">Add an Event</a>
-    </div>
-    <section class="event-box event__cards u-margin-top-sm">
-        <div class="event__card" th:each="event : ${events}">
-            <a th:href="@{'/event/' + ${event.id}}">
-                <div class="col-card-image">
-                    <img class="event__card--image" th:src="${event.filePath}" th:alt="${event.name}">
+        <main class="event">
+            <p class="heading-secondary">The Latest Events</p>
+
+            <div>
+                <h3 class="heading-tertiary" th:if="${events.isEmpty()}">No Events Found</h3>
+                <a class="btn btn--white" th:href="@{/events/create}">Add an Event</a>
+            </div>
+
+            <section class="event-box event__cards u-margin-top-sm">
+                <div class="event__card row" th:each="event : ${events}">
+                    <a th:href="@{'/event/' + ${event.id}}">
+                        <div class="col-1-of-3">
+                            <img class="event__card--image" th:src="${event.filePath}" th:alt="${event.name}">
+                        </div>
+
+                        <div class="col-2-of-3">
+                            <div class="event__card--title">
+                                <h3 class="" th:text="${event.name}"></h3>
+                            </div>
+
+                            <div class="event__card--text">
+                                <p th:text="'Date: ' + ${event.date}"></p>
+                                <hr>
+                                <p class="event__card--text">Category: <span th:each="eventCategory : ${event.eventCategories}" th:text=" ${eventCategory.name}"></span></p>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-                <div class="col-card-text">
-                    <div class="event__card--title">
-                        <h3 class="" th:text="${event.name}"></h3>
-                    </div>
-                    <div class="event__card--text">
-                        <p th:text="'Date: ' + ${event.date}"></p>
-                        <hr>
-                        <p class="event__card--text">Category: <span th:each="eventCategory : ${event.eventCategories}" th:text=" ${eventCategory.name}"></span></p>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </section>
-</main>
-<div th:include="partials/footer :: footer"></div>
-<div th:include="partials/scripts :: scripts"></div>
-</body>
+            </section>
+        </main>
+
+        <div th:include="partials/footer :: footer"></div>
+        <div th:include="partials/scripts :: scripts"></div>
+
+    </body>
+
 </html>
 

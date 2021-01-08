@@ -1,15 +1,11 @@
 <!DOCTYPE html>
-
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="partials/head :: head('Point of Interest')">
 
-    <meta charset="UTF-8">
-    <title>Index</title>
-</head>
-<body>
-    <nav th:replace="partials/navbar :: nav"></nav>
-<!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+    <head th:replace="partials/head :: head('Selected Point')">
+        <meta charset="UTF-8">
+        <title>Index</title>
+    </head>
 
 <main class="poi">
     <div class="poi-box row">

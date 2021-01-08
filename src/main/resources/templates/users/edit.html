@@ -1,38 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="partials/head :: head('Edit Profile')">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Edit Profile</title>
+    <head th:replace="partials/head :: head('Edit Profile')">
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Edit Profile</title>
     </head>
-<body>
-    <nav th:replace="partials/navbar :: nav"></nav>
-<!--<div th:replace="partials/expand-nav :: navigation"></div>-->
-<main>
-    <div class="section-profile-edit">
-        <div class="box">
-            <div class="form">
-                <form class="w-100" th:action="@{'/user/' + ${userToEdit.id} +'/edit'}" method="POST" th:object="${user}">
-                    <div class="u-margin-bottom-md u-center-text">
-                        <h2 class="heading-tertiary">Edit Profile:</h2>
-                    </div>
-                    <div class="row">
-                        <div class="col-1-of-2">
 
-                            <input type="hidden" th:field="${userToEdit.id}" th:value="${userToEdit.id}" name="userId">
+    <body onload="document.editform.username.focus()">
+        <nav th:replace="partials/navbar :: nav"></nav>
+    <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
 
-                            <div class="u-right-align">
-                                <label class="form__label--edit-profile paragraph"  for="username">Username:</label>
-                                <input class="form__input--edit-profile paragraph"  id="username" type="text" th:field="${userToEdit.username}" th:value="' ' + ${userToEdit.username}" name="username">
-                                <br />
-                            </div>
+        <main>
+            <div class="section-profile-edit">
+                <div class="box">
+                    <div class="form">
+                        <form name="editform" class="w-100" th:action="@{'/user/' + ${userToEdit.id} +'/edit'}" method="POST" th:object="${user}">
 
-                            <div class="u-right-align">
-                                <label class="form__label--edit-profile paragraph" for="email">Email:</label>
-                                <input class="form__input--edit-profile paragraph"  id="email" type="text" th:field="${userToEdit.email}" th:value="' ' + ${userToEdit.getEmail()}" name="email">
-                                <br />
+                            <div class="u-margin-bottom-md u-center-text">
+                                <h2 class="heading-tertiary">Edit Profile:</h2>
                             </div>
 
                             <div class="u-right-align">
@@ -47,33 +34,43 @@
                                 <div class="image-stack__item--top">
                                     <img class="profile-img-edit poi-img" th:src="${userToEdit.photo_url}" alt="profile image">
                                 </div>
-                                <div class="image-stack__item--bottom">
-                                    <label for="newImage"><img class="poi-img" id="imagePreview" src="" alt=""></label>
-                                    <input class="profile-img-edit new-img" type="hidden" id="newImage" th:field="${userToEdit.photo_url}" th:value="${userToEdit.photo_url}" name="photo_url">
+
+                                <div class="col-1-of-2 u-center-text u-margin-top-sm">
+                                    <div class="image-stack">
+                                        <div class="image-stack__item--top">
+                                            <img class="poi-img" th:src="${userToEdit.photo_url}" alt="profile image">
+                                        </div>
+
+                                        <div class="image-stack__item--bottom">
+                                            <label for="newImage"><img class="poi-img" id="imagePreview" src="" alt=""></label>
+                                            <input class="profile-img-edit new-img" type="hidden" id="newImage" th:field="${userToEdit.photo_url}" th:value="${userToEdit.photo_url}" name="photo_url">
+                                        </div>
+                                    </div>
+
+                                    <div class="u-center-text u-margin-top-md">
+                                        <button class="btn btn--white" id="imageButton">Add/Change Image</button>
+                                    </div>
                                 </div>
+
                             </div>
 
-                            <div class="u-center-text u-margin-top-md">
-                                <button class="btn btn--white" id="imageButton">Add/Change Image</button>
+                            <div class="u-center-text u-margin-top-sm">
+                                <input class="btn btn--white u-margin-y-md" type="submit" value="Update"/>
+                                <a class="btn btn--green u-margin-y-md" href="/profile">Cancel</a>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="u-center-text u-margin-top-sm">
-                        <input class="btn btn--white u-margin-y-md" type="submit" value="Update"/>
-                        <a class="btn btn--green u-margin-y-md" href="/profile">Cancel</a>
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
-    </div>
-</main>
+        </main>
 
-<div th:include="partials/footer :: footer"></div>
+        <div th:include="partials/footer :: footer"></div>
+        <script src="/js/keys.js"></script>
+        <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+        <script src="/js/filestack.js"></script>
+        <div th:include="partials/scripts :: scripts"></div>
 
-<script src="/js/keys.js"></script>
-<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
-<script src="/js/filestack.js"></script>
-<div th:include="partials/scripts :: scripts"></div>
-</body>
+    </body>
+
 </html>

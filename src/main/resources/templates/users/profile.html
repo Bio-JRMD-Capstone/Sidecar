@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="partials/head :: head('My Profile')">
-    <meta charset="UTF-8">
-    <title>My Profile</title>
+    <head th:replace="partials/head :: head('My Profile')">
+        <meta charset="UTF-8">
+        <title>My Profile</title>
+    </head>
 
-</head>
-<body>
-    <nav th:replace="partials/navbar :: nav"></nav>
-<!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+    <body>
+        <nav th:replace="partials/navbar :: nav"></nav>
+    <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
 
 <main>
     <section class="section-profile">
@@ -142,12 +142,12 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
+        </main>
 
-</main>
-<div th:include="partials/footer :: footer"></div>
-<div th:include="partials/scripts :: scripts"></div>
-</body>
+        <div th:include="partials/footer :: footer"></div>
+        <div th:include="partials/scripts :: scripts"></div>
+
+    </body>
+
 </html>
