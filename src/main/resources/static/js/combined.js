@@ -1,5 +1,4 @@
 let map, infoWindow, geocoder;
-var userMarker;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
@@ -77,6 +76,12 @@ function initMap() {
                 console.log(request)
             });
         });
+        var requestRoute = $.ajax({'url': '/routes.json'});
+        requestRoute.done(function (routes) {
+            routes.forEach(function (route) {
+                drawRoutes(route, infoWindow, map);
+            });
+        });
     })(jQuery);
 
 }
@@ -137,6 +142,56 @@ function drawPOIs(poi, icons, infoWindow, map) {
             "<p><strong>" + categoryString + "</strong><br>" +
             poi.description + "</p>" +
             "<a href='/points/" + poi.id + "'>More Info</a>");
+        infoWindow.open(map, marker);
+    });
+}
+
+//Adds markers for the POIs on the map and assigns their infowindow information
+function drawRoutes(route, infoWindow, map) {
+    //Setting up the proper latLng object notation so it can be read by Google Maps
+    let splitCoords = route.coordinates.split("},{")
+    console.log(splitCoords[0])
+
+    let repMark = splitCoords[0].replace("{location: {lat: ", "")
+
+    console.log(repMark)
+
+    repMark = repMark.replace("lng: ", "")
+
+    console.log(repMark)
+
+
+    repMark = repMark.replace(" }", "")
+
+    console.log(repMark)
+
+    repMark = repMark.split(",")
+    console.log(repMark)
+
+    let singleCoords = splitCoords[0]
+
+    let coords = {
+        'lat': parseFloat(repMark[0]),
+        'lng': parseFloat(repMark[1])
+    };
+
+    console.log(coords)
+
+    //Creates a marker and assigns some info to it
+    let marker = new google.maps.Marker({
+        position: coords,
+        title: route.title,
+
+    });
+    //The line that actually attaches a marker to the map
+    marker.setMap(map);
+
+    //This connects the info window to the marker, allowing information, links, any HTML really to be displayed
+    google.maps.event.addListener(marker, 'click', function() {
+        infoWindow.setContent("<h4>" + route.title + "</h4>" +
+            "</p>" + "Distance" + "</p>" +
+            "</p>" + route.distance + "</p>" +
+            "<a href='/route/" + route.id + "'>View Route</a>");
         infoWindow.open(map, marker);
     });
 }
