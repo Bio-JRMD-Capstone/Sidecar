@@ -1,15 +1,15 @@
 package live.jrmd.sidecar.controllers;
 
-import live.jrmd.sidecar.models.POI;
-import live.jrmd.sidecar.models.Route;
-import live.jrmd.sidecar.models.User;
+import live.jrmd.sidecar.models.*;
 import live.jrmd.sidecar.repositories.RouteRepository;
 import live.jrmd.sidecar.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -61,6 +61,29 @@ public class RouteController {
 
         return "routes/showRoute";
     }
+    @GetMapping("/route/{id}/edit")
+    public String editRoute(@PathVariable(value = "id") long id, Model model) {
+        model.addAttribute("routeToEdit", routeDao.getRouteById(id));
+        return "/routes/edit";
+    }
+    @PostMapping("/route/{id}/edit")
+    public String editRoute(
+            @Valid Route route,
+            Errors validation,
+            Model model,
+            @ModelAttribute Route amendedRoute) {
+
+        if(validation.hasErrors()){
+            model.addAttribute("errors", validation);
+            model.addAttribute("route", route);
+            return "route/{id}/edit";
+        } else {
+            routeDao.save(amendedRoute);
+            return "redirect:/route/" + route.getId();
+        }
+    }
+
+
     @PostMapping("/route/{id}/delete")
     public String deleteRoute (@PathVariable(value = "id") long id) {
         Route routeToDelete = routeDao.getRouteById(id);
