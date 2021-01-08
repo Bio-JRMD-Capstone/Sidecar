@@ -1,34 +1,39 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="partials/head :: head('Add Event')">
-    <meta charset="UTF-8">
-    <title>Add Event</title>
 
-</head>
-<body>
-<nav th:replace="partials/navbar :: nav"></nav>
-<!--<div th:replace="partials/expand-nav :: navigation"></div>-->
-<main>
-    <section class="event"><a class="btn btn--white" th:href="@{/events}">Back to all events</a>
-        <div class="event__single row u-margin-top-md">
-            <div class="col-1-of-3">
-                <img class="event__single--image" th:src="${event.filePath}" th:alt="${event.name}">
-            </div>
-            <div class="col-2-of-3">
-                <p class="event__single--title" th:text="${event.name}"></p>
-                <p class="event__single--text">Category: <span th:each="eventCategory : ${event.eventCategories}" th:text=" ${eventCategory.name}"></span></p>
-                <p class="event__single--text" th:text="'Date: ' + ${event.date}"></p>
-                <hr>
-                <p class="event__single--text" th:text="${event.description}"></p>
-            </div>
-        </div>
-    </section>
-</main>
+    <head th:replace="partials/head :: head('Selected Event')">
+        <meta charset="UTF-8">
+        <title>Selected Event</title>
+    </head>
 
-<div th:include="partials/footer :: footer"></div>
-<div th:include="partials/scripts :: scripts"></div>
-</body>
+    <body>
+        <nav th:replace="partials/navbar :: nav"></nav>
+        <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+
+        <main>
+            <section class="event"><a class="btn btn--white" th:href="@{/events}">Back to all events</a>
+                <div class="event__single row u-margin-top-md">
+                    <div class="col-1-of-3">
+                        <img class="event__single--image" th:src="${event.filePath}" th:alt="${event.name}">
+                    </div>
+
+                    <div class="col-2-of-3">
+                        <p class="event__single--title" th:text="${event.name}"></p>
+                        <p class="event__single--text">Category: <span th:each="eventCategory : ${event.eventCategories}" th:text=" ${eventCategory.name}"></span></p>
+                        <p class="event__single--text" th:text="'Date: ' + ${event.date}"></p>
+                        <hr>
+                        <p class="event__single--text" th:text="${event.description}"></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div th:include="partials/footer :: footer"></div>
+        <div th:include="partials/scripts :: scripts"></div>
+
+    </body>
+
 </html>
 
 
