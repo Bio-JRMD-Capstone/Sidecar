@@ -6,21 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body onload="document.locationbox.locationinput.focus()">
     <nav th:replace="partials/navbar :: nav"></nav>
 <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
-    <main class="map">
 
+    <main class="map">
         <h1 class="heading-secondary">All Routes</h1>
         <div>
             <a class="btn btn--green u-margin-bottom-sm" href="/routes/create">Plot your route</a>
         </div>
         <section class="map-box">
             <div class="map__location">
-                <div id="floating-panel">
-                    <input class="map__input u-margin-right-sm" id="address" type="textbox" placeholder="Enter a location" />
-                    <input class="map__input--map-btn" id="submit" type="button" value="View Location" />
-                </div>
+                <form name="locationbox">
+                    <div id="floating-panel">
+                        <input class="map__input u-margin-right-sm" name="locationinput" id="address" type="textbox" placeholder="Enter a location" />
+                        <input class="map__input--map-btn paragraph" id="submit" type="button" value="View Location" />
+                    </div>
+                </form>
             </div>
             <div id="map"></div>
         </section>

@@ -7,12 +7,13 @@
         <title>Index</title>
     </head>
 
-    <body onload="document.locationbox.locationinput.focus()">
+<body onload="document.locationbox.locationinput.focus()">
         <nav th:replace="partials/navbar :: nav"></nav>
     <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
 
     <main class="poi">
-        <div class="">
+        <h1 class="heading-secondary">All Points of Interest</h1>
+        <div>
             <a class="btn btn--green u-margin-bottom-sm" th:href="@{/points/create}">Add a Point of Interest</a>
         </div>
         <section class="poi-box">
