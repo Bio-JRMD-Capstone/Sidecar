@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="partials/head :: head('All Routes')">
+    <meta charset="UTF-8">
+    <title>All Routes</title>
+
+</head>
+<body>
+<nav th:replace="partials/navbar :: nav"></nav>
+<!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+<main>
+
+    <h1>Where to?</h1>
+    <div id="floating-panel">
+        <input id="address" type="textbox" placeholder="Enter a location" />
+        <input id="submit" type="button" value="View Location" />
+    </div>
+    <div id="map"></div>
+
+</main>
+<div th:replace="partials/footer :: footer"></div>
+<div th:replace="partials/scripts :: scripts"></div>
+<script src="/js/combined.js"></script>
+</body>
+</html>

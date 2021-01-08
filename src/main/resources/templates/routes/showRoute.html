@@ -1,65 +1,64 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="partials/head :: head('Route')">
-    <meta charset="UTF-8">
-    <title>All Routes</title>
 
-</head>
-<body>
-    <nav th:replace="partials/navbar :: nav"></nav>
-<!--<div th:replace="partials/expand-nav :: navigation"></div>-->
-<main>
+    <head th:replace="partials/head :: head('Selected Route')">
+        <meta charset="UTF-8">
+        <title>All Routes</title>
+    </head>
 
-    <div class="map">
-        <h3 class="heading-tertiary">Route Info</h3>
-        <div class="map-box">
-        <!-- Route Data-->
-            <div class="col-map-show">
-                <div class="map__input">
-                    <form class="map-data"  th:action="@{/routes/create}" th:method="POST" th:object="${route}">
-                        <label for="title">Title: </label>
-                        <input class="map__input" type="text"  id="title" name="title" placeholder="Title" th:field="*{title}" readonly>
-                        <label for="description">Route Description: </label>
-                        <textarea class="map__input-long" type="text" id="description" name="description" placeholder="Description" th:field="*{description}" readonly></textarea>
-                        <label for="distance">Aproximate Distance: </label>
-                        <input class="map__input" type="text" id="distance" name="distance" placeholder="Distance" th:field="*{distance}" readonly>
-                        <label for="time">Aproximate time to ride: </label>
-                        <input class="map__input" type="text" id="time" name="time"  placeholder="Time(Hours)" th:field="*{time}" readonly>
-                        <label class="d-none" for="coordinates">Route Coordinates: </label><p class="d-none" th:text="${route.coordinates}" id="coords"></p>
-                        <input type="hidden" class="map__input" id="coordinates" name="coordinates" th:field="*{coordinates}" readonly>
-                    </form>
-                </div>
-                <hr>
-                <div class="map__input">
-                    <p id="directions-panel"></p>
-                </div>
-            </div>
-        <!-- Map -->
-            <div class="col-map-show">
-                <div class="map__input ">
-                    <div class="map__input--map-btn">
-                        <div class="field"></div>
+    <body>
+        <nav th:replace="partials/navbar :: nav"></nav>
+    <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+
+        <main>
+            <div class="map">
+                <h3 class="heading-tertiary">Route Info</h3>
+                <div class="map-box">
+                <!-- Route Data-->
+                    <div class="col-map-show">
+                        <div class="map__input">
+                            <form class="map-data"  th:action="@{/routes/create}" th:method="POST" th:object="${route}">
+                                <label for="title">Title: </label>
+                                <input class="map__input" type="text"  id="title" name="title" placeholder="Title" th:field="*{title}" readonly>
+                                <label for="description">Route Description: </label>
+                                <textarea class="map__input-long" type="text" id="description" name="description" placeholder="Description" th:field="*{description}" readonly></textarea>
+                                <label for="distance">Approximate Distance: </label>
+                                <input class="map__input" type="text" id="distance" name="distance" placeholder="Distance" th:field="*{distance}" readonly>
+                                <label for="time">Approximate time to ride: </label>
+                                <input class="map__input" type="text" id="time" name="time"  placeholder="Time(Hours)" th:field="*{time}" readonly>
+                                <label class="d-none" for="coordinates">Route Coordinates: </label><p class="d-none" th:text="${route.coordinates}" id="coords"></p>
+                                <input type="hidden" class="map__input" id="coordinates" name="coordinates" th:field="*{coordinates}" readonly>
+                            </form>
+                        </div>
+                        <hr>
+                        <div class="map__input">
+                            <p id="directions-panel"></p>
+                        </div>
                     </div>
-                    <div id="map"></div>
-                </div>
-                <div class="u-margin-top-sm u-margin-bottom-sm u-center-text">
-                    <a class="btn btn--light" href="#">Open in Google Maps</a>
-                </div>
-                <hr>
-                <div class="map__input">
-                    <h3 class="heading-tertiary">Comments:</h3>
-                    <!-- Comments here -->
+                <!-- Map -->
+                    <div class="col-map-show">
+                        <div class="map__input ">
+                            <div class="map__input--map-btn">
+                                <div class="field"></div>
+                            </div>
+                            <div id="map"></div>
+                        </div>
+                        <div class="u-margin-top-sm u-margin-bottom-sm u-center-text">
+                            <a class="btn btn--light" href="#">Open in Google Maps</a>
+                        </div>
+                        <hr>
+                        <div class="map__input">
+                            <h3 class="heading-tertiary">Comments:</h3>
+                            <!-- Comments here -->
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div>
-            <textarea id="routeComment"></textarea>
-        </div>
-    </div>
-</main>
+        </main>
 
-</body>
+        <script src="/js/showRoute.js"></script>
 
-<script src="/js/showRoute.js"></script>
+    </body>
+
 </html>

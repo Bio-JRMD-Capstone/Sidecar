@@ -1,37 +1,45 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="partials/head :: head('All Routes')">
-    <meta charset="UTF-8">
-    <title>All Routes</title>
 
-</head>
-<body>
-    <nav th:replace="partials/navbar :: nav"></nav>
-<!--<div th:replace="partials/expand-nav :: navigation"></div>-->
-<main>
+    <head th:replace="partials/head :: head('All Routes')">
+        <meta charset="UTF-8">
+        <title>All Routes</title>
+    </head>
 
-    <h1>Sidecar Routes</h1>
-    <a class="btn" href="/routes/create">Plot your route</a>
-    <div id="floating-panel">
-        <input id="address" type="textbox" placeholder="Enter a location" />
-        <input id="submit" type="button" value="View Location" />
-    </div>
-    <div id="map"></div>
-    <h1 class="text-center">All Routes</h1>
-    <div class="row justify-space-around col-12">
-        <div class="col-3" th:each="route : ${routes}">
-            <h3 th:text="${route.title}"></h3>
-            <p th:text="${route.description}"></p>
-            <a th:href="@{'/route/'+${route.id}}">
-                View Route
-            </a>
+    <body onload="document.locationbox.locationinput.focus()">
+        <nav th:replace="partials/navbar :: nav"></nav>
+    <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
 
-        </div>
-    </div>
-</main>
-<div th:replace="partials/footer :: footer"></div>
-<div th:replace="partials/scripts :: scripts"></div>
-    <script src="/js/allRoutes.js"></script>
-</body>
+        <main>
+            <h1>Sidecar Routes</h1>
+            <a class="btn" href="/routes/create">Build A Route</a>
+<!--            User input for new location-->
+            <div id="floating-panel">
+                <form name="locationbox">
+                    <input name="locationinput" id="address" type="textbox" placeholder="Enter a location" />
+                    <input id="submit" type="button" value="Go There!" />
+                </form>
+            </div>
+
+            <div id="map"></div>
+
+            <h1 class="text-center">All Routes</h1>
+            <div class="row justify-space-around col-12">
+                <div class="col-3" th:each="route : ${routes}">
+                    <h3 th:text="${route.title}"></h3>
+                    <p th:text="${route.description}"></p>
+                    <a th:href="@{'/route/'+${route.id}}">
+                        View Route
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        <div th:replace="partials/footer :: footer"></div>
+        <div th:replace="partials/scripts :: scripts"></div>
+        <script src="/js/allRoutes.js"></script>
+
+    </body>
+
 </html>
