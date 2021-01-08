@@ -40,23 +40,12 @@
                                 <input class="form__input--edit-profile paragraph"  id="zipcode" type="text" th:field="${userToEdit.zipcode}" th:value="' ' + ${userToEdit.getZipcode()}" name="zipcode">
                                 <br />
                             </div>
-                            <p class="form__label--edit-profile paragraph p-3">Re-enter password to confirm changes:</p>
-                            <div class="u-right-align">
-                                <label class="form__label--edit-profile paragraph" for="password">Password:</label>
-                                <input class="form__input--edit-profile paragraph" id="password" type="password" th:field="${userToEdit.password}" th:value="' ' + ${userToEdit.getPassword()}" name="password">
-                                <br />
-                            </div>
 
-                            <div class="u-right-align">
-                                <label class="form__label--edit-profile paragraph" for="password_confirm">Password Confirmation:</label>
-                                <input class="form__input--edit-profile paragraph" id="password_confirm" type="password" th:field="${userToEdit.password_confirm}" th:value="' ' + ${userToEdit.getPassword_confirm()}" name="password_confirm">
-                                <br />
-                            </div>
                         </div>
                         <div class="col-1-of-2 u-center-text u-margin-top-sm">
                             <div class="image-stack">
                                 <div class="image-stack__item--top">
-                                    <img class="poi-img" th:src="${userToEdit.photo_url}" alt="profile image">
+                                    <img class="profile-img-edit poi-img" th:src="${userToEdit.photo_url}" alt="profile image">
                                 </div>
                                 <div class="image-stack__item--bottom">
                                     <label for="newImage"><img class="poi-img" id="imagePreview" src="" alt=""></label>

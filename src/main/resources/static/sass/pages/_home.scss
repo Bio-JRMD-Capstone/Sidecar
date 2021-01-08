@@ -51,16 +51,6 @@
 
 }
 
-.section-profile {
-    position: relative;
-    padding: 10rem 0;
-
-    @include respond(tab-port) {
-        padding: 10rem 0;
-    }
-
-}
-
 .section-box {
     width: 80%;
     margin: 3rem auto 1rem;
@@ -74,7 +64,7 @@
 }
 
 .section-profile {
-    width: 90%;
+    width: 95%;
     margin: 3rem auto 1rem;
     padding: 5rem 0;
     background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);

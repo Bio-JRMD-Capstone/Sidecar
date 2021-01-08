@@ -1347,63 +1347,70 @@ body {
 }
 
 .profile {
-  width: 100%;
+  width: 98%;
   margin: 0 auto;
   box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 3px;
-  padding: 6rem;
-  padding-left: 9rem;
+  padding: 3rem;
   font-size: 1.6rem;
-  transform: skewX(-12deg);
   position: relative;
 }
 .profile-edit {
   margin: 3rem;
   padding: 3rem;
 }
+.profile-box:not(:last-child) {
+  padding-bottom: 3rem;
+}
+.profile__info {
+  margin-left: 3rem;
+}
 .profile__table--col {
-  min-width: 10rem;
+  min-width: 15rem;
+}
+@media (max-width: 56.25em) {
+  .profile__table--col {
+    min-width: 10rem;
+  }
 }
 .profile__table--colD {
-  min-width: 30rem;
+  width: 100%;
+}
+@media (max-width: 37.5em) {
+  .profile__table--colD {
+    display: none;
+  }
+}
+.profile__table--colB {
+  min-width: 10rem;
+}
+@media (max-width: 56.25em) {
+  .profile__table--colB {
+    min-width: 6rem;
+  }
+}
+.profile figure {
+  margin: 0;
 }
 .profile__shape {
   width: 16rem;
   height: 16rem;
-  background-color: #9F6814;
+  background-color: #111;
   float: left;
   -webkit-shape-outside: circle(50% at 50% 50%);
   shape-outside: circle(50% at 50% 50%);
   -webkit-clip-path: circle(50% at 50% 50%);
   clip-path: circle(50% at 50% 50%);
-  transform: translateX(-3rem) skewX(12deg);
+  transform: translateX(-3rem);
 }
 .profile__image {
   height: 100%;
-  transition: all 0.5s;
 }
 .profile__text {
-  transform: translateX(-0.5rem) skewX(12deg);
+  padding-left: 1rem;
 }
-.profile__caption {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 20%);
-  color: #fff;
-  text-transform: uppercase;
-  font-size: 1.7rem;
-  text-align: center;
-  opacity: 0;
-  transition: all 0.5s;
-  backface-visibility: hidden;
-}
-.profile:hover .profile__caption {
-  opacity: 1;
-  transform: translate(-50%, -50%);
-  backface-visibility: hidden;
-}
+
 .profile-img {
   margin: auto;
   border-radius: 50%;
@@ -1873,16 +1880,6 @@ body {
   }
 }
 
-.section-profile {
-  position: relative;
-  padding: 10rem 0;
-}
-@media (max-width: 56.25em) {
-  .section-profile {
-    padding: 10rem 0;
-  }
-}
-
 .section-box {
   width: 80%;
   margin: 3rem auto 1rem;
@@ -1896,7 +1893,7 @@ body {
 }
 
 .section-profile {
-  width: 90%;
+  width: 95%;
   margin: 3rem auto 1rem;
   padding: 5rem 0;
   background-image: linear-gradient(to right bottom, #BEB6A6, #3F3622);
