@@ -388,6 +388,20 @@ function initMapClear() {
 
         }
 
+        markers = markers.map(n => {
+            const markerMapped = {location: n};
+            return markerMapped
+        });
+
+        let markersString = [];
+        for(let i = 0; i < markers.length; i++){
+
+            markersString.push("{location: {lat: " + markers[i].location.lat + ", lng: " + markers[i].location.lng + " }}");
+            console.log(markersString)
+        }
+
+        document.getElementById("coordinates").value = markersString;
+
         directionsService.route(
             {
                 origin: markers[0],
