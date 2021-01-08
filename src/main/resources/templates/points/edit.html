@@ -6,7 +6,7 @@
     <title>Add a POI</title>
 
 </head>
-<body>
+<body onload="document.editpoint.name.focus()">
 <nav th:replace="partials/navbar :: nav"></nav>
 <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
 <!-- -->
@@ -15,7 +15,7 @@
         <div class="col-poi-1">
             <div class="poi__input">
                 <h3>Location Data</h3>
-                <form th:action="@{'/points/' + ${poi.id} + '/edit'}" th:method="post" th:object="${poi}" class="poi-data">
+                <form name="editpoint" th:action="@{'/points/' + ${poi.id} + '/edit'}" th:method="post" th:object="${poi}" class="poi-data">
 
                     <input class="poi__input" type="text"  th:field="*{name}" id="name" name="name" placeholder="title">
                     <label class="poi__label" for="name">Name:</label>

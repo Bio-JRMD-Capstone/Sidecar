@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <title>Index</title>
 </head>
-<body>
+<body onload="document.locationbox.locationinput.focus()">
     <nav th:replace="partials/navbar :: nav"></nav>
 <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
 
@@ -19,8 +19,10 @@
     <div class="poi__location">
         <h4>Find a Point of Interest</h4>
         <div id="floating-panel">
-            <input id="address" type="textbox" placeholder="Enter a location" />
+            <form name="locationbox">
+            <input name="locationinput" id="address" type="textbox" placeholder="Enter a location" />
             <input id="submit" type="button" value="View Location" />
+            </form>
         </div>
     </div>
         <div class="poi__map">
