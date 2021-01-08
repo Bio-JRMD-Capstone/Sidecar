@@ -25,7 +25,7 @@ html {
 }
 body {
     box-sizing: border-box;
-    padding: 3rem;
+    padding: 1.5rem 3rem;
 
     @include respond(tab-port){
         font-size: 50%;
@@ -34,5 +34,5 @@ body {
 
 }
 main {
-    min-height: 90vh;
+    min-height: 85vh;
 }
