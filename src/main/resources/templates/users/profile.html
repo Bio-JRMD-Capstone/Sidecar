@@ -1,38 +1,45 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="partials/head :: head('My Profile')">
-    <meta charset="UTF-8">
-    <title>My Profile</title>
+    <head th:replace="partials/head :: head('My Profile')">
+        <meta charset="UTF-8">
+        <title>My Profile</title>
+    </head>
 
-</head>
-<body>
-    <nav th:replace="partials/navbar :: nav"></nav>
-<!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+    <body>
+        <nav th:replace="partials/navbar :: nav"></nav>
+    <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
 
 <main>
     <section class="section-profile">
-        <div class="row">
+        <div class="profile-box">
             <div class="profile">
-                <figure class="profile__shape">
-                    <img th:src="${user.photo_url}" alt="profile image" class="profile__image">
-                </figure>
-                <div class="profile__text">
-                    <h3 class="heading-tertiary u-margin-bottom-sm">Profile Information</h3>
-                    <div class="profile__user">
-                        <hr />
-                        <p class="heading-small">User ID: <span th:text="${user.id}"/></p>
-                        <p class="heading-small">Username: <span th:text="${user.username}"/></p>
-                        <p class="heading-small">Email: <span th:text="${user.email}"/></p>
+                <div class="profile__info">
+                    <figure class="profile__shape">
+                        <span th:if="${user.photo_url == null}">
+                            <img src="images/profile.png" alt="placeholder image" class="profile__image">
+                        </span>
+                        <img th:src="${user.photo_url}" alt="profile image" class="profile__image">
+                    </figure>
+                    <div class="profile__text">
+                        <h3 class="heading-tertiary u-margin-bottom-sm">Profile Information</h3>
+                        <div class="profile__user">
+                            <hr />
+                            <p class="heading-small">User ID: <span th:text="${user.id}"/></p>
+                            <p class="heading-small">Username: <span th:text="${user.username}"/></p>
+                            <p class="heading-small">Email: <span th:text="${user.email}"/></p>
+                        </div>
                     </div>
-                </div>
-                <div class="u-center-text u-margin-top-md">
-                    <a th:href="@{'/user/' + ${#authentication.principal.id} + '/edit'}" class="btn-text">Edit profile &rarr;</a>
+                    <div class="u-center-text u-margin-top-md">
+                        <a th:href="@{'/user/' + ${#authentication.principal.id} + '/edit'}" class="btn-text">Edit profile &rarr;</a>
+
+<!--                        <a th:href="@{'/user/' + ${#authentication.principal.id} + '/editPassword'}" class="btn-text">Edit password &rarr;</a>-->
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="row">
+        <div class="profile-box">
             <div class="profile">
                 <div class="profile__text">
                     <h3 class="heading-tertiary u-margin-bottom-sm">Your Routes</h3>
@@ -44,8 +51,8 @@
                             <th class="profile__table--col">Distance</th>
                             <th class="profile__table--col">Time</th>
                             <th class="profile__table--colD">Description</th>
-                            <th class="profile__table--col"></th>
-                            <th class="profile__table--col"></th>
+                            <th class="profile__table--colB"></th>
+                            <th class="profile__table--colB"></th>
                         </tr>
                         </thead>
 
@@ -55,7 +62,8 @@
 <!--                            <td th:text="${route.id}" name="id"></td>-->
                             <td th:text="${route.distance}" name="distance"></td>
                             <td th:text="${route.time}" name="time"></td>
-                            <td class="mr-auto" th:text="${route.description}" name="description"></td>
+                            <td class="profile__table--colD" th:text="${route.description}" name="description"></td>
+                            <td><a th:href="'/route/' + ${route.id} + '/edit'" class="btn btn-edit">Edit</a></td>
                             <td>
                                 <form th:action="@{'/route/' + ${route.id} + '/delete'}" th:method="post">
                                 <button class="btn btn-edit">Delete</button>
@@ -67,7 +75,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="profile-box">
             <div class="profile">
                 <div class="profile__text">
                     <h3 class="heading-tertiary u-margin-bottom-sm">Your Points of Interest</h3>
@@ -79,8 +87,8 @@
 <!--                            <th class="profile__table&#45;&#45;col">Latitude</th>-->
 <!--                            <th class="profile__table&#45;&#45;col">Longitude</th>-->
                             <th class="profile__table--colD">Description</th>
-                            <th class="profile__table--col"></th>
-                            <th class="profile__table--col"></th>
+                            <th class="profile__table--colB"></th>
+                            <th class="profile__table--colB"></th>
                         </tr>
                         </thead>
 
@@ -90,7 +98,7 @@
 <!--                            <td th:text="${poi.id}" name="id"></td>-->
 <!--                            <td th:text="${poi.lat}" name="lat"></td>-->
 <!--                            <td th:text="${poi.lon}" name="lon"></td>-->
-                            <td class="mr-auto" th:text="${poi.description}" name="description"></td>
+                            <td class="profile__table--colD" th:text="${poi.description}" name="description"></td>
                             <td><a th:href="'/points/' + ${poi.id} + '/edit'" class="btn btn-edit">Edit</a></td>
                             <td>
                                 <form th:action="@{'/points/' + ${poi.id} + '/delete'}" th:method="post">
@@ -103,7 +111,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="profile-box">
             <div class="profile">
                 <div class="profile__text">
                     <h3 class="heading-tertiary u-margin-bottom-sm">Your Events</h3>
@@ -114,8 +122,8 @@
 <!--                            <th class="profile__table&#45;&#45;col">Id</th>-->
                             <th class="profile__table--col">Date</th>
                             <th class="profile__table--colD">Description</th>
-                            <th class="profile__table--col"></th>
-                            <th class="profile__table--col"></th>
+                            <th class="profile__table--colB"></th>
+                            <th class="profile__table--colB"></th>
                         </tr>
                         </thead>
 
@@ -124,7 +132,7 @@
                             <td th:text="${event.name}" name="name"></td>
 <!--                            <td th:text="${event.id}" name="id"></td>-->
                             <td th:text="${event.date}" name="date"></td>
-                            <td class="mr-auto" th:text="${event.description}" name="description"></td>
+                            <td class="profile__table--colD" th:text="${event.description}" name="description"></td>
                             <td><a th:href="'/event/' + ${event.id} + '/edit'" class="btn btn-edit">Edit</a></td>
                             <td>
                                 <form th:action="@{'/event/' + ${event.id} + '/delete'}" th:method="post">
@@ -135,12 +143,12 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
+        </main>
 
-</main>
-<div th:include="partials/footer :: footer"></div>
-<div th:include="partials/scripts :: scripts"></div>
-</body>
+        <div th:include="partials/footer :: footer"></div>
+        <div th:include="partials/scripts :: scripts"></div>
+
+    </body>
+
 </html>

@@ -78,6 +78,7 @@ function initMap() {
             });
         });
     })(jQuery);
+
 }
 
 //If GeoLocation fails
