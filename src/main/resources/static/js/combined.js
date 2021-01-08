@@ -1,36 +1,15 @@
 let map, infoWindow, geocoder;
-let pointLat = parseFloat($("#lat").val());
-let pointLng = parseFloat($("#lng").val());
-let category = $("#category").text();
-
-
-//Formatting the category correctly for the card
-var categoryString = category.replace(category.charAt(0), category.charAt(0).toUpperCase());
-if(categoryString.includes("_")) {
-    categoryString = categoryString.replace(
-        categoryString.charAt(categoryString.indexOf("_") + 1),
-        categoryString.charAt(categoryString.indexOf("_") + 1).toUpperCase());
-    categoryString = categoryString.replace("_", " ");
-}
-$("#category").text(categoryString);
-
 
 function initMap() {
-    //Taking the values of the lat and lng of the point we need, then centering the map on the point
     map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: pointLat, lng: pointLng },
-        zoom: 15,
+        center: { lat: 29.4241, lng: -98.4936 },
+        zoom: 10,
+    });
+    geocoder = new google.maps.Geocoder();
+    document.getElementById("submit").addEventListener("click", () => {
+        geocodeAddress(geocoder, map);
     });
     infoWindow = new google.maps.InfoWindow();
-
-    //Pans the map back to the point if the center of the map changes
-    map.addListener("center_changed", () => {
-        // 5 seconds after the center of the map has changed, pan back to the
-        // marker.
-        window.setTimeout(() => {
-            map.panTo({ lat: pointLat, lng: pointLng});
-        }, 5000);
-    });
 
     //To save on typing, I save the relative filepath as a variable since we will be using it a lot just below
     const iconBase = "/css/images/";
@@ -94,9 +73,17 @@ function initMap() {
         request.done(function (points) {
             points.forEach(function(point) {
                 drawPOIs(point, icons, infoWindow, map);
+                console.log(request)
+            });
+        });
+        var requestRoute = $.ajax({'url': '/routes.json'});
+        requestRoute.done(function (routes) {
+            routes.forEach(function (route) {
+                drawRoutes(route, infoWindow, map);
             });
         });
     })(jQuery);
+
 }
 
 //If GeoLocation fails
@@ -155,6 +142,56 @@ function drawPOIs(poi, icons, infoWindow, map) {
             "<p><strong>" + categoryString + "</strong><br>" +
             poi.description + "</p>" +
             "<a href='/points/" + poi.id + "'>More Info</a>");
+        infoWindow.open(map, marker);
+    });
+}
+
+//Adds markers for the POIs on the map and assigns their infowindow information
+function drawRoutes(route, infoWindow, map) {
+    //Setting up the proper latLng object notation so it can be read by Google Maps
+    let splitCoords = route.coordinates.split("},{")
+    console.log(splitCoords[0])
+
+    let repMark = splitCoords[0].replace("{location: {lat: ", "")
+
+    console.log(repMark)
+
+    repMark = repMark.replace("lng: ", "")
+
+    console.log(repMark)
+
+
+    repMark = repMark.replace(" }", "")
+
+    console.log(repMark)
+
+    repMark = repMark.split(",")
+    console.log(repMark)
+
+    let singleCoords = splitCoords[0]
+
+    let coords = {
+        'lat': parseFloat(repMark[0]),
+        'lng': parseFloat(repMark[1])
+    };
+
+    console.log(coords)
+
+    //Creates a marker and assigns some info to it
+    let marker = new google.maps.Marker({
+        position: coords,
+        title: route.title,
+
+    });
+    //The line that actually attaches a marker to the map
+    marker.setMap(map);
+
+    //This connects the info window to the marker, allowing information, links, any HTML really to be displayed
+    google.maps.event.addListener(marker, 'click', function() {
+        infoWindow.setContent("<h4>" + route.title + "</h4>" +
+            "</p>" + "Distance" + "</p>" +
+            "</p>" + route.distance + "</p>" +
+            "<a href='/route/" + route.id + "'>View Route</a>");
         infoWindow.open(map, marker);
     });
 }

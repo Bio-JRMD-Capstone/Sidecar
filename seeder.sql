@@ -1,4 +1,4 @@
-use sidecar_db;
+USE sidecar_db;
 
 insert into e_categories (name)
 values ('Club Event'),
