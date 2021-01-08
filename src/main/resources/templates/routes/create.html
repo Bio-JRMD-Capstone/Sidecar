@@ -15,38 +15,22 @@
         <h3 class="heading-tertiary">Add a Route</h3>
         <div class="map-box">
             <!-- Map -->
-            <div class="col-map-show">
+            <section class="col-map-show">
                 <div class="map__input">
                     <div class="map__input--map-btn" id="floating-pane">
                         <input id="address" type="textbox" placeholder="Enter a location" />
                         <input id="submit" type="button" value="View Location" />
                     </div>
-                <!-- Map -->
-                    <div class="col-map-2">
-                        <div class="map__input ">
-                            <div id="floating-panel">
-                                <input id="address" type="textbox" placeholder="Enter a location" />
-                                <input id="submit" type="button" value="View Location" />
+                    <div class="map__input--map-btn">
+                        <input class="btn-lt" type="button" id="clearBtn" name="clearBtn" value="Clear Route">
+                        <div class="field">
+                            <div class="control">
+                                <input class="btn-rt" type="button" id="testbtn" name="testbtn" value="See Route">
                             </div>
-                            <div class="map__input--map-btn">
-                                <input class="btn-lt" type="button" id="clearBtn" name="clearBtn" value="Clear Route">
-                                <div class="field">
-                                    <div class="control">
-                                        <input class="btn-rt" type="button" id="testbtn" name="testbtn" value="See Route">
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="map"></div>
-                            <p>
-                                <label>
-                                    <input id="routeCheck" type="checkbox" />
-                                    <span> Route end point matches start point</span>
-                                </label>
-                            </p>
                         </div>
                     </div>
                     <div id="map"></div>
-                    <p class="u-margin-top-sm">
+                    <p>
                         <label>
                             <input id="routeCheck" type="checkbox" />
                             <span> Route end point matches start point</span>
@@ -58,8 +42,9 @@
                         <p id="directions-panel"></p>
                     </div>
                 </div>
-            </div>
-            <div class="col-map-show">
+            </section>
+
+            <section class="col-map-show">
                 <div class="map__input">
                     <h3>Route Info</h3>
                     <form class="map-data"  th:action="@{/routes/create}" th:method="POST" th:object="${route}">
@@ -78,10 +63,8 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            </section>
         </div>
-
-    </div>
 </main>
 
         <div th:replace="partials/footer :: footer"></div>
