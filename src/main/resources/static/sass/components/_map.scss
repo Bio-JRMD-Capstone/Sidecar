@@ -6,28 +6,52 @@
 .map {
   max-width: 90%;
   margin: 5rem auto;
-  z-index: 3000;
+
+  &:not(:last-child) {
+    margin-bottom: $gutter-vertical;
+
+
+    @include respond(tab-port) {
+      margin-bottom: $gutter-vertical-sm;
+    }
+  }
+
+  @include respond(tab-port) {
+    max-width: 75rem;
+    padding: 0 2rem;
+  }
+  @include respond(phone) {
+    max-width: 60rem;
+    padding: 0 2rem;
+  }
+  @include clearfix;
+
+  [class^="col-"]{
+    float: left;
+    &:not(:last-child) {
+      margin-right: $gutter-horizontal;
+
+      @include respond(tab-port) {
+        margin-right: 0;
+        margin-bottom: $gutter-vertical-sm;
+      }
+    }
+    @include respond(tab-port) {
+      width: 100% !important;
+    }
+  }
 
   &-data {
     display: flex;
     flex-direction: column;
   }
 
-  &:not(:last-child) {
-    margin-bottom: $gutter-vertical;
-  }
-  @include clearfix;
-  [class^="col-"]{
-    float: left;
-    &:not(:last-child) {
-      margin-right: $gutter-horizontal;
-    }
-  }
   &-box {
     padding: 3rem;
     background-color: $color-primary-light;
     height: 100%;
     display: flex;
+    flex-wrap: wrap;
     overflow: auto;
     margin-bottom: 3rem;
   }
@@ -61,6 +85,11 @@
         height: 3rem;
         padding: .5rem;
         margin-left: auto;
+      }
+      & .btn-center {
+        height: 3rem;
+        padding: .5rem;
+        margin: 0 auto;
       }
     }
     &:focus {
