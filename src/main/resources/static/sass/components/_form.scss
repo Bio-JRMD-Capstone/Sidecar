@@ -16,6 +16,9 @@
         width: 40% !important;
         display: block;
         transition: all .3s;
+        @include respond(phone){
+            width: 90% !important;
+        }
         &--edit-profile{
             width: 65%;
             padding-left: 1.5rem;

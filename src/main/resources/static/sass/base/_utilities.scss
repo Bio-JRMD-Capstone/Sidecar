@@ -2,8 +2,22 @@
 .u-right-align { text-align: right !important; }
 .u-left-align { text-align: left !important; }
 
-.u-margin-bottom-lg { margin-bottom: 8rem !important; }
-.u-margin-bottom-md { margin-bottom: 4rem !important; }
+.u-margin-bottom-lg {
+  margin-bottom: 8rem !important;
+
+  @include respond(tab-port) {
+    margin-bottom: 5rem !important;
+  }
+
+}
+.u-margin-bottom-md {
+  margin-bottom: 4rem !important;
+
+  @include respond(tab-port) {
+    margin-bottom: 3rem !important;
+  }
+
+}
 .u-margin-bottom-sm { margin-bottom: 1.25rem !important; }
 
 .u-margin-top-xl { margin-top: 10rem !important; }

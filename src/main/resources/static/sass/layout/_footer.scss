@@ -5,12 +5,19 @@
     color: $color-gray-light-1;
     text-align: center;
 
+    @include respond(tab-port) {
+        padding: 3rem 0;
+    }
+
     &__logo-box {
 
         display: flex;
         align-content: center;
         align-items: center;
         margin-bottom: 4rem;
+        @include respond(tab-port){
+            margin-bottom: 2rem;
+        }
         & span {
             margin-right: auto;
             text-align: center;
@@ -30,6 +37,11 @@
         border-top: 1px solid $color-gray-dark;
         padding: 2rem 0;
         display: inline-block;
+
+        @include respond(tab-port) {
+            width: 100%;
+            text-align: center;
+        }
     }
 
     &__list {
@@ -69,5 +81,10 @@
         padding: 2rem;
         width: 80%;
         float: right;
+
+        @include respond(tab-port) {
+            width: 100%;
+            float: none;
+        }
     }
 }

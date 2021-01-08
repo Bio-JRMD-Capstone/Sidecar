@@ -3,11 +3,10 @@ package live.jrmd.sidecar.controllers;
 import live.jrmd.sidecar.models.Event;
 import live.jrmd.sidecar.models.EventCategory;
 import live.jrmd.sidecar.models.User;
-import live.jrmd.sidecar.repositories.EventCatRepository;
-import live.jrmd.sidecar.repositories.EventRepository;
-import live.jrmd.sidecar.repositories.UserRepository;
+import live.jrmd.sidecar.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -21,6 +20,8 @@ public class EventController {
     private final EventRepository eventDao;
     private final UserRepository userDao;
     private final EventCatRepository eCatDao;
+
+
 
     public EventController(EventRepository eventDao, UserRepository userDao, EventCatRepository eCatDao) {
         this.eventDao = eventDao;

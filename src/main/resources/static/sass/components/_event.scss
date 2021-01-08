@@ -1,32 +1,34 @@
 .event {
-  max-width: 90%;
+  max-width: 95%;
   margin: 5rem auto;
-  z-index: 3000;
 
-  &-data {
-    display: flex;
-    flex-direction: column;
-  }
-  &__single {
+  &-box {
     padding: 3rem;
     background-color: $color-primary-light;
-
-    &--image {
-      max-height: 50rem;
-      max-width: 40rem;
-      background-color: #999;
+    height: 100%;
+    display: flex;
+    overflow: auto;
+    margin-bottom: 3rem;
+    & form {
+      width: 100%;
     }
-    &--title {
-      font-size: $font-size-larger;
-    }
-    &--text {
-      font-size: $default-font-size;
+    @include respond(tab-land){
+      width: 100%;
+      padding: 1.5rem 0;
+      margin: 2rem auto;
     }
   }
+
   &__cards {
     display: flex;
     flex-wrap: wrap;
+
+    @include respond(tab-land){
+      width: 100%;
+      margin: 2rem auto;
+    }
   }
+
   &__card {
     padding: 2rem;
     width: 32%;
@@ -36,10 +38,60 @@
     color: $color-gray-darker;
     border: $color-gray-dark solid 1px;
     border-radius: .5em;
+    @include respond(tab-port) {
+      width: 100%;
+    }
+    [class^="col-"]{
+      float: left;
+      &:not(:last-child) {
+        margin-right: $gutter-small;
+
+        @include respond(tab-land) {
+          margin-right: 0;
+          margin-bottom: $gutter-vertical-sm;
+        }
+      }
+      @include respond(tab-land) {
+        width: 100% !important;
+      }
+    }
     &:not(:last-child) {
       margin-right: 1em;
       margin-bottom: 1em;
+      @include respond(tab-port) {
+        width: 100%;
+      }
     }
+    &--image {
+      margin: 1rem;
+      max-height: 20em;
+      max-width: 13em;
+      border-radius: .5em;
+    }
+
+    &-data {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  &__single {
+    padding: 3rem;
+    background-color: $color-primary-light;
+
+    &--image {
+      margin: 1rem;
+      max-height: 20em;
+      max-width: 13em;
+      border-radius: .5em;
+    }
+    &--title {
+      font-size: $font-size-larger;
+    }
+    &--text {
+      font-size: $default-font-size;
+    }
+  }
+
     &--text-col {
       width: calc((100% - 2 * #{$gutter-small}) / 3) + #{$gutter-small};
     }
@@ -66,7 +118,7 @@
       font-size: $default-font-size;
       margin-left: 2rem;
     }
-  }
+
 
   &:not(:last-child) {
     margin-bottom: $gutter-vertical;
@@ -78,14 +130,7 @@
       margin-right: $gutter-horizontal;
     }
   }
-  &-box {
-    padding: 3rem;
-    background-color: $color-primary-light;
-    height: 100%;
-    display: flex;
-    overflow: auto;
-    margin-bottom: 3rem;
-  }
+
   &__group:not(:last-child) {
     margin-bottom: 2rem;
   }
@@ -182,4 +227,12 @@
 }
 .col-event {
   position: relative;
+}
+.col-card-image {
+  width: calc((100% - 2 * #{$gutter-horizontal}) / 3);
+
+}
+.col-card-text {
+  width: calc(2* ((100% - 2 * #{$gutter-horizontal}) / 3) + #{$gutter-horizontal});
+
 }

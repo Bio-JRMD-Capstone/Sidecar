@@ -1,34 +1,39 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="partials/head :: head('test routes')">
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<div th:fragment="footer" class="u-center-text bg-light border-top-1">
-    <footer class="footer">
-        <div class="footer__logo-box">
-            <img src="/images/compass-rose.jpeg" alt="Full Logo" class="footer__logo">
-            <span class="heading-primary--logo">Sidecar</span>
-        </div>
-        <div class="row">
-            <div class="col-1-of-2">
-                <div class="footer__navigation">
-                    <ul class="footer__list">
-                        <li class="footer__item"><a href="#" class="footer__link" target="_blank">Jason Carrillo</a></li>
-                        <li class="footer__item"><a href="#" class="footer__link" target="_blank">Ryan Kendall</a></li>
-                        <li class="footer__item"><a href="#" class="footer__link" target="_blank">Michael Meyer</a></li>
-                        <li class="footer__item"><a href="#" class="footer__link" target="_blank">Donelle Harris</a></li>
-                    </ul>
+
+    <head th:replace="partials/head :: head('test routes')">
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+
+    <body>
+        <div th:fragment="footer" class="u-center-text bg-light border-top-1">
+            <footer class="footer">
+                <div class="footer__logo-box">
+                    <img src="/images/compass-rose.jpeg" alt="Full Logo" class="footer__logo">
+                    <span class="heading-primary--logo">Sidecar</span>
                 </div>
-            </div>
-            <div class="col-1-of-2">
-                <p class="footer__copyright">
-                    A <a href="https://codeup.com/" class="footer__link" target="_blank">Codeup</a> Capstone Project.</p>
-            </div>
+
+                <div class="row">
+                    <div class="col-1-of-2">
+                        <div class="footer__navigation">
+                            <ul class="footer__list">
+                                <li class="footer__item"><a href="https://github.com/Jason-Carrillo" class="footer__link" target="_blank">Jason Carrillo</a></li>
+                                <li class="footer__item"><a href="https://github.com/RMK1775" class="footer__link" target="_blank">Ryan Kendall</a></li>
+                                <li class="footer__item"><a href="https://github.com/michaelmeyer26" class="footer__link" target="_blank">Michael Meyer</a></li>
+                                <li class="footer__item"><a href="https://github.com/donelleharris" class="footer__link" target="_blank">Donelle Harris</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-1-of-2">
+                        <p class="footer__copyright">
+                            A <a href="https://codeup.com/" class="footer__link" target="_blank">Codeup</a> Capstone Project.</p>
+                    </div>
+                </div>
+            </footer>
         </div>
-    </footer>
-</div>
-</body>
+    </body>
+
 </html>
