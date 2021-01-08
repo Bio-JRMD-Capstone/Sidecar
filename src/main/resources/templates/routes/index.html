@@ -1,45 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="partials/head :: head('Sidecar')">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav th:replace="partials/navbar :: nav"></nav>
+<!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+    <main class="map">
 
-    <head th:replace="partials/head :: head('All Routes')">
-        <meta charset="UTF-8">
-        <title>All Routes</title>
-    </head>
-
-    <body onload="document.locationbox.locationinput.focus()">
-        <nav th:replace="partials/navbar :: nav"></nav>
-    <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
-
-        <main>
-            <h1>Sidecar Routes</h1>
-            <a class="btn" href="/routes/create">Build A Route</a>
-<!--            User input for new location-->
-            <div id="floating-panel">
-                <form name="locationbox">
-                    <input name="locationinput" id="address" type="textbox" placeholder="Enter a location" />
-                    <input id="submit" type="button" value="Go There!" />
-                </form>
-            </div>
-
-            <div id="map"></div>
-
-            <h1 class="text-center">All Routes</h1>
-            <div class="row justify-space-around col-12">
-                <div class="col-3" th:each="route : ${routes}">
-                    <h3 th:text="${route.title}"></h3>
-                    <p th:text="${route.description}"></p>
-                    <a th:href="@{'/route/'+${route.id}}">
-                        View Route
-                    </a>
+        <h1 class="heading-secondary">All Routes</h1>
+        <div>
+            <a class="btn btn--green u-margin-bottom-sm" href="/routes/create">Plot your route</a>
+        </div>
+        <section class="map-box">
+            <div class="map__location">
+                <div id="floating-panel">
+                    <input class="map__input u-margin-right-sm" id="address" type="textbox" placeholder="Enter a location" />
+                    <input class="map__input--map-btn" id="submit" type="button" value="View Location" />
                 </div>
             </div>
-        </main>
+            <div id="map"></div>
+        </section>
 
-        <div th:replace="partials/footer :: footer"></div>
-        <div th:replace="partials/scripts :: scripts"></div>
-        <script src="/js/allRoutes.js"></script>
-
-    </body>
-
+    </main>
+    <div th:replace="partials/footer :: footer"></div>
+    <div th:replace="partials/scripts :: scripts"></div>
+    <script src="/js/allRoutes.js"></script>
+</body>
 </html>

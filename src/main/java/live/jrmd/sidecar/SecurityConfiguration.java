@@ -48,7 +48,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/",
                                         "/routes",
                                         "/points",
+                                        "/points/create",
                                         "/events",
+                                        "/events/create",
                                         "/js/**",
                                         "/css/**"
                 )
@@ -60,9 +62,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
                         "/route/{id}/edit",
                         "/routes/create",
-                        "/events/create",
+//                        "/events/create",
                         "/event/{id}/edit",
-                        "/points/create",
+//                        "/points/create",
                         "/point/{id}/edit",
                         "/profile",
                         "/user/{id}/edit"

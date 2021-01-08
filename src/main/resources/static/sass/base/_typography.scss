@@ -4,11 +4,11 @@ body {
     /* font-size: 1.6rem; */
     line-height: 1.7;
     color: $color-gray-dark;
-    padding: 3rem;
 }
 
 .heading-primary {
     color: $color-white;
+    font-weight: 400;
     text-transform: uppercase;
     text-align: justify;
     backface-visibility: hidden;
@@ -16,30 +16,36 @@ body {
     &--main {
         display: block;
         font-size: 6rem;
-        font-weight: 3rem;
         letter-spacing: 2.5rem;
 
         animation-name: moveInLeft;
         animation-duration: 1s;
         animation-timing-function: ease-out;
 
+        @include respond(phone) {
+            letter-spacing: 1rem;
+            font-size: 5rem;
+        }
         /* animation-iteration-count: 2;
         animation-delay: 1s; */
     }
     &--sub {
         display: block;
         font-size: 3rem;
-        font-weight: 400;
         letter-spacing: .5rem;
 
         animation-name: moveInRight;
         animation-duration: 1s;
         animation-timing-function: ease-out;
+
+        @include respond(phone) {
+            letter-spacing: .5rem;
+            font-size: 2rem;
+        }
     }
     &--logo {
         display: block;
         font-size: 3rem;
-        font-weight: 400;
         letter-spacing: .5rem;
         text-transform: uppercase;
         z-index: 2000;
@@ -62,6 +68,13 @@ body {
     //    transform: skewY(2deg) skewX(15deg) scale(1.1);
     //    text-shadow: .5rem 1rem 2rem rgba($color-black, .2);
     //}
+
+    @include respond(tab-port) {
+        font-size: 3rem;
+    }
+    @include respond(phone) {
+        font-size: 2rem;
+    }
 }
 
 .heading-tertiary {

@@ -11,30 +11,27 @@
         <nav th:replace="partials/navbar :: nav"></nav>
     <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
 
-        <main class="poi">
-            <div class="">
-                <div class="btn"><a th:href="@{/points/create}">Add a Point of Interest</a></div>
-            </div>
-            <section class="poi-box">
-                <div class="poi__location">
-                    <h4>Find a Point of Interest</h4>
+    <main class="poi">
+        <div class="">
+            <a class="btn btn--green u-margin-bottom-sm" th:href="@{/points/create}">Add a Point of Interest</a>
+        </div>
+        <section class="poi-box">
+            <div class="poi__location">
+                <form name="locationbox">
                     <div id="floating-panel">
-                        <form name="locationbox">
-                        <input name="locationinput" id="address" type="textbox" placeholder="Enter a location" />
-                        <input id="submit" type="button" value="View Location" />
-                        </form>
+                        <input class="map__input u-margin-right-sm" name="locationinput" id="address" type="textbox" placeholder="Enter a location" />
+                        <input class="map__input--map-btn" id="submit" type="button" value="View Location" />
                     </div>
-                </div>
+                </form>
+            </div>
+            <div id="map"></div>
+        </section>
 
-                <div class="poi__map">
-                    <div id="map"></div>
-                </div>
-            </section>
-        </main>
+    </main>
 
-        <div th:include="partials/footer :: footer"></div>
-        <div th:include="partials/scripts :: scripts"></div>
-        <script src="/js/allPOIs.js"></script>
+    <div th:include="partials/footer :: footer"></div>
+    <div th:include="partials/scripts :: scripts"></div>
+    <script src="/js/allPOIs.js"></script>
 
     </body>
 
