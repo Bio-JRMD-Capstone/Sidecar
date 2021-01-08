@@ -6,7 +6,10 @@
         <meta charset="UTF-8">
         <title>All Routes</title>
     </head>
-
+<body>
+    <nav th:replace="partials/navbar :: nav"></nav>
+    <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+<main>
     <div class="map">
         <h3 class="heading-tertiary">Route Info</h3>
         <div class="map-box">
@@ -48,16 +51,13 @@
                     <p id="directions-panel"></p>
                 </div>
             </div>
-
-        </div>
-        <div>
-            <textarea id="routeComment"></textarea>
         </div>
     </div>
 </main>
+    <div th:replace="partials/footer :: footer"></div>
 
-        <script src="/js/showRoute.js"></script>
-
-    </body>
+    <script src="/js/showRoute.js"></script>
+    <div th:replace="partials/scripts :: scripts"></div>
+</body>
 
 </html>
