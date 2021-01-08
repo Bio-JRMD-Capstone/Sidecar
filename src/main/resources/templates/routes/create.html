@@ -29,13 +29,14 @@
                             </div>
                         </div>
                     </div>
-                    <div id="map"></div>
                     <p>
                         <label>
                             <input id="routeCheck" type="checkbox" />
-                            <span> Route end point matches start point</span>
+                            <span> Round Trip</span>
                         </label>
                     </p>
+                    <div id="map"></div>
+
                 </div>
                 <div class="map__input">
                     <div class="map__input">
@@ -57,7 +58,7 @@
 
                         <input type="hidden" class="form-control" id="coordinates" name="coordinates" th:field="*{coordinates}">
 
-                        <input class="map__input" type="text" id="time" name="time"  placeholder="Time(Hours)" th:field="*{time}">
+                        <input class="map__input" type="text" id="time" name="time"  placeholder="Time (Hours, All Day, Weekend, etc)" th:field="*{time}">
                         <div class="control u-margin-top-sm">
                             <input class="btn btn--white" type="submit" value="Save Route">
                         </div>
