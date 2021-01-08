@@ -219,11 +219,11 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
 let loadTotal = 0;
 
 function initMapClear() {
-    loadTotal++;
-    console.log(loadTotal)
-    if (loadTotal > 2){
-        window.location.reload();
-    }
+    // loadTotal++;
+    // console.log(loadTotal)
+    // if (loadTotal > 2){
+    //     window.location.reload();
+    // }
 
     document.getElementById("address").value = "";
 
@@ -333,12 +333,7 @@ function initMapClear() {
             panel: document.getElementById("right-panel"),
         });
         console.log(markers)
-        displayRoute(
-            markers[0],
-            markers[markers.length-1],
-            directionsService,
-            directionsRenderer
-        );
+
         calculateAndDisplayRoute(directionsService, directionsRenderer);
     }
     function displayRoute(origin, destination, service, display) {
@@ -459,11 +454,9 @@ function initMapClear() {
     }
 
     $(function(){
-        $( "#testbtn" ).on( 'click', function (){
-            initMapRoute();
-        });
+        $( "#testbtn" ).on( 'click', initMapRoute);
 
-        $( "#clearBtn" ).on( 'click', initMap);
+        $( "#clearBtn" ).on( 'click', initMapClear);
     });
 
 
@@ -472,9 +465,9 @@ function initMapClear() {
 }
 
 $(function(){
-    // $( "#testbtn" ).on( 'click', function (){
-    //     initMapRoute();
-    // });
+
 
     $( "#clearBtn" ).on( 'click', initMapClear);
+
+
 });
