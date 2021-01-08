@@ -18,12 +18,12 @@
         <a class="btn btn--white" th:href="@{/events/create}">Add an Event</a>
     </div>
     <section class="event-box event__cards u-margin-top-sm">
-        <div class="event__card row" th:each="event : ${events}">
+        <div class="event__card" th:each="event : ${events}">
             <a th:href="@{'/event/' + ${event.id}}">
-                <div class="col-1-of-3">
+                <div class="col-card-image">
                     <img class="event__card--image" th:src="${event.filePath}" th:alt="${event.name}">
                 </div>
-                <div class="col-2-of-3">
+                <div class="col-card-text">
                     <div class="event__card--title">
                         <h3 class="" th:text="${event.name}"></h3>
                     </div>

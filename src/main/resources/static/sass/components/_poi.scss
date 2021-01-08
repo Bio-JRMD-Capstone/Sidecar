@@ -2,6 +2,12 @@
   width: 90%;
   margin: 5rem auto;
 
+  @include respond(tab-port) {
+    margin: 3rem auto;
+  }
+  &-img {
+    height: 20rem;
+  }
   &-box {
     padding: 3rem;
     background-color: $color-primary-light;
@@ -9,6 +15,9 @@
     display: block;
     overflow: auto;
     margin-bottom: 3rem;
+    @include respond(tab-port) {
+      padding: 2rem;
+    }
   }
   &__map {
     height: 100%;
