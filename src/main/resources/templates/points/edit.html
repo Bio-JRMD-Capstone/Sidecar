@@ -18,11 +18,11 @@
                 <form th:action="@{'/points/' + ${poi.id} + '/edit'}" th:method="post" th:object="${poi}" class="poi-data">
 
                     <input class="poi__input" type="text"  th:field="*{name}" id="name" name="name" placeholder="title">
-                    <label class="poi__label" for="name">Enter a name:</label>
+                    <label class="poi__label" for="name">Name:</label>
 
                     <!--Need a dropdown or other menu for POI category: Bar, Restaurant, Scenic View, Repair Shop, Other-->
 
-                    <h4>Select Category: </h4>
+                    <h4>Category: </h4>
                     <div class="form-check">
                         <input class="form-check-input" th:field="*{category}" th:value="bar" type="radio" name="category" id="bar">
                         <label class="form-check-label" for="bar">
@@ -60,17 +60,28 @@
                         </label>
                     </div>
                     <input class="poi__input-long" th:field="*{description}" type="text" id="description" name="description" placeholder="description" >
-                    <label class="poi__label" for="description">Enter a description:</label>
+                    <label class="poi__label" for="description">Description:</label>
 
                     <input type="hidden" id="lat" value="" th:field="*{lat}">
                     <input type="hidden" id="lon" value="" th:field="*{lon}">
-                    <input type="hidden" id="image" th:field="*{photo_url}">
+                    <!-- Current and updated image -->
+                    <div class="image-stack">
+                        <div class="image-stack__item--top">
+                            <img class="event__card--image-edit" th:src="${poi.photo_url}" alt="POI Image" />
+                        </div>
+                        <div class="image-stack__item--bottom">
+                            <label for="newImage"><img class="poi-img event__card--image-edit" id="imagePreview" src="" alt=""></label>
+                            <input type="hidden" id="newImage" th:field="*{photo_url}" th:value="${poi.photo_url}" name="filePath">
+                        </div>
+                    </div>
 
-                    <button class="btn" id="imageButton">Add a Picture</button>
-                    <img class="poi-img" id="imagePreview" src="" alt="">
-
-                    <div class="input-field u-margin-top-sm">
-                        <input class="btn" type="submit">
+                    <div class="u-center-text u-margin-top-md">
+                        <button class="btn" id="imageButton">Add a Picture</button>
+                    </div>
+                    <!-- Submit changes / cancel buttons -->
+                    <div class="u-center-text u-margin-top-sm">
+                        <input class="btn btn--white u-margin-y-md" type="submit" value="Update"/>
+                        <a class="btn btn--green u-margin-y-md" href="/profile">Cancel</a>
                     </div>
                 </form>
             </div>
