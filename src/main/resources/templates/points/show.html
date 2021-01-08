@@ -7,40 +7,38 @@
         <title>Index</title>
     </head>
 
-    <body>
-        <nav th:replace="partials/navbar :: nav"></nav>
+<body onload="document.createpoint.name.focus()">
+    <nav th:replace="partials/navbar :: nav"></nav>
     <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
-
-        <main class="poi">
-            <div class="poi-box row">
-                <section class="poi__map col-2-of-3">
+    <main class="poi">
+        <div class="poi-box row">
+            <section class="col-2-of-3">
+                <div class="poi__map">
                     <div id="map"></div>
-
                     <div class="poi__map-coords">
                         <input type="hidden" id="lat" th:value="${point.lat}">
                         <input type="hidden" id="lng" th:value="${point.lon}">
                     </div>
-                </section>
-
-                <section class="poi__info col-1-of-3">
+                </div>
+            </section>
+            <section class="col-1-of-3">
+                <div class="poi__info">
                     <div class="poi__info-img">
                         <!--   Trying to get conditional if statements working for the img tag, can't figure out how to get it to work     -->
-                        <img th:src="${point.photo_url}" height="300rem" alt="poi image" />
+                        <img class="poi-img" th:src="${point.photo_url}" height="300rem" alt="poi image" />
                     </div>
-
                     <div class="poi__info-text">
                         <p class="heading-tertiary" th:text="${point.name}"></p>
                         <p th:text="${point.category}" id="category"></p>
                         <p th:text="${point.description}"></p>
                     </div>
-                </section>
-            </div>
-        </main>
+                </div>
+            </section>
 
-        <div th:include="partials/footer :: footer"></div>
-        <div th:include="partials/scripts :: scripts"></div>
-        <script src="/js/showPOI.js"></script>
-
-    </body>
-
+        </div>
+    </main>
+<div th:include="partials/footer :: footer"></div>
+<div th:include="partials/scripts :: scripts"></div>
+<script src="/js/showPOI.js"></script>
+</body>
 </html>
