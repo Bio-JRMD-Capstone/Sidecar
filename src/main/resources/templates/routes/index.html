@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
     <head th:replace="partials/head :: head('All Routes')">
         <meta charset="UTF-8">
         <title>All Routes</title>
@@ -11,7 +12,6 @@
     <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
 
         <main>
-
             <h1>Sidecar Routes</h1>
             <a class="btn" href="/routes/create">Build A Route</a>
 <!--            User input for new location-->
@@ -34,11 +34,12 @@
                     </a>
                 </div>
             </div>
-
         </main>
 
         <div th:replace="partials/footer :: footer"></div>
         <div th:replace="partials/scripts :: scripts"></div>
         <script src="/js/allRoutes.js"></script>
+
     </body>
+
 </html>

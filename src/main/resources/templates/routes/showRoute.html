@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
     <head th:replace="partials/head :: head('Selected Route')">
         <meta charset="UTF-8">
         <title>All Routes</title>
@@ -9,8 +10,8 @@
     <body>
         <nav th:replace="partials/navbar :: nav"></nav>
     <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
-        <main>
 
+        <main>
             <div class="map">
                 <h3 class="heading-tertiary">Route Info</h3>
                 <div class="map-box">
@@ -52,7 +53,6 @@
                             <!-- Comments here -->
                         </div>
                     </div>
-
                 </div>
             </div>
         </main>
@@ -60,4 +60,5 @@
     </body>
 
     <script src="/js/showRoute.js"></script>
+
 </html>
