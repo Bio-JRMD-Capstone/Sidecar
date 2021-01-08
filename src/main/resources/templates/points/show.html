@@ -1,40 +1,46 @@
 <!DOCTYPE html>
-
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="partials/head :: head('Point of Interest')">
 
-    <meta charset="UTF-8">
-    <title>Index</title>
-</head>
-<body>
-    <nav th:replace="partials/navbar :: nav"></nav>
-<!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+    <head th:replace="partials/head :: head('Point of Interest')">
+        <meta charset="UTF-8">
+        <title>Index</title>
+    </head>
 
-<main class="poi">
-    <div class="poi-box row">
-        <section class="poi__map col-2-of-3">
-            <div id="map"></div>
-            <div class="poi__map-coords">
-                <input type="hidden" id="lat" th:value="${point.lat}">
-                <input type="hidden" id="lng" th:value="${point.lon}">
+    <body>
+        <nav th:replace="partials/navbar :: nav"></nav>
+    <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+
+        <main class="poi">
+            <div class="poi-box row">
+                <section class="poi__map col-2-of-3">
+                    <div id="map"></div>
+
+                    <div class="poi__map-coords">
+                        <input type="hidden" id="lat" th:value="${point.lat}">
+                        <input type="hidden" id="lng" th:value="${point.lon}">
+                    </div>
+                </section>
+
+                <section class="poi__info col-1-of-3">
+                    <div class="poi__info-img">
+                        <!--   Trying to get conditional if statements working for the img tag, can't figure out how to get it to work     -->
+                        <img th:src="${point.photo_url}" height="300rem" alt="poi image" />
+                    </div>
+
+                    <div class="poi__info-text">
+                        <p class="heading-tertiary" th:text="${point.name}"></p>
+                        <p th:text="${point.category}" id="category"></p>
+                        <p th:text="${point.description}"></p>
+                    </div>
+                </section>
             </div>
-        </section>
-        <section class="poi__info col-1-of-3">
-            <div class="poi__info-img">
-                <!--   Trying to get conditional if statements working for the img tag, can't figure out how to get it to work     -->
-                <img th:src="${point.photo_url}" height="300rem" alt="poi image" />
-            </div>
-            <div class="poi__info-text">
-                <p class="heading-tertiary" th:text="${point.name}"></p>
-                <p th:text="${point.category}" id="category"></p>
-                <p th:text="${point.description}"></p>
-            </div>
-        </section>
-    </div>
-</main>
-<div th:include="partials/footer :: footer"></div>
-<div th:include="partials/scripts :: scripts"></div>
-<script src="/js/showPOI.js"></script>
-</body>
+        </main>
+
+        <div th:include="partials/footer :: footer"></div>
+        <div th:include="partials/scripts :: scripts"></div>
+        <script src="/js/showPOI.js"></script>
+
+    </body>
+
 </html>
