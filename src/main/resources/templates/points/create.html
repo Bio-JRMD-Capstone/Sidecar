@@ -66,25 +66,25 @@
                                         Motor Shop
                                     </label>
                                 </div>
-                                <div class="form-check">
+                                <div class="form-check u-margin-bottom-sm">
                                     <input class="form-check-input" th:field="*{category}" th:value="other" type="radio" name="category" id="other">
                                     <label class="form-check-label" for="other">
                                         Other
                                     </label>
                                 </div>
 
-                                <input class="poi__input-long" type="text" id="description" name="description" placeholder="description" >
-                                <label class="poi__label" for="description">Enter a description:</label>
+                                <input class="poi__input-long" type="text" id="description" name="description" placeholder="Description" >
+                                <label class="poi__label" for="description"></label>
 
                                 <input type="hidden" id="lat" value="" th:field="*{lat}">
                                 <input type="hidden" id="lon" value="" th:field="*{lon}">
                                 <input type="hidden" id="image" th:field="*{photo_url}">
 
-                                <button class="btn" id="imageButton">Add a Picture</button>
+                                <button class="btn btn--white" id="imageButton">Add a Picture</button>
                                 <img class="poi-img" id="imagePreview" src="" alt="">
 
                                 <div class="input-field u-margin-top-sm">
-                                    <input class="btn" type="submit">
+                                    <input class="btn btn--white" type="submit">
                                 </div>
 
                             </form>

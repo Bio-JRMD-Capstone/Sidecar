@@ -59,18 +59,30 @@
                                 </thead>
 
                                 <tbody>
-                                <tr th:each="route : ${routes}">
-                                    <td class="profile__table--title" name="title"><a th:href="'/route/' + ${route.id}" th:text="${route.title}"></a></td>
-                                    <td class="profile__table--col" th:text="${route.distance}" name="distance"></td>
-                                    <td class="profile__table--col" th:text="${route.time}" name="time"></td>
-                                    <td class="profile__table--description" th:text="${route.description}" name="description"></td>
-                                    <td><a th:href="'/route/' + ${route.id} + '/edit'" class="btn btn-edit">Edit</a></td>
-                                    <td>
-                                        <form th:action="@{'/route/' + ${route.id} + '/delete'}" th:method="post">
-                                        <button class="btn btn-edit">Delete</button>
-                                    </form>
-                                    </td>
-                                </tr>
+                                    <tr th:each="route : ${routes}">
+                                        <td class="profile__table--title" name="title"><a th:href="'/route/' + ${route.id}" th:text="${route.title}"></a></td>
+                                        <td class="profile__table--col" th:text="${route.distance}" name="distance"></td>
+                                        <td class="profile__table--col" th:text="${route.time}" name="time"></td>
+                                        <td class="profile__table--description" th:text="${route.description}" name="description"></td>
+                                        <td><a th:href="'/route/' + ${route.id} + '/edit'" class="btn btn-edit">Edit</a></td>
+                                        <td>
+                                            <a class="btn btn-edit" href="#popup-route">Delete</a>
+                                            <div class="popup" id="popup-route">
+                                                <div class="popup__content">
+                                                    <div class="popup__right">
+                                                        <a href="/profile" class="popup__close">&times;</a>
+                                                        <h3 class="heading-tertiary u-margin-bottom-sm" th:text="'Route to delete: ' + ${route.title}"></h3>
+                                                        <p class="popup__text">
+                                                            Are you sure you want to delete this route?
+                                                        </p>
+                                                        <form th:action="@{'/route/' + ${route.id} + '/delete'}" th:method="post">
+                                                            <button class="btn btn-edit">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
