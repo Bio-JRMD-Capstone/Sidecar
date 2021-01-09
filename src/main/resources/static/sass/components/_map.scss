@@ -89,8 +89,13 @@
     width: 100%;
     display: block;
     transition: all .3s;
+
     @include respond(tab-land){
       padding: .5rem 1rem;
+    }
+    &--textbox{
+      width: 50%;
+      height: 4rem;
     }
     &--map-btn {
       display: flex;

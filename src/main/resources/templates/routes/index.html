@@ -1,37 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="partials/head :: head('Sidecar')">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body onload="document.locationbox.locationinput.focus()">
-    <nav th:replace="partials/navbar :: nav"></nav>
-<!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+    <head th:replace="partials/head :: head('Sidecar')">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
 
-    <main class="map">
-        <h1 class="heading-primary--sub">All Routes</h1>
-        <div>
-            <p sec:authorize="!isAuthenticated()" class="paragraph">Have a Route to share? Please <a th:href="@{/login}">Login</a> or
-                <a th:href="@{/register}">Register</a>.</p>
-            <a sec:authorize="isAuthenticated()" class="btn btn--green u-margin-bottom-sm" th:href="@{/routes/create}">Plot your Route</a>
-        </div>
-        <section class="map-box">
-            <div class="map__location">
-                <form name="locationbox">
-                    <div id="floating-panel">
-                        <input class="map__input u-margin-right-sm" name="locationinput" id="address" type="textbox" placeholder="Enter a location" />
-                        <input class="map__input--map-btn paragraph" id="submit" type="button" value="View Location" />
-                    </div>
-                </form>
+    <body onload="document.locationbox.locationinput.focus()">
+        <nav th:replace="partials/navbar :: nav"></nav>
+        <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+
+        <main class="map">
+            <h1 class="heading-primary--sub">All Routes</h1>
+            <div>
+                <p sec:authorize="!isAuthenticated()" class="paragraph">Have a Route to share? Please <a th:href="@{/login}">Login</a> or
+                    <a th:href="@{/register}">Register</a>.</p>
+                <a sec:authorize="isAuthenticated()" class="btn btn--green u-margin-bottom-sm" th:href="@{/routes/create}">Plot your Route</a>
             </div>
-            <div id="map"></div>
-        </section>
+            <section class="map-box">
+                <div class="map__location">
+                    <form name="locationbox">
+                        <div id="floating-panel">
+                            <input class="map__input--textbox u-margin-right-sm" name="locationinput" id="address" type="textbox" placeholder="Enter a location" />
+                            <input class="map__input--map-btn paragraph" id="submit" type="button" value="View Location" />
+                        </div>
+                    </form>
+                </div>
+                <div id="map"></div>
+            </section>
 
-    </main>
-    <div th:replace="partials/footer :: footer"></div>
-    <div th:replace="partials/scripts :: scripts"></div>
-    <script src="/js/allRoutes.js"></script>
-</body>
+        </main>
+        <div th:replace="partials/footer :: footer"></div>
+        <div th:replace="partials/scripts :: scripts"></div>
+        <script src="/js/allRoutes.js"></script>
+    </body>
 </html>

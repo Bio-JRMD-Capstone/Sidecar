@@ -1183,6 +1183,10 @@ body {
     padding: 0.5rem 1rem;
   }
 }
+.map__input--textbox {
+  width: 50%;
+  height: 4rem;
+}
 .map__input--map-btn {
   display: flex;
   flex-direction: row;
