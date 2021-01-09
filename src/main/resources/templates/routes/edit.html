@@ -8,7 +8,7 @@
         <title>Document</title>
     </head>
 
-    <body>
+    <body onload="document.editpoint.name.focus()">
         <nav th:replace="partials/navbar :: nav"></nav>
         <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
         <main>
@@ -17,38 +17,43 @@
                 <div class="map-box">
                     <!-- Map -->
                     <div class="col-map-2">
-                        <div class="map__input ">
+                        <div class="map__input u-margin-bottom-sm">
                             <div id="floating-panel">
                                 <input id="address" type="textbox" placeholder="Enter a location" />
                                 <input id="submit" type="button" value="View Location" />
                             </div>
+
                             <div class="map__input--map-btn">
-                                <p>
+                                <p class="btn-lt">
                                     <label>
                                         <input id="routeCheck" type="checkbox" />
-                                        <span> Route end point matches start point</span>
+                                        <span> End point same as start?</span>
                                     </label>
                                 </p>
-                                <input class="btn-lt" type="button" id="clearBtn" name="clearBtn" value="Clear Route">
+                                <div class="u-margin-right-sm">
+                                    <input type="button" id="clearBtn" name="clearBtn" value="Clear Route">
+                                </div>
                                 <div class="field">
                                     <div class="control">
-                                        <input class="btn-rt" type="button" id="testbtn" name="testbtn" value="See Route">
+                                        <input type="button" id="testbtn" name="testbtn" value="See Route">
                                     </div>
                                 </div>
                             </div>
                             <div id="map"></div>
                         </div>
+
                         <div>
                             <div class="map__input">
                                 <p id="directions-panel"></p>
+
                             </div>
                         </div>
                     </div>
-                    <!-- Route Data -->
+
                     <div class="col-map-1">
                         <div class="map__input">
                             <h3>Route Info</h3>
-                            <form class="map-data"  th:action="@{'/route/' + ${routeToEdit.id} + '/edit'}" th:method="POST" th:object="${routeToEdit}">
+                            <form name="editpoint" class="map-data"  th:action="@{'/route/' + ${routeToEdit.id} + '/edit'}" th:method="POST" th:object="${routeToEdit}">
 
                                 <input class="map__input" type="text"  id="title" name="title" placeholder="Title" th:field="*{title}">
 
@@ -59,15 +64,14 @@
                                 <label class="d-none" for="coordinates">Route Coordinates: </label><p class="d-none" th:text="${routeToEdit.coordinates}" id="coords"></p>
                                 <input type="hidden" class="map__input" id="coordinates" name="coordinates" th:field="*{coordinates}" readonly>
 
-                                <input class="map__input" type="text" id="time" name="time"  placeholder="Time(Hours)" th:field="*{time}">
+                                <input class="map__input u-margin-bottom-sm" type="text" id="time" name="time"  placeholder="Time(Hours)" th:field="*{time}">
                                 <div class="control">
                                     <input class="btn btn--white" type="submit" value="Save Route">
+                                    <a class="btn btn--green btn-rt" href="/profile" >Cancel</a>
                                 </div>
-
                             </form>
                         </div>
                     </div>
-
                 </div>
             </div>
         </main>
