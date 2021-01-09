@@ -11,9 +11,11 @@
 <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
 
     <main class="map">
-        <h1 class="heading-secondary">All Routes</h1>
+        <h1 class="heading-primary--sub">All Routes</h1>
         <div>
-            <a class="btn btn--green u-margin-bottom-sm" href="/routes/create">Plot your route</a>
+            <p sec:authorize="!isAuthenticated()" class="paragraph">Have a Point of Interest to share? Please <a th:href="@{/login}">Login</a> or
+                <a th:href="@{/register}">Register</a>.</p>
+            <a sec:authorize="isAuthenticated()" class="btn btn--green u-margin-bottom-sm" th:href="@{/points/create}">Plot your Route</a>
         </div>
         <section class="map-box">
             <div class="map__location">
