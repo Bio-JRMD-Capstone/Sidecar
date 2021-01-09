@@ -43,6 +43,9 @@
                     <div class="profile">
                         <div class="profile__text">
                             <h3 class="heading-tertiary u-margin-bottom-sm">Your Routes</h3>
+
+                            <a class="btn btn-edit" th:if="${routes.isEmpty()}" th:href="@{/routes/create}">Add a Route</a>
+
                             <table class="profile__table">
                                 <thead>
                                 <tr >
@@ -77,6 +80,7 @@
                     <div class="profile">
                         <div class="profile__text">
                             <h3 class="heading-tertiary u-margin-bottom-sm">Your Points of Interest</h3>
+                            <a class="btn btn-edit" th:if="${pois.isEmpty()}" th:href="@{/points/create}">Add a Point of Interest</a>
                             <table class="profile__table">
                                 <thead>
                                 <tr >
@@ -107,6 +111,7 @@
                     <div class="profile">
                         <div class="profile__text">
                             <h3 class="heading-tertiary u-margin-bottom-sm">Your Events</h3>
+                            <a class="btn btn-edit" th:if="${events.isEmpty()}" th:href="@{/events/create}">Add an Event</a>
                                 <table class="profile__table">
                                     <thead>
                                         <tr>
