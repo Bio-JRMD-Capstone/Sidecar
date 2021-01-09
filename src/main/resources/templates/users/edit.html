@@ -27,37 +27,21 @@
 
                             <input type="hidden" th:field="${userToEdit.id}" th:value="${userToEdit.id}" name="userId">
 
-                            <div class="u-right-align">
+                            <div class="form__label--div">
                                 <label class="form__label--edit-profile paragraph"  for="username">Username:</label>
                                 <input class="form__input--edit-profile paragraph"  id="username" type="text" th:field="${userToEdit.username}" th:value="' ' + ${userToEdit.username}" name="username">
-                                <br />
                             </div>
 
-                            <div class="u-right-align">
+                            <div class="form__label--div">
                                 <label class="form__label--edit-profile paragraph" for="email">Email:</label>
                                 <input class="form__input--edit-profile paragraph"  id="email" type="text" th:field="${userToEdit.email}" th:value="' ' + ${userToEdit.getEmail()}" name="email">
-                                <br />
                             </div>
 
-                            <div class="u-right-align">
+                            <div class="form__label--div">
                                 <label class="form__label--edit-profile paragraph" for="zipcode">Zipcode:</label>
                                 <input class="form__input--edit-profile paragraph"  id="zipcode" type="text" th:field="${userToEdit.zipcode}" th:value="' ' + ${userToEdit.getZipcode()}" name="zipcode">
-                                <br />
                             </div>
 
-                            <p class="form__label--edit-profile paragraph p-3">Re-enter password to confirm changes:</p>
-
-                            <div class="u-right-align">
-                                <label class="form__label--edit-profile paragraph" for="password">Password:</label>
-                                <input class="form__input--edit-profile paragraph" id="password" type="password" th:field="${userToEdit.password}" th:value="' ' + ${userToEdit.getPassword()}" name="password">
-                                <br />
-                            </div>
-
-                            <div class="u-right-align">
-                                <label class="form__label--edit-profile paragraph" for="password_confirm">Password Confirmation:</label>
-                                <input class="form__input--edit-profile paragraph" id="password_confirm" type="password" th:field="${userToEdit.password_confirm}" th:value="' ' + ${userToEdit.getPassword_confirm()}" name="password_confirm">
-                                <br />
-                            </div>
                         </div>
 
                         <div class="col-1-of-2 u-center-text u-margin-top-sm">

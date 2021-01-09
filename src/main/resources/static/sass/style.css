@@ -312,6 +312,7 @@ body {
 .btn-edit {
   border-radius: 3px !important;
   padding: 0.5rem !important;
+  border: #555 solid 0.5px !important;
 }
 .btn--animated {
   animation-name: moveInBottom;
@@ -997,9 +998,25 @@ body {
   display: block;
   transition: all 0.3s;
 }
+.form__label--div {
+  color: #111;
+  text-align: right !important;
+}
+@media (max-width: 56.25em) {
+  .form__label--div {
+    text-align: center !important;
+    margin-bottom: 3rem;
+  }
+}
 .form__label--edit-profile {
   color: #111;
   padding-right: 1rem;
+  text-align: right !important;
+}
+@media (max-width: 56.25em) {
+  .form__label--edit-profile {
+    display: none;
+  }
 }
 .form__input:placeholder-shown + .form__label {
   opacity: 0;
@@ -1520,6 +1537,17 @@ body {
 .profile__info {
   margin-left: 3rem;
 }
+.profile__table--title {
+  min-width: 30rem;
+}
+.profile__table--title a {
+  color: inherit;
+}
+@media (max-width: 56.25em) {
+  .profile__table--title {
+    width: 100%;
+  }
+}
 .profile__table--col {
   min-width: 15rem;
 }
@@ -1528,16 +1556,21 @@ body {
     min-width: 10rem;
   }
 }
-.profile__table--colD {
+@media (max-width: 37.5em) {
+  .profile__table--col {
+    display: none;
+  }
+}
+.profile__table--description {
   width: 100%;
 }
-@media (max-width: 37.5em) {
-  .profile__table--colD {
+@media (max-width: 56.25em) {
+  .profile__table--description {
     display: none;
   }
 }
 .profile__table--colB {
-  min-width: 10rem;
+  min-width: 8rem;
 }
 @media (max-width: 56.25em) {
   .profile__table--colB {

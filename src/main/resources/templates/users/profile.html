@@ -31,9 +31,9 @@
                         </div>
                     </div>
                     <div class="u-center-text u-margin-top-md">
-                        <a th:href="@{'/user/' + ${#authentication.principal.id} + '/edit'}" class="btn-text">Edit profile &rarr;</a>
+                        <a th:href="@{'/user/' + ${#authentication.principal.id} + '/edit'}" class="btn btn--white u-margin-right-lg">Edit profile &rarr;</a>
 
-<!--                        <a th:href="@{'/user/' + ${#authentication.principal.id} + '/editPassword'}" class="btn-text">Edit password &rarr;</a>-->
+                        <a th:href="@{'/user/' + ${#authentication.principal.id} + '/editPassword'}" class="btn btn--white">Edit password &rarr;</a>
                     </div>
                 </div>
             </div>
@@ -46,11 +46,10 @@
                     <table class="profile__table">
                         <thead>
                         <tr >
-                            <th class="profile__table--col">Title</th>
-<!--                            <th class="profile__table&#45;&#45;col">Id</th>-->
+                            <th class="profile__table--title">Title</th>
                             <th class="profile__table--col">Distance</th>
                             <th class="profile__table--col">Time</th>
-                            <th class="profile__table--colD">Description</th>
+                            <th class="profile__table--description">Description</th>
                             <th class="profile__table--colB"></th>
                             <th class="profile__table--colB"></th>
                         </tr>
@@ -58,11 +57,10 @@
 
                         <tbody>
                         <tr th:each="route : ${routes}">
-                            <td th:text="${route.title}" name="title"></td>
-<!--                            <td th:text="${route.id}" name="id"></td>-->
-                            <td th:text="${route.distance}" name="distance"></td>
-                            <td th:text="${route.time}" name="time"></td>
-                            <td class="profile__table--colD" th:text="${route.description}" name="description"></td>
+                            <td class="profile__table--title" name="title"><a th:href="'/route/' + ${route.id}" th:text="${route.title}"></a></td>
+                            <td class="profile__table--col" th:text="${route.distance}" name="distance"></td>
+                            <td class="profile__table--col" th:text="${route.time}" name="time"></td>
+                            <td class="profile__table--description" th:text="${route.description}" name="description"></td>
                             <td><a th:href="'/route/' + ${route.id} + '/edit'" class="btn btn-edit">Edit</a></td>
                             <td>
                                 <form th:action="@{'/route/' + ${route.id} + '/delete'}" th:method="post">
@@ -82,11 +80,8 @@
                     <table class="profile__table">
                         <thead>
                         <tr >
-                            <th class="profile__table--col">Title</th>
-<!--                            <th class="profile__table&#45;&#45;col">Id</th>-->
-<!--                            <th class="profile__table&#45;&#45;col">Latitude</th>-->
-<!--                            <th class="profile__table&#45;&#45;col">Longitude</th>-->
-                            <th class="profile__table--colD">Description</th>
+                            <th class="profile__table--title">Title</th>
+                            <th class="profile__table--description">Description</th>
                             <th class="profile__table--colB"></th>
                             <th class="profile__table--colB"></th>
                         </tr>
@@ -94,11 +89,8 @@
 
                         <tbody>
                         <tr th:each="poi : ${pois}" >
-                            <td th:text="${poi.name}" name="name"></td>
-<!--                            <td th:text="${poi.id}" name="id"></td>-->
-<!--                            <td th:text="${poi.lat}" name="lat"></td>-->
-<!--                            <td th:text="${poi.lon}" name="lon"></td>-->
-                            <td class="profile__table--colD" th:text="${poi.description}" name="description"></td>
+                            <td class="profile__table--title" name="name"><a th:href="'/route/' + ${poi.id}" th:text="${poi.name}"></a></td>
+                            <td class="profile__table--description" th:text="${poi.description}" name="description"></td>
                             <td><a th:href="'/points/' + ${poi.id} + '/edit'" class="btn btn-edit">Edit</a></td>
                             <td>
                                 <form th:action="@{'/points/' + ${poi.id} + '/delete'}" th:method="post">
@@ -118,10 +110,9 @@
                     <table class="profile__table">
                         <thead>
                         <tr >
-                            <th class="profile__table--col">Title</th>
-<!--                            <th class="profile__table&#45;&#45;col">Id</th>-->
+                            <th class="profile__table--title">Title</th>
                             <th class="profile__table--col">Date</th>
-                            <th class="profile__table--colD">Description</th>
+                            <th class="profile__table--description">Description</th>
                             <th class="profile__table--colB"></th>
                             <th class="profile__table--colB"></th>
                         </tr>
@@ -129,10 +120,9 @@
 
                         <tbody>
                         <tr th:each="event : ${events}" >
-                            <td th:text="${event.name}" name="name"></td>
-<!--                            <td th:text="${event.id}" name="id"></td>-->
-                            <td th:text="${event.date}" name="date"></td>
-                            <td class="profile__table--colD" th:text="${event.description}" name="description"></td>
+                            <td class="profile__table--title" name="name"><a th:href="'/route/' + ${event.id}" th:text="${event.name}"></a></td>
+                            <td class="profile__table--col" th:text="${event.date}" name="date"></td>
+                            <td class="profile__table--description" th:text="${event.description}" name="description"></td>
                             <td><a th:href="'/event/' + ${event.id} + '/edit'" class="btn btn-edit">Edit</a></td>
                             <td>
                                 <form th:action="@{'/event/' + ${event.id} + '/delete'}" th:method="post">
