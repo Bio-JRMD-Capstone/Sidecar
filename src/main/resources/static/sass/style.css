@@ -1923,9 +1923,58 @@ body {
   text-align: center;
 }
 
+.navbar {
+  height: 8rem;
+}
+@media (max-width: 56.25em) {
+  .navbar {
+    height: 6rem;
+  }
+}
 .navbar-brand img {
   height: 3rem;
   border-radius: 50%;
+}
+.navbar__search {
+  width: 100%;
+  margin: auto;
+}
+.navbar__search-input {
+  width: 30%;
+  height: 4rem;
+  margin: 0.5rem 3rem;
+  font-size: 1.6rem;
+}
+@media (max-width: 56.25em) {
+  .navbar__search-input {
+    height: 3rem;
+  }
+}
+@media (max-width: 43.75em) {
+  .navbar__search-input {
+    height: auto;
+  }
+}
+.navbar__search-btn {
+  background-color: #674A21;
+  color: #fff;
+  height: 4rem;
+  margin-top: 0.5rem;
+  padding: 0.25rem 3rem;
+}
+.navbar__search-btn::after {
+  background-color: #674A21;
+}
+@media (max-width: 56.25em) {
+  .navbar__search-btn {
+    height: 3rem;
+  }
+}
+@media (max-width: 43.75em) {
+  .navbar__search-btn {
+    padding: 0;
+    height: auto;
+  }
 }
 
 .navigation button {
