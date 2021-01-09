@@ -1872,7 +1872,7 @@ body {
 }
 
 .header {
-  height: 88vh;
+  height: 90vh;
   background-image: url("/images/harley-davidson-zGzXsJUBQfs-unsplash.jpeg");
   background-size: cover;
   background-position: top;
@@ -2135,7 +2135,7 @@ body {
 
 .section-features {
   padding-top: 12rem;
-  padding-bottom: 6rem;
+  padding-bottom: 4rem;
   margin-top: -10rem;
   transform: skewY(-7deg);
 }
