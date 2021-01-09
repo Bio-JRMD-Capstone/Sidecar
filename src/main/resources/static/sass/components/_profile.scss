@@ -14,6 +14,14 @@
     padding: 3rem;
   }
 
+  &__password-edit {
+    width: 75%;
+    text-align: right;
+    @include respond(phone) {
+      width: 100%;
+      text-align: center;
+    }
+  }
   &-box:not(:last-child) {
     padding-bottom: 3rem;
   }
