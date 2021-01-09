@@ -89,7 +89,7 @@
 
                                 <tbody>
                                 <tr th:each="poi : ${pois}" >
-                                    <td class="profile__table--title" name="name"><a th:href="'/route/' + ${poi.id}" th:text="${poi.name}"></a></td>
+                                    <td class="profile__table--title" name="name"><a th:href="'/points/' + ${poi.id}" th:text="${poi.name}"></a></td>
                                     <td class="profile__table--description" th:text="${poi.description}" name="description"></td>
                                     <td><a th:href="'/points/' + ${poi.id} + '/edit'" class="btn btn-edit">Edit</a></td>
                                     <td>
@@ -120,7 +120,7 @@
 
                                     <tbody>
                                         <tr th:each="event : ${events}" >
-                                            <td class="profile__table--title" name="name"><a th:href="'/route/' + ${event.id}" th:text="${event.name}"></a></td>
+                                            <td class="profile__table--title" name="name"><a th:href="'/event/' + ${event.id}" th:text="${event.name}"></a></td>
                                             <td class="profile__table--col" th:text="${event.date}" name="date"></td>
                                             <td class="profile__table--description" th:text="${event.description}" name="description"></td>
                                             <td><a th:href="'/event/' + ${event.id} + '/edit'" class="btn btn-edit">Edit</a></td>

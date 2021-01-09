@@ -375,8 +375,7 @@ body {
   z-index: -1;
   transition: all 0.4s;
 }
-
-.btn-text-light:link, .btn-text-light:visited {
+.btntext-light:link, .btntext-light:visited {
   font-size: 1.6rem;
   color: #BEB6A6;
   display: inline-block;
@@ -385,17 +384,16 @@ body {
   padding: 3px;
   transition: all 0.2s;
 }
-.btn-text-light:hover {
+.btntext-light:hover {
   background-color: #674A21;
   color: #fff;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
   transform: translateY(-2px);
 }
-.btn-text-light:active {
+.btntext-light:active {
   box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.15);
   transform: translateY(0);
 }
-
 .btn-text:link, .btn-text:visited {
   font-size: 1.6rem;
   color: #674A21;
@@ -415,7 +413,6 @@ body {
   box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.15);
   transform: translateY(0);
 }
-
 .btn-sm {
   background-color: transparent;
   padding: 0;

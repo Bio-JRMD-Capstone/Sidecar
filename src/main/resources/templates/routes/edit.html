@@ -15,6 +15,36 @@
             <!-- Map w/ input fields and button to create -->
             <div class="map">
                 <div class="map-box">
+                    <!-- Map -->
+                    <div class="col-map-2">
+                        <div class="map__input ">
+                            <div id="floating-panel">
+                                <input id="address" type="textbox" placeholder="Enter a location" />
+                                <input id="submit" type="button" value="View Location" />
+                            </div>
+                            <div class="map__input--map-btn">
+                                <p>
+                                    <label>
+                                        <input id="routeCheck" type="checkbox" />
+                                        <span> Route end point matches start point</span>
+                                    </label>
+                                </p>
+                                <input class="btn-lt" type="button" id="clearBtn" name="clearBtn" value="Clear Route">
+                                <div class="field">
+                                    <div class="control">
+                                        <input class="btn-rt" type="button" id="testbtn" name="testbtn" value="See Route">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="map"></div>
+                        </div>
+                        <div>
+                            <div class="map__input">
+                                <p id="directions-panel"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Route Data -->
                     <div class="col-map-1">
                         <div class="map__input">
                             <h3>Route Info</h3>
@@ -37,36 +67,7 @@
                             </form>
                         </div>
                     </div>
-                    <!-- Map -->
-                    <div class="col-map-2">
-                        <div class="map__input ">
-                            <div id="floating-panel">
-                                <input id="address" type="textbox" placeholder="Enter a location" />
-                                <input id="submit" type="button" value="View Location" />
-                            </div>
-                            <div class="map__input--map-btn">
-                                <input class="btn-lt" type="button" id="clearBtn" name="clearBtn" value="Clear Route">
-                                <div class="field">
-                                    <div class="control">
-                                        <input class="btn-rt" type="button" id="testbtn" name="testbtn" value="See Route">
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="map"></div>
-                            <p>
-                                <label>
-                                    <input id="routeCheck" type="checkbox" />
-                                    <span> Route end point matches start point</span>
-                                </label>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-map-3">
-                        <div class="map__input">
-                            <p id="directions-panel"></p>
 
-                        </div>
-                    </div>
                 </div>
             </div>
         </main>
