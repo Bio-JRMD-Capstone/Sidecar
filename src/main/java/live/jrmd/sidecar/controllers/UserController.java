@@ -87,14 +87,18 @@ public class UserController {
     }
 
     @PostMapping("/user/{id}/edit")
-    public String editUser (@ModelAttribute User user){
-        if (user.getPassword() != null && user.getPassword().equals(user.getPassword_confirm())) {
-            String hash = passwordEncoder.encode(user.getPassword());
-            user.setPassword(hash);
-            user.setPassword_confirm(hash);
-        } else {
-            user.setPassword(userDao.getUserById(user.getId()).getPassword());
-        }
+    public String editUser (@PathVariable(value = "id") long id,
+                            @RequestParam(name = "username") String username,
+                            @RequestParam(name = "email") String email,
+                            @RequestParam(name = "zipcode") String zipcode
+    ){
+            User user = (userDao.getUserById(id));
+            user.setUsername(username);
+            user.setEmail(email);
+            user.setZipcode(zipcode);
+            user.setPassword(user.getPassword());
+            user.setPassword_confirm(user.getPassword());
+
             userDao.save(user);
             return "redirect:/profile";
 
@@ -107,14 +111,17 @@ public class UserController {
     }
 
     @PostMapping("/user/{id}/editPassword")
-    public String editUserPassword (@RequestParam(name = "password") String password,
+    public String editUserPassword (@PathVariable(value = "id") long id,
+                                    @RequestParam(name = "password") String password,
                                     @RequestParam(name = "password_confirm") String passwordConfirm
     ){
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        User user = userDao.getUserById(id);
         if (password.equals(passwordConfirm)) {
             String hash = passwordEncoder.encode(password);
             user.setPassword(hash);
             user.setPassword_confirm(hash);
+            userDao.save(user);
             return "redirect:/logout";
         } else {
             return "redirect:/users/editPassword";
