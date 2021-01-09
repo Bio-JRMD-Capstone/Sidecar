@@ -11,10 +11,10 @@
     <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
 <main>
     <div class="map">
-        <h3 class="heading-tertiary">Route Info</h3>
+        <h3 class="heading-tertiary" th:text="${route.title}"></h3>
         <div class="map-box">
         <!-- Map -->
-            <div class="col-map-show">
+            <div class="col-map-2">
                 <div class="map__input ">
                     <div class="map__input--map-btn">
                         <div class="field"></div>
@@ -31,11 +31,10 @@
                 </div>
             </div>
         <!-- Route Data-->
-            <div class="col-map-show">
+            <div class="col-map-1">
                 <div class="map__input">
                     <form class="map-data"  th:action="@{/routes/create}" th:method="POST" th:object="${route}">
-                        <label for="title">Title: </label>
-                        <input class="map__input" type="text"  id="title" name="title" placeholder="Title" th:field="*{title}" readonly>
+                        <input class="map__input" type="hidden"  id="title" name="title" placeholder="Title" th:field="*{title}" readonly>
                         <label for="description">Route Description: </label>
                         <textarea class="map__input-long" type="text" id="description" name="description" placeholder="Description" th:field="*{description}" readonly></textarea>
                         <label for="distance">Aproximate Distance: </label>

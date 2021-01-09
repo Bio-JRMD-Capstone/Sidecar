@@ -1144,9 +1144,14 @@ body {
   overflow: auto;
   margin-bottom: 3rem;
 }
-@media (max-width: 56.25em) {
+@media (max-width: 61.94em) {
   .map-box {
     padding: 2rem;
+  }
+}
+@media (max-width: 56.25em) {
+  .map-box {
+    padding: 1rem;
   }
 }
 .map__group:not(:last-child) {
@@ -1173,7 +1178,7 @@ body {
   display: block;
   transition: all 0.3s;
 }
-@media (max-width: 56.25em) {
+@media (max-width: 75em) {
   .map__input {
     padding: 0.5rem 1rem;
   }
@@ -1181,7 +1186,7 @@ body {
 .map__input--map-btn {
   display: flex;
   flex-direction: row;
-  padding: 1rem 2rem;
+  padding: 0.5rem 2rem !important;
 }
 @media (max-width: 56.25em) {
   .map__input--map-btn {
@@ -1226,7 +1231,7 @@ body {
   width: 100%;
   min-height: 15rem;
   display: block;
-  text-wrap: normal;
+  text-wrap: inherit;
   transition: all 0.3s;
 }
 .map__input-long:focus {
@@ -1255,15 +1260,11 @@ body {
 }
 
 .col-map-1 {
-  width: calc((98% - (3 * 6rem)) / 4);
+  width: calc((100% - 2 * 6rem) / 3);
 }
 
 .col-map-2 {
-  width: calc(2 * ((98% - (3 * 6rem)) / 4) + 6rem);
-}
-
-.col-map-3 {
-  width: calc((98% - (3 * 6rem)) / 4);
+  width: calc(2* ((100% - 2 * 6rem) / 3) + 6rem);
 }
 
 .col-map-show {
