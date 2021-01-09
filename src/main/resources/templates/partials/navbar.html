@@ -10,7 +10,7 @@
     <body>
         <nav th:fragment="nav" class="navbar navbar-expand-lg navbar-light bg-light paragraph">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/"><img src="/images/compass-rose.jpeg" alt="Logo" /></a>
+                <a class="navbar-brand" href="/"><img src="/images/compass-rose.jpeg" alt="Sidecar" /></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -25,12 +25,6 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/points">POIs</a>
                         </li>
-                    </ul>
-                    <form class="d-flex navbar__search">
-                        <input class="form-control navbar__search-input" type="search" placeholder="Where to?" aria-label="Search">
-                        <button class="btn navbar__search-btn" type="submit">Search</button>
-                    </form>
-                    <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link mr-3" href="/register" tabindex="-1" sec:authorize="!isAuthenticated()">Register</a>
                         </li>
@@ -46,6 +40,10 @@
                             <a class="nav-link" href="/profile" tabindex="-1" >My Profile</a>
                         </li>
                     </ul>
+                    <form class="d-flex navbar__search">
+                        <input class="form-control navbar__search-input" type="search" placeholder="Where to?" aria-label="Search">
+                        <button class="btn navbar__search-btn" type="submit">Search</button>
+                    </form>
                 </div>
             </div>
         </nav>

@@ -1,7 +1,9 @@
 .navbar {
-  height: 8rem;
+  height: 6rem;
+  margin-bottom: 0 !important;
+  z-index: 5000;
   @include respond(tab-port){
-    height: 6rem;
+    height: 5rem;
   }
   &-brand {
     & img {
@@ -11,17 +13,22 @@
   }
   &__search{
     width: 100%;
-    margin: auto;
+
     &-input {
       width: 30%;
       height: 4rem;
       margin: .5rem 3rem;
       font-size: $default-font-size;
+
+      @include respond(tab-land){
+        height: 3rem;
+        padding: 0 1rem;
+        margin: .5rem 0;
+        width: 20%;
+      }
       @include respond(tab-port){
         height: 3rem;
-      }
-      @include respond(phone){
-        height: auto;
+        margin: .5rem 0;
       }
     }
     &-btn{
@@ -35,9 +42,10 @@
       }
       @include respond(tab-port){
         height: 3rem;
+        padding: 0 2rem;
       }
       @include respond(phone){
-        padding: 0;
+        padding: 0 1rem;
         height: auto;
       }
     }

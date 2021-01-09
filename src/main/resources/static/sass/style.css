@@ -90,7 +90,7 @@ body {
 }
 
 main {
-  min-height: 85vh;
+  min-height: 75vh;
 }
 
 body {
@@ -146,6 +146,11 @@ body {
   letter-spacing: 0.5rem;
   text-transform: uppercase;
   z-index: 2000;
+}
+@media (max-width: 61.94em) {
+  .heading-primary--logo {
+    display: none;
+  }
 }
 
 .heading-secondary {
@@ -1872,19 +1877,19 @@ body {
 }
 
 .header {
-  height: 90vh;
+  height: 88vh;
   background-image: url("/images/harley-davidson-zGzXsJUBQfs-unsplash.jpeg");
   background-size: cover;
   background-position: top;
   position: relative;
-  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
-  clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
 }
 @media (max-width: 75em) {
   .header {
     height: 85vh;
-    -webkit-clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
-    clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
   }
 }
 @media (max-width: 56.25em) {
@@ -1907,13 +1912,28 @@ body {
   left: 4rem;
   z-index: 1000;
 }
+@media (max-width: 61.94em) {
+  .header__logo-box {
+    display: none;
+  }
+}
 .header__logo-text {
   text-align: left;
   background-color: transparent;
 }
+@media (max-width: 61.94em) {
+  .header__logo-text {
+    display: none;
+  }
+}
 .header__logo {
   height: 7.5rem;
   border-radius: 50%;
+}
+@media (max-width: 61.94em) {
+  .header__logo {
+    display: none;
+  }
 }
 .header__text-box {
   position: absolute;
@@ -1924,11 +1944,13 @@ body {
 }
 
 .navbar {
-  height: 8rem;
+  height: 6rem;
+  margin-bottom: 0 !important;
+  z-index: 5000;
 }
 @media (max-width: 56.25em) {
   .navbar {
-    height: 6rem;
+    height: 5rem;
   }
 }
 .navbar-brand img {
@@ -1937,7 +1959,6 @@ body {
 }
 .navbar__search {
   width: 100%;
-  margin: auto;
 }
 .navbar__search-input {
   width: 30%;
@@ -1945,14 +1966,18 @@ body {
   margin: 0.5rem 3rem;
   font-size: 1.6rem;
 }
+@media (max-width: 75em) {
+  .navbar__search-input {
+    height: 3rem;
+    padding: 0 1rem;
+    margin: 0.5rem 0;
+    width: 20%;
+  }
+}
 @media (max-width: 56.25em) {
   .navbar__search-input {
     height: 3rem;
-  }
-}
-@media (max-width: 43.75em) {
-  .navbar__search-input {
-    height: auto;
+    margin: 0.5rem 0;
   }
 }
 .navbar__search-btn {
@@ -1968,11 +1993,12 @@ body {
 @media (max-width: 56.25em) {
   .navbar__search-btn {
     height: 3rem;
+    padding: 0 2rem;
   }
 }
 @media (max-width: 43.75em) {
   .navbar__search-btn {
-    padding: 0;
+    padding: 0 1rem;
     height: auto;
   }
 }

@@ -49,6 +49,9 @@ body {
         letter-spacing: .5rem;
         text-transform: uppercase;
         z-index: 2000;
+        @include respond(nav-collapse) {
+            display: none;
+        }
     }
 
 }
