@@ -163,6 +163,10 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
                 let totalDistance = 0;
                 let totalDuration = 0;
 
+                let randfunc = function (x){
+                    return x;
+                }
+
                 // For each route, display summary information.
                 if (markers[markers.length-1].lat === markers[0].lat + .000000000000001) {
                     for (let i = 1; i < route.legs.length; i++) {

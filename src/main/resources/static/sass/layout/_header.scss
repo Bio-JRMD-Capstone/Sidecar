@@ -1,11 +1,28 @@
 .header {
-    height: 95vh;
+    height: 88vh;
     background-image: url("/images/harley-davidson-zGzXsJUBQfs-unsplash.jpeg");
     background-size: cover;
     background-position: top;
     position: relative;
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
     clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
+
+    @include respond(tab-land){
+        height: 85vh;
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+    }
+    @include respond(tab-port){
+        height: 85vh;
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    }
+
+    @include respond(phone){
+        height: 80vh;
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+    }
 
 
     &__logo-box {

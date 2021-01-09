@@ -12,6 +12,8 @@
     transform: translate(-50%, -50%);
 }
 
+//ORDER TO CHANGE FOR RESPONSIVENESS: Base + typography > general layout + grid > page layout > components
+
 //media query manager
 @mixin respond($breakpoint) {
     @if $breakpoint == phone {

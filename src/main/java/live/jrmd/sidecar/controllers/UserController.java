@@ -99,4 +99,28 @@ public class UserController {
             return "redirect:/profile";
 
     }
+
+    @GetMapping("/user/{id}/editPassword")
+    public String editUserPassword(@PathVariable(value = "id") long id, Model model){
+        model.addAttribute("user", userDao.getUserById(id));
+        return "users/editPassword";
+    }
+
+    @PostMapping("/user/{id}/editPassword")
+    public String editUserPassword (@RequestParam(name = "password") String password,
+                                    @RequestParam(name = "password_confirm") String passwordConfirm
+    ){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (password.equals(passwordConfirm)) {
+            String hash = passwordEncoder.encode(password);
+            user.setPassword(hash);
+            user.setPassword_confirm(hash);
+            return "redirect:/logout";
+        } else {
+            return "redirect:/users/editPassword";
+        }
+
+
+
+    }
 }
