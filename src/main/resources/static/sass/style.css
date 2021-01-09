@@ -1149,6 +1149,11 @@ body {
 .map__location {
   width: 40%;
 }
+@media (max-width: 56.25em) {
+  .map__location {
+    width: 75%;
+  }
+}
 .map__input {
   font-size: 1.5rem;
   font-family: inherit;
@@ -1162,10 +1167,20 @@ body {
   display: block;
   transition: all 0.3s;
 }
+@media (max-width: 56.25em) {
+  .map__input {
+    padding: 0.5rem 1rem;
+  }
+}
 .map__input--map-btn {
   display: flex;
   flex-direction: row;
   padding: 1rem 2rem;
+}
+@media (max-width: 56.25em) {
+  .map__input--map-btn {
+    padding: 0.5rem 1rem;
+  }
 }
 .map__input--map-btn .btn-lt {
   height: 3rem;
@@ -1345,6 +1360,11 @@ body {
 .poi__location {
   width: 40%;
 }
+@media (max-width: 56.25em) {
+  .poi__location {
+    width: 75%;
+  }
+}
 .poi__group:not(:last-child) {
   margin-bottom: 2rem;
 }
@@ -1360,6 +1380,21 @@ body {
   width: 100%;
   display: block;
   transition: all 0.3s;
+}
+@media (max-width: 56.25em) {
+  .poi__input {
+    padding: 0.5rem 1rem;
+  }
+}
+.poi__input--map-btn {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem 2rem;
+}
+@media (max-width: 56.25em) {
+  .poi__input--map-btn {
+    padding: 0.5rem 1rem;
+  }
 }
 .poi__input:focus {
   outline: none;
