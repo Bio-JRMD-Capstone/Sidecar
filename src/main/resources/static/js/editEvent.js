@@ -1,8 +1,8 @@
 let map, infoWindow, geocoder;
 let thisEventLat = parseFloat($("#lat").val());
-let thisEventLng = parseFloat($("#lng").val());
+let thisEventLng = parseFloat($("#lon").val());
+let userMarker;
 // let category = $("#category").text();
-
 
 //Formatting the category correctly for the card
 // var categoryString = category.replace(category.charAt(0), category.charAt(0).toUpperCase());
@@ -16,14 +16,15 @@ let thisEventLng = parseFloat($("#lng").val());
 
 
 function initMap() {
-    //Taking the values of the lat and lng of the thisEvent we need, then centering the map on the thisEvent
+    console.log(thisEventLat, thisEventLng);
+    //Taking the values of the lat and lng of the point we need, then centering the map on the point
     map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: thisEventLat, lng: thisEventLng },
         zoom: 15,
     });
     infoWindow = new google.maps.InfoWindow();
 
-    //Pans the map back to the thisEvent if the center of the map changes
+    //Pans the map back to the point if the center of the map changes
     map.addListener("center_changed", () => {
         // 5 seconds after the center of the map has changed, pan back to the
         // marker.
@@ -87,13 +88,34 @@ function initMap() {
         }
     });
 
+    //Set the POI to be edited on the map
+    let editEventCoords = {
+        'lat': thisEventLat,
+        'lng': thisEventLng
+    }
+    userMarker = new google.maps.Marker({
+        position: editEventCoords,
+        draggable: true
+    });
+    userMarker.setMap(map);
+
+    //When the map is clicked, add a point and fill in the lat/lng values in html using jQuery
+    google.maps.event.addListener(map, "click", function(event) {
+        placeMarker(event.latLng);
+        $('#lat').val(event.latLng.lat());
+        $('#lon').val(event.latLng.lng());
+    });
+
     //This is supposed to retrieve the list of POIs in JSON format so we can work with it to display them on the map.
+    //For this page, it skips over the POI to be edited, because we need to treat that one differently.
     // See https://java.codeup.com/spring/extra-features/json-response/ for more info
     (function($) {
         var request = $.ajax({'url': '/events.json'});
-        request.done(function (thisEvents) {
-            thisEvents.forEach(function(thisEvent) {
-                drawEvents(thisEvent, icons, infoWindow, map);
+        request.done(function (events) {
+            events.forEach(function(oneEvent) {
+                if(oneEvent.lat != thisEventLat && oneEvent.lng != thisEventLng) {
+                    drawEvents(oneEvent, icons, infoWindow, map);
+                }
             });
         });
     })(jQuery);
@@ -124,7 +146,7 @@ function geocodeAddress(geocoder, resultsMap) {
     });
 }
 
-//Adds markers for the thisEvents on the map and assigns their infowindow information
+//Adds markers for the POIs on the map and assigns their infowindow information
 function drawEvents(thisEvent, icons, infoWindow, map) {
     //Setting up the proper latLng object notation so it can be read by Google Maps
     let coords = {
@@ -135,8 +157,8 @@ function drawEvents(thisEvent, icons, infoWindow, map) {
     let marker = new google.maps.Marker({
         position: coords,
         title: thisEvent.name,
-        //PLaceholder event icon
-        icon: "/images/icons/event.png"
+        //Looks at the poi type and references the icon array to determine what icon it uses
+        // icon: icons[thisEvent.category].icon
     });
     //The line that actually attaches a marker to the map
     marker.setMap(map);
@@ -154,7 +176,21 @@ function drawEvents(thisEvent, icons, infoWindow, map) {
         infoWindow.setContent("<h6>" + thisEvent.name + "</h6>" +
             // "<p><strong>" + categoryString + "</strong><br>" +
             thisEvent.description + "</p>" +
-            "<a href='/event/" + thisEvent.id + "'>More Info</a>");
+            "<a href='event/" + thisEvent.id + "'>More Info</a>");
         infoWindow.open(map, marker);
     });
+}
+
+//if marker already exists on map, move it. if not, create it at the location
+function placeMarker(location) {
+    if (userMarker) {
+        //if marker already was created change position
+        userMarker.setPosition(location);
+    } else {
+        //create a marker
+        userMarker = new google.maps.Marker({
+            position: location,
+            map: map,
+        });
+    }
 }

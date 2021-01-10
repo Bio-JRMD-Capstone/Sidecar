@@ -15,7 +15,14 @@
             <div class="event">
                 <div class="event-box">
                     <div class="form">
-
+                        <!-- Map -->
+                        <div class="col-poi-2">
+                            <div id="floating-panel">
+                                <input class="poi__input u-margin-right-sm" id="address" type="textbox" placeholder="Enter a location" />
+                                <input class="map__input--map-btn" id="submit" type="button" value="View Location" />
+                            </div>
+                            <div id="map">Map</div>
+                        </div>
                         <form name="editevent" th:action="@{'/event/' + ${eventToEdit.id} + '/edit'}" th:method="post" th:object="${event}">
                             <div class="u-margin-bottom-md u-center-text">
                                 <h2 class="heading-tertiary">Edit Event:</h2>
@@ -72,12 +79,15 @@
                                         <button class="btn" id="imageButton">Add/Change Flyer</button>
                                     </div>
                                 </div>
+                                <input type="hidden" id="lat" value="" th:field="${eventToEdit.lat}">
+                                <input type="hidden" id="lon" value="" th:field="${eventToEdit.lon}">
                             </div>
                             <!-- Submit changes / cancel buttons -->
                             <div class="u-center-text u-margin-top-sm">
                                 <input class="btn btn--white u-margin-y-md" type="submit" value="Update"/>
                                 <a class="btn btn--green u-margin-y-md" href="/profile">Cancel</a>
                             </div>
+
                         </form>
 
                     </div>
@@ -90,7 +100,7 @@
         <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
         <script src="/js/filestack.js"></script>
         <div th:include="partials/scripts :: scripts"></div>
-
+        <script src="/js/editEvent.js"></script>
     </body>
 
 </html>
