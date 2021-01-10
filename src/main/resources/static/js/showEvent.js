@@ -33,30 +33,30 @@ function initMap() {
     });
 
     //To save on typing, I save the relative filepath as a variable since we will be using it a lot just below
-    // const iconBase = "/css/images/";
+    const iconBase = "/css/images/";
 
     //This array of icons is referenced when drawing a poi. It uses a string (the poi category)
     // to find the appropriate filepath for that category's icon.
-    // const icons = {
-    //     "bar": {
-    //         icon: iconBase + "bar.png"
-    //     },
-    //     "restaurant": {
-    //         icon: iconBase + "restaurant.png"
-    //     },
-    //     "scenic_view": {
-    //         icon: iconBase + "scenic_view.png"
-    //     },
-    //     "motorcycle_shop": {
-    //         icon: iconBase + "motorcycle_shop.png"
-    //     },
-    //     "repair_shop": {
-    //         icon: iconBase + "repair_shop.png"
-    //     },
-    //     "other": {
-    //         icon: iconBase + "other.png"
-    //     }
-    // }
+    const icons = {
+        "bar": {
+            icon: iconBase + "bar.png"
+        },
+        "restaurant": {
+            icon: iconBase + "restaurant.png"
+        },
+        "scenic_view": {
+            icon: iconBase + "scenic_view.png"
+        },
+        "motorcycle_shop": {
+            icon: iconBase + "motorcycle_shop.png"
+        },
+        "repair_shop": {
+            icon: iconBase + "repair_shop.png"
+        },
+        "other": {
+            icon: iconBase + "other.png"
+        }
+    }
 
     //Pan to current location button
     const locationButton = document.createElement("button");
@@ -135,8 +135,8 @@ function drawEvents(thisEvent, icons, infoWindow, map) {
     let marker = new google.maps.Marker({
         position: coords,
         title: thisEvent.name,
-        //Looks at the poi type and references the icon array to determine what icon it uses
-        // icon: icons[poi.category].icon
+        //PLaceholder event icon
+        icon: "/images/icons/event.png"
     });
     //The line that actually attaches a marker to the map
     marker.setMap(map);
