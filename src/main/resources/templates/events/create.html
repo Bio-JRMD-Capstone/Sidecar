@@ -14,7 +14,16 @@
         <main>
             <div class="event">
                 <div class="event-box">
+                    <div class="col-poi-2">
+                        <div class="poi__input">
+                            <div id="floating-panel">
+                                <input id="address" type="textbox" placeholder="Enter a location" />
+                                <input id="submit" type="button" value="View Location" />
+                            </div>
 
+                            <div id="map">Map</div>
+                        </div>
+                    </div>
                     <form name="createevent" th:action="@{/events/create}" th:method="post" th:object="${event}">
                         <div class="col-event">
                             <div class="event__input">
@@ -50,7 +59,8 @@
                                 </div>
                             </div>
                         </div>
-
+                        <input type="hidden" id="lat" value="" th:field="*{lat}">
+                        <input type="hidden" id="lon" value="" th:field="*{lon}">
                         <div class="col-event">
                             <div>
                                 <input type="hidden" id="image" th:field="*{filePath}">
@@ -69,6 +79,7 @@
         <script src="/js/keys.js"></script>
         <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
         <script src="/js/filestack.js"></script>
+        <script src="/js/createEvent.js"></script>
         <div th:include="partials/scripts :: scripts"></div>
 
     </body>
