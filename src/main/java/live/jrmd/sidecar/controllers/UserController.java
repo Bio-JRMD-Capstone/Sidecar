@@ -2,7 +2,6 @@ package live.jrmd.sidecar.controllers;
 
 import live.jrmd.sidecar.models.User;
 import live.jrmd.sidecar.repositories.*;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -104,25 +103,24 @@ public class UserController {
 
     }
 
-    @GetMapping("/user/{id}/editPassword")
+    @GetMapping("/user/{id}/update-password")
     public String editUserPassword(@PathVariable(value = "id") long id, Model model){
         model.addAttribute("user", userDao.getUserById(id));
-        return "users/editPassword";
+        return "users/update-password";
     }
 
-    @PostMapping("/user/{id}/editPassword")
+    @PostMapping("/user/{id}/update-password")
     public String editUserPassword (@PathVariable(value = "id") long id,
                                     @RequestParam(name = "password") String password,
                                     @RequestParam(name = "password_confirm") String passwordConfirm
     ){
-
         User user = userDao.getUserById(id);
         if (password.equals(passwordConfirm)) {
             String hash = passwordEncoder.encode(password);
             user.setPassword(hash);
             user.setPassword_confirm(hash);
             userDao.save(user);
-            return "redirect:/logout";
+            return "redirect:/profile";
         } else {
             return "redirect:/users/editPassword";
         }

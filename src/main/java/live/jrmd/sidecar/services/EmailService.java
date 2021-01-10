@@ -6,13 +6,18 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import java.io.UnsupportedEncodingException;
 
 @Service("mailService")
 public class EmailService {
 
     @Autowired
-    public JavaMailSender emailSender;
+    public JavaMailSender mailSender;
 
     @Value("${spring.mail.from}")
     private String from;
@@ -25,11 +30,12 @@ public class EmailService {
         msg.setText(body);
 
         try{
-            this.emailSender.send(msg);
+            this.mailSender.send(msg);
         }
         catch (MailException ex) {
             // simply log it and go on...
             System.err.println(ex.getMessage());
         }
     }
+
 }
