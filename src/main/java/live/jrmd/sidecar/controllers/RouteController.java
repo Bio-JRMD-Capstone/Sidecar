@@ -64,7 +64,7 @@ public class RouteController {
     @GetMapping("/route/{id}/edit")
     public String editRoute(@PathVariable(value = "id") long id, Model model) {
         model.addAttribute("routeToEdit", routeDao.getRouteById(id));
-        return "/routes/edit";
+        return "routes/edit";
     }
     @PostMapping("/route/{id}/edit")
     public String editRoute(

@@ -21,6 +21,9 @@
     &-edit {
         border-radius: 3px !important;
         padding: .5rem !important;
+        color: $color-white;
+        background-color: rgba($color-primary-dark, .3);
+        border: $color-gray-dark solid .5px !important;
     }
     &--animated {
         animation-name: moveInBottom;
