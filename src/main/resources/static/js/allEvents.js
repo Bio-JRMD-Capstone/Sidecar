@@ -1,4 +1,5 @@
 let map, infoWindow, geocoder;
+var userMarker;
 
 $(document).ready(function(){
     $('select').formSelect();
@@ -67,6 +68,13 @@ function initMap() {
     //     }
     // });
 
+    //DO NOT DELETE THIS FUNCTION, THE AJAX WON'T WORK WITHOUT IT
+    google.maps.event.addListener(map, "click", function(event) {
+        // placeMarker(event.latLng);
+        // $('#lat').val(event.latLng.lat());
+        // $('#lon').val(event.latLng.lng());
+    });
+
     //This is supposed to retrieve the list of POIs in JSON format so we can work with it to display them on the map.
     // See https://java.codeup.com/spring/extra-features/json-response/ for more info
     (function($) {
@@ -114,7 +122,7 @@ function drawEvents(thisEvent, icons, infoWindow, map) {
     //Creates a marker and assigns some info to it
     let marker = new google.maps.Marker({
         position: coords,
-        title: thisEvent.name,
+        title: thisEvent.name
 
         //Looks at the event type and references the icon array to determine what icon it uses
         // icon: icons[poi.category].icon
@@ -140,4 +148,19 @@ function drawEvents(thisEvent, icons, infoWindow, map) {
             "<a href='/event/" + thisEvent.id + "'>More Info</a>");
         infoWindow.open(map, marker);
     });
+}
+
+//if marker already exists on map, move it. if not, create it at the location
+function placeMarker(location) {
+    if (userMarker) {
+        //if marker already was created change positon
+        userMarker.setPosition(location);
+    } else {
+        //create a marker
+        userMarker = new google.maps.Marker({
+            position: location,
+            map: map,
+            draggable: true
+        });
+    }
 }
