@@ -71,10 +71,9 @@ function drawEvents(thisEvent, icons, infoWindow, map) {
     //Creates a marker and assigns some info to it
     let marker = new google.maps.Marker({
         position: coords,
-        title: thisEvent.name
-
-        //Looks at the event type and references the icon array to determine what icon it uses
-        // icon: icons[poi.category].icon
+        title: thisEvent.name,
+        //Uses the base event Icon
+        icon: "/images/icons/event.png"
 
     });
     //The line that actually attaches a marker to the map

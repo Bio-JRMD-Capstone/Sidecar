@@ -39,35 +39,6 @@ function initMap() {
         }
     }
 
-    // //Pan to current location button
-    // const locationButton = document.createElement("button");
-    // locationButton.textContent = "Pan to Current Location";
-    // locationButton.classList.add("custom-map-control-button");
-    // map.controls[google.maps.ControlPosition.TOP_RIGHT].push(locationButton);
-    // locationButton.addEventListener("click", () => {
-    //     // Try HTML5 geolocation.
-    //     if (navigator.geolocation) {
-    //         navigator.geolocation.getCurrentPosition(
-    //             (position) => {
-    //                 const pos = {
-    //                     lat: position.coords.latitude,
-    //                     lng: position.coords.longitude,
-    //                 };
-    //                 infoWindow.setPosition(pos);
-    //                 infoWindow.setContent("Location found.");
-    //                 infoWindow.open(map);
-    //                 map.setCenter(pos);
-    //             },
-    //             () => {
-    //                 handleLocationError(true, infoWindow, map.getCenter());
-    //             }
-    //         );
-    //     } else {
-    //         // Browser doesn't support Geolocation
-    //         handleLocationError(false, infoWindow, map.getCenter());
-    //     }
-    // });
-
     //When the map is clicked, add a point and fill in the lat/lng values in html using jQuery
     google.maps.event.addListener(map, "click", function(event) {
         placeMarker(event.latLng);
@@ -86,17 +57,6 @@ function initMap() {
         });
     })(jQuery);
 }
-
-// //If GeoLocation fails
-// function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-//     infoWindow.setPosition(pos);
-//     infoWindow.setContent(
-//         browserHasGeolocation
-//             ? "Error: The Geolocation service failed."
-//             : "Error: Your browser doesn't support geolocation."
-//     );
-//     infoWindow.open(map);
-// }
 
 //Geocoder, searches for input location and centers map on it
 function geocodeAddress(geocoder, resultsMap) {
@@ -122,23 +82,13 @@ function drawEvents(thisEvent, icons, infoWindow, map) {
     //Creates a marker and assigns some info to it
     let marker = new google.maps.Marker({
         position: coords,
-        title: thisEvent.name
-
-        //Looks at the event type and references the icon array to determine what icon it uses
-        // icon: icons[poi.category].icon
+        title: thisEvent.name,
+        //Uses the base event Icon
+        icon: "/images/icons/event.png"
 
     });
     //The line that actually attaches a marker to the map
     marker.setMap(map);
-    //Allowing the category to be correctly displayed in the infowindow by capitalizing the letters
-    //and replacing any underscores with a space
-    // var categoryString = poi.category.replace(poi.category.charAt(0), poi.category.charAt(0).toUpperCase());
-    // if(categoryString.includes("_")) {
-    //     categoryString = categoryString.replace(
-    //         categoryString.charAt(categoryString.indexOf("_") + 1),
-    //         categoryString.charAt(categoryString.indexOf("_") + 1).toUpperCase());
-    //     categoryString = categoryString.replace("_", " ");
-    // }
 
     //This connects the info window to the marker, allowing information, links, any HTML really to be displayed
     google.maps.event.addListener(marker, 'click', function() {
