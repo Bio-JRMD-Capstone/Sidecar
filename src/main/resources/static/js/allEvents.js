@@ -79,15 +79,6 @@ function drawEvents(thisEvent, icons, infoWindow, map) {
     });
     //The line that actually attaches a marker to the map
     marker.setMap(map);
-    //Allowing the category to be correctly displayed in the infowindow by capitalizing the letters
-    //and replacing any underscores with a space
-    // var categoryString = poi.category.replace(poi.category.charAt(0), poi.category.charAt(0).toUpperCase());
-    // if(categoryString.includes("_")) {
-    //     categoryString = categoryString.replace(
-    //         categoryString.charAt(categoryString.indexOf("_") + 1),
-    //         categoryString.charAt(categoryString.indexOf("_") + 1).toUpperCase());
-    //     categoryString = categoryString.replace("_", " ");
-    // }
 
     //This connects the info window to the marker, allowing information, links, any HTML really to be displayed
     google.maps.event.addListener(marker, 'click', function() {
