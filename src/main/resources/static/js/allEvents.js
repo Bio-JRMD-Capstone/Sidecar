@@ -1,5 +1,4 @@
 let map, infoWindow, geocoder;
-var userMarker;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
@@ -87,19 +86,4 @@ function drawEvents(thisEvent, icons, infoWindow, map) {
             "<a href='/event/" + thisEvent.id + "'>More Info</a>");
         infoWindow.open(map, marker);
     });
-}
-
-//if marker already exists on map, move it. if not, create it at the location
-function placeMarker(location) {
-    if (userMarker) {
-        //if marker already was created change positon
-        userMarker.setPosition(location);
-    } else {
-        //create a marker
-        userMarker = new google.maps.Marker({
-            position: location,
-            map: map,
-            draggable: true
-        });
-    }
 }
