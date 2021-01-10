@@ -22,7 +22,14 @@
                                 <input id="submit" type="button" value="View Location" />
                             </div>
                             <div class="map__input--map-btn">
-                                <input class="btn-lt" type="button" id="clearBtn" name="clearBtn" value="Clear Route">
+                                <p>
+                                    <label>
+                                        <input id="routeCheck" type="checkbox" />
+                                        <span> Round Trip</span>
+                                    </label>
+                                </p>
+                                <input class="btn-rt u-margin-right-sm" type="button" id="clearBtn" name="clearBtn" value="Clear Route">
+
                                 <div class="field">
                                     <div class="control">
                                         <input class="btn-rt" type="button" id="testbtn" name="testbtn" value="See Route">
@@ -30,12 +37,6 @@
                                 </div>
                             </div>
                             <div id="map"></div>
-                            <p>
-                                <label>
-                                    <input id="routeCheck" type="checkbox" />
-                                    <span> Route end point matches start point</span>
-                                </label>
-                            </p>
                         </div>
                         <div class="map__input">
                             <div class="map__input">
