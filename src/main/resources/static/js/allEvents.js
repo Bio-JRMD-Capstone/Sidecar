@@ -1,10 +1,6 @@
 let map, infoWindow, geocoder;
 var userMarker;
 
-$(document).ready(function(){
-    $('select').formSelect();
-});
-
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: 29.4241, lng: -98.4936 },
@@ -37,43 +33,7 @@ function initMap() {
         "Looking to ride": {
             icon: iconBase + "looking_to_ride.png"
         }
-    }
-
-    // //Pan to current location button
-    // const locationButton = document.createElement("button");
-    // locationButton.textContent = "Pan to Current Location";
-    // locationButton.classList.add("custom-map-control-button");
-    // map.controls[google.maps.ControlPosition.TOP_RIGHT].push(locationButton);
-    // locationButton.addEventListener("click", () => {
-    //     // Try HTML5 geolocation.
-    //     if (navigator.geolocation) {
-    //         navigator.geolocation.getCurrentPosition(
-    //             (position) => {
-    //                 const pos = {
-    //                     lat: position.coords.latitude,
-    //                     lng: position.coords.longitude,
-    //                 };
-    //                 infoWindow.setPosition(pos);
-    //                 infoWindow.setContent("Location found.");
-    //                 infoWindow.open(map);
-    //                 map.setCenter(pos);
-    //             },
-    //             () => {
-    //                 handleLocationError(true, infoWindow, map.getCenter());
-    //             }
-    //         );
-    //     } else {
-    //         // Browser doesn't support Geolocation
-    //         handleLocationError(false, infoWindow, map.getCenter());
-    //     }
-    // });
-
-    //DO NOT DELETE THIS FUNCTION, THE AJAX WON'T WORK WITHOUT IT
-    google.maps.event.addListener(map, "click", function(event) {
-        // placeMarker(event.latLng);
-        // $('#lat').val(event.latLng.lat());
-        // $('#lon').val(event.latLng.lng());
-    });
+    };
 
     //This is supposed to retrieve the list of POIs in JSON format so we can work with it to display them on the map.
     // See https://java.codeup.com/spring/extra-features/json-response/ for more info
@@ -86,17 +46,6 @@ function initMap() {
         });
     })(jQuery);
 }
-
-// //If GeoLocation fails
-// function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-//     infoWindow.setPosition(pos);
-//     infoWindow.setContent(
-//         browserHasGeolocation
-//             ? "Error: The Geolocation service failed."
-//             : "Error: Your browser doesn't support geolocation."
-//     );
-//     infoWindow.open(map);
-// }
 
 //Geocoder, searches for input location and centers map on it
 function geocodeAddress(geocoder, resultsMap) {
