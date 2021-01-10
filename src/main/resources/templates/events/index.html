@@ -2,32 +2,40 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-    <head th:replace="partials/head :: head('All Events')">
-        <meta charset="UTF-8">
-        <title>Events</title>
-    </head>
+<head th:replace="partials/head :: head('Events')">
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
 
-    <body>
-        <nav th:replace="partials/navbar :: nav"></nav>
-        <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+<body onload="document.locationbox.locationinput.focus()">
+<nav th:replace="partials/navbar :: nav"></nav>
+<!--<div th:replace="partials/expand-nav :: navigation"></div>-->
 
-        <main class="event">
-            <p class="heading-secondary">Events</p>
+<main class="poi">
+    <h1 class="heading-primary--sub">All Events</h1>
+    <div>
+        <p sec:authorize="!isAuthenticated()" class="paragraph">Have an event to share? Please <a th:href="@{/login}">Login</a> or
+            <a th:href="@{/register}">Register</a>.</p>
+        <a sec:authorize="isAuthenticated()" class="btn btn--green u-margin-bottom-sm" th:href="@{/events/create}">Add an Event</a>
+    </div>
+    <section class="poi-box">
+        <div class="poi__location">
+            <form name="locationbox">
+                <div id="floating-panel">
+                    <input class="poi__input u-margin-right-sm" name="locationinput" id="address" type="textbox" placeholder="Enter a location" />
+                    <input class="poi__input--map-btn paragraph" id="submit" type="button" value="View Location" />
+                </div>
+            </form>
+        </div>
+        <div id="map"></div>
+    </section>
 
-            <div>
-                <h3 class="heading-tertiary" th:if="${events.isEmpty()}">No Events Found</h3>
-                <a class="btn btn--green" th:href="@{/events/create}">Add an Event</a>
-            </div>
+</main>
 
-            <section class="event-box u-margin-top-sm">
-                <div id="map"></div>
-            </section>
-        </main>
+<div th:include="partials/footer :: footer"></div>
+<script src="/js/allEvents.js"></script>
+<div th:include="partials/scripts :: scripts"></div>
 
-        <div th:include="partials/footer :: footer"></div>
-        <div th:include="partials/scripts :: scripts"></div>
-
-    </body>
+</body>
 
 </html>
-
