@@ -1,9 +1,9 @@
 let map, infoWindow, geocoder;
 var userMarker;
 
-$(document).ready(function(){
-    $('select').formSelect();
-});
+// $(document).ready(function(){
+//     $('select').formSelect();
+// });
 
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
