@@ -1,6 +1,7 @@
 package live.jrmd.sidecar.controllers;
 
 import live.jrmd.sidecar.models.*;
+import live.jrmd.sidecar.repositories.RouteCommentRepository;
 import live.jrmd.sidecar.repositories.RouteRepository;
 import live.jrmd.sidecar.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,15 +11,18 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 
 @Controller
 public class RouteController {
     private final RouteRepository routeDao;
+    private RouteCommentRepository routeCommentDao;
     private final UserRepository userDao;
 
-    public RouteController(RouteRepository routeDao, UserRepository userDao){
+    public RouteController(RouteRepository routeDao,RouteCommentRepository routeCommentDao, UserRepository userDao){
         this.routeDao = routeDao;
+        this.routeCommentDao = routeCommentDao;
         this.userDao = userDao;
     }
 
@@ -57,8 +61,10 @@ public class RouteController {
 
     @GetMapping("/route/{id}")
     public String viewPost(@PathVariable(name= "id") long id, Model model ) {
-        model.addAttribute("route", routeDao.getOne(id));
-
+        Route route = routeDao.getRouteById(id);
+        model.addAttribute("route", route);
+        model.addAttribute("routeComments", routeCommentDao.findAllByRoute(route));
+        model.addAttribute("newComment", new RouteComment());
         return "routes/showRoute";
     }
     @GetMapping("/route/{id}/edit")
@@ -86,11 +92,32 @@ public class RouteController {
         }
     }
 
-
     @PostMapping("/route/{id}/delete")
     public String deleteRoute (@PathVariable(value = "id") long id) {
         Route routeToDelete = routeDao.getRouteById(id);
         routeDao.delete(routeToDelete);
         return "redirect:/profile";
     }
+
+    //Commenting
+    @PostMapping("/route/{id}/comment")
+    public String addComment(
+            @PathVariable long id,
+            @ModelAttribute RouteComment newComment){
+        RouteComment comment = new RouteComment();
+        Date thisDate = new Date();
+        Route route = routeDao.getRouteById(id);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        comment.setComment(newComment.getComment());
+        comment.setRoute(route);
+        comment.setUser(user);
+        comment.setTimestamp(thisDate);
+
+        routeCommentDao.save(comment);
+
+        return "redirect:/route/" + id;
+    }
+
+
 }

@@ -28,6 +28,21 @@
                         <div class="map__input">
                             <h3 class="heading-tertiary">Comments:</h3>
                             <!-- Comments here -->
+                            <div th:each="comment: ${routeComments}">
+                                <textarea class="map__input-long" type="text" id="comment" name="route-comment"  th:field="*{comment}" readonly></textarea>
+                                <form th:if="${user == comment.user}" th:action="@{/route/{id}/delete-comment-{commentId} (id = ${route.id}, commentId = ${comment.id})}" method="POST">
+                                    <button class="btn btn-primary" type="submit">Delete</button>
+                                </form>
+                                <div>
+                                    <p th:text="${comment.user.username}"></p>
+                                    <p th:text="${comment.timestamp}"></p>
+                                </div>
+                            </div>
+                            <p sec:authorize="!isAuthenticated()" class="paragraph">Like to leave a comment? Please <a th:href="@{/login}">Login</a> or
+                                <a th:href="@{/register}">Register</a>.</p>
+                            <form sec:authorize="isAuthenticated()" class="" th:action="@{/route/{id}/comment}">
+
+                            </form>
                         </div>
                     </div>
                 <!-- Route Data-->
@@ -37,9 +52,9 @@
                                 <input class="map__input" type="hidden"  id="title" name="title" placeholder="Title" th:field="*{title}" readonly>
                                 <label for="description">Route Description: </label>
                                 <textarea class="map__input-long" type="text" id="description" name="description" placeholder="Description" th:field="*{description}" readonly></textarea>
-                                <label for="distance">Aproximate Distance: </label>
+                                <label for="distance">Approximate Distance: </label>
                                 <input class="map__input" type="text" id="distance" name="distance" placeholder="Distance" th:field="*{distance}" readonly>
-                                <label for="time">Aproximate time to ride: </label>
+                                <label for="time">Approximate time to ride: </label>
                                 <input class="map__input" type="text" id="time" name="time"  placeholder="Time(Hours)" th:field="*{time}" readonly>
                                 <label class="d-none" for="coordinates">Route Coordinates: </label><p class="d-none" th:text="${route.coordinates}" id="coords"></p>
                                 <input type="hidden" class="map__input" id="coordinates" name="coordinates" th:field="*{coordinates}" readonly>

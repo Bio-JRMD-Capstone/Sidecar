@@ -1,6 +1,7 @@
 package live.jrmd.sidecar.models;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name="route_comments")
@@ -13,7 +14,7 @@ public class RouteComment {
     private String comment;
 
     @Column(nullable = false, columnDefinition = "DATETIME")
-    private String timestamp;
+    private Date timestamp;
 
     @ManyToOne
     @JoinColumn (name = "user_id")
@@ -26,13 +27,15 @@ public class RouteComment {
     public RouteComment() {}
 
     //write
-    public RouteComment(String comment, String timestamp) {
+    public RouteComment(String comment, Date timestamp, User user, Route route) {
         this.comment = comment;
         this.timestamp = timestamp;
+        this.user = user;
+        this.route = route;
     }
 
     //read
-    public RouteComment(long id, String comment, String timestamp, User user, Route route) {
+    public RouteComment(long id, String comment, Date timestamp, User user, Route route) {
         this.id = id;
         this.comment = comment;
         this.timestamp = timestamp;
@@ -65,11 +68,11 @@ public class RouteComment {
         this.comment = comment;
     }
 
-    public String getTimestamp() {
+    public Date getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }
 
