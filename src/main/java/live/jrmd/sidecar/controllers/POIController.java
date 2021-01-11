@@ -44,6 +44,8 @@ public class POIController {
 
     @GetMapping("/points/create")
     public String addPOIs(Model model) {
+        User userDb = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", userDb);
         model.addAttribute("poi", new POI());
         model.addAttribute("pCategories", pCatDao.findAll());
         return "points/create";

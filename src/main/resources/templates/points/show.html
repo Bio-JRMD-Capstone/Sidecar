@@ -16,6 +16,7 @@
                     <div class="poi__map">
                         <div id="map"></div>
                         <div class="poi__map-coords">
+<!--                            <span th:value="${user.zipcode}" hidden></span>-->
                             <input type="hidden" id="lat" th:value="${point.lat}">
                             <input type="hidden" id="lng" th:value="${point.lon}">
                         </div>
@@ -25,7 +26,8 @@
                     <div class="poi__info">
                         <div class="poi__info-img">
                             <!--   Trying to get conditional if statements working for the img tag, can't figure out how to get it to work     -->
-                            <img class="poi-img" th:src="${point.photo_url}" height="300rem" alt="poi image" />
+                            <img class="poi-img" th:if="${point.photo_url == ''}" src="/images/placeholders/point.png" height="300rem" alt="placeholder image" />
+                            <img class="poi-img" th:if="${point.photo_url != ''}" th:src="${point.photo_url}" height="300rem" alt="poi image" />
                         </div>
                         <div class="poi__info-text">
                             <p class="heading-tertiary" th:text="${point.name}"></p>
