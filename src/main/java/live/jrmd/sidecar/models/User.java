@@ -33,6 +33,9 @@ public class User {
     @Column()
     private String photo_url;
 
+    @Column(length = 45)
+    private String resetPasswordToken;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     @JsonBackReference
     private List<POI> poiList;
@@ -47,7 +50,7 @@ public class User {
 
     public User(){}
     //read
-    public User(Long id, String username, String email, String password, String password_confirm, String zipcode, String photo_url) {
+    public User(Long id, String username, String email, String password, String password_confirm, String zipcode, String photo_url, String resetPasswordToken) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -55,15 +58,17 @@ public class User {
         this.password_confirm = password_confirm;
         this.zipcode = zipcode;
         this.photo_url = photo_url;
+        this.resetPasswordToken = resetPasswordToken;
     }
     //create
-    public User(String username, String email, String password, String password_confirm, String zipcode, String photo_url) {
+    public User(String username, String email, String password, String password_confirm, String zipcode, String photo_url, String resetPasswordToken) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.password_confirm = password_confirm;
         this.zipcode = zipcode;
         this.photo_url = photo_url;
+        this.resetPasswordToken = resetPasswordToken;
     }
     //copy
     public User (User copy){
@@ -74,6 +79,7 @@ public class User {
         password_confirm = copy.password_confirm;
         zipcode = copy.zipcode;
         photo_url = copy.photo_url;
+        resetPasswordToken = copy.resetPasswordToken;
     }
 
     public Long getId() {
@@ -126,6 +132,14 @@ public class User {
 
     public String getPhoto_url() {
         return photo_url;
+    }
+
+    public String getResetPasswordToken() {
+        return resetPasswordToken;
+    }
+
+    public void setResetPasswordToken(String resetPasswordToken) {
+        this.resetPasswordToken = resetPasswordToken;
     }
 
     public void setPhoto_url(String photo_url) {

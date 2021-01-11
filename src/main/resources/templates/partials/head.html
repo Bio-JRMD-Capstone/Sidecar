@@ -2,29 +2,27 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-    <head th:fragment="head(title)">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-        <title><th:block th:text="${title}"></th:block></title>
+    <title><th:block th:text="${title}"></th:block></title>
 
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMpJ-NawmnjMOSlkw5uXkLYjDTSzEmvag&callback=initMap&libraries=&v=weekly" defer></script>
-    <!-- jQuery for maps DO NOT DELETE DONELLE -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMpJ-NawmnjMOSlkw5uXkLYjDTSzEmvag&callback=initMap&libraries=&v=weekly" defer></script>
 
-        <!-- jQuery for maps DO NOT DELETE -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- jQuery for maps DO NOT DELETE -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Bootstrap Stylesheet Link -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">    <!--    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">    <!--    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
 
     <!-- Landing page icons stylesheet -->
-        <link rel="stylesheet" th:href="@{/css/icon-font.css}">
+    <link rel="stylesheet" th:href="@{/css/icon-font.css}">
 
     <!-- CSS/Sass stylesheet -->
-        <link rel="stylesheet" type="text/css" th:href="@{/sass/style.css}">
-    </head>
+    <link rel="stylesheet" type="text/css" th:href="@{/sass/style.css}">
+</head>
 
-    <body></body>
+<body></body>
 
 </html>

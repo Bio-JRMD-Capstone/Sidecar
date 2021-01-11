@@ -41,13 +41,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/points/create",
                         "/point/{id}/edit",
                         "/profile",
-                        "/user/{id}/edit"
+                        "/user/**"
                 )
                 .authenticated()
 
                 .and()
                 .authorizeRequests()
                 .antMatchers("/",
+                        "/forgot_password_form",
+                        "/reset_password_form",
                         "/routes",
                         "/points",
                         "/events",
