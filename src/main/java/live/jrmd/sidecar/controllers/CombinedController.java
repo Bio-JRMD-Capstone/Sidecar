@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -46,4 +47,13 @@ public class CombinedController {
         model.addAttribute("points", poiDao.findAll());
         return "combined/index";
     }
+
+    @GetMapping("/all/search")
+    public String showCombined(Model model, @RequestParam(name = "entered-location") String enteredLocation){
+        model.addAttribute("location", enteredLocation);
+        model.addAttribute("routes", routeDao.findAll());
+        model.addAttribute("points", poiDao.findAll());
+        return "combined/index";
+    }
 }
+

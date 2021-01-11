@@ -40,8 +40,8 @@
                             <a class="nav-link" id="myprofile" href="/profile" tabindex="-1" >My Profile</a>
                         </li>
                     </ul>
-                    <form class="d-flex justify-content-end navbar__search">
-                        <input class="form-control navbar__search-input" type="search" placeholder="Where to?" aria-label="Search">
+                    <form class="d-flex justify-content-end navbar__search" action="/all/search" method="get">
+                        <input class="form-control navbar__search-input" type="search" placeholder="Where to?" aria-label="Search" name="entered-location">
                         <button class="btn navbar__search-btn" type="submit">Search</button>
                     </form>
                 </div>
