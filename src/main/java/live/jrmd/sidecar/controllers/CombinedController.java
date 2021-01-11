@@ -32,31 +32,10 @@ public class CombinedController {
         this.users = users;
     }
 
-
-
-//    @GetMapping("/routes.json")
-//    public @ResponseBody
-//    List<Route> viewAllRoutesInJSON() {
-//        return routeDao.findAll();
-//    }
-//
-//    @GetMapping("/points.json")
-//    public @ResponseBody
-//    List<POI> viewAllPointsInJSON() {
-//        return poiDao.findAll();
-//    }
-
     @GetMapping("/all")
     public String showCombined(Model model){
         model.addAttribute("routes", routeDao.findAll());
         model.addAttribute("points", poiDao.findAll());
         return "combined/index";
     }
-
-
-//    @GetMapping("/events.json")
-//    public @ResponseBody
-//    List<Route> viewAllEventInJSONFormat() {
-//        return eventDao.findAll();
-//    }
 }

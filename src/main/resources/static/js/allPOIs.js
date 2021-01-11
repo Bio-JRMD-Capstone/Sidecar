@@ -8,7 +8,8 @@ function initMap() {
     });
     geocoder = new google.maps.Geocoder();
     document.getElementById("submit").addEventListener("click", () => {
-        geocodeAddress(geocoder, map);
+        const address = document.getElementById("address").value;
+        geocodeAddress(geocoder, map, address);
     });
     infoWindow = new google.maps.InfoWindow();
 
@@ -93,9 +94,8 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 //Geocoder, searches for input location and centers map on it
-function geocodeAddress(geocoder, resultsMap) {
-    const address = document.getElementById("address").value;
-    geocoder.geocode({address: address}, (results, status) => {
+function geocodeAddress(geocoder, resultsMap, location) {
+    geocoder.geocode({address: location}, (results, status) => {
         if (status === "OK") {
             resultsMap.setCenter(results[0].geometry.location);
         } else {
