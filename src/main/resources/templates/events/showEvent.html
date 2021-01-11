@@ -11,12 +11,14 @@
         <nav th:replace="partials/navbar :: nav"></nav>
         <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
 
-        <main class="poi">
-            <section class="event"><a class="btn btn--green" th:href="@{/events}">Back to all events</a>
-                <div class="event__single row u-margin-top-md">
-                    <section class="col-2-of-3">
+        <main class="event">
+
+                <a class="btn btn--green u-margin-bottom-sm" th:href="@{/events}">Back to all events</a>
+                <div class="event-box">
+                    <section class="col-event-2">
                         <div class="poi__map">
                             <div id="map"></div>
+
                             <div class="poi__map-coords">
                                 <input type="hidden" id="lat" th:value="${event.lat}">
                                 <input type="hidden" id="lng" th:value="${event.lon}">
@@ -27,16 +29,18 @@
                         <img class="event__single--image" th:if="${event.filePath == ''}" src="/images/placeholders/event.png" alt="placeholder event image">
                         <img class="event__single--image" th:if="${event.filePath != ''}" th:src="${event.filePath}" th:alt="${event.name}">
                     </div>
-
-                    <div class="col-2-of-3">
-                        <p class="event__single--title" th:text="${event.name}"></p>
+                    <div class="col-event-1">
+                        <div class="event__single--image">
+                            <img class="poi-img" th:src="${event.filePath}" th:alt="${event.name}">
+                        </div>
+                        <p class="heading-tertiary" th:text="${event.name}"></p>
                         <p class="event__single--text">Category: <span th:each="eventCategory : ${event.eventCategories}" th:text=" ${eventCategory.name}"></span></p>
                         <p class="event__single--text" th:text="'Date: ' + ${event.date}"></p>
                         <hr>
                         <p class="event__single--text" th:text="${event.description}"></p>
                     </div>
                 </div>
-            </section>
+
         </main>
 
         <div th:include="partials/footer :: footer"></div>

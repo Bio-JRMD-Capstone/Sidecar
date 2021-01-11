@@ -919,6 +919,14 @@ body {
   width: calc(2* ((100% - 2 * 6rem) / 3) + 6rem);
 }
 
+.col-event-1 {
+  width: calc((100% - 2 * 6rem) / 3);
+}
+
+.col-event-2 {
+  width: calc(2* ((100% - 2 * 6rem) / 3) + 6rem);
+}
+
 .feature-box {
   color: #3F3622;
   border: 2px solid #3F3622;
