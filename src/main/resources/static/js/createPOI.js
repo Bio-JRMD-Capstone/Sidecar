@@ -1,10 +1,6 @@
 let map, infoWindow, geocoder;
 var userMarker;
 
-$(document).ready(function(){
-    $('select').formSelect();
-});
-
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: 29.4241, lng: -98.4936 },
