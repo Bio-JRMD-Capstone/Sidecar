@@ -1,6 +1,7 @@
 package live.jrmd.sidecar.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.security.PrivateKey;
 import java.util.List;
 
@@ -11,6 +12,7 @@ public class Route {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotBlank(message = "Routes must have a title")
     @Column(nullable = false, length = 50)
     private String title;
 
@@ -20,14 +22,17 @@ public class Route {
     @Column(nullable = false, length = 25)
     private String time;
 
+    @NotBlank(message = "Routes must have a description")
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
+    @NotBlank(message = "Routes must have markers on the map")
     @Column(nullable = false, columnDefinition = "TEXT")
     private String coordinates;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "route")
     private List<RouteComment> routeComments;
+
 
     @ManyToOne
     @JoinColumn(name = "user_id")
