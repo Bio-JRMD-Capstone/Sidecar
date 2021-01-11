@@ -12,21 +12,22 @@ public class Route {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotBlank(message = "Routes must have a title")
+    @NotBlank(message = "Route must have a title")
     @Column(nullable = false, length = 50)
     private String title;
 
     @Column(nullable = false, length = 255)
     private String distance;
 
+    @NotBlank(message = "Route must have a duration")
     @Column(nullable = false, length = 25)
     private String time;
 
-    @NotBlank(message = "Routes must have a description")
+    @NotBlank(message = "Route must have a description")
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
-    @NotBlank(message = "Routes must have markers on the map")
+    @NotBlank(message = "Route must have markers on the map")
     @Column(nullable = false, columnDefinition = "TEXT")
     private String coordinates;
 
