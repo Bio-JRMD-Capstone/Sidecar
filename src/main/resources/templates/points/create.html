@@ -31,8 +31,8 @@
                             <h3>Location Data</h3>
                             <form name="createpoint" th:action="@{/points/create}" th:method="post" th:object="${poi}" class="poi-data">
 
-                                <input class="poi__input" type="text"  th:field="*{name}" id="name" name="name" placeholder="title">
-                                <label class="poi__label" for="name">Enter a name:</label>
+                                <input class="poi__input" type="text"  th:field="*{name}" id="name" name="name" placeholder="Title">
+                                <label class="poi__label" for="name">Title</label>
 
                                 <!--Need a dropdown or other menu for POI category: Bar, Restaurant, Scenic View, Repair Shop, Other-->
 

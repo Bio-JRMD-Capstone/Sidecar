@@ -90,7 +90,8 @@ body {
 }
 
 main {
-  min-height: 75vh;
+  min-height: 90vh;
+  position: relative;
 }
 
 body {
@@ -274,6 +275,11 @@ body {
   z-index: -1;
   opacity: 0.15;
   overflow: hidden;
+}
+@media (max-width: 56.25em) {
+  .bg-video {
+    visibility: hidden;
+  }
 }
 .bg-video__content {
   height: 100%;
@@ -591,6 +597,15 @@ body {
 }
 .composition:hover .composition__photo:not(:hover) {
   transform: scale(0.95);
+}
+
+.diagonal {
+  background-color: #fff;
+  height: 3rem;
+  transform: skewY(-5deg);
+}
+.diagonal > * {
+  transform: skewY(5deg);
 }
 
 .edit {
@@ -1141,7 +1156,7 @@ body {
   flex-direction: column;
 }
 .map-box {
-  padding: 3rem;
+  padding: 1rem;
   background-color: #BEB6A6;
   height: 100%;
   display: flex;
@@ -1585,8 +1600,8 @@ body {
   padding: 3rem;
 }
 .profile__password-edit {
-  width: 75%;
-  text-align: right;
+  width: 50%;
+  margin: auto;
 }
 @media (max-width: 43.75em) {
   .profile__password-edit {
@@ -1887,7 +1902,7 @@ body {
 }
 
 .header {
-  height: 88vh;
+  height: 85vh;
   background-image: url("/images/harley-davidson-zGzXsJUBQfs-unsplash.jpeg");
   background-size: cover;
   background-position: top;
@@ -2174,17 +2189,12 @@ body {
 }
 
 .section-features {
-  padding-top: 12rem;
+  padding-top: 8rem;
   padding-bottom: 4rem;
-  margin-top: -10rem;
-  transform: skewY(-7deg);
-}
-.section-features > * {
-  transform: skewY(7deg);
 }
 @media (max-width: 56.25em) {
   .section-features {
-    padding: 10rem 0;
+    padding: 7rem 0;
   }
 }
 
