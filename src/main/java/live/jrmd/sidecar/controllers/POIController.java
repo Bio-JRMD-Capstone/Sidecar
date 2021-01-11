@@ -51,6 +51,7 @@ public class POIController {
 
     @GetMapping("/points/create")
     public String addPOIs(Model model) {
+
         try {
             User userDb = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("location", userDb.getZipcode());

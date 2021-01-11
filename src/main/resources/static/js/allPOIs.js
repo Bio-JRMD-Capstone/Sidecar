@@ -1,13 +1,16 @@
 let map, infoWindow, geocoder;
+
 let userLocation = $("#location").text();
 
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
         center: {lat: 39.63476588674744, lng: -101.15442912683487 },
+
         zoom: 5
     });
 
     geocoder = new google.maps.Geocoder();
+
     infoWindow = new google.maps.InfoWindow();
 
     //Grabs the user's zipcode from the HTML and centers map on the location
@@ -16,6 +19,7 @@ function initMap() {
     //Event listener for enter location button
     document.getElementById("submit").addEventListener("click", () => {
         const address = document.getElementById("address").value;
+
         geocodeAddress(geocoder, map, address);
     });
 

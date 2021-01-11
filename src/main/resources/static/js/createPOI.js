@@ -1,5 +1,6 @@
 let map, infoWindow, geocoder;
 var userMarker;
+
 let userLocation = $("#location").text();
 
 function initMap() {
@@ -44,6 +45,7 @@ function initMap() {
         "other": {
             icon: iconBase + "other.png"
         }
+
     };
 
     //When the map is clicked, add a point and fill in the lat/lng values in html using jQuery
@@ -68,6 +70,7 @@ function initMap() {
 //Geocoder, searches for input location and centers map on it
 function geocodeAddress(geocoder, resultsMap, location) {
     geocoder.geocode({address: location}, (results, status) => {
+
         if (status === "OK") {
             resultsMap.setCenter(results[0].geometry.location);
         } else {
@@ -77,6 +80,7 @@ function geocodeAddress(geocoder, resultsMap, location) {
         }
     });
 }
+
 
 //Takes in an address and geocodes it, then sets the map to a zoom level of 9
 function setLocation(geocoder, map, location) {

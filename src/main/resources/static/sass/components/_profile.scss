@@ -15,8 +15,8 @@
   }
 
   &__password-edit {
-    width: 75%;
-    text-align: right;
+    width: 50%;
+    margin: auto;
     @include respond(phone) {
       width: 100%;
       text-align: center;
