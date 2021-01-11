@@ -1,5 +1,7 @@
 package live.jrmd.sidecar.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -17,10 +19,12 @@ public class RouteComment {
     private Date timestamp;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn (name = "user_id")
     private User user;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn (name = "route_id")
     private Route route;
 

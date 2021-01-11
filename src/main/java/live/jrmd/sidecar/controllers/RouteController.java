@@ -61,17 +61,20 @@ public class RouteController {
 
     @GetMapping("/route/{id}")
     public String viewPost(@PathVariable(name= "id") long id, Model model ) {
-        Route route = routeDao.getRouteById(id);
-        model.addAttribute("route", route);
-        model.addAttribute("routeComments", routeCommentDao.findAllByRoute(route));
+//        Route route = routeDao.getRouteById(id);
+//        List routeComments = routeCommentDao.findAllByRouteId(id);
+        model.addAttribute("route", routeDao.getRouteById(id));
+        model.addAttribute("routeComments", routeCommentDao.findAllByRouteId(id));
         model.addAttribute("newComment", new RouteComment());
         return "routes/showRoute";
     }
+
     @GetMapping("/route/{id}/edit")
     public String editRoute(@PathVariable(value = "id") long id, Model model) {
         model.addAttribute("routeToEdit", routeDao.getRouteById(id));
         return "routes/edit";
     }
+
     @PostMapping("/route/{id}/edit")
     public String editRoute(
             @Valid Route route,

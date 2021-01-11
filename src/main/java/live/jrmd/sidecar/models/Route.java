@@ -1,5 +1,7 @@
 package live.jrmd.sidecar.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.security.PrivateKey;
 import java.util.List;
@@ -27,6 +29,7 @@ public class Route {
     private String coordinates;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "route")
+    @JsonBackReference
     private List<RouteComment> routeComments;
 
     @ManyToOne

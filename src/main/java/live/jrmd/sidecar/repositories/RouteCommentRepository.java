@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface RouteCommentRepository extends JpaRepository<RouteComment, Long> {
-    List<RouteComment> findAllByRoute(Route route);
+    List<RouteComment> findAllByRouteId(Long id);
 }
