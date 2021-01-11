@@ -23,10 +23,12 @@
             width: 65%;
             padding-left: 1.5rem;
         }
+
         &--edit-event{
             width: 65%;
             padding-left: 1.5rem;
         }
+
         &:focus {
             outline: none;
             box-shadow: 0 1rem 2rem rgba($color-black, .1);
@@ -37,6 +39,7 @@
             border-bottom: 3px solid $color-secondary-dark;
 
         }
+
         &::-webkit-input-placeholder {
             color: $color-gray-darker;
         }
@@ -50,9 +53,21 @@
         margin-top: .7rem;
         display: block;
         transition: all .3s;
+        &--div {
+            color: #111;
+            text-align: right !important;
+            @include respond(tab-port){
+                text-align: center !important;
+                margin-bottom: 3rem;
+            }
+        }
         &--edit-profile {
             color: #111;
             padding-right: 1rem;
+            text-align: right !important;
+            @include respond(tab-port){
+                display: none;
+            }
         }
     }
 
