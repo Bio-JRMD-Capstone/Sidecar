@@ -38,7 +38,7 @@ public class CombinedController {
     public String showCombined(Model model){
         try {
             User userDb = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            model.addAttribute("zipcode", userDb.getZipcode());
+            model.addAttribute("location", userDb.getZipcode());
         } catch (Exception e) {
             System.out.println("e = " + e);
         }

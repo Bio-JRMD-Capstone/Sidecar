@@ -1,5 +1,5 @@
 let map, infoWindow, geocoder;
-let zipcode = $("#zipcode").text();
+let userLocation = $("#location").text();
 
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
@@ -11,7 +11,7 @@ function initMap() {
     infoWindow = new google.maps.InfoWindow();
 
     //Grabs the user's zipcode from the HTML and centers map on the location
-    setLocation(geocoder, map, zipcode);
+    setLocation(geocoder, map, userLocation);
 
     //Event listener for enter location button
     document.getElementById("submit").addEventListener("click", () => {
