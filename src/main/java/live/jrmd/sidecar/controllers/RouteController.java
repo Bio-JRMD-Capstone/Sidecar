@@ -24,6 +24,12 @@ public class RouteController {
 
     @GetMapping("/routes/create")
     public String buildARoute(Model model){
+        try {
+            User userDb = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("location", userDb.getZipcode());
+        } catch (Exception e) {
+            System.out.println("e = " + e);
+        }
         model.addAttribute("route", new Route());
         return "routes/create";
     }
@@ -38,6 +44,12 @@ public class RouteController {
 
     @GetMapping("/routes")
     public String showAllRoutes(Model model){
+        try {
+            User userDb = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("location", userDb.getZipcode());
+        } catch (Exception e) {
+            System.out.println("e = " + e);
+        }
         model.addAttribute("routes", routeDao.findAll());
         return "routes/index";
     }
