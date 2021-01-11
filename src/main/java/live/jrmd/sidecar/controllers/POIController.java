@@ -28,6 +28,7 @@ public class POIController {
     public String showAllPOIs(Model model){
         return "points/index";
     }
+
     @GetMapping("/searchPOIs")
     public String search(@RequestParam(name = "term") String term, Model model){
         term = "%"+term+"%";
@@ -35,6 +36,7 @@ public class POIController {
         model.addAttribute("points", searchPOIs);
         return "points/index";
     }
+
     @GetMapping("/points.json")
     public @ResponseBody List<POI> viewAllPOIInJSONFormat() {
         return poiDao.findAll();
@@ -42,6 +44,8 @@ public class POIController {
 
     @GetMapping("/points/create")
     public String addPOIs(Model model) {
+        User userDb = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", userDb);
         model.addAttribute("poi", new POI());
         model.addAttribute("pCategories", pCatDao.findAll());
         return "points/create";

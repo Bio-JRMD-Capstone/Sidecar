@@ -1,20 +1,36 @@
 let map, infoWindow, geocoder;
-var userMarker;
+let thisEventLat = parseFloat($("#lat").val());
+let thisEventLng = parseFloat($("#lng").val());
+// let category = $("#category").text();
 
-$(document).ready(function(){
-    $('select').formSelect();
-});
+
+//Formatting the category correctly for the card
+// var categoryString = category.replace(category.charAt(0), category.charAt(0).toUpperCase());
+// if(categoryString.includes("_")) {
+//     categoryString = categoryString.replace(
+//         categoryString.charAt(categoryString.indexOf("_") + 1),
+//         categoryString.charAt(categoryString.indexOf("_") + 1).toUpperCase());
+//     categoryString = categoryString.replace("_", " ");
+// }
+// $("#category").text(categoryString);
+
 
 function initMap() {
+    //Taking the values of the lat and lng of the thisEvent we need, then centering the map on the thisEvent
     map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 29.4241, lng: -98.4936 },
-        zoom: 10,
-    });
-    geocoder = new google.maps.Geocoder();
-    document.getElementById("submit").addEventListener("click", () => {
-        geocodeAddress(geocoder, map);
+        center: { lat: thisEventLat, lng: thisEventLng },
+        zoom: 15,
     });
     infoWindow = new google.maps.InfoWindow();
+
+    //Pans the map back to the thisEvent if the center of the map changes
+    map.addListener("center_changed", () => {
+        // 5 seconds after the center of the map has changed, pan back to the
+        // marker.
+        window.setTimeout(() => {
+            map.panTo({ lat: thisEventLat, lng: thisEventLng});
+        }, 5000);
+    });
 
     //To save on typing, I save the relative filepath as a variable since we will be using it a lot just below
     const iconBase = "/css/images/";
@@ -71,20 +87,13 @@ function initMap() {
         }
     });
 
-    //When the map is clicked, add a point and fill in the lat/lng values in html using jQuery
-    google.maps.event.addListener(map, "click", function(event) {
-        placeMarker(event.latLng);
-        $('#lat').val(event.latLng.lat());
-        $('#lon').val(event.latLng.lng());
-    });
-
     //This is supposed to retrieve the list of POIs in JSON format so we can work with it to display them on the map.
     // See https://java.codeup.com/spring/extra-features/json-response/ for more info
     (function($) {
-        var request = $.ajax({'url': '/points.json'});
-        request.done(function (points) {
-            points.forEach(function(point) {
-                drawPOIs(point, icons, infoWindow, map);
+        var request = $.ajax({'url': '/events.json'});
+        request.done(function (thisEvents) {
+            thisEvents.forEach(function(thisEvent) {
+                drawEvents(thisEvent, icons, infoWindow, map);
             });
         });
     })(jQuery);
@@ -115,52 +124,37 @@ function geocodeAddress(geocoder, resultsMap) {
     });
 }
 
-//Adds markers for the POIs on the map and assigns their infowindow information
-function drawPOIs(poi, icons, infoWindow, map) {
+//Adds markers for the thisEvents on the map and assigns their infowindow information
+function drawEvents(thisEvent, icons, infoWindow, map) {
     //Setting up the proper latLng object notation so it can be read by Google Maps
     let coords = {
-        'lat': Number(poi.lat),
-        'lng': Number(poi.lon)
+        'lat': Number(thisEvent.lat),
+        'lng': Number(thisEvent.lon)
     };
     //Creates a marker and assigns some info to it
     let marker = new google.maps.Marker({
         position: coords,
-        title: poi.name,
-        //Looks at the poi type and references the icon array to determine what icon it uses
-        icon: icons[poi.category].icon
+        title: thisEvent.name,
+        //PLaceholder event icon
+        icon: "/images/icons/event.png"
     });
     //The line that actually attaches a marker to the map
     marker.setMap(map);
     //Allowing the category to be correctly displayed in the infowindow by capitalizing the letters
     //and replacing any underscores with a space
-    var categoryString = poi.category.replace(poi.category.charAt(0), poi.category.charAt(0).toUpperCase());
-    if(categoryString.includes("_")) {
-        categoryString = categoryString.replace(
-            categoryString.charAt(categoryString.indexOf("_") + 1),
-            categoryString.charAt(categoryString.indexOf("_") + 1).toUpperCase());
-        categoryString = categoryString.replace("_", " ");
-    }
+    // var categoryString = poi.category.replace(poi.category.charAt(0), poi.category.charAt(0).toUpperCase());
+    // if(categoryString.includes("_")) {
+    //     categoryString = categoryString.replace(
+    //         categoryString.charAt(categoryString.indexOf("_") + 1),
+    //         categoryString.charAt(categoryString.indexOf("_") + 1).toUpperCase());
+    //     categoryString = categoryString.replace("_", " ");
+    // }
     //This connects the info window to the marker, allowing information, links, any HTML really to be displayed
     google.maps.event.addListener(marker, 'click', function() {
-        infoWindow.setContent("<h6>" + poi.name + "</h6>" +
-                              "<p><strong>" + categoryString + "</strong><br>" +
-                              poi.description + "</p>" +
-                              "<a href='/points/" + poi.id + "'>More Info</a>");
+        infoWindow.setContent("<h6>" + thisEvent.name + "</h6>" +
+            // "<p><strong>" + categoryString + "</strong><br>" +
+            thisEvent.description + "</p>" +
+            "<a href='/event/" + thisEvent.id + "'>More Info</a>");
         infoWindow.open(map, marker);
     });
-}
-
-//if marker already exists on map, move it. if not, create it at the location
-function placeMarker(location) {
-    if (userMarker) {
-        //if marker already was created change positon
-        userMarker.setPosition(location);
-    } else {
-        //create a marker
-        userMarker = new google.maps.Marker({
-            position: location,
-            map: map,
-            draggable: true
-        });
-    }
 }
