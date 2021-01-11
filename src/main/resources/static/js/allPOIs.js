@@ -1,18 +1,27 @@
 let map, infoWindow, geocoder;
 
-
+let userLocation = $("#location").text();
 
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
         center: {lat: 39.63476588674744, lng: -101.15442912683487 },
-        zoom: 5,
+
+        zoom: 5
     });
+
     geocoder = new google.maps.Geocoder();
 
+    infoWindow = new google.maps.InfoWindow();
+
+    //Grabs the user's zipcode from the HTML and centers map on the location
+    setLocation(geocoder, map, userLocation);
+
+    //Event listener for enter location button
     document.getElementById("submit").addEventListener("click", () => {
+        const address = document.getElementById("address").value;
+
         geocodeAddress(geocoder, map, address);
     });
-    infoWindow = new google.maps.InfoWindow();
 
     //To save on typing, I save the relative filepath as a variable since we will be using it a lot just below
     const iconBase = "/css/images/";
@@ -38,36 +47,7 @@ function initMap() {
         "other": {
             icon: iconBase + "other.png"
         }
-    }
-
-    //Pan to current location button
-    const locationButton = document.createElement("button");
-    locationButton.textContent = "Pan to Current Location";
-    locationButton.classList.add("custom-map-control-button");
-    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(locationButton);
-    locationButton.addEventListener("click", () => {
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const pos = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude,
-                    };
-                    infoWindow.setPosition(pos);
-                    infoWindow.setContent("Location found.");
-                    infoWindow.open(map);
-                    map.setCenter(pos);
-                },
-                () => {
-                    handleLocationError(true, infoWindow, map.getCenter());
-                }
-            );
-        } else {
-            // Browser doesn't support Geolocation
-            handleLocationError(false, infoWindow, map.getCenter());
-        }
-    });
+    };
 
     //This is supposed to retrieve the list of POIs in JSON format so we can work with it to display them on the map.
     // See https://java.codeup.com/spring/extra-features/json-response/ for more info
@@ -83,21 +63,9 @@ function initMap() {
 
 }
 
-//If GeoLocation fails
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(
-        browserHasGeolocation
-            ? "Error: The Geolocation service failed."
-            : "Error: Your browser doesn't support geolocation."
-    );
-    infoWindow.open(map);
-}
-
 //Geocoder, searches for input location and centers map on it
-function geocodeAddress(geocoder, resultsMap) {
-    const address = document.getElementById("address").value;
-    geocoder.geocode({address: address}, (results, status) => {
+function geocodeAddress(geocoder, resultsMap, location) {
+    geocoder.geocode({address: location}, (results, status) => {
         if (status === "OK") {
             resultsMap.setCenter(results[0].geometry.location);
         } else {
@@ -106,6 +74,14 @@ function geocodeAddress(geocoder, resultsMap) {
             );
         }
     });
+}
+
+//Takes in an address and geocodes it, then sets the map to a zoom level of 9
+function setLocation(geocoder, map, location) {
+    if (location) {
+        geocodeAddress(geocoder, map, location);
+        map.setZoom(9);
+    }
 }
 
 //Adds markers for the POIs on the map and assigns their infowindow information
