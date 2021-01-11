@@ -70,6 +70,7 @@ public class ForgotPassword {
     public String processForgotPassword(HttpServletRequest request, Model model) {
         String email = request.getParameter("email");
         String token = RandomString.make(30);
+//        User user = userDao.getUserByEmail(email);
 
         try{
             userService.updateResetPasswordToken(token, email);
