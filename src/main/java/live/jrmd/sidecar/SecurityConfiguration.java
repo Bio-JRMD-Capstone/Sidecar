@@ -33,32 +33,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/")
-                .permitAll()
-
-                .and()
-                .logout()
-                .logoutSuccessUrl("/login?logout")
-
-                .and()
-                .authorizeRequests()
-                .antMatchers("/",
-                                        "/routes",
-                                        "/points",
-                                        "/events",
-                                        "/js/**",
-                                        "/css/**"
-                )
-                .permitAll()
-
-                .and()
-                .authorizeRequests()
-                .antMatchers(
-
-                        "/route/{id}/edit",
+        http.authorizeRequests()
+                .antMatchers("/route/{id}/edit",
                         "/routes/create",
                         "/events/create",
                         "/event/{id}/edit",
@@ -68,6 +44,28 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/user/{id}/edit"
                 )
                 .authenticated()
+
+                .and()
+                .authorizeRequests()
+                .antMatchers("/",
+                        "/routes",
+                        "/points",
+                        "/events",
+                        "/js/**",
+                        "/css/**"
+                )
+                .permitAll()
+
+                .and()
+                .logout()
+                .logoutSuccessUrl("/login?logout")
+
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/")
+                .permitAll()
+
         ;
     }
 }
