@@ -2,7 +2,9 @@ package live.jrmd.sidecar.controllers;
 
 import live.jrmd.sidecar.models.POI;
 import live.jrmd.sidecar.models.Route;
+import live.jrmd.sidecar.models.User;
 import live.jrmd.sidecar.repositories.*;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +36,12 @@ public class CombinedController {
 
     @GetMapping("/all")
     public String showCombined(Model model){
+        try {
+            User userDb = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("zipcode", userDb.getZipcode());
+        } catch (Exception e) {
+            System.out.println("e = " + e);
+        }
         model.addAttribute("routes", routeDao.findAll());
         model.addAttribute("points", poiDao.findAll());
         return "combined/index";

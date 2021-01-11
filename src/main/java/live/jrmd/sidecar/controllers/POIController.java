@@ -51,8 +51,13 @@ public class POIController {
 
     @GetMapping("/points/create")
     public String addPOIs(Model model) {
+        try {
+            User userDb = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("zipcode", userDb.getZipcode());
+        } catch (Exception e) {
+            System.out.println("e = " + e);
+        }
         model.addAttribute("poi", new POI());
-        model.addAttribute("pCategories", pCatDao.findAll());
         return "points/create";
     }
     @PostMapping("/points/create")
