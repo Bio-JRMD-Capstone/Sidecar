@@ -24,7 +24,8 @@
                         </div>
                     </section>
                     <div class="col-1-of-3">
-                        <img class="event__single--image" th:src="${event.filePath}" th:alt="${event.name}">
+                        <img class="event__single--image" th:if="${event.filePath == ''}" src="/images/placeholders/event.png" alt="placeholder event image">
+                        <img class="event__single--image" th:if="${event.filePath != ''}" th:src="${event.filePath}" th:alt="${event.name}">
                     </div>
 
                     <div class="col-2-of-3">

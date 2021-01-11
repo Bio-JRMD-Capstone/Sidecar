@@ -1,14 +1,16 @@
 let map, infoWindow, geocoder;
-var userMarker;
+
+
 
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 29.4241, lng: -98.4936 },
-        zoom: 10,
+        center: {lat: 39.63476588674744, lng: -101.15442912683487 },
+        zoom: 5,
     });
     geocoder = new google.maps.Geocoder();
+
     document.getElementById("submit").addEventListener("click", () => {
-        geocodeAddress(geocoder, map);
+        geocodeAddress(geocoder, map, address);
     });
     infoWindow = new google.maps.InfoWindow();
 
