@@ -22,7 +22,12 @@
                                     Login:
                                 </h2>
                             </div>
-
+                            <div class="paragraph text-danger" th:if="${param.error}">
+                                Invalid Username and/or Password.
+                            </div>
+                            <div class="paragraph text-danger" th:if="${param.logout}">
+                                You have been logged out.
+                            </div>
                             <div class="form__group">
                                 <input type="text" class="form__input" placeholder="username" id="username" name="username" required>
                                 <label for="username" class="form__label">Username:</label>

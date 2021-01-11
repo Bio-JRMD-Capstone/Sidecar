@@ -16,7 +16,7 @@ public class UserService extends Exception{
     private UserRepository userDao;
 
     public void updateResetPasswordToken (String token, String email) throws UserNotFoundException {
-        User user = userDao.findByEmail(email);
+        User user = userDao.getUserByEmail(email);
         if (user != null) {
             user.setResetPasswordToken(token);
             userDao.save(user);
@@ -26,7 +26,7 @@ public class UserService extends Exception{
     }
 
     public User getByResetPasswordToken(String token){
-        return userDao.findByResetPasswordToken(token);
+        return userDao.getUserByResetPasswordToken(token);
     }
 
     public void updatePassword(User user, String newPassword) {

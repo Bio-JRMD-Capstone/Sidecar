@@ -40,7 +40,7 @@ public class UserController {
     @GetMapping("/logout")
     public String logout(){
         //remove session user
-        return "redirect:/";
+        return "redirect:/index";
     }
 
     @GetMapping("/register")

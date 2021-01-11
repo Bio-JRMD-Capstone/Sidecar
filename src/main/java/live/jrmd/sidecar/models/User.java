@@ -33,7 +33,7 @@ public class User {
     @Column()
     private String photo_url;
 
-    @Column()
+    @Column(length = 45)
     private String resetPasswordToken;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
