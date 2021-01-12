@@ -1,20 +1,25 @@
 let map, infoWindow, geocoder;
 var userMarker;
+let userLocation = $("#location").text();
 
-$(document).ready(function(){
-    $('select').formSelect();
-});
 
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 29.4241, lng: -98.4936 },
-        zoom: 10,
+        center: {lat: 39.63476588674744, lng: -101.15442912683487 },
+        zoom: 5
     });
+
     geocoder = new google.maps.Geocoder();
-    document.getElementById("submit").addEventListener("click", () => {
-        geocodeAddress(geocoder, map);
-    });
     infoWindow = new google.maps.InfoWindow();
+
+    //Grabs the user's zipcode from the HTML and centers map on the location
+    setLocation(geocoder, map, userLocation);
+
+    //Event listener for enter location button
+    document.getElementById("submit").addEventListener("click", () => {
+        const address = document.getElementById("address").value;
+        geocodeAddress(geocoder, map, address);
+    });
 
     //To save on typing, I save the relative filepath as a variable since we will be using it a lot just below
     const iconBase = "/css/images/";
@@ -37,7 +42,7 @@ function initMap() {
         "Looking to ride": {
             icon: iconBase + "looking_to_ride.png"
         }
-    }
+    };
 
     //When the map is clicked, add a point and fill in the lat/lng values in html using jQuery
     google.maps.event.addListener(map, "click", function(event) {
@@ -59,9 +64,8 @@ function initMap() {
 }
 
 //Geocoder, searches for input location and centers map on it
-function geocodeAddress(geocoder, resultsMap) {
-    const address = document.getElementById("address").value;
-    geocoder.geocode({address: address}, (results, status) => {
+function geocodeAddress(geocoder, resultsMap, location) {
+    geocoder.geocode({address: location}, (results, status) => {
         if (status === "OK") {
             resultsMap.setCenter(results[0].geometry.location);
         } else {
@@ -70,6 +74,14 @@ function geocodeAddress(geocoder, resultsMap) {
             );
         }
     });
+}
+
+//Takes in an address and geocodes it, then sets the map to a zoom level of 9
+function setLocation(geocoder, map, location) {
+    if (location) {
+        geocodeAddress(geocoder, map, location);
+        map.setZoom(9);
+    }
 }
 
 //Adds markers for the Events on the map and assigns their infowindow information
