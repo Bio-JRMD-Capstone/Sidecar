@@ -61,6 +61,12 @@ function initMap() {
                 drawRoutes(route, infoWindow, map);
             });
         });
+        var requestEvent = $.ajax({'url': '/events.json'});
+        requestEvent.done(function (events) {
+            events.forEach(function (event) {
+                drawEvents(event, icons, infoWindow, map);
+            });
+        });
     })(jQuery);
 
 }
@@ -167,6 +173,33 @@ function drawRoutes(route, infoWindow, map) {
             "</p>" + "Distance" + "</p>" +
             "</p>" + route.distance + "</p>" +
             "<a href='/route/" + route.id + "'>View Route</a>");
+        infoWindow.open(map, marker);
+    });
+}
+
+function drawEvents(thisEvent, icons, infoWindow, map) {
+    //Setting up the proper latLng object notation so it can be read by Google Maps
+    let coords = {
+        'lat': Number(thisEvent.lat),
+        'lng': Number(thisEvent.lon)
+    };
+    //Creates a marker and assigns some info to it
+    let marker = new google.maps.Marker({
+        position: coords,
+        title: thisEvent.name,
+        //Uses the base event Icon
+        icon: "/images/icons/event.png"
+
+    });
+    //The line that actually attaches a marker to the map
+    marker.setMap(map);
+
+    //This connects the info window to the marker, allowing information, links, any HTML really to be displayed
+    google.maps.event.addListener(marker, 'click', function() {
+        infoWindow.setContent("<h6>" + thisEvent.name + "</h6>" +
+            // "<p><strong>" + thisEvent + "</strong><br>" +
+            thisEvent.description + "</p>" +
+            "<a href='/event/" + thisEvent.id + "'>More Info</a>");
         infoWindow.open(map, marker);
     });
 }
