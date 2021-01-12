@@ -19,7 +19,7 @@
                         <div class="map__input">
                             <div class="map__input--map-btn" id="floating-pane">
                                 <input id="address" type="textbox" placeholder="Enter a location" />
-                                <input id="submit" type="button" value="View Location" />
+                                <input id="submit" class="btn btn--white" type="button" value="View Location" />
                             </div>
                             <div class="map__input--map-btn">
                                 <p>
@@ -28,14 +28,17 @@
                                         <span> Round Trip</span>
                                     </label>
                                 </p>
-                                <input class="btn-rt u-margin-right-sm" type="button" id="clearBtn" name="clearBtn" value="Clear Route">
+                                <input class="btn-rt u-margin-right-sm btn btn--white" type="button" id="clearBtn" name="clearBtn" value="Clear Route">
 
                                 <div class="field">
                                     <div class="control">
-                                        <input class="btn-rt" type="button" id="testbtn" name="testbtn" value="See Route">
+                                        <input class="btn-rt btn btn--white" type="button" id="testbtn" name="testbtn" value="See Route">
                                     </div>
                                 </div>
                             </div>
+
+                            <span th:text="${location}" hidden id="location"></span>
+
                             <div id="map"></div>
                         </div>
                         <div class="map__input">
@@ -50,15 +53,22 @@
                             <h3>Route Info</h3>
                             <form class="map-data"  th:action="@{/routes/create}" th:method="POST" th:object="${route}">
 
+
                                 <input class="map__input" type="text"  id="title" name="title" placeholder="Title" th:field="*{title}">
+                                <h4 th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"/>
 
                                 <textarea class="map__input-long" type="text" id="description" name="description" placeholder="Description" th:field="*{description}"></textarea>
+                                <h4 th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger" />
 
                                 <input class="map__input" type="text" id="distance" name="distance" placeholder="Distance" th:field="*{distance}" readonly>
 
                                 <input type="hidden" class="form-control" id="coordinates" name="coordinates" th:field="*{coordinates}">
 
                                 <input class="map__input" type="text" id="time" name="time"  placeholder="Time(Hours)" th:field="*{time}">
+                                <h4 th:if="${#fields.hasErrors('time')}" th:errors="*{time}" class="text-danger" />
+
+                                <h4 th:if="${#fields.hasErrors('coordinates')}" th:errors="*{coordinates}" class="text-danger" />
+
                                 <div class="control u-margin-top-sm">
                                     <input class="btn btn--white" type="submit" value="Save Route">
                                 </div>

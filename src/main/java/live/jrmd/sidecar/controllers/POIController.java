@@ -10,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.Date;
+import javax.el.ELException;
 import java.util.List;
 
 @Controller
@@ -30,6 +32,12 @@ public class POIController {
     @GetMapping("/points")
     public String showAllPOIs(Model model){
         model.addAttribute("points", poiDao.findAll());
+        try {
+            User userDb = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("location", userDb.getZipcode());
+        } catch (Exception e) {
+            System.out.println("e = " + e);
+        }
         return "points/index";
     }
 
@@ -48,8 +56,14 @@ public class POIController {
 
     @GetMapping("/points/create")
     public String addPOIs(Model model) {
+
+        try {
+            User userDb = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("location", userDb.getZipcode());
+        } catch (Exception e) {
+            System.out.println("e = " + e);
+        }
         model.addAttribute("poi", new POI());
-        model.addAttribute("pCategories", pCatDao.findAll());
         return "points/create";
     }
     @PostMapping("/points/create")

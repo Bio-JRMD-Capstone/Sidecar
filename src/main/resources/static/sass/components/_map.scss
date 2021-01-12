@@ -2,6 +2,7 @@
   height: 70vh;
   width: 95%;
   margin: auto;
+
 }
 #floating-panel {
   width: 100%;
@@ -53,13 +54,15 @@
   }
 
   &-box {
-    padding: 3rem;
+
+    padding: 1rem;
     background-color: $color-primary-light;
     height: 100%;
     display: flex;
     flex-wrap: wrap;
     overflow: auto;
     margin-bottom: 3rem;
+
 
     @include respond(nav-collapse) {
       padding: 2rem;

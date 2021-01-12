@@ -35,6 +35,22 @@ public class POI {
     @JsonBackReference
     private List<POIComment> poiComments;
 
+    @Override
+    public String toString() {
+        return "POI{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lat='" + lat + '\'' +
+                ", lon='" + lon + '\'' +
+                ", description='" + description + '\'' +
+                ", photo_url='" + photo_url + '\'' +
+                ", category='" + category + '\'' +
+                ", poiComments=" + poiComments +
+                ", user=" + user +
+                ", pCategoryList=" + pCategoryList +
+                '}';
+    }
+
     @ManyToOne
     @JsonManagedReference
     @JoinColumn(name = "user_id")

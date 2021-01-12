@@ -52,11 +52,10 @@
                     <section class="col-map-1">
                         <div class="map__input">
                             <div class="poi__info-img">
-                                <!--   Trying to get conditional if statements working for the img tag, can't figure out how to get it to work     -->
-                                <img class="poi-img" th:src="${point.photo_url}" height="300rem" alt="poi image" />
+                                <img class="poi-img" th:if="${point.photo_url == ''}" src="/images/placeholders/point.png" height="300rem" alt="placeholder image" />
+                                <img class="poi-img" th:if="${point.photo_url != ''}" th:src="${point.photo_url}" height="300rem" alt="poi image" />
                             </div>
                             <div class="poi__info-text">
-
                                 <p th:text="${point.category}" id="category"></p>
                                 <p th:text="${point.description}"></p>
                             </div>
@@ -65,6 +64,7 @@
                 </div>
             </div>
         </main>
+      
         <div th:include="partials/footer :: footer"></div>
         <div th:include="partials/scripts :: scripts"></div>
         <script src="/js/showPOI.js"></script>

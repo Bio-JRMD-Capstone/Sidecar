@@ -20,7 +20,7 @@
                                 <input id="address" type="textbox" placeholder="Enter a location" />
                                 <input id="submit" type="button" value="View Location" />
                             </div>
-
+                            <span th:text="${location}" hidden id="location"></span>
                             <div id="map">Map</div>
                         </div>
                     </div>
@@ -30,8 +30,8 @@
                             <h3>Location Data</h3>
                             <form name="createpoint" th:action="@{/points/create}" th:method="post" th:object="${poi}" class="poi-data">
 
-                                <input class="poi__input" type="text"  th:field="*{name}" id="name" name="name" placeholder="title">
-                                <label class="poi__label" for="name">Enter a name:</label>
+                                <input class="poi__input" type="text"  th:field="*{name}" id="name" name="name" placeholder="Title">
+                                <label class="poi__label" for="name">Title</label>
 
                                 <!--Need a dropdown or other menu for POI category: Bar, Restaurant, Scenic View, Repair Shop, Other-->
 
@@ -97,7 +97,7 @@
         <script src="/js/keys.js"></script>
         <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
         <script src="/js/filestack.js"></script>
-        <script src="/js/addPOI.js"></script>
+        <script src="/js/createPOI.js"></script>
         <div th:include="partials/footer :: footer"></div>
         <div th:include="partials/scripts :: scripts"></div>
 
