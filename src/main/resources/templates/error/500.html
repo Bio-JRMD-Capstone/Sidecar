@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="'Error: ' + ${error}"></title>
+</head>
+<body>
+    <div><p>Internal Server Error.</p></div>
+    <p>Watch a video instead:</p>
+    <iframe
+        width="420"
+        height="315"
+        src="https://www.youtube.com/embed/NN75im_us4k?autoplay=1"
+        frameborder="0"
+        allowfullscreen="allowfullscreen"
+    >
+    </iframe>
+</body>
+</html>
