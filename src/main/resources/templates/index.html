@@ -8,7 +8,7 @@
     </head>
 
     <body>
-        <nav th:replace="partials/navbar :: nav"></nav>
+        <nav th:replace="partials/nav-search :: nav"></nav>
     <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
 
         <header class="header">
@@ -24,10 +24,15 @@
                 </h1>
             </div>
         </header>
-
         <main>
             <section class="section-features">
-                <div class="row">
+                <div class="bg-video">
+                    <video class="bg-video__content" autoplay muted loop>
+                        <source src="/images/1061493244-preview.mp4" type="video/mp4">
+                        Your browser is not supported!
+                    </video>
+                </div>
+                <div class="row u-margin-top-lg">
                     <div class="col-1-of-3">
                         <div class="feature-box">
                             <i class="feature-box__icon icon-basic-map"></i>

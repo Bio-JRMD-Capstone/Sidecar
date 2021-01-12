@@ -35,6 +35,22 @@ public class POI {
     @JsonBackReference
     private List<POIComment> poiComments;
 
+    @Override
+    public String toString() {
+        return "POI{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lat='" + lat + '\'' +
+                ", lon='" + lon + '\'' +
+                ", description='" + description + '\'' +
+                ", photo_url='" + photo_url + '\'' +
+                ", category='" + category + '\'' +
+                ", poiComments=" + poiComments +
+                ", user=" + user +
+                ", pCategoryList=" + pCategoryList +
+                '}';
+    }
+
     @ManyToOne
     @JsonManagedReference
     @JoinColumn(name = "user_id")
@@ -48,13 +64,7 @@ public class POI {
     )
     private List<POICategory> pCategoryList;
 
-    public List<POIComment> getPoiComments() {
-        return poiComments;
-    }
 
-    public void setPoiComments(List<POIComment> poiComments) {
-        this.poiComments = poiComments;
-    }
 
     public POI(){}
 
@@ -87,8 +97,6 @@ public class POI {
         description = copy.description;
         photo_url = copy.photo_url;
     }
-
-
 
     public Long getId() {
         return id;
@@ -160,5 +168,13 @@ public class POI {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<POIComment> getPoiComments() {
+        return poiComments;
+    }
+
+    public void setPoiComments(List<POIComment> poiComments) {
+        this.poiComments = poiComments;
     }
 }

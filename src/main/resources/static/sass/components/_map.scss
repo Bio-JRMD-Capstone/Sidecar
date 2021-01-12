@@ -2,6 +2,7 @@
   height: 70vh;
   width: 95%;
   margin: auto;
+
 }
 #floating-panel {
   width: 100%;
@@ -53,13 +54,15 @@
   }
 
   &-box {
-    padding: 3rem;
+
+    padding: 1rem;
     background-color: $color-primary-light;
     height: 100%;
     display: flex;
     flex-wrap: wrap;
     overflow: auto;
     margin-bottom: 3rem;
+
 
     @include respond(nav-collapse) {
       padding: 2rem;
@@ -76,6 +79,17 @@
     @include respond(tab-port){
       width: 75%;
     }
+  }
+  &__comment{
+    font-size: 1.5rem;
+    font-family: inherit;
+    color: inherit;
+    padding: 1.5rem 2rem;
+    border-radius: 2px;
+    background-color: rgba($color-white, .5);
+    border: none;
+    width: 100%;
+    display: block;
   }
   &__input {
     font-size: 1.5rem;

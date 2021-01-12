@@ -1,8 +1,8 @@
 package live.jrmd.sidecar.controllers;
 
-import live.jrmd.sidecar.models.POI;
-import live.jrmd.sidecar.models.User;
+import live.jrmd.sidecar.models.*;
 import live.jrmd.sidecar.repositories.POICatRepository;
+import live.jrmd.sidecar.repositories.POICommentRepository;
 import live.jrmd.sidecar.repositories.POIRepository;
 import live.jrmd.sidecar.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,6 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+
+import java.util.Date;
+import javax.el.ELException;
 import java.util.List;
 
 @Controller
@@ -17,15 +20,24 @@ public class POIController {
     private final POIRepository poiDao;
     private final UserRepository userDao;
     private final POICatRepository pCatDao;
+    private POICommentRepository poiCommentDao;
 
-    public POIController(POIRepository poiDao, UserRepository userDao, POICatRepository pCatDao) {
+    public POIController(POIRepository poiDao, UserRepository userDao, POICatRepository pCatDao, POICommentRepository poiCommentDao) {
         this.poiDao = poiDao;
         this.userDao = userDao;
         this.pCatDao = pCatDao;
+        this.poiCommentDao = poiCommentDao;
     }
 
     @GetMapping("/points")
     public String showAllPOIs(Model model){
+        model.addAttribute("points", poiDao.findAll());
+        try {
+            User userDb = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("location", userDb.getZipcode());
+        } catch (Exception e) {
+            System.out.println("e = " + e);
+        }
         return "points/index";
     }
 
@@ -44,8 +56,14 @@ public class POIController {
 
     @GetMapping("/points/create")
     public String addPOIs(Model model) {
+
+        try {
+            User userDb = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("location", userDb.getZipcode());
+        } catch (Exception e) {
+            System.out.println("e = " + e);
+        }
         model.addAttribute("poi", new POI());
-        model.addAttribute("pCategories", pCatDao.findAll());
         return "points/create";
     }
     @PostMapping("/points/create")
@@ -58,6 +76,8 @@ public class POIController {
     @GetMapping("/points/{id}")
     public String singlePOI(@PathVariable long id, Model model) {
         model.addAttribute("point", poiDao.getPOIById(id));
+        model.addAttribute("poiComments", poiCommentDao.findAllByPoiId(id));
+        model.addAttribute("newComment", new POIComment());
         return "points/show";
     }
     @GetMapping("/points/{id}/edit")
@@ -77,5 +97,35 @@ public class POIController {
         POI poiToDelete = poiDao.getPOIById(id);
         poiDao.delete(poiToDelete);
         return "redirect:/profile";
+    }
+
+    //Commenting
+    @PostMapping("/points/{id}/comment")
+    public String addComment(
+            @PathVariable long id,
+            @ModelAttribute POIComment newComment){
+        POIComment comment = new POIComment();
+        Date thisDate = new Date();
+        POI poi = poiDao.getPOIById(id);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        comment.setComment(newComment.getComment());
+        comment.setPoi(poi);
+        comment.setUser(user);
+        comment.setDate(thisDate);
+
+        poiCommentDao.save(comment);
+
+        return "redirect:/points/" + id;
+    }
+
+    @PostMapping("/points/{id}/delete-comment-{commentId}")
+    public String deleteComment(
+            @PathVariable(value = "id") long id,
+            @PathVariable(value = "commentId") long commentId
+    ){
+        POIComment commentToDelete = poiCommentDao.getOne(commentId);
+        poiCommentDao.delete(commentToDelete);
+        return "redirect:/points/" + id;
     }
 }

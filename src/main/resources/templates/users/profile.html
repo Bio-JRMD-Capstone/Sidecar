@@ -7,13 +7,13 @@
     </head>
 
     <body>
-        <nav th:replace="partials/navbar :: nav"></nav>
+        <nav th:replace="partials/nav-search :: nav-search"></nav>
     <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
 
         <main>
             <section class="section-profile">
-                <div class="profile-box">
-                    <div class="profile">
+                <div class="profile">
+                    <div class="profile-box">
                         <div class="profile__info">
                             <figure class="profile__shape">
                                 <span th:if="${user.photo_url == null}">
@@ -30,16 +30,16 @@
                                     <p class="heading-small">Email: <span th:text="${user.email}"/></p>
                                 </div>
                             </div>
-                            <div class="u-center-text u-margin-top-md">
+                            <div class="u-margin-top-md">
                                 <a th:href="@{'/user/' + ${#authentication.principal.id} + '/edit'}" class="btn btn--white u-margin-right-lg">Edit profile &rarr;</a>
 
-                                <a th:href="@{'/user/' + ${#authentication.principal.id} + '/editPassword'}" class="btn btn--white">Edit password &rarr;</a>
+                                <a th:href="@{'/user/' + ${#authentication.principal.id} + '/update-password'}" class="btn btn--white">Change password &rarr;</a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="profile-box">
+                <div class="profile-box u-margin-top-md">
                     <div class="profile">
                         <div class="profile__text">
                             <h3 class="heading-tertiary u-margin-bottom-sm">Your Routes</h3>
