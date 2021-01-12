@@ -162,6 +162,7 @@ function drawRoutes(route, infoWindow, map) {
     let marker = new google.maps.Marker({
         position: coords,
         title: route.title,
+        icon: '/images/icons/route.jpg'
 
     });
     //The line that actually attaches a marker to the map
