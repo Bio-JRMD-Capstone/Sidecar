@@ -13,6 +13,9 @@
 
         <main>
             <div class="poi">
+                <div class="u-margin-bottom-md u-center-text">
+                    <h2 class="heading-tertiary--sub">Edit your Point of Interest:</h2>
+                </div>
                 <div class="poi-box">
                     <!-- Map -->
                     <div class="col-poi-2">
@@ -24,8 +27,6 @@
                     </div>
                     <div class="col-poi-1">
                         <div class="poi__input">
-
-                            <h3>Location Data</h3>
                             <form name="editpoint" th:action="@{'/points/' + ${poi.id} + '/edit'}" th:method="post" th:object="${poi}" class="poi-data">
 
                                 <input class="poi__input" type="text"  th:field="*{name}" id="name" name="name" placeholder="title">

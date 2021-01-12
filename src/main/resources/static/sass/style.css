@@ -180,6 +180,20 @@ body {
   font-weight: 700;
   text-transform: uppercase;
 }
+.heading-tertiary--sub {
+  display: block;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  animation-name: moveInRight;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+}
+@media (max-width: 43.75em) {
+  .heading-tertiary--sub {
+    letter-spacing: 0.5rem;
+    font-size: 2rem;
+  }
+}
 
 .paragraph {
   font-size: 1.6rem !important;

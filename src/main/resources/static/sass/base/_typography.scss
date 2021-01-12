@@ -84,6 +84,19 @@ body {
     font-size: $default-font-size;
     font-weight: 700;
     text-transform: uppercase;
+    &--sub {
+        display: block;
+        font-size: $default-font-size;
+        text-transform: uppercase;
+        animation-name: moveInRight;
+        animation-duration: 1s;
+        animation-timing-function: ease-out;
+
+        @include respond(phone) {
+            letter-spacing: .5rem;
+            font-size: 2rem;
+        }
+    }
 }
 
 .paragraph {
