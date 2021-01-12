@@ -99,6 +99,12 @@ function initMap() {
     });
     userMarker.setMap(map);
 
+    //Makes it so that dragging the marker updates the lat/long to be submitted
+    userMarker.addListener("drag", (event) => {
+        $('#lat').val(event.latLng.lat());
+        $('#lon').val(event.latLng.lng());
+    });
+
     //When the map is clicked, add a point and fill in the lat/lng values in html using jQuery
     google.maps.event.addListener(map, "click", function(event) {
         placeMarker(event.latLng);
