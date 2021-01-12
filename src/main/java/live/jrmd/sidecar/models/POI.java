@@ -48,13 +48,7 @@ public class POI {
     )
     private List<POICategory> pCategoryList;
 
-    public List<POIComment> getPoiComments() {
-        return poiComments;
-    }
 
-    public void setPoiComments(List<POIComment> poiComments) {
-        this.poiComments = poiComments;
-    }
 
     public POI(){}
 
@@ -87,8 +81,6 @@ public class POI {
         description = copy.description;
         photo_url = copy.photo_url;
     }
-
-
 
     public Long getId() {
         return id;
@@ -160,5 +152,13 @@ public class POI {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<POIComment> getPoiComments() {
+        return poiComments;
+    }
+
+    public void setPoiComments(List<POIComment> poiComments) {
+        this.poiComments = poiComments;
     }
 }

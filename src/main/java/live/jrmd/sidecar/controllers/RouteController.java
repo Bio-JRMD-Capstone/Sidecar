@@ -115,7 +115,7 @@ public class RouteController {
         comment.setComment(newComment.getComment());
         comment.setRoute(route);
         comment.setUser(user);
-        comment.setTimestamp(thisDate);
+        comment.setdate(thisDate);
 
         routeCommentDao.save(comment);
 

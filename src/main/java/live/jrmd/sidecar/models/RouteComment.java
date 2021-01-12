@@ -15,8 +15,8 @@ public class RouteComment {
     @Column (nullable = false, columnDefinition = "TEXT")
     private String comment;
 
-    @Column(nullable = false, columnDefinition = "DATETIME")
-    private Date timestamp;
+    @Column(nullable = false, columnDefinition = "DATE")
+    private Date date;
 
     @ManyToOne
     @JsonManagedReference
@@ -31,18 +31,18 @@ public class RouteComment {
     public RouteComment() {}
 
     //write
-    public RouteComment(String comment, Date timestamp, User user, Route route) {
+    public RouteComment(String comment, Date date, User user, Route route) {
         this.comment = comment;
-        this.timestamp = timestamp;
+        this.date = date;
         this.user = user;
         this.route = route;
     }
 
     //read
-    public RouteComment(long id, String comment, Date timestamp, User user, Route route) {
+    public RouteComment(long id, String comment, Date date, User user, Route route) {
         this.id = id;
         this.comment = comment;
-        this.timestamp = timestamp;
+        this.date = date;
         this.user = user;
         this.route = route;
     }
@@ -51,7 +51,7 @@ public class RouteComment {
     public RouteComment(RouteComment copy) {
         id = copy.id;
         comment = copy.comment;
-        timestamp = copy.timestamp;
+        date = copy.date;
         user = copy.user;
         route = copy.route;
     }
@@ -72,12 +72,12 @@ public class RouteComment {
         this.comment = comment;
     }
 
-    public Date getTimestamp() {
-        return timestamp;
+    public Date getdate() {
+        return date;
     }
 
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
+    public void setdate(Date date) {
+        this.date = date;
     }
 
     public User getUser() {
