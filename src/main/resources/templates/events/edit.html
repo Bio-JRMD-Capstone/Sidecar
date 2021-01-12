@@ -64,7 +64,8 @@
                                 <!-- Current and updated flyer -->
                                     <div class="image-stack">
                                         <div class="image-stack__item--top">
-                                            <img class="event__card--image-edit poi-img" th:src="${eventToEdit.filePath}" alt="Event Flyer" />
+                                            <img class="event__card--image-edit poi-img" th:if="${eventToEdit.filePath != ''}" th:src="${eventToEdit.filePath}" alt="Event Flyer" />
+                                            <img class="event__card--image-edit poi-img" th:if="${eventToEdit.filePath == ''}" src="/images/placeholders/event.png" alt="placeholder event image"/>
                                         </div>
 
                                         <div class="image-stack__item--bottom">
