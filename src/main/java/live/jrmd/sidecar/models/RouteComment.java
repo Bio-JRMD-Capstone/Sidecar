@@ -1,6 +1,11 @@
 package live.jrmd.sidecar.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name="route_comments")
@@ -12,30 +17,34 @@ public class RouteComment {
     @Column (nullable = false, columnDefinition = "TEXT")
     private String comment;
 
-    @Column(nullable = false, columnDefinition = "DATETIME")
-    private String timestamp;
+    @Column(nullable = false, columnDefinition = "DATE")
+    private Date date;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn (name = "user_id")
     private User user;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn (name = "route_id")
     private Route route;
 
     public RouteComment() {}
 
     //write
-    public RouteComment(String comment, String timestamp) {
+    public RouteComment(String comment, Date date, User user, Route route) {
         this.comment = comment;
-        this.timestamp = timestamp;
+        this.date = date;
+        this.user = user;
+        this.route = route;
     }
 
     //read
-    public RouteComment(long id, String comment, String timestamp, User user, Route route) {
+    public RouteComment(long id, String comment, Date date, User user, Route route) {
         this.id = id;
         this.comment = comment;
-        this.timestamp = timestamp;
+        this.date = date;
         this.user = user;
         this.route = route;
     }
@@ -44,7 +53,7 @@ public class RouteComment {
     public RouteComment(RouteComment copy) {
         id = copy.id;
         comment = copy.comment;
-        timestamp = copy.timestamp;
+        date = copy.date;
         user = copy.user;
         route = copy.route;
     }
@@ -65,12 +74,12 @@ public class RouteComment {
         this.comment = comment;
     }
 
-    public String getTimestamp() {
-        return timestamp;
+    public Date getDate() {
+        return date;
     }
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public User getUser() {
@@ -87,5 +96,10 @@ public class RouteComment {
 
     public void setRoute(Route route) {
         this.route = route;
+    }
+
+    public String getFormattedDate(){
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        return formatter.format(date);
     }
 }
