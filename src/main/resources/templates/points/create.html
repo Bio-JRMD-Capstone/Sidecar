@@ -26,7 +26,6 @@
                     </div>
                     <div class="col-poi-1">
                         <div class="poi__input">
-                            <span th:value="${user.zipcode}" hidden></span>
 
                             <h3>Location Data</h3>
                             <form name="createpoint" th:action="@{/points/create}" th:method="post" th:object="${poi}" class="poi-data">
