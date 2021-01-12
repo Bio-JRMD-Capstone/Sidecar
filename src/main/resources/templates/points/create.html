@@ -13,6 +13,9 @@
 
         <main>
             <div class="poi">
+                <div class="u-margin-bottom-md u-center-text">
+                    <h2 class="heading-primary--sub">Add a Point of Interest:</h2>
+                </div>
                 <div class="poi-box">
                     <div class="col-poi-2">
                         <div class="poi__input">
@@ -20,7 +23,7 @@
                                 <input id="address" type="textbox" placeholder="Enter a location" />
                                 <input id="submit" type="button" value="View Location" />
                             </div>
-
+                            <span th:text="${location}" hidden id="location"></span>
                             <div id="map">Map</div>
                         </div>
                     </div>
@@ -30,8 +33,8 @@
                             <h3>Location Data</h3>
                             <form name="createpoint" th:action="@{/points/create}" th:method="post" th:object="${poi}" class="poi-data">
 
-                                <input class="poi__input" type="text"  th:field="*{name}" id="name" name="name" placeholder="title">
-                                <label class="poi__label" for="name">Enter a name:</label>
+                                <input class="poi__input" type="text"  th:field="*{name}" id="name" name="name" placeholder="Title">
+                                <label class="poi__label" for="name">Title</label>
 
                                 <!--Need a dropdown or other menu for POI category: Bar, Restaurant, Scenic View, Repair Shop, Other-->
 
@@ -63,35 +66,33 @@
                                 <div class="form-check">
                                     <input class="form-check-input" th:field="*{category}" th:value="motorcycle_shop" type="radio" name="category" id="motorcycle_shop">
                                     <label class="form-check-label" for="motorcycle_shop">
-                                        Motor Shop
+                                        Dealership / Motorcycle Sales
                                     </label>
                                 </div>
-                                <div class="form-check">
+                                <div class="form-check u-margin-bottom-sm">
                                     <input class="form-check-input" th:field="*{category}" th:value="other" type="radio" name="category" id="other">
                                     <label class="form-check-label" for="other">
                                         Other
                                     </label>
                                 </div>
 
-                                <input class="poi__input-long" type="text" id="description" name="description" placeholder="description" >
-                                <label class="poi__label" for="description">Enter a description:</label>
+                                <input class="poi__input-long" type="text" id="description" name="description" placeholder="Description" >
+                                <label class="poi__label" for="description"></label>
 
                                 <input type="hidden" id="lat" value="" th:field="*{lat}">
                                 <input type="hidden" id="lon" value="" th:field="*{lon}">
                                 <input type="hidden" id="image" th:field="*{photo_url}">
 
-                                <button class="btn" id="imageButton">Add a Picture</button>
+                                <button class="btn btn--white" id="imageButton">Add a Picture</button>
                                 <img class="poi-img" id="imagePreview" src="" alt="">
 
                                 <div class="input-field u-margin-top-sm">
-                                    <input class="btn" type="submit">
+                                    <input class="btn btn--white" type="submit">
                                 </div>
 
                             </form>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </main>
@@ -99,7 +100,7 @@
         <script src="/js/keys.js"></script>
         <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
         <script src="/js/filestack.js"></script>
-        <script src="/js/addPOI.js"></script>
+        <script src="/js/createPOI.js"></script>
         <div th:include="partials/footer :: footer"></div>
         <div th:include="partials/scripts :: scripts"></div>
 

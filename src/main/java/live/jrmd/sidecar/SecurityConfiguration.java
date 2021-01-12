@@ -33,10 +33,29 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/")
+        http.authorizeRequests()
+                .antMatchers("/route/{id}/edit",
+                        "/routes/create",
+                        "/events/create",
+                        "/event/{id}/edit",
+                        "/points/create",
+                        "/point/{id}/edit",
+                        "/profile",
+                        "/user/**"
+                )
+                .authenticated()
+
+                .and()
+                .authorizeRequests()
+                .antMatchers("/",
+                        "/forgot_password_form",
+                        "/reset_password_form",
+                        "/routes",
+                        "/points",
+                        "/events",
+                        "/js/**",
+                        "/css/**"
+                )
                 .permitAll()
 
                 .and()
@@ -44,30 +63,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login?logout")
 
                 .and()
-                .authorizeRequests()
-                .antMatchers("/",
-                                        "/routes",
-                                        "/points",
-                                        "/events",
-                                        "/js/**",
-                                        "/css/**"
-                )
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/")
                 .permitAll()
 
-                .and()
-                .authorizeRequests()
-                .antMatchers(
-
-                        "/route/{id}/edit",
-                        "/routes/create",
-                        "/events/create",
-                        "/event/{id}/edit",
-                        "/points/create",
-                        "/point/{id}/edit",
-                        "/profile",
-                        "/user/{id}/edit"
-                )
-                .authenticated()
         ;
     }
 }

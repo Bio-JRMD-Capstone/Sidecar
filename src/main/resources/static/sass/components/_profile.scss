@@ -8,39 +8,76 @@
   font-size: $default-font-size;
   //transform: skewX(-12deg);
   position: relative;
+
   &-edit {
     margin: 3rem;
     padding: 3rem;
   }
+
+  &__password-edit {
+    width: 50%;
+    margin: auto;
+    @include respond(phone) {
+      width: 100%;
+      text-align: center;
+    }
+  }
   &-box:not(:last-child) {
     padding-bottom: 3rem;
   }
+
   &__info {
     margin-left: 3rem;
   }
+
+  //title column
+  &__table--title {
+    min-width: 30rem;
+
+    & a {
+      color: inherit;
+    }
+
+    @include respond(tab-port) {
+      width: 100%;
+    }
+
+  }
+
+  //date, distance & time columns
   &__table--col{
     min-width: 15rem;
+
     @include respond(tab-port) {
       min-width: 10rem;
     }
-  }
-  //description column
-  &__table--colD{
-    width: 100%;
     @include respond(phone) {
       display: none;
     }
   }
+
+  //description column
+  &__table--description{
+    width: 100%;
+
+    @include respond(tab-port) {
+      display: none;
+    }
+  }
+
   //button column
   &__table--colB{
-    min-width: 10rem;
+    min-width: 8rem;
+
     @include respond(tab-port) {
       min-width: 6rem;
     }
   }
+
   figure {
     margin: 0;
   }
+
   &__shape {
     width: 16rem;
     height: 16rem;
@@ -52,6 +89,7 @@
     clip-path: circle(50% at 50% 50%);
     transform: translateX(-3rem);
   }
+
   &__image {
     height: 100%;
   }

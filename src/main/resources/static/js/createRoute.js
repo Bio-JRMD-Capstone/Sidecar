@@ -1,4 +1,5 @@
 let loadTotal = 0;
+let userLocation = $("#location").text();
 
 function initMap() {
     loadTotal++;
@@ -19,26 +20,15 @@ function initMap() {
     });
 
     geocoder = new google.maps.Geocoder();
+
+    //Grabs the user's zipcode from the HTML and centers map on the location
+    setLocation(geocoder, map, userLocation);
+
+    //Event listener for enter location button
     document.getElementById("submit").addEventListener("click", () => {
-        geocodeAddress(geocoder, map);
-    });
-
-    //Geocoder, searches for input location and centers map on it
-    function geocodeAddress(geocoder, resultsMap) {
         const address = document.getElementById("address").value;
-
-        geocoder.geocode({address: address}, (results, status) => {
-            if (status === "OK") {
-                resultsMap.setCenter(results[0].geometry.location);
-                resultsMap.setZoom(10);
-            } else {
-                alert(
-                    "Geocode was not successful for the following reason: " + status
-                );
-            }
-        });
-    }
-
+        geocodeAddress(geocoder, map, address);
+    });
 
     // let marker = new google.maps.Marker({
     //     map: map,
@@ -204,7 +194,7 @@ function initMap() {
                             console.log(route.legs[i].distance.text)
 
                             summaryPanel.innerHTML +=
-                                "<b>Route Segment: " + routeSegment + "</b><br>";
+                                "<b>Leg: " + routeSegment + "</b><br>";
                             summaryPanel.innerHTML += route.legs[i].start_address + "<br> to <br>";
                             summaryPanel.innerHTML += route.legs[i].end_address + "<br>";
                             summaryPanel.innerHTML += route.legs[i].distance.text + "<br>";
@@ -218,7 +208,7 @@ function initMap() {
                             totalDuration += parseInt(route.legs[i].duration.text);
 
                             summaryPanel.innerHTML +=
-                                "<b>Route Segment: " + routeSegment + "</b><br>";
+                                "<b>Leg: " + routeSegment + "</b><br>";
                             summaryPanel.innerHTML += route.legs[i].start_address + "<br> to <br>";
                             summaryPanel.innerHTML += route.legs[i].end_address + "<br>";
                             summaryPanel.innerHTML += route.legs[i].distance.text + "<br>";
@@ -251,4 +241,25 @@ function initMap() {
 
 
     //Closing Brace of INITMAP
+}
+
+//Geocoder, searches for input location and centers map on it
+function geocodeAddress(geocoder, resultsMap, location) {
+    geocoder.geocode({address: location}, (results, status) => {
+        if (status === "OK") {
+            resultsMap.setCenter(results[0].geometry.location);
+        } else {
+            alert(
+                "Geocode was not successful for the following reason: " + status
+            );
+        }
+    });
+}
+
+//Takes in an address and geocodes it, then sets the map to a zoom level of 9
+function setLocation(geocoder, map, location) {
+    if (location) {
+        geocodeAddress(geocoder, map, location);
+        map.setZoom(9);
+    }
 }

@@ -8,30 +8,34 @@
     </head>
 
     <body onload="document.locationbox.locationinput.focus()">
-        <nav th:replace="partials/navbar :: nav"></nav>
-    <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+            <nav th:replace="partials/navbar :: nav"></nav>
+        <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
 
-    <main class="poi">
-        <div class="">
-            <a class="btn btn--green u-margin-bottom-sm" th:href="@{/points/create}">Add a Point of Interest</a>
-        </div>
-        <section class="poi-box">
-            <div class="poi__location">
-                <form name="locationbox">
-                    <div id="floating-panel">
-                        <input class="map__input u-margin-right-sm" name="locationinput" id="address" type="textbox" placeholder="Enter a location" />
-                        <input class="map__input--map-btn" id="submit" type="button" value="View Location" />
-                    </div>
-                </form>
+        <main class="poi">
+            <h1 class="heading-primary--sub">All Points of Interest</h1>
+            <div>
+                <p sec:authorize="!isAuthenticated()" class="paragraph">Have a Point of Interest to share? Please <a th:href="@{/login}">Login</a> or
+                    <a th:href="@{/register}">Register</a>.</p>
+                <a sec:authorize="isAuthenticated()" class="btn btn--green u-margin-bottom-sm" th:href="@{/points/create}">Add a Point of Interest</a>
             </div>
-            <div id="map"></div>
-        </section>
+            <section class="poi-box">
+                <div class="poi__location">
+                    <form name="locationbox">
+                        <div id="floating-panel">
+                            <input class="poi__input u-margin-right-sm" name="locationinput" id="address" type="textbox" placeholder="Enter a location" />
+                            <input class="poi__input--map-btn paragraph" id="submit" type="button" value="View Location" />
+                        </div>
+                    </form>
+                </div>
+                <span th:text="${location}" hidden id="location"></span>
+                <div id="map"></div>
+            </section>
 
-    </main>
+        </main>
 
-    <div th:include="partials/footer :: footer"></div>
-    <div th:include="partials/scripts :: scripts"></div>
-    <script src="/js/allPOIs.js"></script>
+        <div th:include="partials/footer :: footer"></div>
+        <div th:include="partials/scripts :: scripts"></div>
+        <script src="/js/allPOIs.js"></script>
 
     </body>
 

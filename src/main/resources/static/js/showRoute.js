@@ -179,7 +179,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
                         console.log(route.legs[i].distance.text)
 
                         summaryPanel.innerHTML +=
-                            "<b>Route Segment: " + routeSegment + "</b><br>";
+                            "<b>Leg: " + routeSegment + "</b><br>";
                         summaryPanel.innerHTML += route.legs[i].start_address + "<br> to <br>";
                         summaryPanel.innerHTML += route.legs[i].end_address + "<br>";
                         summaryPanel.innerHTML += route.legs[i].distance.text + "<br>";
@@ -196,7 +196,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
                         console.log(route.legs[i].distance.text)
 
                         summaryPanel.innerHTML +=
-                            "<b>Route Segment: " + routeSegment + "</b><br>";
+                            "<b>Leg: " + routeSegment + "</b><br>";
                         summaryPanel.innerHTML += route.legs[i].start_address + "<br> to <br>";
                         summaryPanel.innerHTML += route.legs[i].end_address + "<br>";
                         summaryPanel.innerHTML += route.legs[i].distance.text + "<br>";

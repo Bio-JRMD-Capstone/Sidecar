@@ -25,6 +25,12 @@ public class Event {
     @Column(nullable = true, columnDefinition = "TEXT")
     private String filePath;
 
+    @Column(nullable = false)
+    private String lat;
+
+    @Column(nullable = false)
+    private String lon;
+
     @ManyToOne
     @JoinColumn()
     private User user;
@@ -40,7 +46,7 @@ public class Event {
     public Event(){}
 ///
     //read
-    public Event(Long id, String name, String description, String date, String zipcode, String filePath, User user, List<EventCategory> categories) {
+    public Event(Long id, String lat, String lon, String name, String description, String date, String zipcode, String filePath, User user, List<EventCategory> categories) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -49,16 +55,20 @@ public class Event {
         this.filePath = filePath;
         this.user = user;
         this.eventCategories = categories;
+        this.lat = lat;
+        this.lon = lon;
     }
 
     //create
-    public Event(String name, String description, String date, String zipcode, String filePath, List<EventCategory> categories) {
+    public Event(String name, String lat, String lon, String description, String date, String zipcode, String filePath, List<EventCategory> categories) {
         this.name = name;
         this.description = description;
         this.date = date;
         this.zipcode = zipcode;
         this.filePath = filePath;
         this.eventCategories = categories;
+        this.lat = lat;
+        this.lon = lon;
     }
 
     public Event(Event copy, String filePath){
@@ -67,6 +77,8 @@ public class Event {
         this.date = copy.date;
         this.zipcode = copy.zipcode;
         this.filePath = filePath;
+        lat = copy.lat;
+        lon = copy.lon;
     }
 
     public Long getId() {
@@ -127,5 +139,21 @@ public class Event {
 
     public void setFilePath(String filePath) {
         this.filePath = filePath;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLon() {
+        return lon;
+    }
+
+    public void setLon(String lon) {
+        this.lon = lon;
     }
 }

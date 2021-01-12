@@ -7,141 +7,174 @@
     </head>
 
     <body>
-        <nav th:replace="partials/navbar :: nav"></nav>
+        <nav th:replace="partials/nav-search :: nav-search"></nav>
     <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
 
-<main>
-    <section class="section-profile">
-        <div class="profile-box">
-            <div class="profile">
-                <div class="profile__info">
-                    <figure class="profile__shape">
-                        <span th:if="${user.photo_url == null}">
-                            <img src="images/profile.png" alt="placeholder image" class="profile__image">
-                        </span>
-                        <img th:src="${user.photo_url}" alt="profile image" class="profile__image">
-                    </figure>
-                    <div class="profile__text">
-                        <h3 class="heading-tertiary u-margin-bottom-sm">Profile Information</h3>
-                        <div class="profile__user">
-                            <hr />
-                            <p class="heading-small">User ID: <span th:text="${user.id}"/></p>
-                            <p class="heading-small">Username: <span th:text="${user.username}"/></p>
-                            <p class="heading-small">Email: <span th:text="${user.email}"/></p>
+        <main>
+            <section class="section-profile">
+                <div class="profile">
+                    <div class="profile-box">
+                        <div class="profile__info">
+                            <figure class="profile__shape">
+                                <span th:if="${user.photo_url == null}">
+                                    <img src="images/profile.png" alt="placeholder image" class="profile__image">
+                                </span>
+                                <img th:src="${user.photo_url}" alt="profile image" class="profile__image">
+                            </figure>
+                            <div class="profile__text">
+                                <h3 class="heading-tertiary u-margin-bottom-sm">Profile Information</h3>
+                                <div class="profile__user">
+                                    <hr />
+                                    <br />
+                                    <p class="heading-small">Username: <span th:text="${user.username}"/></p>
+                                    <p class="heading-small">Email: <span th:text="${user.email}"/></p>
+                                </div>
+                            </div>
+                            <div class="u-margin-top-md">
+                                <a th:href="@{'/user/' + ${#authentication.principal.id} + '/edit'}" class="btn btn--white u-margin-right-lg">Edit profile &rarr;</a>
+
+                                <a th:href="@{'/user/' + ${#authentication.principal.id} + '/update-password'}" class="btn btn--white">Change password &rarr;</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="u-center-text u-margin-top-md">
-                        <a th:href="@{'/user/' + ${#authentication.principal.id} + '/edit'}" class="btn-text">Edit profile &rarr;</a>
+                </div>
 
-<!--                        <a th:href="@{'/user/' + ${#authentication.principal.id} + '/editPassword'}" class="btn-text">Edit password &rarr;</a>-->
+                <div class="profile-box u-margin-top-md">
+                    <div class="profile">
+                        <div class="profile__text">
+                            <h3 class="heading-tertiary u-margin-bottom-sm">Your Routes</h3>
+
+                            <a class="btn btn-edit" th:if="${routes.isEmpty()}" th:href="@{/routes/create}">Add a Route</a>
+
+                            <table class="profile__table">
+                                <thead>
+                                <tr >
+                                    <th class="profile__table--title">Title</th>
+                                    <th class="profile__table--col">Distance</th>
+                                    <th class="profile__table--col">Time</th>
+                                    <th class="profile__table--description">Description</th>
+                                    <th class="profile__table--colB"></th>
+                                    <th class="profile__table--colB"></th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr th:each="route : ${routes}">
+                                        <td class="profile__table--title" name="title"><a th:href="'/route/' + ${route.id}" th:text="${route.title}"></a></td>
+                                        <td class="profile__table--col" th:text="${route.distance}" name="distance"></td>
+                                        <td class="profile__table--col" th:text="${route.time}" name="time"></td>
+                                        <td class="profile__table--description" th:text="${route.description}" name="description"></td>
+                                        <td><a th:href="'/route/' + ${route.id} + '/edit'" class="btn btn-edit">Edit</a></td>
+                                        <td>
+                                            <a class="btn btn-edit" href="#popup-route">Delete</a>
+                                            <div class="popup" id="popup-route">
+                                                <div class="popup__content">
+                                                    <div class="popup__right">
+                                                        <a href="/profile" class="popup__close">&times;</a>
+                                                        <h3 class="heading-tertiary u-margin-bottom-sm" th:text="${route.title}"></h3>
+                                                        <p class="popup__text">
+                                                            Are you sure you want to delete this route?
+                                                        </p>
+                                                        <form th:action="@{'/route/' + ${route.id} + '/delete'}" th:method="post">
+                                                            <button class="btn btn-edit">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+                <div class="profile-box">
+                    <div class="profile">
+                        <div class="profile__text">
+                            <h3 class="heading-tertiary u-margin-bottom-sm">Your Points of Interest</h3>
+                            <a class="btn btn-edit" th:if="${pois.isEmpty()}" th:href="@{/points/create}">Add a Point of Interest</a>
+                            <table class="profile__table">
+                                <thead>
+                                <tr >
+                                    <th class="profile__table--title">Title</th>
+                                    <th class="profile__table--description">Description</th>
+                                    <th class="profile__table--colB"></th>
+                                    <th class="profile__table--colB"></th>
+                                </tr>
+                                </thead>
 
-        <div class="profile-box">
-            <div class="profile">
-                <div class="profile__text">
-                    <h3 class="heading-tertiary u-margin-bottom-sm">Your Routes</h3>
-                    <table class="profile__table">
-                        <thead>
-                        <tr >
-                            <th class="profile__table--col">Title</th>
-<!--                            <th class="profile__table&#45;&#45;col">Id</th>-->
-                            <th class="profile__table--col">Distance</th>
-                            <th class="profile__table--col">Time</th>
-                            <th class="profile__table--colD">Description</th>
-                            <th class="profile__table--colB"></th>
-                            <th class="profile__table--colB"></th>
-                        </tr>
-                        </thead>
-
-                        <tbody>
-                        <tr th:each="route : ${routes}">
-                            <td th:text="${route.title}" name="title"></td>
-<!--                            <td th:text="${route.id}" name="id"></td>-->
-                            <td th:text="${route.distance}" name="distance"></td>
-                            <td th:text="${route.time}" name="time"></td>
-                            <td class="profile__table--colD" th:text="${route.description}" name="description"></td>
-                            <td><a th:href="'/route/' + ${route.id} + '/edit'" class="btn btn-edit">Edit</a></td>
-                            <td>
-                                <form th:action="@{'/route/' + ${route.id} + '/delete'}" th:method="post">
-                                <button class="btn btn-edit">Delete</button>
-                            </form>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                                <tbody>
+                                <tr th:each="poi : ${pois}" >
+                                    <td class="profile__table--title" name="name"><a th:href="'/points/' + ${poi.id}" th:text="${poi.name}"></a></td>
+                                    <td class="profile__table--description" th:text="${poi.description}" name="description"></td>
+                                    <td><a th:href="'/points/' + ${poi.id} + '/edit'" class="btn btn-edit">Edit</a></td>
+                                    <td>
+                                        <a class="btn btn-edit" href="#popup-poi">Delete</a>
+                                        <div class="popup" id="popup-poi">
+                                            <div class="popup__content">
+                                                <div class="popup__right">
+                                                    <a href="/profile" class="popup__close">&times;</a>
+                                                    <h3 class="heading-tertiary u-margin-bottom-sm" th:text="${poi.name}"></h3>
+                                                    <p class="popup__text">
+                                                        Are you sure you want to delete this point of interest?
+                                                    </p>
+                                                    <form th:action="@{'/points/' + ${poi.id} + '/delete'}" th:method="post">
+                                                        <button class="btn btn-edit">Delete</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="profile-box">
-            <div class="profile">
-                <div class="profile__text">
-                    <h3 class="heading-tertiary u-margin-bottom-sm">Your Points of Interest</h3>
-                    <table class="profile__table">
-                        <thead>
-                        <tr >
-                            <th class="profile__table--col">Title</th>
-<!--                            <th class="profile__table&#45;&#45;col">Id</th>-->
-<!--                            <th class="profile__table&#45;&#45;col">Latitude</th>-->
-<!--                            <th class="profile__table&#45;&#45;col">Longitude</th>-->
-                            <th class="profile__table--colD">Description</th>
-                            <th class="profile__table--colB"></th>
-                            <th class="profile__table--colB"></th>
-                        </tr>
-                        </thead>
+                <div class="profile-box">
+                    <div class="profile">
+                        <div class="profile__text">
+                            <h3 class="heading-tertiary u-margin-bottom-sm">Your Events</h3>
+                            <a class="btn btn-edit" th:if="${events.isEmpty()}" th:href="@{/events/create}">Add an Event</a>
+                                <table class="profile__table">
+                                    <thead>
+                                        <tr>
+                                            <th class="profile__table--title">Title</th>
+                                            <th class="profile__table--col">Date</th>
+                                            <th class="profile__table--description">Description</th>
+                                            <th class="profile__table--colB"></th>
+                                            <th class="profile__table--colB"></th>
+                                        </tr>
+                                    </thead>
 
-                        <tbody>
-                        <tr th:each="poi : ${pois}" >
-                            <td th:text="${poi.name}" name="name"></td>
-<!--                            <td th:text="${poi.id}" name="id"></td>-->
-<!--                            <td th:text="${poi.lat}" name="lat"></td>-->
-<!--                            <td th:text="${poi.lon}" name="lon"></td>-->
-                            <td class="profile__table--colD" th:text="${poi.description}" name="description"></td>
-                            <td><a th:href="'/points/' + ${poi.id} + '/edit'" class="btn btn-edit">Edit</a></td>
-                            <td>
-                                <form th:action="@{'/points/' + ${poi.id} + '/delete'}" th:method="post">
-                                    <button class="btn btn-edit">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="profile-box">
-            <div class="profile">
-                <div class="profile__text">
-                    <h3 class="heading-tertiary u-margin-bottom-sm">Your Events</h3>
-                    <table class="profile__table">
-                        <thead>
-                        <tr >
-                            <th class="profile__table--col">Title</th>
-<!--                            <th class="profile__table&#45;&#45;col">Id</th>-->
-                            <th class="profile__table--col">Date</th>
-                            <th class="profile__table--colD">Description</th>
-                            <th class="profile__table--colB"></th>
-                            <th class="profile__table--colB"></th>
-                        </tr>
-                        </thead>
-
-                        <tbody>
-                        <tr th:each="event : ${events}" >
-                            <td th:text="${event.name}" name="name"></td>
-<!--                            <td th:text="${event.id}" name="id"></td>-->
-                            <td th:text="${event.date}" name="date"></td>
-                            <td class="profile__table--colD" th:text="${event.description}" name="description"></td>
-                            <td><a th:href="'/event/' + ${event.id} + '/edit'" class="btn btn-edit">Edit</a></td>
-                            <td>
-                                <form th:action="@{'/event/' + ${event.id} + '/delete'}" th:method="post">
-                                    <button class="btn btn-edit">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                                    <tbody>
+                                        <tr th:each="event : ${events}" >
+                                            <td class="profile__table--title" name="name"><a th:href="'/event/' + ${event.id}" th:text="${event.name}"></a></td>
+                                            <td class="profile__table--col" th:text="${event.date}" name="date"></td>
+                                            <td class="profile__table--description" th:text="${event.description}" name="description"></td>
+                                            <td><a th:href="'/event/' + ${event.id} + '/edit'" class="btn btn-edit">Edit</a></td>
+                                            <td>
+                                                <a class="btn btn-edit" href="#popup-event">Delete</a>
+                                                <div class="popup" id="popup-event">
+                                                    <div class="popup__content">
+                                                        <div class="popup__right">
+                                                            <a href="/profile" class="popup__close">&times;</a>
+                                                            <h3 class="heading-tertiary u-margin-bottom-sm" th:text="${event.name}"></h3>
+                                                            <p class="popup__text">
+                                                                Are you sure you want to delete this event?
+                                                            </p>
+                                                            <form th:action="@{'/event/' + ${event.id} + '/delete'}" th:method="post">
+                                                                <button class="btn btn-edit">Delete</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>

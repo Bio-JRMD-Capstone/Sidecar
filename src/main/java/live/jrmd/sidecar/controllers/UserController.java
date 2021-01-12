@@ -2,7 +2,6 @@ package live.jrmd.sidecar.controllers;
 
 import live.jrmd.sidecar.models.User;
 import live.jrmd.sidecar.repositories.*;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -41,7 +40,7 @@ public class UserController {
     @GetMapping("/logout")
     public String logout(){
         //remove session user
-        return "redirect:/";
+        return "redirect:/index";
     }
 
     @GetMapping("/register")
@@ -87,35 +86,41 @@ public class UserController {
     }
 
     @PostMapping("/user/{id}/edit")
-    public String editUser (@ModelAttribute User user){
-        if (user.getPassword() != null && user.getPassword().equals(user.getPassword_confirm())) {
-            String hash = passwordEncoder.encode(user.getPassword());
-            user.setPassword(hash);
-            user.setPassword_confirm(hash);
-        } else {
-            user.setPassword(userDao.getUserById(user.getId()).getPassword());
-        }
+    public String editUser (@PathVariable(value = "id") long id,
+                            @RequestParam(name = "username") String username,
+                            @RequestParam(name = "email") String email,
+                            @RequestParam(name = "zipcode") String zipcode
+    ){
+            User user = (userDao.getUserById(id));
+            user.setUsername(username);
+            user.setEmail(email);
+            user.setZipcode(zipcode);
+            user.setPassword(user.getPassword());
+            user.setPassword_confirm(user.getPassword());
+
             userDao.save(user);
             return "redirect:/profile";
 
     }
 
-    @GetMapping("/user/{id}/editPassword")
+    @GetMapping("/user/{id}/update-password")
     public String editUserPassword(@PathVariable(value = "id") long id, Model model){
         model.addAttribute("user", userDao.getUserById(id));
-        return "users/editPassword";
+        return "users/update-password";
     }
 
-    @PostMapping("/user/{id}/editPassword")
-    public String editUserPassword (@RequestParam(name = "password") String password,
+    @PostMapping("/user/{id}/update-password")
+    public String editUserPassword (@PathVariable(value = "id") long id,
+                                    @RequestParam(name = "password") String password,
                                     @RequestParam(name = "password_confirm") String passwordConfirm
     ){
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getUserById(id);
         if (password.equals(passwordConfirm)) {
             String hash = passwordEncoder.encode(password);
             user.setPassword(hash);
             user.setPassword_confirm(hash);
-            return "redirect:/logout";
+            userDao.save(user);
+            return "redirect:/profile";
         } else {
             return "redirect:/users/editPassword";
         }

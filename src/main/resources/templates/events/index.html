@@ -2,50 +2,41 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-    <head th:replace="partials/head :: head('All Events')">
-        <meta charset="UTF-8">
-        <title>Events</title>
-    </head>
+<head th:replace="partials/head :: head('Events')">
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
 
-    <body>
-        <nav th:replace="partials/navbar :: nav"></nav>
-        <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+<body onload="document.locationbox.locationinput.focus()">
+<nav th:replace="partials/navbar :: nav"></nav>
+<!--<div th:replace="partials/expand-nav :: navigation"></div>-->
 
-        <main class="event">
-            <p class="heading-secondary">The Latest Events</p>
-
-            <div>
-                <h3 class="heading-tertiary" th:if="${events.isEmpty()}">No Events Found</h3>
-                <a class="btn btn--white" th:href="@{/events/create}">Add an Event</a>
-            </div>
-
-            <section class="event-box event__cards u-margin-top-sm">
-                <div class="event__card row" th:each="event : ${events}">
-                    <a th:href="@{'/event/' + ${event.id}}">
-                        <div class="col-1-of-3">
-                            <img class="event__card--image" th:src="${event.filePath}" th:alt="${event.name}">
-                        </div>
-
-                        <div class="col-2-of-3">
-                            <div class="event__card--title">
-                                <h3 class="" th:text="${event.name}"></h3>
-                            </div>
-
-                            <div class="event__card--text">
-                                <p th:text="'Date: ' + ${event.date}"></p>
-                                <hr>
-                                <p class="event__card--text">Category: <span th:each="eventCategory : ${event.eventCategories}" th:text=" ${eventCategory.name}"></span></p>
-                            </div>
-                        </div>
-                    </a>
+<main class="poi">
+    <h1 class="heading-primary--sub">All Events</h1>
+    <div>
+        <p sec:authorize="!isAuthenticated()" class="paragraph">Have an event to share? Please <a th:href="@{/login}">Login</a> or
+            <a th:href="@{/register}">Register</a>.</p>
+        <a sec:authorize="isAuthenticated()" class="btn btn--green u-margin-bottom-sm" th:href="@{/events/create}">Add an Event</a>
+    </div>
+    <section class="poi-box">
+        <div class="poi__location">
+            <form name="locationbox">
+                <div id="floating-panel">
+                    <input class="poi__input u-margin-right-sm" name="locationinput" id="address" type="textbox" placeholder="Enter a location" />
+                    <input class="poi__input--map-btn paragraph" id="submit" type="button" value="View Location" />
                 </div>
-            </section>
-        </main>
+            </form>
+        </div>
+        <span th:text="${location}" hidden id="location"></span>
+        <div id="map"></div>
+    </section>
 
-        <div th:include="partials/footer :: footer"></div>
-        <div th:include="partials/scripts :: scripts"></div>
+</main>
 
-    </body>
+<div th:include="partials/footer :: footer"></div>
+<div th:include="partials/scripts :: scripts"></div>
+<script src="/js/allEvents.js"></script>
+
+</body>
 
 </html>
-
