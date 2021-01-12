@@ -36,7 +36,7 @@
                                             <button class="btn btn-edit u-right-align" type="submit">Delete comment?</button>
                                         </form>
                                     </div>
-                                    <p class="u-right-align" th:text="'Posted by: ' + ${aComment.user.username} + ' on ' + ${aComment.getDate()}"></p>
+                                    <p class="u-right-align" th:text="'Posted by: ' + ${aComment.user.username} + ' on ' + ${aComment.getFormattedDate()}"></p>
                                 </div>
                                 <hr>
                             </div>

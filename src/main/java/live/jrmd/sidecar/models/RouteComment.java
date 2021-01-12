@@ -3,6 +3,8 @@ package live.jrmd.sidecar.models;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -72,11 +74,11 @@ public class RouteComment {
         this.comment = comment;
     }
 
-    public Date getdate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setdate(Date date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -94,5 +96,10 @@ public class RouteComment {
 
     public void setRoute(Route route) {
         this.route = route;
+    }
+
+    public String getFormattedDate(){
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        return formatter.format(date);
     }
 }

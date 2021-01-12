@@ -11,6 +11,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -115,12 +116,21 @@ public class RouteController {
         comment.setComment(newComment.getComment());
         comment.setRoute(route);
         comment.setUser(user);
-        comment.setdate(thisDate);
+        comment.setDate(thisDate);
 
         routeCommentDao.save(comment);
 
         return "redirect:/route/" + id;
     }
 
+    @PostMapping("/route/{id}/delete-comment-{commentId}")
+    public String deleteComment(
+            @PathVariable(value = "id") long id,
+            @PathVariable(value = "commentId") long commentId
+    ){
+        RouteComment commentToDelete = routeCommentDao.getOne(commentId);
+        routeCommentDao.delete(commentToDelete);
+        return "redirect:/route/" + id;
+    }
 
 }

@@ -104,4 +104,14 @@ public class POIController {
 
         return "redirect:/points/" + id;
     }
+
+    @PostMapping("/points/{id}/delete-comment-{commentId}")
+    public String deleteComment(
+            @PathVariable(value = "id") long id,
+            @PathVariable(value = "commentId") long commentId
+    ){
+        POIComment commentToDelete = poiCommentDao.getOne(commentId);
+        poiCommentDao.delete(commentToDelete);
+        return "redirect:/points/" + id;
+    }
 }
