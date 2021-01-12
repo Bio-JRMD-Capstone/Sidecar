@@ -82,6 +82,12 @@ function initMap() {
                 drawRoutes(route, infoWindow, map);
             });
         });
+        var requestEvent = $.ajax({'url': '/events.json'});
+        requestEvent.done(function (events) {
+            events.forEach(function (event) {
+                drawRoutes(event, infoWindow, map);
+            });
+        });
     })(jQuery);
 
 }
