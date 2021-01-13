@@ -27,9 +27,13 @@
 
     &__logo {
         margin-left: auto;
-        width: 8rem;
+        height: 8rem;
         border-radius: 50%;
-        height: auto;
+        width: auto;
+
+        @include respond(tab-land) {
+            height: 6rem;
+        }
 
     }
 

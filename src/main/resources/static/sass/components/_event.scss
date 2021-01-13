@@ -9,6 +9,7 @@
     display: flex;
     overflow: auto;
     margin-bottom: 3rem;
+    box-shadow: 0 1rem 2rem rgba($color-black, .2);
     & form {
       width: 100%;
     }

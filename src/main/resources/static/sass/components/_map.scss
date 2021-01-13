@@ -62,6 +62,7 @@
     flex-wrap: wrap;
     overflow: auto;
     margin-bottom: 3rem;
+    box-shadow: 0 1rem 2rem rgba($color-black, .2);
 
 
     @include respond(nav-collapse) {
