@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="partials/head :: head('About the Team')">
+    <meta charset="UTF-8">
+    <title>About the Team</title>
+</head>
+
+<body onload="document.createpoint.name.focus()">
+<nav th:replace="partials/navbar :: nav"></nav>
+<!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+<main>
+    <div class="u-center-text u-margin-top-sm u-margin-bottom-sm">
+        <h2 class="heading-primary--sub">
+            Meet the JRMD Sidecar Team!
+        </h2>
+    </div>
+    <section class="section-stories u-margin-bottom-md">
+        <div class="bg-video">
+            <video class="bg-video__content" autoplay muted loop>
+                <source src="/images/1057124396-preview.mp4" type="video/mp4">
+                Your browser is not supported!
+            </video>
+        </div>
+        <!-- Left column -->
+        <div class="row u-margin-bottom-md">
+            <div class="col-1-of-2">
+                <div class="about u-margin-bottom-md">
+                    <figure class="about__shape">
+                        <img src="/images/JasonCarrillo.jpeg" height="150px" alt="" class="about__image">
+                        <figcaption class="about__caption">Jason Carrillo</figcaption>
+                    </figure>
+                    <div class="about__text">
+                        <h3 class="heading-tertiary u-margin-bottom-sm">Jason Carrillo</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque sit in magnam quam voluptas sequi architecto dolorum perspiciatis debitis, officiis exercitationem accusamus eos tempora quibusdam iusto suscipit saepe libero? Dicta.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="about">
+                    <figure class="about__shape">
+                        <img src="/images/MichaelMeyer.jpeg" height="150px" alt="" class="about__image">
+                        <figcaption class="about__caption">Michael Meyer</figcaption>
+                    </figure>
+                    <div class="about__text">
+                        <h3 class="heading-tertiary u-margin-bottom-sm">Michael Meyer</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci optio quae repudiandae aliquam quaerat fugiat natus, dolorum at delectus eligendi obcaecati placeat rem pariatur minus consectetur laborum. Architecto, voluptatibus repudiandae?
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right column -->
+
+            <div class="col-1-of-2">
+                <div class="about u-margin-bottom-md">
+                    <figure class="about__shape">
+                        <img src="/images/RyanKendall.jpeg" height="150px" alt="" class="about__image">
+                        <figcaption class="about__caption">Ryan Kendall</figcaption>
+                    </figure>
+                    <div class="about__text">
+                        <h3 class="heading-tertiary u-margin-bottom-sm">Ryan Kendall</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque sit in magnam quam voluptas sequi architecto dolorum perspiciatis debitis, officiis exercitationem accusamus eos tempora quibusdam iusto suscipit saepe libero? Dicta.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="about">
+                    <figure class="about__shape">
+                        <img src="/images/DonelleHarris.jpg" height="150px" alt="" class="about__image">
+                        <figcaption class="about__caption">Donelle Harris</figcaption>
+                    </figure>
+                    <div class="about__text">
+                        <h3 class="heading-tertiary u-margin-bottom-sm">Donelle Harris</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci optio quae repudiandae aliquam quaerat fugiat natus, dolorum at delectus eligendi obcaecati placeat rem pariatur minus consectetur laborum. Architecto, voluptatibus repudiandae?
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<div th:include="partials/footer :: footer"></div>
+<div th:include="partials/scripts :: scripts"></div>
+</body>
+</html>
