@@ -117,13 +117,35 @@ function initMap() {
             }
         });
 
-        const endMarker = new google.maps.Marker({
-            position: markers[markers.length-1],
-            map,
-            icon: {
-                url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
-            }
-        });
+        if(document.getElementById("routeCheck").checked === true){
+            const endMarker = new google.maps.Marker({
+                position: markers[markers.length-1],
+                map,
+                icon: {
+                    url: "http://maps.google.com/mapfiles/ms/icons/purple-dot.png"
+                }
+            });
+        } else {
+            const endMarker = new google.maps.Marker({
+                position: markers[markers.length-1],
+                map,
+                icon: {
+                    url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                }
+            });
+        }
+
+
+
+        for(let i = 1; i < markers.length-1; i++) {
+            let midMarker = new google.maps.Marker({
+                position: markers[i],
+                map,
+                icon: {
+                    url: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+                }
+            });
+        }
 
         displayRoute(
             markers[0],
