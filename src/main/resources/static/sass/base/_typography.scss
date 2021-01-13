@@ -52,6 +52,12 @@ body {
         @include respond(nav-collapse) {
             display: none;
         }
+        &--footer {
+            display: block;
+            font-size: 3rem;
+            letter-spacing: .5rem;
+            text-transform: uppercase;
+            z-index: 2000;
     }
 
 }
