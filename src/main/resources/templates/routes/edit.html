@@ -58,8 +58,10 @@
                             <form name="editpoint" class="map-data"  th:action="@{'/route/' + ${routeToEdit.id} + '/edit'}" th:method="POST" th:object="${routeToEdit}">
 
                                 <input class="map__input" type="text"  id="title" name="title" placeholder="Title" th:field="*{title}">
+                                <h4 th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"/>
 
                                 <textarea class="map__input-long" type="text" id="description" name="description" placeholder="Description" th:field="*{description}"></textarea>
+                                <h4 th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger" />
 
                                 <input class="map__input" type="text" id="distance" name="distance" placeholder="Distance" th:field="*{distance}" readonly>
 
@@ -67,6 +69,10 @@
                                 <input type="hidden" class="map__input" id="coordinates" name="coordinates" th:field="*{coordinates}" readonly>
 
                                 <input class="map__input u-margin-bottom-sm" type="text" id="time" name="time"  placeholder="Time(Hours)" th:field="*{time}">
+                                <h4 th:if="${#fields.hasErrors('time')}" th:errors="*{time}" class="text-danger" />
+
+                                <h4 th:if="${#fields.hasErrors('coordinates')}" th:errors="*{coordinates}" class="text-danger" />
+
                                 <div class="control">
                                     <input class="btn btn--white" type="submit" value="Save Route">
                                     <a class="btn btn--green btn-rt" href="/profile" >Cancel</a>

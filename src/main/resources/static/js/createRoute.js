@@ -59,7 +59,8 @@ function initMap() {
             map: map
         });
     }
-    ;
+
+
     var objLoc = {};
     // Create new marker on single click event on the map
     google.maps.event.addListener(map, 'click', function (event) {
@@ -103,8 +104,27 @@ function initMap() {
             draggable: false,
             map,
             panel: document.getElementById("right-panel"),
+            suppressMarkers: true,
         });
+
         console.log(markers)
+
+        const startMarker = new google.maps.Marker({
+            position: markers[0],
+            map,
+            icon: {
+                url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+            }
+        });
+
+        const endMarker = new google.maps.Marker({
+            position: markers[markers.length-1],
+            map,
+            icon: {
+                url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+            }
+        });
+
         displayRoute(
             markers[0],
             markers[markers.length-1],
@@ -141,7 +161,6 @@ function initMap() {
                 destination: destination,
                 waypoints: markers,
                 travelMode: google.maps.TravelMode.DRIVING,
-                avoidTolls: true,
             },
             (result, status) => {
                 if (status === "OK") {
@@ -164,6 +183,10 @@ function initMap() {
                 });
 
         }
+
+        console.log(markers[0].location)
+
+
 
         directionsService.route(
             {
