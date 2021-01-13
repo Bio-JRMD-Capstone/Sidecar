@@ -106,8 +106,6 @@ function initMap() {
         }
     });
 
-    console.log(markers[0] == markers[markers.length-1])
-    console.log(markers[0] === markers[markers.length-1])
 
     if(markers[markers.length-1].location.lat === markers[0].location.lat){
         const endMarker = new google.maps.Marker({
