@@ -122,7 +122,7 @@ function initMap() {
                 position: markers[markers.length-1],
                 map,
                 icon: {
-                    url: "http://maps.google.com/mapfiles/ms/icons/purple-dot.png"
+                    url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
                 }
             });
         } else {
