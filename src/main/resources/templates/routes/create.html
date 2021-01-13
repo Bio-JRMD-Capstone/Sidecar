@@ -66,7 +66,7 @@
 
                                 <input type="hidden" class="form-control" id="coordinates" name="coordinates" th:field="*{coordinates}">
 
-                                <input class="map__input" type="text" id="time" name="time"  placeholder="Time(Hours)" th:field="*{time}">
+                                <input class="map__input" type="text" id="time" name="time"  placeholder="Minutes, Hours, Days, etc." th:field="*{time}">
                                 <h4 th:if="${#fields.hasErrors('time')}" th:errors="*{time}" class="text-danger" />
 
                                 <h4 th:if="${#fields.hasErrors('coordinates')}" th:errors="*{coordinates}" class="text-danger" />
