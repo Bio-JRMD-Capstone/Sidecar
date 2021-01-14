@@ -119,9 +119,8 @@ function drawPOIs(poi, icons, infoWindow, map) {
     }
     //This connects the info window to the marker, allowing information, links, any HTML really to be displayed
     google.maps.event.addListener(marker, 'click', function() {
-        infoWindow.setContent("<h6>" + poi.name + "</h6>" +
+        infoWindow.setContent("<h4>" + poi.name + "</h4>" +
             "<p><strong>" + categoryString + "</strong><br>" +
-            poi.description + "</p>" +
             "<a href='/points/" + poi.id + "'>More Info</a>");
         infoWindow.open(map, marker);
     });
@@ -162,7 +161,7 @@ function drawRoutes(route, infoWindow, map) {
     let marker = new google.maps.Marker({
         position: coords,
         title: route.title,
-        icon: '/images/icons/route.jpg'
+        icon: '/images/icons/route.png'
 
     });
     //The line that actually attaches a marker to the map
@@ -197,9 +196,7 @@ function drawEvents(thisEvent, icons, infoWindow, map) {
 
     //This connects the info window to the marker, allowing information, links, any HTML really to be displayed
     google.maps.event.addListener(marker, 'click', function() {
-        infoWindow.setContent("<h6>" + thisEvent.name + "</h6>" +
-            // "<p><strong>" + thisEvent + "</strong><br>" +
-            thisEvent.description + "</p>" +
+        infoWindow.setContent("<h4>" + thisEvent.name + "</h4>" +
             "<a href='/event/" + thisEvent.id + "'>More Info</a>");
         infoWindow.open(map, marker);
     });
