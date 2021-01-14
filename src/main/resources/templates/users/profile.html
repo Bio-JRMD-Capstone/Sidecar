@@ -16,8 +16,8 @@
                     <div class="profile-box">
                         <div class="profile__info">
                             <figure class="profile__shape">
-                                <span th:if="${user.photo_url == null}">
-                                    <img src="images/placeholders/user.png" alt="placeholder image" class="profile__image">
+                                <span>
+                                    <img th:if="${user.photo_url == ''}" src="/images/placeholders/user.png" alt="placeholder image" class="profile__image">
                                 </span>
                                 <img th:src="${user.photo_url}" alt="profile image" class="profile__image">
                             </figure>
