@@ -25,6 +25,13 @@
         background-color: rgba($color-primary-dark, .3);
         border: $color-gray-dark solid .5px !important;
     }
+    &-delete {
+        border-radius: 3px !important;
+        padding: .5rem !important;
+        color: $color-white;
+        background-color: rgba($color-delete, .3);
+        border: $color-delete-dark solid .5px !important;
+    }
     &--animated {
         animation-name: moveInBottom;
         animation-duration: .5s;
@@ -59,6 +66,15 @@
         background-color: $color-primary;
         color: $color-white;
 
+        &::after {
+            background-color: $color-primary;
+        }
+    }
+    &--map {
+        background-color: $color-white;
+        color: $color-gray-dark;
+        font-size: 1.4rem;
+        padding: .5rem 2rem;
         &::after {
             background-color: $color-primary;
         }

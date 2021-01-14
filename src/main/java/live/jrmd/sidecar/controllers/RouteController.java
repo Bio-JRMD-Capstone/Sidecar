@@ -106,7 +106,7 @@ public class RouteController {
         if(validation.hasErrors()){
             model.addAttribute("errors", validation);
             model.addAttribute("route", route);
-            return "route/{id}/edit";
+            return "routes/edit";
         } else {
             amendedRoute.setUser(user);
             routeDao.save(amendedRoute);

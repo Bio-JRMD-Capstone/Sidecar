@@ -20,9 +20,9 @@
                     <!-- Map -->
                     <div class="col-event-2">
                         <div class="event__input">
-                            <div id="floating-panel">
-                                <input name="createevent" id="address" type="textbox" placeholder="Enter a location" />
-                                <input id="submit" type="button" value="View Location" />
+                            <div class="map__input--map-btn" id="floating-pane">
+                                <input class="u-margin-right-sm" id="address" type="textbox" placeholder="Enter a location" />
+                                <input id="submit" class="btn btn--white" type="button" value="View Location" />
                             </div>
                             <span th:text="${location}" hidden id="location"></span>
                             <div id="map">Map</div>
@@ -51,21 +51,23 @@
                                     <br />
                             <!--    Radio buttons for categories-->
                                 <h4>Select Event Category: </h4>
-                                        <div class="form-check" th:each="category : ${categories}">
-                                            <input class="form-check-input" th:value="${category.id}" type="radio" name="eventCategories" th:id="${category.id}">
-                                            <label class="form-check-label" th:for="${category.id}" th:text=" ${category.name}"></label>
-                                        </div>
+                                <div class="form-check" th:each="category : ${categories}">
+                                    <input class="form-check-input" th:value="${category.id}" type="radio" name="eventCategories" th:id="${category.id}">
+                                    <label class="form-check-label" th:for="${category.id}" th:text=" ${category.name}"></label>
+                                </div>
+                            <!-- lons & lats for mapt -->
                                 <input type="hidden" id="lat" value="" th:field="*{lat}">
                                 <input type="hidden" id="lon" value="" th:field="*{lon}">
-                                <!-- Flyer -->
+                            <!-- Add Flyer -->
                                     <div>
                                         <input type="hidden" id="image" th:field="*{filePath}">
                                         <button class="btn btn--white " id="imageButton">Add Flyer Image</button>
                                         <img class="poi-img event__single--image" id="imagePreview" src="" alt="">
                                     </div>
-                                <!-- Submit button -->
-                                <div class="u-right-align u-margin-top-sm">
-                                    <input class="btn btn--white u-margin-y-md" type="submit" value="Submit"/>
+
+                            <!-- Submit button -->
+                                <div class="u-margin-top-sm">
+                                    <input class="btn btn--white" type="submit" value="Submit"/>
                                 </div>
                             </form>
                         </div>

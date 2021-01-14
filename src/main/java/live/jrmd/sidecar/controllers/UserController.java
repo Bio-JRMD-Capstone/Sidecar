@@ -2,6 +2,7 @@ package live.jrmd.sidecar.controllers;
 
 import live.jrmd.sidecar.models.User;
 import live.jrmd.sidecar.repositories.*;
+import org.hibernate.annotations.GeneratorType;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -43,6 +44,10 @@ public class UserController {
         return "redirect:/index";
     }
 
+    @GetMapping("/about-us")
+    public String aboutUs(){
+        return "/about-us";
+    }
     @GetMapping("/register")
     public String showRegisterForm(Model model){
         model.addAttribute("user", new User());
