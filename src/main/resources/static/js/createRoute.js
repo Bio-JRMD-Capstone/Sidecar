@@ -59,7 +59,8 @@ function initMap() {
             map: map
         });
     }
-    ;
+
+
     var objLoc = {};
     // Create new marker on single click event on the map
     google.maps.event.addListener(map, 'click', function (event) {
@@ -103,8 +104,49 @@ function initMap() {
             draggable: false,
             map,
             panel: document.getElementById("right-panel"),
+            suppressMarkers: true,
         });
+
         console.log(markers)
+
+        const startMarker = new google.maps.Marker({
+            position: markers[0],
+            map,
+            icon: {
+                url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+            }
+        });
+
+        if(document.getElementById("routeCheck").checked === true){
+            const endMarker = new google.maps.Marker({
+                position: markers[markers.length-1],
+                map,
+                icon: {
+                    url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+                }
+            });
+        } else {
+            const endMarker = new google.maps.Marker({
+                position: markers[markers.length-1],
+                map,
+                icon: {
+                    url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                }
+            });
+        }
+
+
+
+        for(let i = 1; i < markers.length-1; i++) {
+            let midMarker = new google.maps.Marker({
+                position: markers[i],
+                map,
+                icon: {
+                    url: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+                }
+            });
+        }
+
         displayRoute(
             markers[0],
             markers[markers.length-1],
@@ -141,7 +183,6 @@ function initMap() {
                 destination: destination,
                 waypoints: markers,
                 travelMode: google.maps.TravelMode.DRIVING,
-                avoidTolls: true,
             },
             (result, status) => {
                 if (status === "OK") {
@@ -164,6 +205,10 @@ function initMap() {
                 });
 
         }
+
+        console.log(markers[0].location)
+
+
 
         directionsService.route(
             {
@@ -256,10 +301,10 @@ function geocodeAddress(geocoder, resultsMap, location) {
     });
 }
 
-//Takes in an address and geocodes it, then sets the map to a zoom level of 9
+//Takes in an address and geocodes it, then sets the map to a zoom level of 11
 function setLocation(geocoder, map, location) {
     if (location) {
         geocodeAddress(geocoder, map, location);
-        map.setZoom(9);
+        map.setZoom(11);
     }
 }

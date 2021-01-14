@@ -19,7 +19,7 @@ function initMap() {
     //Taking the values of the lat and lng of the point we need, then centering the map on the point
     map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: pointLat, lng: pointLng },
-        zoom: 15,
+        zoom: 14,
     });
     infoWindow = new google.maps.InfoWindow();
 
@@ -151,9 +151,8 @@ function drawPOIs(poi, icons, infoWindow, map) {
     }
     //This connects the info window to the marker, allowing information, links, any HTML really to be displayed
     google.maps.event.addListener(marker, 'click', function() {
-        infoWindow.setContent("<h6>" + poi.name + "</h6>" +
+        infoWindow.setContent("<h4>" + poi.name + "</h4>" +
             "<p><strong>" + categoryString + "</strong><br>" +
-            poi.description + "</p>" +
             "<a href='/points/" + poi.id + "'>More Info</a>");
         infoWindow.open(map, marker);
     });
