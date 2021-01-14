@@ -87,19 +87,10 @@ function drawRoutes(route, infoWindow, map) {
     let marker = new google.maps.Marker({
         position: coords,
         title: route.title,
-
+        icon: '/images/icons/route.png'
     });
     //The line that actually attaches a marker to the map
     marker.setMap(map);
-    //Allowing the category to be correctly displayed in the infowindow by capitalizing the letters
-    //and replacing any underscores with a space
-    var categoryString = route.title.replace(route.title.charAt(0), route.title.charAt(0).toUpperCase());
-    if(categoryString.includes("_")) {
-        categoryString = categoryString.replace(
-            categoryString.charAt(categoryString.indexOf("_") + 1),
-            categoryString.charAt(categoryString.indexOf("_") + 1).toUpperCase());
-        categoryString = categoryString.replace("_", " ");
-    }
     //This connects the info window to the marker, allowing information, links, any HTML really to be displayed
     google.maps.event.addListener(marker, 'click', function() {
         infoWindow.setContent("<h4>" + route.title + "</h4>" +
