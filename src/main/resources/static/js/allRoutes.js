@@ -48,7 +48,7 @@ function geocodeAddress(geocoder, resultsMap, location) {
 function setLocation(geocoder, map, location) {
     if (location) {
         geocodeAddress(geocoder, map, location);
-        map.setZoom(9);
+        map.setZoom(11);
     }
 }
 

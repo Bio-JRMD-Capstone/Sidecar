@@ -19,7 +19,7 @@ function initMap() {
     //Taking the values of the lat and lng of the thisEvent we need, then centering the map on the thisEvent
     map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: thisEventLat, lng: thisEventLng },
-        zoom: 15,
+        zoom: 14,
     });
     infoWindow = new google.maps.InfoWindow();
 
