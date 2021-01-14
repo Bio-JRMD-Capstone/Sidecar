@@ -4,7 +4,10 @@
 
   &-box {
     padding: 3rem;
-    background-color: $color-primary-light;
+    background-image: linear-gradient(
+                    to right bottom,
+                    $color-primary-light,
+                    $color-primary-dark);
     height: 100%;
     display: flex;
     overflow: auto;

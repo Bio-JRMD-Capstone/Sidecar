@@ -769,7 +769,7 @@ body {
 }
 .event-box {
   padding: 3rem;
-  background-color: #BEB6A6;
+  background-image: linear-gradient(to right bottom, #BEB6A6, #3F3622);
   height: 100%;
   display: flex;
   overflow: auto;
@@ -1225,7 +1225,7 @@ body {
 }
 .map-box {
   padding: 2rem;
-  background-color: #BEB6A6;
+  background-image: linear-gradient(to right bottom, #BEB6A6, #3F3622);
   height: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -1445,7 +1445,7 @@ body {
 }
 .poi-box {
   padding: 2rem;
-  background-color: #BEB6A6;
+  background-image: linear-gradient(to right bottom, #BEB6A6, #3F3622);
   height: 100%;
   display: flex;
   flex-wrap: wrap;
