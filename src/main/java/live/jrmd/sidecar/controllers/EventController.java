@@ -2,7 +2,7 @@ package live.jrmd.sidecar.controllers;
 
 import live.jrmd.sidecar.models.Event;
 import live.jrmd.sidecar.models.EventCategory;
-import live.jrmd.sidecar.models.Route;
+import live.jrmd.sidecar.models.POI;
 import live.jrmd.sidecar.models.User;
 import live.jrmd.sidecar.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,17 +36,19 @@ public class EventController {
         model.addAttribute("categories", eCatDao.findAll());
         return "events/index";
     }
+
+    @GetMapping("/events.json")
+    public @ResponseBody List<Event> viewAllEventInJSONFormat() {
+        return eventDao.findAll();
+    }
+
+
     @GetMapping("/searchEvents")
     public String search(@RequestParam(name = "term") String term, Model model){
         term = "%"+term+"%";
         List searchEvents = eventDao.findAllByNameIsLike(term);
         model.addAttribute("routes", searchEvents);
         return "events/index";
-    }
-
-    @GetMapping("/events.json")
-    public @ResponseBody List<Event> viewAllEventsInJSONFormat() {
-        return eventDao.findAll();
     }
 
     @GetMapping("/events/create")

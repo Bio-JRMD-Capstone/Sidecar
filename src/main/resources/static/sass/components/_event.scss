@@ -236,3 +236,9 @@
   width: calc(2* ((100% - 2 * #{$gutter-horizontal}) / 3) + #{$gutter-horizontal});
 
 }
+.col-event-1 {
+  width: calc((100% - 2 * #{$gutter-horizontal}) / 3);
+}
+.col-event-2 {
+  width: calc(2* ((100% - 2 * #{$gutter-horizontal}) / 3) + #{$gutter-horizontal});
+}

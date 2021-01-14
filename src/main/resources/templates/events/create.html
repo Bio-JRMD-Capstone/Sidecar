@@ -14,53 +14,58 @@
         <main>
             <div class="event">
                 <div class="event-box">
-
-                    <form name="createevent" th:action="@{/events/create}" th:method="post" th:object="${event}">
-                        <div class="col-event">
-                            <div class="event__input">
-                                <div id="inputForm">
-                                    <input type="hidden" th:field="*{user}">
-                                    <label for="name"><h4>Event Title:</h4></label>
-                                    <input type="text" th:field="*{name}" name="name" id="name" class=""/>
-                                                <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" />
-                                    <br />
-                                    <label for="description"><h4>Event Description:</h4></label>
-                                    <textarea th:field="*{description}" name="description" id="description" class="" ></textarea>
-                                                <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" />
-                                    <br />
-                                    <label for="date"><h4>Event Date:</h4></label>
-                                    <input type="date" th:field="*{date}" name="date" id="date" class="" />
-                                                <p th:if="${#fields.hasErrors('date')}" th:errors="*{date}" />
-                                    <br />
-                                    <label for="zipcode"><h4>Event Zipcode:</h4></label>
-                                    <input type="text" th:field="*{zipcode}" name="date" id="zipcode" class="" />
-                                                <p th:if="${#fields.hasErrors('zipcode')}" th:errors="*{zipcode}" />
-                                    <br />
-                                </div>
+                    <div class="col-event-2">
+                        <div class="event__input">
+                            <div id="floating-panel">
+                                <input name="createevent" id="address" type="textbox" placeholder="Enter a location" />
+                                <input id="submit" type="button" value="View Location" />
                             </div>
-                        </div>
 
-                        <div class="col-event">
-                            <div class="event__input">
-                    <!--    Radio buttons for categories-->
+                            <div id="map">Map</div>
+                        </div>
+                    </div>
+
+                    <div class="col-event-1">
+                        <div class="event__input">
+                            <h3>Event Info</h3>
+                            <form class="event-data" name="createevent" th:action="@{/events/create}" th:method="post" th:object="${event}">
+                                <div class="col-event">
+                                            <input type="hidden" th:field="*{user}">
+                                            <label for="name" class="event__label"><h4>Event Title:</h4></label>
+                                            <input type="text" th:field="*{name}" name="name" id="name" class="event__input"/>
+                                                        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" />
+                                            <br />
+                                            <label class="event__label" for="description"><h4>Event Description:</h4></label>
+                                            <textarea th:field="*{description}" name="description" id="description" class="event__input-long" maxlength="2500"></textarea>
+                                                        <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" />
+                                            <br />
+                                            <label class="event__label" for="date"><h4>Event Date:</h4></label>
+                                            <input type="date" th:field="*{date}" name="date" id="date" class="event__input" />
+                                                        <p th:if="${#fields.hasErrors('date')}" th:errors="*{date}" />
+                                            <br />
+                                            <label class="event__label" for="zipcode"><h4>Event Zipcode:</h4></label>
+                                            <input type="text" th:field="*{zipcode}" name="date" id="zipcode" class="event__input" />
+                                                        <p th:if="${#fields.hasErrors('zipcode')}" th:errors="*{zipcode}" />
+                                            <br />
+                                </div>
+                            <!--    Radio buttons for categories-->
                                 <h4>Select Event Category: </h4>
-                                <div class="form-check" th:each="category : ${categories}">
-                                    <input class="form-check-input" th:value="${category.id}" type="radio" name="eventCategories" th:id="${category.id}">
-                                    <label class="form-check-label" th:for="${category.id}" th:text=" ${category.name}"></label>
-                                </div>
-                            </div>
-                        </div>
+                                        <div class="form-check" th:each="category : ${categories}">
+                                            <input class="form-check-input" th:value="${category.id}" type="radio" name="eventCategories" th:id="${category.id}">
+                                            <label class="form-check-label" th:for="${category.id}" th:text=" ${category.name}"></label>
+                                        </div>
+                                <input type="hidden" id="lat" value="" th:field="*{lat}">
+                                <input type="hidden" id="lon" value="" th:field="*{lon}">
 
-                        <div class="col-event">
-                            <div>
-                                <input type="hidden" id="image" th:field="*{filePath}">
-                                <button class="btn btn--white " id="imageButton">Add Flyer Image</button>
-                                <img class="poi-img event__single--image" id="imagePreview" src="" alt="">
-                            </div>
-                            <input type="submit" class="btn btn--white event__submit"/>
+                                    <div>
+                                        <input type="hidden" id="image" th:field="*{filePath}">
+                                        <button class="btn btn--white " id="imageButton">Add Flyer Image</button>
+                                        <img class="poi-img event__single--image" id="imagePreview" src="" alt="">
+                                    </div>
+                                    <input type="submit" class="btn btn--white event__submit"/>
+                            </form>
                         </div>
-                    </form>
-
+                    </div>
                 </div>
             </div>
         </main>
@@ -69,6 +74,7 @@
         <script src="/js/keys.js"></script>
         <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
         <script src="/js/filestack.js"></script>
+        <script src="/js/createEvent.js"></script>
         <div th:include="partials/scripts :: scripts"></div>
 
     </body>
