@@ -3,6 +3,8 @@ package live.jrmd.sidecar.models;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Entity
 @Table(name = "poi_Comments")
@@ -14,10 +16,11 @@ public class POIComment {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String comment;
 
-    @Column(nullable = false, columnDefinition = "DATETIME")
-    private String timestamp;
+    @Column(nullable = false, columnDefinition = "DATE")
+    private Date date;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -28,17 +31,19 @@ public class POIComment {
 
     public POIComment(){}
 
-    //create
-    public POIComment(String comment, String timestamp) {
+    //write
+    public POIComment(String comment, Date date, User user, POI poi) {
         this.comment = comment;
-        this.timestamp = timestamp;
+        this.date = date;
+        this.user = user;
+        this.poi = poi;
     }
 
     //read
-    public POIComment(Long id, String comment, String timestamp, User user, POI poi) {
+    public POIComment(Long id, String comment, Date date, User user, POI poi) {
         this.id = id;
         this.comment = comment;
-        this.timestamp = timestamp;
+        this.date = date;
         this.user = user;
         this.poi = poi;
     }
@@ -47,7 +52,7 @@ public class POIComment {
     public POIComment(POIComment copy) {
         id = copy.id;
         comment = copy.comment;
-        timestamp = copy.timestamp;
+        date = copy.date;
         user = copy.user;
         poi = copy.poi;
     }
@@ -68,12 +73,12 @@ public class POIComment {
         this.comment = comment;
     }
 
-    public String getTimestamp() {
-        return timestamp;
+    public Date getDate() {
+        return date;
     }
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public User getUser() {
@@ -91,4 +96,11 @@ public class POIComment {
     public void setPoi(POI poi) {
         this.poi = poi;
     }
+
+
+    public String getFormattedDate(){
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        return formatter.format(date);
+    }
+
 }

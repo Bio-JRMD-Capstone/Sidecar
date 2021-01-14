@@ -4,11 +4,15 @@
 
   &-box {
     padding: 3rem;
-    background-color: $color-primary-light;
+    background-image: linear-gradient(
+                    to right bottom,
+                    $color-primary-light,
+                    $color-primary-dark);
     height: 100%;
     display: flex;
     overflow: auto;
     margin-bottom: 3rem;
+    box-shadow: 0 1rem 2rem rgba($color-black, .2);
     & form {
       width: 100%;
     }

@@ -96,8 +96,48 @@ function initMap() {
         draggable: false,
         map,
         panel: document.getElementById("right-panel"),
+        suppressMarkers: true,
     });
     console.log(markers)
+
+    const startMarker = new google.maps.Marker({
+        position: markers[0].location,
+        map,
+        icon: {
+            url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+        }
+    });
+
+
+    if(markers[markers.length-1].location.lat === markers[0].location.lat){
+        const endMarker = new google.maps.Marker({
+            position: markers[markers.length-1],
+            map,
+            icon: {
+                url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+            }
+        });
+    } else {
+        const endMarker = new google.maps.Marker({
+            position: markers[markers.length-1].location,
+            map,
+            icon: {
+                url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+            }
+        });
+    }
+
+    for(let i = 1; i < markers.length-1; i++) {
+        let midMarker = new google.maps.Marker({
+            position: markers[i].location,
+            map,
+            icon: {
+                url: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+            }
+        });
+    }
+
+
     displayRoute(
         markers[0],
         markers[markers.length-1],
@@ -288,10 +328,13 @@ function initMapClear() {
     function addMarker(location) {
         var marker = new google.maps.Marker({
             position: location,
-            map: map
+            map: map,
+            suppressMarkers: true,
         });
     }
-    ;
+
+
+
     var objLoc = {};
     // Create new marker on single click event on the map
     google.maps.event.addListener(map, 'click', function (event) {
@@ -331,12 +374,51 @@ function initMapClear() {
             markers.push(objRepeat)
         }
 
+        const startMarker = new google.maps.Marker({
+            position: markers[0],
+            map,
+            icon: {
+                url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+            }
+        });
+
+        if(document.getElementById("routeCheck").checked === true){
+            const endMarker = new google.maps.Marker({
+                position: markers[markers.length-1],
+                map,
+                icon: {
+                    url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+                }
+            });
+        } else {
+            const endMarker = new google.maps.Marker({
+                position: markers[markers.length-1],
+                map,
+                icon: {
+                    url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                }
+            });
+        }
+
+
+
+        for(let i = 1; i < markers.length-1; i++) {
+            let midMarker = new google.maps.Marker({
+                position: markers[i],
+                map,
+                icon: {
+                    url: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+                }
+            });
+        }
+
 
         const directionsService = new google.maps.DirectionsService();
         const directionsRenderer = new google.maps.DirectionsRenderer({
             draggable: false,
             map,
             panel: document.getElementById("right-panel"),
+            suppressMarkers: true,
         });
         console.log(markers)
 

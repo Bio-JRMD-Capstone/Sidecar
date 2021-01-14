@@ -13,25 +13,28 @@
 
         <main>
             <div class="poi">
+                <div class="u-margin-bottom-md u-center-text">
+                    <h2 class="heading-primary--sub">Edit your Point of Interest:</h2>
+                </div>
                 <div class="poi-box">
                     <!-- Map -->
                     <div class="col-poi-2">
                         <div id="floating-panel">
-                            <input class="poi__input u-margin-right-sm" id="address" type="textbox" placeholder="Enter a location" />
-                            <input class="map__input--map-btn" id="submit" type="button" value="View Location" />
+                            <input id="address" type="textbox" placeholder="Enter a location" />
+                            <input id="submit" type="button" value="View Location" />
                         </div>
                         <div id="map">Map</div>
                     </div>
                     <div class="col-poi-1">
                         <div class="poi__input">
-
-                            <h3>Location Data</h3>
                             <form name="editpoint" th:action="@{'/points/' + ${poi.id} + '/edit'}" th:method="post" th:object="${poi}" class="poi-data">
 
                                 <input class="poi__input" type="text"  th:field="*{name}" id="name" name="name" placeholder="title">
                                 <label class="poi__label" for="name">Name:</label>
-
-                                <!--Need a dropdown or other menu for POI category: Bar, Restaurant, Scenic View, Repair Shop, Other-->
+                                <br />
+                                <input class="poi__input-long" th:field="*{description}" type="text" id="description" name="description" placeholder="description" >
+                                <label class="poi__label" for="description">Description:</label>
+                                <br />
                                 <h4>Category: </h4>
                                 <div class="form-check">
                                     <input class="form-check-input" th:field="*{category}" th:value="bar" type="radio" name="category" id="bar">
@@ -69,9 +72,7 @@
                                         Other
                                     </label>
                                 </div>
-
-                                <input class="poi__input-long" th:field="*{description}" type="text" id="description" name="description" placeholder="description" >
-                                <label class="poi__label" for="description">Description:</label>
+                                <br />
 
                                 <input type="hidden" id="lat" value="" th:field="*{lat}">
                                 <input type="hidden" id="lon" value="" th:field="*{lon}">
@@ -93,7 +94,7 @@
                                 </div>
                                 <!-- Submit changes / cancel buttons -->
                                 <div class="u-center-text u-margin-top-sm">
-                                    <input class="btn btn--white u-margin-y-md" type="submit" value="Update"/>
+                                    <input class="btn btn--white u-margin-y-sm" type="submit" value="Update"/>
                                     <a class="btn btn--green u-margin-y-md" href="/profile">Cancel</a>
                                 </div>
                             </form>
