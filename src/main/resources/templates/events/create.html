@@ -39,7 +39,7 @@
                                     <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" />
                                     <br />
 
-                                    <textarea th:field="*{description}" name="description" id="description" placeholder="Description" class="event__input-long" ></textarea>
+                                    <textarea th:field="*{description}" name="description" id="description" placeholder="Description" class="event__input-long" maxlength="2500"></textarea>
                                     <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" />
                                     <br />
 

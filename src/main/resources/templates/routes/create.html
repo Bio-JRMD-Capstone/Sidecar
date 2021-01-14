@@ -57,7 +57,7 @@
                                 <input class="map__input" type="text"  id="title" name="title" placeholder="Title" th:field="*{title}">
                                 <h4 th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"/>
                                 <br />
-                                <textarea class="map__input-long" type="text" id="description" name="description" placeholder="Description" th:field="*{description}"></textarea>
+                                <textarea class="map__input-long" type="text" id="description" name="description" placeholder="Description" th:field="*{description}" maxlength="2500"></textarea>
                                 <h4 th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger" />
                                 <br />
                                 <input class="map__input" type="text" id="distance" name="distance" placeholder="Distance" th:field="*{distance}" readonly>
