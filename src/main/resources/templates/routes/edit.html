@@ -58,15 +58,15 @@
 
                                 <input class="map__input" type="text"  id="title" name="title" placeholder="Title" th:field="*{title}">
                                 <h4 th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"/>
-
+                                <br />
                                 <textarea class="map__input-long" type="text" id="description" name="description" placeholder="Description" th:field="*{description}"></textarea>
                                 <h4 th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger" />
-
+                                <br />
                                 <input class="map__input" type="text" id="distance" name="distance" placeholder="Distance" th:field="*{distance}" readonly>
-
+                                <br />
                                 <label class="d-none" for="coordinates">Route Coordinates: </label><p class="d-none" th:text="${routeToEdit.coordinates}" id="coords"></p>
                                 <input type="hidden" class="map__input" id="coordinates" name="coordinates" th:field="*{coordinates}" readonly>
-
+                                <br />
                                 <input class="map__input u-margin-bottom-sm" type="text" id="time" name="time"  placeholder="Minutes, Hours, Days, etc." th:field="*{time}">
                                 <h4 th:if="${#fields.hasErrors('time')}" th:errors="*{time}" class="text-danger" />
 

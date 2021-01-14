@@ -1451,7 +1451,6 @@ body {
   flex-wrap: wrap;
   overflow: auto;
   margin-bottom: 3rem;
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
 }
 @media (max-width: 61.94em) {
   .poi-box {
