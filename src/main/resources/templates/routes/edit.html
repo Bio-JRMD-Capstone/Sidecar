@@ -22,22 +22,22 @@
                     <div class="col-map-2">
                         <div class="map__input u-margin-bottom-sm">
                             <div id="floating-panel">
-                                <input class="map__input--textbox u-margin-right-sm" name="locationinput" id="address" type="textbox" placeholder="Enter a location" />
+                                <input class="map__input--textbox u-margin-right-sm" name="locationinput" id="address" type="textbox" placeholder=" Enter a location" />
                                 <input class="btn btn--map" id="submit" type="button" value="View Location" />
                             </div>
                             <div class="map__input--map-btn">
                                 <div class="u-margin-right-sm">
-                                    <input class=" btn-lt" type="button" id="clearBtn" name="clearBtn" value="Clear Route">
+                                    <input class="btn-rt u-margin-right-sm btn btn--white" type="button" id="clearBtn" name="clearBtn" value="Clear Route">
                                 </div>
                                 <div class="field">
                                     <div class="control">
-                                        <input class="btn-lt" type="button" id="testbtn" name="testbtn" value="See Route">
+                                        <input class="btn-rt u-margin-right-sm btn btn--white" type="button" id="testbtn" name="testbtn" value="See Route">
                                     </div>
                                 </div>
                                 <p class="btn-rt">
                                     <label>
                                         <input id="routeCheck" type="checkbox" />
-                                        <span> End point same as start?</span>
+                                        <span> Round Trip</span>
                                     </label>
                                 </p>
                             </div>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="col-map-1">
                         <div class="map__input">
-                            <h3>Route Info</h3>
+                            <h3>Route Information</h3>
                             <form name="editpoint" class="map-data"  th:action="@{'/route/' + ${routeToEdit.id} + '/edit'}" th:method="POST" th:object="${routeToEdit}">
 
                                 <input class="map__input" type="text"  id="title" name="title" placeholder="Title" th:field="*{title}">

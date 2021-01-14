@@ -19,10 +19,10 @@
                 <div class="event-box">
                     <!-- Map -->
                     <div class="col-event-2">
-                        <div class="event__input">
+                        <div class="event__input u-margin-bottom-sm">
                             <div id="floating-panel">
-                                <input id="address" type="textbox" placeholder="Enter a location" />
-                                <input id="submit" type="button" value="View Location" />
+                                <input class="map__input--textbox u-margin-right-sm" name="locationinput" id="address" type="textbox" placeholder=" Enter a location" />
+                                <input class="btn btn--map" id="submit" type="button" value="View Location" />
                             </div>
                             <div id="map">Map</div>
                         </div>
@@ -30,21 +30,18 @@
 
                     <div class="col-event-1">
                         <div class="event__input">
+                            <h3>Event Information</h3>
                             <form name="editevent" th:action="@{'/event/' + ${eventToEdit.id} + '/edit'}" th:method="post" th:object="${event}">
                                 <!-- Input fields -->
                                 <input type="hidden" th:field="${eventToEdit}">
                                 <input type="hidden" th:field="${eventToEdit.user.id}">
 
-                                <label class="event__label paragraph" for="name"><h4>Event Title:</h4></label>
                                 <input class="event__input paragraph" type="text" th:field="${eventToEdit.name}" name="name" id="name"/>
 
-                                <label class="event__label paragraph" for="description"><h4>Event Description:</h4></label>
                                 <textarea class="event__input paragraph" th:field="${eventToEdit.description}" name="description" id="description" ></textarea>
 
-                                <label class="event__label paragraph" for="date"><h4>Event Date:</h4></label>
                                 <input class="event__input paragraph" type="date" th:field="${eventToEdit.date}" name="date" id="date" />
 
-                                <label class="event__label paragraph" for="zipcode"><h4>Event Zipcode:</h4></label>
                                 <input class="event__input paragraph" type="text" th:field="${eventToEdit.zipcode}" name="date" id="zipcode" />
 
                             <!--    Radio buttons for categories-->
@@ -53,19 +50,20 @@
                                     <input class="form-check-input" th:value="${category.id}" type="radio" name="eventCategories" th:id="${category.id}">
                                     <label class="form-check-label paragraph" th:for="${category.id}" th:text=" ${category.name}"></label>
                                 </div>
+                                <br />
 
                                 <!-- Current and updated flyer -->
-                                <div class="image-stack">
-                                    <div class="image-stack__item--top">
-                                        <img class="event__card--image-edit poi-img" th:if="${eventToEdit.filePath != ''}" th:src="${eventToEdit.filePath}" alt="Event Flyer" />
-                                        <img class="event__card--image-edit poi-img" th:if="${eventToEdit.filePath == ''}" src="/images/placeholders/event.png" alt="placeholder event image"/>
-                                    </div>
+                                    <div class="image-stack">
+                                        <div class="image-stack__item--top">
+                                            <img class="event__card--image-edit poi-img" th:if="${eventToEdit.filePath != ''}" th:src="${eventToEdit.filePath}" alt="Event Flyer" />
+                                            <img class="event__card--image-edit poi-img" th:if="${eventToEdit.filePath == ''}" src="/images/placeholders/event.png" alt="placeholder event image"/>
+                                        </div>
 
-                                    <div class="image-stack__item--bottom">
-                                        <label for="newImage"><img class="poi-img event__card--image-edit" id="imagePreview" src="" alt=""></label>
-                                        <input type="hidden" id="newImage" th:field="${eventToEdit.filePath}" th:value="${eventToEdit.filePath}" name="filePath">
+                                        <div class="image-stack__item--bottom">
+                                            <label for="newImage"><img class="poi-img event__card--image-edit" id="imagePreview" src="" alt=""></label>
+                                            <input type="hidden" id="newImage" th:field="${eventToEdit.filePath}" th:value="${eventToEdit.filePath}" name="filePath">
+                                        </div>
                                     </div>
-                                </div>
 
                                 <div class="u-center-text u-margin-top-md">
                                     <button class="btn" id="imageButton">Add/Change Flyer</button>

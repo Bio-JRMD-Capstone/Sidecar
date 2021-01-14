@@ -19,7 +19,7 @@ function initMap() {
     //Taking the values of the lat and lng of the thisEvent we need, then centering the map on the thisEvent
     map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: thisEventLat, lng: thisEventLng },
-        zoom: 15,
+        zoom: 14,
     });
     infoWindow = new google.maps.InfoWindow();
 
@@ -151,9 +151,7 @@ function drawEvents(thisEvent, icons, infoWindow, map) {
     // }
     //This connects the info window to the marker, allowing information, links, any HTML really to be displayed
     google.maps.event.addListener(marker, 'click', function() {
-        infoWindow.setContent("<h6>" + thisEvent.name + "</h6>" +
-            // "<p><strong>" + categoryString + "</strong><br>" +
-            thisEvent.description + "</p>" +
+        infoWindow.setContent("<h4>" + thisEvent.name + "</h4>" +
             "<a href='/event/" + thisEvent.id + "'>More Info</a>");
         infoWindow.open(map, marker);
     });

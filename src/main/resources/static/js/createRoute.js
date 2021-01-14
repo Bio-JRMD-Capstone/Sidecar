@@ -301,10 +301,10 @@ function geocodeAddress(geocoder, resultsMap, location) {
     });
 }
 
-//Takes in an address and geocodes it, then sets the map to a zoom level of 9
+//Takes in an address and geocodes it, then sets the map to a zoom level of 11
 function setLocation(geocoder, map, location) {
     if (location) {
         geocodeAddress(geocoder, map, location);
-        map.setZoom(9);
+        map.setZoom(11);
     }
 }
