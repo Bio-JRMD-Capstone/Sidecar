@@ -106,9 +106,6 @@ public class UserController {
             user.setUsername(username);
             user.setEmail(email);
             user.setZipcode(zipcode);
-            if(photo_url.equals("")){
-                user.setPhoto_url("https://cdn.filestackcontent.com/Ts54QC2PQv6ZToYPspKM");
-            }
             user.setPhoto_url(photo_url);
             user.setPassword(user.getPassword());
             user.setPassword_confirm(user.getPassword());
