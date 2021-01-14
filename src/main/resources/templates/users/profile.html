@@ -66,7 +66,7 @@
                                         <td class="profile__table--description" th:text="${route.description}" name="description"></td>
                                         <td><a th:href="'/route/' + ${route.id} + '/edit'" class="btn btn-edit">Edit</a></td>
                                         <td>
-                                            <a class="btn btn-edit" href="#popup-route">Delete</a>
+                                            <a class="btn btn-delete" href="#popup-route">Delete</a>
                                             <div class="popup" id="popup-route">
                                                 <div class="popup__content">
                                                     <div class="popup__right">
@@ -76,7 +76,7 @@
                                                             Are you sure you want to delete this route?
                                                         </p>
                                                         <form th:action="@{'/route/' + ${route.id} + '/delete'}" th:method="post">
-                                                            <button class="btn btn-edit">Delete</button>
+                                                            <button class="btn btn-delete">Delete</button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -109,7 +109,7 @@
                                     <td class="profile__table--description" th:text="${poi.description}" name="description"></td>
                                     <td><a th:href="'/points/' + ${poi.id} + '/edit'" class="btn btn-edit">Edit</a></td>
                                     <td>
-                                        <a class="btn btn-edit" href="#popup-poi">Delete</a>
+                                        <a class="btn btn-delete" href="#popup-poi">Delete</a>
                                         <div class="popup" id="popup-poi">
                                             <div class="popup__content">
                                                 <div class="popup__right">
@@ -119,7 +119,7 @@
                                                         Are you sure you want to delete this point of interest?
                                                     </p>
                                                     <form th:action="@{'/points/' + ${poi.id} + '/delete'}" th:method="post">
-                                                        <button class="btn btn-edit">Delete</button>
+                                                        <button class="btn btn-delete">Delete</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -154,7 +154,7 @@
                                             <td class="profile__table--description" th:text="${event.description}" name="description"></td>
                                             <td><a th:href="'/event/' + ${event.id} + '/edit'" class="btn btn-edit">Edit</a></td>
                                             <td>
-                                                <a class="btn btn-edit" href="#popup-event">Delete</a>
+                                                <a class="btn btn-delete" href="#popup-event">Delete</a>
                                                 <div class="popup" id="popup-event">
                                                     <div class="popup__content">
                                                         <div class="popup__right">
@@ -164,7 +164,7 @@
                                                                 Are you sure you want to delete this event?
                                                             </p>
                                                             <form th:action="@{'/event/' + ${event.id} + '/delete'}" th:method="post">
-                                                                <button class="btn btn-edit">Delete</button>
+                                                                <button class="btn btn-delete">Delete</button>
                                                             </form>
                                                         </div>
                                                     </div>

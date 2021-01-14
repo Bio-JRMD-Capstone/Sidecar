@@ -19,9 +19,9 @@
                 <div class="poi-box">
                     <div class="col-poi-2">
                         <div class="poi__input">
-                            <div id="floating-panel">
-                                <input id="address" type="textbox" placeholder="Enter a location" />
-                                <input id="submit" type="button" value="View Location" />
+                            <div class="map__input--map-btn" id="floating-pane">
+                                <input class="u-margin-right-sm" id="address" type="textbox" placeholder="Enter a location" />
+                                <input id="submit" class="btn btn--white" type="button" value="View Location" />
                             </div>
                             <span th:text="${location}" hidden id="location"></span>
                             <div id="map">Map</div>
@@ -36,7 +36,8 @@
                                 <input class="poi__input" type="text"  th:field="*{name}" id="name" name="name" placeholder="Title">
                                 <label class="poi__label" for="name">Title</label>
 
-                                <!--Need a dropdown or other menu for POI category: Bar, Restaurant, Scenic View, Repair Shop, Other-->
+                                <input class="poi__input-long" type="text" id="description" name="description" placeholder="Description" >
+                                <label class="poi__label" for="description"></label>
 
                                 <h4>Select Category: </h4>
                                 <div class="form-check">
@@ -76,20 +77,20 @@
                                     </label>
                                 </div>
 
-                                <input class="poi__input-long" type="text" id="description" name="description" placeholder="Description" >
-                                <label class="poi__label" for="description"></label>
-
+                                <!-- lons & lats for mapt -->
                                 <input type="hidden" id="lat" value="" th:field="*{lat}">
                                 <input type="hidden" id="lon" value="" th:field="*{lon}">
-                                <input type="hidden" id="image" th:field="*{photo_url}">
-
-                                <button class="btn btn--white" id="imageButton">Add a Picture</button>
-                                <img class="poi-img" id="imagePreview" src="" alt="">
-
-                                <div class="input-field u-margin-top-sm">
-                                    <input class="btn btn--white" type="submit">
+                                <!-- Add Image -->
+                                <div>
+                                    <input type="hidden" id="image" th:field="*{photo_url}">
+                                    <button class="btn btn--white" id="imageButton">Add a Picture</button>
+                                    <img class="poi-img" id="imagePreview" src="" alt="">
                                 </div>
 
+                                <!-- Submit button -->
+                                <div class="u-margin-top-sm">
+                                    <input class="btn btn--white" type="submit" value="Submit"/>
+                                </div>
                             </form>
                         </div>
                     </div>

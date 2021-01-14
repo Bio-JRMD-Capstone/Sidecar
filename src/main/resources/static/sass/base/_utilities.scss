@@ -16,8 +16,8 @@
   @include respond(tab-port) {
     margin-bottom: 3rem !important;
   }
-
 }
+
 .u-margin-bottom-sm { margin-bottom: 1.25rem !important; }
 
 .u-margin-top-xl { margin-top: 10rem !important; }
@@ -29,6 +29,9 @@
 .u-margin-right-md { margin-right: 3rem; }
 .u-margin-right-lg { margin-right: 5rem; }
 .u-margin-right-xl { margin-right: 7rem; }
+
 .u-margin-y-sm { margin: 0 1.5rem; }
 .u-margin-y-md { margin: 0 4rem; }
 .u-margin-y-lg { margin: 0 8rem; }
+
+.u-margin-x-sm { margin: 1.5rem 0; }

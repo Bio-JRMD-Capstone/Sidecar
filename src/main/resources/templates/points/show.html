@@ -33,7 +33,7 @@
                                 <div class="u-right-align">
                                     <div th:if ="${#authentication.getName()} == ${aComment.user.username}">
                                         <form  th:action="@{/points/{id}/delete-comment-{commentId} (id = ${point.id}, commentId = ${aComment.id})}" method="POST">
-                                            <button class="btn btn-edit u-right-align" type="submit">Delete comment?</button>
+                                            <button class="btn btn-delete u-right-align" type="submit">Delete comment?</button>
                                         </form>
                                     </div>
                                     <p class="u-right-align" th:text="'Posted by: ' + ${aComment.user.username} + ' on ' + ${aComment.getFormattedDate()}"></p>
