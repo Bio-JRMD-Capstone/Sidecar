@@ -35,16 +35,16 @@
                                 <input type="hidden" th:field="${eventToEdit}">
                                 <input type="hidden" th:field="${eventToEdit.user.id}">
 
-                                <label class="event__input paragraph" for="name"><h4>Event Title:</h4></label>
+                                <label class="event__label paragraph" for="name"><h4>Event Title:</h4></label>
                                 <input class="event__input paragraph" type="text" th:field="${eventToEdit.name}" name="name" id="name"/>
 
-                                <label class="event__input paragraph" for="description"><h4>Event Description:</h4></label>
+                                <label class="event__label paragraph" for="description"><h4>Event Description:</h4></label>
                                 <textarea class="event__input paragraph" th:field="${eventToEdit.description}" name="description" id="description" ></textarea>
 
-                                <label class="event__input paragraph" for="date"><h4>Event Date:</h4></label>
+                                <label class="event__label paragraph" for="date"><h4>Event Date:</h4></label>
                                 <input class="event__input paragraph" type="date" th:field="${eventToEdit.date}" name="date" id="date" />
 
-                                <label class="event__input paragraph" for="zipcode"><h4>Event Zipcode:</h4></label>
+                                <label class="event__label paragraph" for="zipcode"><h4>Event Zipcode:</h4></label>
                                 <input class="event__input paragraph" type="text" th:field="${eventToEdit.zipcode}" name="date" id="zipcode" />
 
                             <!--    Radio buttons for categories-->
@@ -54,10 +54,11 @@
                                     <label class="form-check-label paragraph" th:for="${category.id}" th:text=" ${category.name}"></label>
                                 </div>
 
-                            <!-- Current and updated flyer -->
+                                <!-- Current and updated flyer -->
                                 <div class="image-stack">
                                     <div class="image-stack__item--top">
-                                        <img class="event__card--image-edit poi-img" th:src="${eventToEdit.filePath}" alt="Event Flyer" />
+                                        <img class="event__card--image-edit poi-img" th:if="${eventToEdit.filePath != ''}" th:src="${eventToEdit.filePath}" alt="Event Flyer" />
+                                        <img class="event__card--image-edit poi-img" th:if="${eventToEdit.filePath == ''}" src="/images/placeholders/event.png" alt="placeholder event image"/>
                                     </div>
 
                                     <div class="image-stack__item--bottom">
