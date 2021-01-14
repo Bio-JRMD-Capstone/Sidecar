@@ -71,10 +71,6 @@ public class UserController {
                 newUser.setPassword(hash);
                 newUser.setPassword_confirm(hash);
             }
-
-            if(photo_url.equals("")){
-                newUser.setPhoto_url("https://cdn.filestackcontent.com/Ts54QC2PQv6ZToYPspKM");
-            }
             users.save(newUser);
             return "redirect:/login";
         }
