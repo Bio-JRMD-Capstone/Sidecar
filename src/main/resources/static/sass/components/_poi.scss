@@ -41,14 +41,19 @@
     height: 20rem;
   }
   &-box {
-    padding: 3rem;
+    padding: 2rem;
     background-color: $color-primary-light;
     height: 100%;
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
     overflow: auto;
     margin-bottom: 3rem;
+
+    @include respond(nav-collapse) {
+      padding: 1.5rem;
+    }
     @include respond(tab-port) {
-      padding: 2rem;
+      padding: 1rem;
     }
   }
 
@@ -70,7 +75,8 @@
   }
 
   &__location{
-    width: 40%;
+    width: 95%;
+    margin: 0 auto;
     @include respond(tab-port){
       width: 75%;
     }
