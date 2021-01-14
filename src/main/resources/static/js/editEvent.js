@@ -20,7 +20,7 @@ function initMap() {
     //Taking the values of the lat and lng of the point we need, then centering the map on the point
     map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: thisEventLat, lng: thisEventLng },
-        zoom: 13,
+        zoom: 14,
     });
     infoWindow = new google.maps.InfoWindow();
 
