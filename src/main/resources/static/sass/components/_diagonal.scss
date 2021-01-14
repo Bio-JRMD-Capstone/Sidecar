@@ -1,0 +1,8 @@
+.diagonal {
+  background-color: $color-white;
+  height: 3rem;
+  transform: skewY(-5deg);
+  & > * {
+      transform: skewY(5deg);
+  }
+}

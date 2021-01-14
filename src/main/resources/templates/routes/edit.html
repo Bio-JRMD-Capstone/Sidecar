@@ -14,30 +14,32 @@
         <main>
             <!-- Map w/ input fields and button to create -->
             <div class="map">
+                <div class="u-margin-bottom-md u-center-text">
+                    <h2 class="heading-primary--sub">Edit your route:</h2>
+                </div>
                 <div class="map-box">
                     <!-- Map -->
                     <div class="col-map-2">
                         <div class="map__input u-margin-bottom-sm">
                             <div id="floating-panel">
-                                <input id="address" type="textbox" placeholder="Enter a location" />
-                                <input id="submit" type="button" value="View Location" />
+                                <input class="map__input--textbox u-margin-right-sm" name="locationinput" id="address" type="textbox" placeholder=" Enter a location" />
+                                <input class="btn btn--map" id="submit" type="button" value="View Location" />
                             </div>
-
                             <div class="map__input--map-btn">
-                                <p class="btn-lt">
-                                    <label>
-                                        <input id="routeCheck" type="checkbox" />
-                                        <span> End point same as start?</span>
-                                    </label>
-                                </p>
                                 <div class="u-margin-right-sm">
-                                    <input type="button" id="clearBtn" name="clearBtn" value="Clear Route">
+                                    <input class="btn-rt u-margin-right-sm btn btn--white" type="button" id="clearBtn" name="clearBtn" value="Clear Route">
                                 </div>
                                 <div class="field">
                                     <div class="control">
-                                        <input type="button" id="testbtn" name="testbtn" value="See Route">
+                                        <input class="btn-rt u-margin-right-sm btn btn--white" type="button" id="testbtn" name="testbtn" value="See Route">
                                     </div>
                                 </div>
+                                <p class="btn-rt">
+                                    <label>
+                                        <input id="routeCheck" type="checkbox" />
+                                        <span> Round Trip</span>
+                                    </label>
+                                </p>
                             </div>
                             <div id="map"></div>
                         </div>
@@ -51,19 +53,25 @@
                     </div>
                     <div class="col-map-1">
                         <div class="map__input">
-                            <h3>Route Info</h3>
+                            <h3>Route Information</h3>
                             <form name="editpoint" class="map-data"  th:action="@{'/route/' + ${routeToEdit.id} + '/edit'}" th:method="POST" th:object="${routeToEdit}">
 
                                 <input class="map__input" type="text"  id="title" name="title" placeholder="Title" th:field="*{title}">
-
-                                <textarea class="map__input-long" type="text" id="description" name="description" placeholder="Description" th:field="*{description}"></textarea>
-
+                                <h4 th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"/>
+                                <br />
+                                <textarea class="map__input-long" type="text" id="description" name="description" placeholder="Description" th:field="*{description}" maxlength="2500"></textarea>
+                                <h4 th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger" />
+                                <br />
                                 <input class="map__input" type="text" id="distance" name="distance" placeholder="Distance" th:field="*{distance}" readonly>
-
+                                <br />
                                 <label class="d-none" for="coordinates">Route Coordinates: </label><p class="d-none" th:text="${routeToEdit.coordinates}" id="coords"></p>
                                 <input type="hidden" class="map__input" id="coordinates" name="coordinates" th:field="*{coordinates}" readonly>
+                                <br />
+                                <input class="map__input u-margin-bottom-sm" type="text" id="time" name="time"  placeholder="Minutes, Hours, Days, etc." th:field="*{time}">
+                                <h4 th:if="${#fields.hasErrors('time')}" th:errors="*{time}" class="text-danger" />
 
-                                <input class="map__input u-margin-bottom-sm" type="text" id="time" name="time"  placeholder="Time(Hours)" th:field="*{time}">
+                                <h4 th:if="${#fields.hasErrors('coordinates')}" th:errors="*{coordinates}" class="text-danger" />
+
                                 <div class="control">
                                     <input class="btn btn--white" type="submit" value="Save Route">
                                     <a class="btn btn--green btn-rt" href="/profile" >Cancel</a>

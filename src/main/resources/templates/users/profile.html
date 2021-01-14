@@ -7,13 +7,13 @@
     </head>
 
     <body>
-        <nav th:replace="partials/navbar :: nav"></nav>
+        <nav th:replace="partials/nav-search :: nav-search"></nav>
     <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
 
         <main>
             <section class="section-profile">
-                <div class="profile-box">
-                    <div class="profile">
+                <div class="profile">
+                    <div class="profile-box">
                         <div class="profile__info">
                             <figure class="profile__shape">
                                 <span th:if="${user.photo_url == null}">
@@ -30,16 +30,16 @@
                                     <p class="heading-small">Email: <span th:text="${user.email}"/></p>
                                 </div>
                             </div>
-                            <div class="u-center-text u-margin-top-md">
+                            <div class="u-margin-top-md">
                                 <a th:href="@{'/user/' + ${#authentication.principal.id} + '/edit'}" class="btn btn--white u-margin-right-lg">Edit profile &rarr;</a>
 
-                                <a th:href="@{'/user/' + ${#authentication.principal.id} + '/editPassword'}" class="btn btn--white">Edit password &rarr;</a>
+                                <a th:href="@{'/user/' + ${#authentication.principal.id} + '/update-password'}" class="btn btn--white">Change password &rarr;</a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="profile-box">
+                <div class="profile-box u-margin-top-md">
                     <div class="profile">
                         <div class="profile__text">
                             <h3 class="heading-tertiary u-margin-bottom-sm">Your Routes</h3>
@@ -59,14 +59,14 @@
                                 </thead>
 
                                 <tbody>
-                                    <tr th:each="route : ${routes}">
+                                    <tr th:each="route : ${routes}" >
                                         <td class="profile__table--title" name="title"><a th:href="'/route/' + ${route.id}" th:text="${route.title}"></a></td>
                                         <td class="profile__table--col" th:text="${route.distance}" name="distance"></td>
                                         <td class="profile__table--col" th:text="${route.time}" name="time"></td>
-                                        <td class="profile__table--description" th:text="${route.description}" name="description"></td>
+                                        <td class="profile__table--description" th:text="${route.description}" name="description" style="max-width:30px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></td>
                                         <td><a th:href="'/route/' + ${route.id} + '/edit'" class="btn btn-edit">Edit</a></td>
                                         <td>
-                                            <a class="btn btn-edit" href="#popup-route">Delete</a>
+                                            <a class="btn btn-delete" href="#popup-route">Delete</a>
                                             <div class="popup" id="popup-route">
                                                 <div class="popup__content">
                                                     <div class="popup__right">
@@ -76,7 +76,7 @@
                                                             Are you sure you want to delete this route?
                                                         </p>
                                                         <form th:action="@{'/route/' + ${route.id} + '/delete'}" th:method="post">
-                                                            <button class="btn btn-edit">Delete</button>
+                                                            <button class="btn btn-delete">Delete</button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -106,10 +106,10 @@
                                 <tbody>
                                 <tr th:each="poi : ${pois}" >
                                     <td class="profile__table--title" name="name"><a th:href="'/points/' + ${poi.id}" th:text="${poi.name}"></a></td>
-                                    <td class="profile__table--description" th:text="${poi.description}" name="description"></td>
+                                    <td class="profile__table--description" th:text="${poi.description}" name="description" style="max-width:30px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></td>
                                     <td><a th:href="'/points/' + ${poi.id} + '/edit'" class="btn btn-edit">Edit</a></td>
                                     <td>
-                                        <a class="btn btn-edit" href="#popup-poi">Delete</a>
+                                        <a class="btn btn-delete" href="#popup-poi">Delete</a>
                                         <div class="popup" id="popup-poi">
                                             <div class="popup__content">
                                                 <div class="popup__right">
@@ -119,7 +119,7 @@
                                                         Are you sure you want to delete this point of interest?
                                                     </p>
                                                     <form th:action="@{'/points/' + ${poi.id} + '/delete'}" th:method="post">
-                                                        <button class="btn btn-edit">Delete</button>
+                                                        <button class="btn btn-delete">Delete</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -151,10 +151,10 @@
                                         <tr th:each="event : ${events}" >
                                             <td class="profile__table--title" name="name"><a th:href="'/event/' + ${event.id}" th:text="${event.name}"></a></td>
                                             <td class="profile__table--col" th:text="${event.date}" name="date"></td>
-                                            <td class="profile__table--description" th:text="${event.description}" name="description"></td>
+                                            <td class="profile__table--description" th:text="${event.description}" name="description" style="max-width:30px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></td>
                                             <td><a th:href="'/event/' + ${event.id} + '/edit'" class="btn btn-edit">Edit</a></td>
                                             <td>
-                                                <a class="btn btn-edit" href="#popup-event">Delete</a>
+                                                <a class="btn btn-delete" href="#popup-event">Delete</a>
                                                 <div class="popup" id="popup-event">
                                                     <div class="popup__content">
                                                         <div class="popup__right">
@@ -164,7 +164,7 @@
                                                                 Are you sure you want to delete this event?
                                                             </p>
                                                             <form th:action="@{'/event/' + ${event.id} + '/delete'}" th:method="post">
-                                                                <button class="btn btn-edit">Delete</button>
+                                                                <button class="btn btn-delete">Delete</button>
                                                             </form>
                                                         </div>
                                                     </div>

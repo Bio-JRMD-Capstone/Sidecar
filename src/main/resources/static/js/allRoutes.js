@@ -1,45 +1,26 @@
 let map, infoWindow, geocoder;
+let userLocation = $("#location").text();
+
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
         center: {lat: 39.63476588674744, lng: -101.15442912683487 },
         zoom: 5,
     });
+
     geocoder = new google.maps.Geocoder();
-    document.getElementById("submit").addEventListener("click", () => {
-        geocodeAddress(geocoder, map);
-    });
     infoWindow = new google.maps.InfoWindow();
 
-    //Pan to current location button
-    const locationButton = document.createElement("button");
-    locationButton.textContent = "Pan to Current Location";
-    locationButton.classList.add("custom-map-control-button");
-    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(locationButton);
-    locationButton.addEventListener("click", () => {
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const pos = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude,
-                    };
-                    infoWindow.setPosition(pos);
-                    infoWindow.setContent("Location found.");
-                    infoWindow.open(map);
-                    map.setCenter(pos);
-                },
-                () => {
-                    handleLocationError(true, infoWindow, map.getCenter());
-                }
-            );
-        } else {
-            // Browser doesn't support Geolocation
-            handleLocationError(false, infoWindow, map.getCenter());
-        }
+    //Grabs the user's zipcode from the HTML and centers map on the location
+    setLocation(geocoder, map, userLocation);
+
+    //Event listener for enter location button
+    document.getElementById("submit").addEventListener("click", () => {
+        const address = document.getElementById("address").value;
+        geocodeAddress(geocoder, map, address);
     });
-//This is supposed to retrieve the list of POIs in JSON format so we can work with it to display them on the map.
-// See https://java.codeup.com/spring/extra-features/json-response/ for more info
+
+    //This is supposed to retrieve the list of POIs in JSON format so we can work with it to display them on the map.
+    // See https://java.codeup.com/spring/extra-features/json-response/ for more info
     (function ($) {
         var request = $.ajax({'url': '/routes.json'});
         request.done(function (routes) {
@@ -48,21 +29,26 @@ function initMap() {
             });
         });
     })(jQuery);
+}
 
-    //Geocoder, searches for input location and centers map on it
-    function geocodeAddress(geocoder, resultsMap) {
-        const address = document.getElementById("address").value;
+//Geocoder, searches for input location and centers map on it
+function geocodeAddress(geocoder, resultsMap, location) {
+    geocoder.geocode({address: location}, (results, status) => {
+        if (status === "OK") {
+            resultsMap.setCenter(results[0].geometry.location);
+        } else {
+            alert(
+                "Geocode was not successful for the following reason: " + status
+            );
+        }
+    });
+}
 
-        geocoder.geocode({address: address}, (results, status) => {
-            if (status === "OK") {
-                resultsMap.setCenter(results[0].geometry.location);
-                resultsMap.setZoom(10);
-            } else {
-                alert(
-                    "Geocode was not successful for the following reason: " + status
-                );
-            }
-        });
+//Takes in an address and geocodes it, then sets the map to a zoom level of 9
+function setLocation(geocoder, map, location) {
+    if (location) {
+        geocodeAddress(geocoder, map, location);
+        map.setZoom(11);
     }
 }
 
@@ -101,19 +87,10 @@ function drawRoutes(route, infoWindow, map) {
     let marker = new google.maps.Marker({
         position: coords,
         title: route.title,
-
+        icon: '/images/icons/route.png'
     });
     //The line that actually attaches a marker to the map
     marker.setMap(map);
-    //Allowing the category to be correctly displayed in the infowindow by capitalizing the letters
-    //and replacing any underscores with a space
-    var categoryString = route.title.replace(route.title.charAt(0), route.title.charAt(0).toUpperCase());
-    if(categoryString.includes("_")) {
-        categoryString = categoryString.replace(
-            categoryString.charAt(categoryString.indexOf("_") + 1),
-            categoryString.charAt(categoryString.indexOf("_") + 1).toUpperCase());
-        categoryString = categoryString.replace("_", " ");
-    }
     //This connects the info window to the marker, allowing information, links, any HTML really to be displayed
     google.maps.event.addListener(marker, 'click', function() {
         infoWindow.setContent("<h4>" + route.title + "</h4>" +

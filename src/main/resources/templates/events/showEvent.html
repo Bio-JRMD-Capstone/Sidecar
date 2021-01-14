@@ -25,16 +25,18 @@
                             </div>
                         </div>
                     </section>
-
                     <div class="col-event-1">
-                        <div class="event__single--image">
-                            <img class="poi-img" th:src="${event.filePath}" th:alt="${event.name}">
+                        <div class="event__input" >
+                            <div class="event__single--image">
+                                <img class="poi-img" th:if="${event.filePath == ''}" src="/images/placeholders/event.png" alt="placeholder event image">
+                                <img class="poi-img" th:if="${event.filePath != ''}" th:src="${event.filePath}" th:alt="${event.name}">
+                            </div>
+                            <p class="heading-tertiary" th:text="${event.name}"></p>
+                            <p class="event__single--text">Category: <span th:each="eventCategory : ${event.eventCategories}" th:text=" ${eventCategory.name}"></span></p>
+                            <p class="event__single--text" th:text="'Date: ' + ${event.date}"></p>
+                            <hr>
+                            <p class="event__single--text" th:text="${event.description}"></p>
                         </div>
-                        <p class="heading-tertiary" th:text="${event.name}"></p>
-                        <p class="event__single--text">Category: <span th:each="eventCategory : ${event.eventCategories}" th:text=" ${eventCategory.name}"></span></p>
-                        <p class="event__single--text" th:text="'Date: ' + ${event.date}"></p>
-                        <hr>
-                        <p class="event__single--text" th:text="${event.description}"></p>
                     </div>
                 </div>
 

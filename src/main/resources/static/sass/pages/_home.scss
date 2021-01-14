@@ -9,7 +9,7 @@
 }
 
 .section-features {
-    padding-top: 12rem;
+    padding-top: 8rem;
     padding-bottom: 4rem;
     // background-image: linear-gradient(
     //     to right bottom,
@@ -17,15 +17,15 @@
     //     rgba($color-primary-dark, 0.85)),
     //     url(../img/nat-4.jpg);
     // background-size: cover;
-    margin-top: -10rem;
+    //margin-top: -15rem;
 
-    transform: skewY(-7deg);
-    & > * {
-        transform: skewY(7deg);
-    }
+    //transform: skewY(-7deg);
+    //& > * {
+    //    transform: skewY(7deg);
+    //}
 
     @include respond(tab-port) {
-        padding: 10rem 0;
+        padding: 7rem 0;
     }
 
 }
@@ -46,7 +46,7 @@
     padding: 10rem 0;
 
     @include respond(tab-port) {
-        padding: 10rem 0;
+        padding: 6rem 0;
     }
 
 }

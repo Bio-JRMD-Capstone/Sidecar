@@ -9,15 +9,25 @@
     <body>
     <nav th:replace="partials/navbar :: nav"></nav>
     <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
-        <main>
-
-            <h1>Where to?</h1>
-            <div id="floating-panel">
-                <input id="address" type="textbox" placeholder="Enter a location" />
-                <input id="submit" type="button" value="View Location" />
+        <main class="map">
+            <h1 class="heading-primary--sub">Where to?</h1>
+            <div>
+                <p sec:authorize="!isAuthenticated()" class="paragraph">Have a route, point of interest or event to share? Please <a th:href="@{/login}">Login</a> or
+                    <a th:href="@{/register}">Register</a>.</p>
+                <a sec:authorize="isAuthenticated()" class="btn btn--green u-margin-bottom-sm" th:href="@{/routes/create}">Plot your Route</a>
             </div>
-            <div id="map"></div>
-
+            <section class="map-box">
+                <div class="map__location">
+                    <form name="locationbox">
+                        <div id="floating-panel">
+                            <input class="map__input--textbox u-margin-right-sm" name="locationinput" id="address" type="textbox" placeholder="Enter a location" />
+                            <input class="btn btn--map" id="submit" type="button" value="View Location" />
+                        </div>
+                    </form>
+                </div>
+                <span th:text="${location}" hidden id="location"></span>
+                <div id="map"></div>
+            </section>
         </main>
     <div th:replace="partials/footer :: footer"></div>
     <div th:replace="partials/scripts :: scripts"></div>

@@ -1,15 +1,23 @@
 let map, infoWindow, geocoder;
+let userLocation = $("#location").text();
 
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 29.4241, lng: -98.4936 },
-        zoom: 10,
+        center: {lat: 39.63476588674744, lng: -101.15442912683487 },
+        zoom: 5
     });
+
     geocoder = new google.maps.Geocoder();
-    document.getElementById("submit").addEventListener("click", () => {
-        geocodeAddress(geocoder, map);
-    });
     infoWindow = new google.maps.InfoWindow();
+
+    //Grabs the user's zipcode from the HTML and centers map on the location
+    setLocation(geocoder, map, userLocation);
+
+    //Event listener for enter location button
+    document.getElementById("submit").addEventListener("click", () => {
+        const address = document.getElementById("address").value;
+        geocodeAddress(geocoder, map, address);
+    });
 
     //To save on typing, I save the relative filepath as a variable since we will be using it a lot just below
     const iconBase = "/css/images/";
@@ -47,9 +55,8 @@ function initMap() {
 }
 
 //Geocoder, searches for input location and centers map on it
-function geocodeAddress(geocoder, resultsMap) {
-    const address = document.getElementById("address").value;
-    geocoder.geocode({address: address}, (results, status) => {
+function geocodeAddress(geocoder, resultsMap, location) {
+    geocoder.geocode({address: location}, (results, status) => {
         if (status === "OK") {
             resultsMap.setCenter(results[0].geometry.location);
         } else {
@@ -58,6 +65,14 @@ function geocodeAddress(geocoder, resultsMap) {
             );
         }
     });
+}
+
+//Takes in an address and geocodes it, then sets the map to a zoom level of 9
+function setLocation(geocoder, map, location) {
+    if (location) {
+        geocodeAddress(geocoder, map, location);
+        map.setZoom(11);
+    }
 }
 
 //Adds markers for the Events on the map and assigns their infowindow information
@@ -80,9 +95,7 @@ function drawEvents(thisEvent, icons, infoWindow, map) {
 
     //This connects the info window to the marker, allowing information, links, any HTML really to be displayed
     google.maps.event.addListener(marker, 'click', function() {
-        infoWindow.setContent("<h6>" + thisEvent.name + "</h6>" +
-            // "<p><strong>" + thisEvent + "</strong><br>" +
-            thisEvent.description + "</p>" +
+        infoWindow.setContent("<h4>" + thisEvent.name + "</h4>" +
             "<a href='/event/" + thisEvent.id + "'>More Info</a>");
         infoWindow.open(map, marker);
     });

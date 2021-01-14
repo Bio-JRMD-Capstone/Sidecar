@@ -32,6 +32,12 @@ public class EventController {
 
     @GetMapping("/events")
     public String showAllEvents(Model model){
+        try {
+            User userDb = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("location", userDb.getZipcode());
+        } catch (Exception e) {
+            System.out.println("e = " + e);
+        }
         model.addAttribute("events", eventDao.findAll());
         model.addAttribute("categories", eCatDao.findAll());
         return "events/index";
@@ -53,6 +59,12 @@ public class EventController {
 
     @GetMapping("/events/create")
     public String showCreateEventForm(Model model){
+        try {
+            User userDb = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("location", userDb.getZipcode());
+        } catch (Exception e) {
+            System.out.println("e = " + e);
+        }
         model.addAttribute("event", new Event());
         model.addAttribute("categories", eCatDao.findAll());
         return "events/create";
