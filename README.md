@@ -1,7 +1,6 @@
-Sidecar
+## Sidecar
 
-This website is intended to provide the motorcycling community with information on local routes and their associated
-points of interest.
+Sidecar is a full-stack Java application intended to serve as a central location for motorcyclists to view popular rides, points of interest and local events. As a registered user, riders have the ability to post their own routes, favorite stops and events as well as comment on other users' content. This application was made possible through Springboot, JavaScript, HTML, CSS, SASS, JQuery, Json, MySql, Git and the APIs for Google Maps platform and Filestack. 
 
 [Documentation](https://github.com/Bio-JRMD-Capstone/Documentation)
 
