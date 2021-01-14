@@ -380,6 +380,13 @@ body {
   background-color: rgba(63, 54, 34, 0.3);
   border: #555 solid 0.5px !important;
 }
+.btn-delete {
+  border-radius: 3px !important;
+  padding: 0.5rem !important;
+  color: #fff;
+  background-color: rgba(161, 39, 45, 0.3);
+  border: #4D1215 solid 0.5px !important;
+}
 .btn--animated {
   animation-name: moveInBottom;
   animation-duration: 0.5s;
@@ -412,6 +419,15 @@ body {
   color: #fff;
 }
 .btn--green::after {
+  background-color: #674A21;
+}
+.btn--map {
+  background-color: #fff;
+  color: #555;
+  font-size: 1.4rem;
+  padding: 0.5rem 2rem;
+}
+.btn--map::after {
   background-color: #674A21;
 }
 .btn--light {
@@ -1152,10 +1168,9 @@ body {
 }
 
 #floating-panel {
-  width: 100%;
-  margin-left: 3.5rem;
-  padding-bottom: 2rem;
   display: flex;
+  flex-direction: row;
+  padding: 0.5rem 2rem !important;
 }
 
 .map {
@@ -1209,7 +1224,7 @@ body {
   flex-direction: column;
 }
 .map-box {
-  padding: 1rem;
+  padding: 2rem;
   background-color: #BEB6A6;
   height: 100%;
   display: flex;
@@ -1220,7 +1235,7 @@ body {
 }
 @media (max-width: 61.94em) {
   .map-box {
-    padding: 2rem;
+    padding: 1.5rem;
   }
 }
 @media (max-width: 56.25em) {
@@ -1232,7 +1247,8 @@ body {
   margin-bottom: 2rem;
 }
 .map__location {
-  width: 40%;
+  width: 95%;
+  margin: 0 auto;
 }
 @media (max-width: 56.25em) {
   .map__location {
@@ -1269,6 +1285,7 @@ body {
   }
 }
 .map__input--textbox {
+  font-size: 1.4rem;
   width: 50%;
   height: 4rem;
 }
@@ -1427,17 +1444,23 @@ body {
   height: 20rem;
 }
 .poi-box {
-  padding: 3rem;
+  padding: 2rem;
   background-color: #BEB6A6;
   height: 100%;
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
   overflow: auto;
   margin-bottom: 3rem;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
 }
+@media (max-width: 61.94em) {
+  .poi-box {
+    padding: 1.5rem;
+  }
+}
 @media (max-width: 56.25em) {
   .poi-box {
-    padding: 2rem;
+    padding: 1rem;
   }
 }
 .poi__map {
@@ -1455,7 +1478,8 @@ body {
   margin-top: 2em;
 }
 .poi__location {
-  width: 40%;
+  width: 95%;
+  margin: 0 auto;
 }
 @media (max-width: 56.25em) {
   .poi__location {
@@ -2103,7 +2127,7 @@ body {
   }
 }
 .navbar__search-btn {
-  background-color: #674A21;
+  background-color: #3F3622;
   color: #fff;
   height: 4rem;
   margin-top: 0.5rem;
