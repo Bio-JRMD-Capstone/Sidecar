@@ -99,7 +99,7 @@ public class RouteComment {
     }
 
     public String getFormattedDate(){
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("E, dd MMM yyyy");
         return formatter.format(date);
     }
 }

@@ -33,8 +33,7 @@
   &__table {
 
     & tr {
-      border-bottom: .5px dashed $color-primary;
-      padding-bottom: 2rem;
+      border-bottom: .5px solid $color-primary-dark;
     }
 
     //title column
@@ -64,6 +63,14 @@
     //description column
     &--description{
       width: 100%;
+      margin-right: 2rem;
+      &-row {
+        max-width: 50rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
 
       @include respond(tab-port) {
         display: none;
@@ -71,10 +78,10 @@
     }
     //button column
     &--colB{
-      min-width: 8rem;
+      min-width: 6rem;
 
       @include respond(tab-port) {
-        min-width: 6rem;
+        min-width: 5rem;
       }
     }
   }

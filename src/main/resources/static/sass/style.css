@@ -376,6 +376,7 @@ body {
 .btn-edit {
   border-radius: 3px !important;
   padding: 0.5rem !important;
+  margin: 1rem 0;
   color: #fff;
   background-color: rgba(63, 54, 34, 0.3);
   border: #555 solid 0.5px !important;
@@ -383,6 +384,7 @@ body {
 .btn-delete {
   border-radius: 3px !important;
   padding: 0.5rem !important;
+  margin: 1rem 0;
   color: #fff;
   background-color: rgba(161, 39, 45, 0.3);
   border: #4D1215 solid 0.5px !important;
@@ -1773,8 +1775,7 @@ body {
   margin-left: 3rem;
 }
 .profile__table tr {
-  border-bottom: 0.5px dashed #674A21;
-  padding-bottom: 2rem;
+  border-bottom: 0.5px solid #3F3622;
 }
 .profile__table--title {
   min-width: 30rem;
@@ -1802,6 +1803,13 @@ body {
 }
 .profile__table--description {
   width: 100%;
+  margin-right: 2rem;
+}
+.profile__table--description-row {
+  max-width: 50rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 @media (max-width: 56.25em) {
   .profile__table--description {
@@ -1809,11 +1817,11 @@ body {
   }
 }
 .profile__table--colB {
-  min-width: 8rem;
+  min-width: 6rem;
 }
 @media (max-width: 56.25em) {
   .profile__table--colB {
-    min-width: 6rem;
+    min-width: 5rem;
   }
 }
 .profile figure {
