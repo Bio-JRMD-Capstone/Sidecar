@@ -104,9 +104,7 @@ function drawEvents(thisEvent, icons, infoWindow, map) {
 
     //This connects the info window to the marker, allowing information, links, any HTML really to be displayed
     google.maps.event.addListener(marker, 'click', function() {
-        infoWindow.setContent("<h6>" + thisEvent.name + "</h6>" +
-            // "<p><strong>" + thisEvent + "</strong><br>" +
-            thisEvent.description + "</p>" +
+        infoWindow.setContent("<h4>" + thisEvent.name + "</h4>" +
             "<a href='/event/" + thisEvent.id + "'>More Info</a>");
         infoWindow.open(map, marker);
     });

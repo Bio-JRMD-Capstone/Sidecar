@@ -54,17 +54,18 @@
                                     <label class="form-check-label paragraph" th:for="${category.id}" th:text=" ${category.name}"></label>
                                 </div>
 
-                            <!-- Current and updated flyer -->
-                                <div class="image-stack">
-                                    <div class="image-stack__item--top">
-                                        <img class="event__card--image-edit poi-img" th:src="${eventToEdit.filePath}" alt="Event Flyer" />
-                                    </div>
+                                <!-- Current and updated flyer -->
+                                    <div class="image-stack">
+                                        <div class="image-stack__item--top">
+                                            <img class="event__card--image-edit poi-img" th:if="${eventToEdit.filePath != ''}" th:src="${eventToEdit.filePath}" alt="Event Flyer" />
+                                            <img class="event__card--image-edit poi-img" th:if="${eventToEdit.filePath == ''}" src="/images/placeholders/event.png" alt="placeholder event image"/>
+                                        </div>
 
-                                    <div class="image-stack__item--bottom">
-                                        <label for="newImage"><img class="poi-img event__card--image-edit" id="imagePreview" src="" alt=""></label>
-                                        <input type="hidden" id="newImage" th:field="${eventToEdit.filePath}" th:value="${eventToEdit.filePath}" name="filePath">
+                                        <div class="image-stack__item--bottom">
+                                            <label for="newImage"><img class="poi-img event__card--image-edit" id="imagePreview" src="" alt=""></label>
+                                            <input type="hidden" id="newImage" th:field="${eventToEdit.filePath}" th:value="${eventToEdit.filePath}" name="filePath">
+                                        </div>
                                     </div>
-                                </div>
 
                                 <div class="u-center-text u-margin-top-md">
                                     <button class="btn" id="imageButton">Add/Change Flyer</button>

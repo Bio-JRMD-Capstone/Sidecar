@@ -79,7 +79,8 @@
                                 <!-- Current and updated image -->
                                 <div class="image-stack">
                                     <div class="image-stack__item--top">
-                                        <img class="poi__card--image-edit image-stack__item--top poi-img" th:src="${poi.photo_url}" alt="POI Image" />
+                                        <img class="poi__card--image-edit image-stack__item--top poi-img" th:if="${poi.photo_url != ''}" th:src="${poi.photo_url}" alt="POI Image" />
+                                        <img class="poi__card--image-edit image-stack__item--top poi-img" th:if="${poi.photo_url == ''}" src="/images/placeholders/point.png" height="300rem" alt="placeholder image" />
                                     </div>
 
                                     <div class="image-stack__item--bottom">

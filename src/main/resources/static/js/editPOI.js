@@ -98,6 +98,12 @@ function initMap() {
     });
     userMarker.setMap(map);
 
+    //Makes it so that dragging the marker updates the lat/long to be submitted
+    userMarker.addListener("drag", (event) => {
+        $('#lat').val(event.latLng.lat());
+        $('#lon').val(event.latLng.lng());
+    });
+
     //When the map is clicked, add a point and fill in the lat/lng values in html using jQuery
     google.maps.event.addListener(map, "click", function(event) {
         placeMarker(event.latLng);
@@ -172,9 +178,8 @@ function drawPOIs(poi, icons, infoWindow, map) {
     }
     //This connects the info window to the marker, allowing information, links, any HTML really to be displayed
     google.maps.event.addListener(marker, 'click', function() {
-        infoWindow.setContent("<h6>" + poi.name + "</h6>" +
+        infoWindow.setContent("<h4>" + poi.name + "</h4>" +
             "<p><strong>" + categoryString + "</strong><br>" +
-            poi.description + "</p>" +
             "<a href='points/" + poi.id + "'>More Info</a>");
         infoWindow.open(map, marker);
     });
