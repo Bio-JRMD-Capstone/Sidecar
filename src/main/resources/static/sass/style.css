@@ -230,6 +230,14 @@ body {
   }
 }
 
+.center-y {
+  margin: auto 0 !important;
+}
+
+.center-x {
+  margin: 0 auto !important;
+}
+
 .u-margin-bottom-sm {
   margin-bottom: 1.25rem !important;
 }
@@ -446,6 +454,15 @@ body {
 .btn--map::after {
   background-color: #674A21;
 }
+.btn--clearMap {
+  background-color: #F9D877;
+  font-size: 1.6rem;
+}
+.btn--seeRoute {
+  background-color: #4E9F66;
+  color: #fff;
+  font-size: 1.6rem;
+}
 .btn--light {
   background-color: #BEB6A6;
   color: #000;
@@ -541,7 +558,7 @@ body {
   background-image: linear-gradient(to right bottom, #BEB6A6, #3F3622);
 }
 .card__side--back-3 {
-  background-image: linear-gradient(to right bottom, #FEC240, #9F6814);
+  background-image: linear-gradient(to right bottom, #F9D877, #9F6814);
 }
 .card:hover .card__side--front {
   transform: rotateY(-180deg);
@@ -581,7 +598,7 @@ body {
   background-image: linear-gradient(to right bottom, rgba(190, 182, 166, 0.85), rgba(63, 54, 34, 0.85));
 }
 .card__heading-span--3 {
-  background-image: linear-gradient(to right bottom, rgba(254, 194, 64, 0.85), rgba(159, 104, 20, 0.85));
+  background-image: linear-gradient(to right bottom, rgba(249, 216, 119, 0.85), rgba(159, 104, 20, 0.85));
 }
 .card__details {
   padding: 3rem;
@@ -624,10 +641,11 @@ body {
 .contain {
   display: block;
   position: relative;
-  padding-left: 35px;
-  margin: auto 3rem;
+  padding-left: 2rem;
+  margin: auto 0;
   cursor: pointer;
-  font-size: 22px;
+  font-size: 1.6rem;
+  text-transform: uppercase;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -655,10 +673,10 @@ body {
   display: block;
 }
 .contain .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
+  left: 0.5rem;
+  top: 0.3rem;
+  width: 0.3rem;
+  height: 0.6rem;
   border: solid white;
   border-width: 0 3px 3px 0;
   -webkit-transform: rotate(45deg);
@@ -671,8 +689,8 @@ body {
   position: absolute;
   top: 5px;
   left: 0;
-  height: 25px;
-  width: 25px;
+  height: 1.5rem;
+  width: 1.5rem;
   background-color: #eee;
   border: #3F3622 solid 0.5px;
   /* Create the checkmark/indicator (hidden when not checked) */
