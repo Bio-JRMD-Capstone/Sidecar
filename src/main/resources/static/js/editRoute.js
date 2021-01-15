@@ -276,7 +276,7 @@ function initMapClear() {
 
     let markers = [];
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 7,
+        zoom: 6,
         center: lat_lng
     });
 
