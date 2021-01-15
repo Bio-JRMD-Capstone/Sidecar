@@ -35,7 +35,10 @@
     & tr {
       border-bottom: .5px solid $color-primary-dark;
     }
-
+    &--heading {
+      display: flex;
+      align-items: center;
+    }
     //title column
     &--title {
       min-width: 30rem;

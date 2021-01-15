@@ -42,10 +42,10 @@
                 <div class="profile-box u-margin-top-md">
                     <div class="profile">
                         <div class="profile__text">
-                            <h3 class="heading-tertiary u-margin-bottom-sm">Your Routes</h3>
-
-                            <a class="btn btn-edit" th:if="${routes.isEmpty()}" th:href="@{/routes/create}">Add a Route</a>
-
+                            <div class="profile__table--heading">
+                                <h3 class="heading-tertiary u-margin-right-sm">Your Routes</h3>
+                                <a class="btn btn-edit" th:href="@{/routes/create}">Add a Route</a>
+                            </div>
                             <table class="profile__table">
                                 <thead>
                                 <tr >
@@ -102,8 +102,10 @@
                 <div class="profile-box">
                     <div class="profile">
                         <div class="profile__text">
-                            <h3 class="heading-tertiary u-margin-bottom-sm">Your Points of Interest</h3>
-                            <a class="btn btn-edit" th:if="${pois.isEmpty()}" th:href="@{/points/create}">Add a Point of Interest</a>
+                            <div class="profile__table--heading">
+                                <h3 class="heading-tertiary u-margin-right-sm">Your Points of Interest</h3>
+                                <a class="btn btn-edit" th:href="@{/points/create}">Add a Point of Interest</a>
+                            </div>
                             <table class="profile__table">
                                 <thead>
                                 <tr >
@@ -156,8 +158,10 @@
                 <div class="profile-box">
                     <div class="profile">
                         <div class="profile__text">
-                            <h3 class="heading-tertiary u-margin-bottom-sm">Your Events</h3>
-                            <a class="btn btn-edit" th:if="${events.isEmpty()}" th:href="@{/events/create}">Add an Event</a>
+                            <div class="profile__table--heading">
+                                <h3 class="heading-tertiary u-margin-right-sm">Your Events</h3>
+                                <a class="btn btn-edit" th:href="@{/events/create}">Add an Event</a>
+                            </div>
                                 <table class="profile__table">
                                     <thead>
                                         <tr>
