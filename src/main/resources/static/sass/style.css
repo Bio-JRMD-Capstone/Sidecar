@@ -845,13 +845,17 @@ body {
   max-width: 100%;
   margin: 5rem auto;
 }
+.event__heading {
+  margin: 0 1rem 0;
+}
 .event-box {
-  padding: 3rem;
+  padding: 2rem 2rem 3rem;
   background-image: linear-gradient(to right bottom, #BEB6A6, #3F3622);
   height: 100%;
   display: flex;
+  flex-wrap: wrap;
   overflow: auto;
-  margin-bottom: 3rem;
+  margin: 0 1rem 3rem;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
 }
 .event-box form {
@@ -862,6 +866,16 @@ body {
     width: 100%;
     padding: 1.5rem 0;
     margin: 2rem auto;
+  }
+}
+.event__location {
+  width: 95%;
+  margin: 0 auto 1rem;
+  justify-content: left;
+}
+@media (max-width: 56.25em) {
+  .event__location {
+    width: 75%;
   }
 }
 .event__cards {
@@ -1248,7 +1262,7 @@ body {
 #floating-panel {
   display: flex;
   flex-direction: row;
-  padding: 0.5rem 2rem !important;
+  padding: 0.5rem 0 !important;
 }
 
 #address {
@@ -1305,6 +1319,9 @@ body {
   display: flex;
   flex-direction: column;
 }
+.map__heading {
+  margin: 0 1rem 0;
+}
 .map-box {
   padding: 2rem 2rem 3rem;
   background-image: linear-gradient(to right bottom, #BEB6A6, #3F3622);
@@ -1312,7 +1329,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   overflow: auto;
-  margin-bottom: 3rem;
+  margin: 0 1rem 3rem;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
 }
 @media (max-width: 61.94em) {
@@ -1330,7 +1347,8 @@ body {
 }
 .map__location {
   width: 95%;
-  margin: 0 auto;
+  margin: 0 auto 1rem;
+  justify-content: left;
 }
 @media (max-width: 56.25em) {
   .map__location {
@@ -1527,14 +1545,18 @@ body {
 .poi-img {
   height: 20rem;
 }
+.poi__heading {
+  margin: 0 1rem 0;
+}
 .poi-box {
-  padding: 2rem;
+  padding: 2rem 2rem 3rem;
   background-image: linear-gradient(to right bottom, #BEB6A6, #3F3622);
   height: 100%;
   display: flex;
   flex-wrap: wrap;
   overflow: auto;
-  margin-bottom: 3rem;
+  margin: 0 1rem 3rem;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
 }
 @media (max-width: 61.94em) {
   .poi-box {
@@ -1562,7 +1584,8 @@ body {
 }
 .poi__location {
   width: 95%;
-  margin: 0 auto;
+  margin: 0 auto 1rem;
+  justify-content: left;
 }
 @media (max-width: 56.25em) {
   .poi__location {
