@@ -349,25 +349,40 @@ body {
 }
 
 .box-login {
-  background-image: linear-gradient(105deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.6) 50%, transparent 50%), url(/images/igor-oliyarnik-kMjRyUiRtxE-unsplash2.jpeg);
+  background-image: linear-gradient(105deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.8) 50%, transparent 50%), url(/images/igor-oliyarnik-kMjRyUiRtxE-unsplash2.jpeg);
   background-size: cover;
 }
 
 .box-register {
-  background-image: linear-gradient(105deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.6) 50%, transparent 50%), url(/images/gabe-pierce-V_fIyZR91Pc-unsplash2.jpeg);
+  background-image: linear-gradient(105deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.8) 50%, transparent 50%), url(/images/gabe-pierce-V_fIyZR91Pc-unsplash2.jpeg);
   background-size: cover;
+}
+
+.error {
+  font-size: 2rem;
+  color: red;
 }
 
 .btn, .btn:link, .btn:visited {
   text-transform: uppercase;
   text-decoration: none;
-  padding: 1rem 4rem;
+  padding: 1rem 3.5rem;
   display: inline-block;
   border-radius: 10rem;
   transition: all 0.2s;
   position: relative;
   border: none;
   cursor: pointer;
+}
+@media (max-width: 61.94em) {
+  .btn, .btn:link, .btn:visited {
+    padding: 1rem 2.5rem;
+  }
+}
+@media (max-width: 56.25em) {
+  .btn, .btn:link, .btn:visited {
+    padding: 0.5rem 1.5rem;
+  }
 }
 .btn-nav {
   border: none !important;
@@ -376,6 +391,7 @@ body {
 .btn-edit {
   border-radius: 3px !important;
   padding: 0.5rem !important;
+  margin: 1rem 0;
   color: #fff;
   background-color: rgba(63, 54, 34, 0.3);
   border: #555 solid 0.5px !important;
@@ -383,6 +399,7 @@ body {
 .btn-delete {
   border-radius: 3px !important;
   padding: 0.5rem !important;
+  margin: 1rem 0;
   color: #fff;
   background-color: rgba(161, 39, 45, 0.3);
   border: #4D1215 solid 0.5px !important;
@@ -581,7 +598,7 @@ body {
   padding: 1rem;
 }
 .card__details ul li:not(:last-child) {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #aaa;
 }
 .card__cta {
   position: absolute;
@@ -603,6 +620,68 @@ body {
 .card__price-value {
   font-size: 6rem;
   font-weight: 100;
+}
+
+.contain {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin: auto 3rem;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Hide the browser's default checkbox */
+  /* On mouse-over, add a grey background color */
+  /* When the checkbox is checked, add a blue background */
+  /* Show the checkmark when checked */
+  /* Style the checkmark/indicator */
+}
+.contain input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.contain:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+.contain input:checked ~ .checkmark {
+  background-color: #3F3622;
+}
+.contain input:checked ~ .checkmark:after {
+  display: block;
+}
+.contain .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border: #3F3622 solid 0.5px;
+  /* Create the checkmark/indicator (hidden when not checked) */
+}
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
 }
 
 .composition {
@@ -815,15 +894,15 @@ body {
   float: left;
 }
 .event__card [class^=col-]:not(:last-child) {
-  margin-right: 3rem;
+  margin-right: 6rem;
 }
-@media (max-width: 75em) {
+@media (max-width: 56.25em) {
   .event__card [class^=col-]:not(:last-child) {
     margin-right: 0;
     margin-bottom: 6rem;
   }
 }
-@media (max-width: 75em) {
+@media (max-width: 56.25em) {
   .event__card [class^=col-] {
     width: 100% !important;
   }
@@ -1056,7 +1135,7 @@ body {
   color: inherit;
   padding: 1.5rem 2rem;
   border-radius: 2px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.8);
   border: none;
   border-bottom: 3px solid transparent;
   width: 40% !important;
@@ -1173,8 +1252,12 @@ body {
   padding: 0.5rem 2rem !important;
 }
 
+#address {
+  margin: auto 2rem auto 0;
+}
+
 .map {
-  max-width: 90%;
+  max-width: 100%;
   margin: 5rem auto;
 }
 .map:not(:last-child) {
@@ -1224,7 +1307,7 @@ body {
   flex-direction: column;
 }
 .map-box {
-  padding: 2rem;
+  padding: 2rem 2rem 3rem;
   background-image: linear-gradient(to right bottom, #BEB6A6, #3F3622);
   height: 100%;
   display: flex;
@@ -1292,7 +1375,9 @@ body {
 .map__input--map-btn {
   display: flex;
   flex-direction: row;
-  padding: 0.5rem 2rem !important;
+  justify-content: center;
+  margin: 1.5rem auto;
+  padding-bottom: 1rem;
 }
 @media (max-width: 56.25em) {
   .map__input--map-btn {
@@ -1614,7 +1699,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 50%;
+  width: 30%;
   background-color: #fff;
   box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.2);
   border-radius: 3px;
@@ -1624,12 +1709,9 @@ body {
   transform: translate(-50%, -50%) scale(0.25);
   transition: all 0.5s 0.2s;
 }
-.popup__left {
-  width: 33.33333333%;
-  display: table-cell;
-}
 .popup__right {
-  width: 66.66666667%;
+  border: 5px solid darkred;
+  width: 100%;
   display: table-cell;
   vertical-align: middle;
   padding: 3rem 5rem;
@@ -1641,12 +1723,6 @@ body {
 .popup__text {
   font-size: 1.4rem;
   margin-bottom: 4rem;
-  -moz-column-count: 2;
-  -moz-column-gap: 4rem;
-  -moz-column-rule: 1px solid #eee;
-  column-count: 2;
-  column-gap: 4rem;
-  column-rule: 1px solid #eee;
   -moz-hyphens: auto;
   -ms-hyphens: auto;
   -webkit-hyphens: auto;
@@ -1704,11 +1780,23 @@ body {
 .profile__info {
   margin-left: 3rem;
 }
+.profile__table tr:not(:last-child) {
+  border-bottom: 0.5px solid #3F3622;
+}
+.profile__table--heading {
+  display: flex;
+  align-items: center;
+}
 .profile__table--title {
   min-width: 30rem;
 }
 .profile__table--title a {
   color: inherit;
+  text-decoration: none;
+  font-weight: bold;
+}
+.profile__table--title a:hover {
+  color: #aaa;
 }
 @media (max-width: 56.25em) {
   .profile__table--title {
@@ -1730,6 +1818,13 @@ body {
 }
 .profile__table--description {
   width: 100%;
+  margin-right: 2rem;
+}
+.profile__table--description-row {
+  max-width: 50rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 @media (max-width: 56.25em) {
   .profile__table--description {
@@ -1737,11 +1832,11 @@ body {
   }
 }
 .profile__table--colB {
-  min-width: 8rem;
+  min-width: 6rem;
 }
 @media (max-width: 56.25em) {
   .profile__table--colB {
-    min-width: 6rem;
+    min-width: 5rem;
   }
 }
 .profile figure {
@@ -1889,22 +1984,6 @@ body {
     padding: 3rem 0;
   }
 }
-.footer__logo-box {
-  display: flex;
-  align-content: center;
-  align-items: center;
-  margin-bottom: 4rem;
-}
-@media (max-width: 56.25em) {
-  .footer__logo-box {
-    margin-bottom: 2rem;
-  }
-}
-.footer__logo-box span {
-  margin-right: auto;
-  text-align: center;
-  padding-left: 3rem;
-}
 .footer__logo {
   margin-left: auto;
   height: 8rem;
@@ -1915,6 +1994,22 @@ body {
   .footer__logo {
     height: 6rem;
   }
+}
+.footer__logo--box {
+  display: flex;
+  align-content: center;
+  margin-bottom: 4rem;
+  align-items: center;
+}
+@media (max-width: 56.25em) {
+  .footer__logo--box {
+    margin-bottom: 2rem;
+  }
+}
+.footer__logo--box span {
+  margin-right: auto;
+  text-align: center;
+  padding-left: 3rem;
 }
 .footer__navigation {
   border-top: 1px solid #555;
@@ -1951,7 +2046,8 @@ body {
 }
 .footer__copyright {
   border-top: 1px solid #555;
-  padding: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
   width: 80%;
   float: right;
 }

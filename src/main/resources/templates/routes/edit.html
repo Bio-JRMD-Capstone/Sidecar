@@ -21,25 +21,22 @@
                     <!-- Map -->
                     <div class="col-map-2">
                         <div class="map__input u-margin-bottom-sm">
-                            <div id="floating-panel">
-                                <input class="map__input--textbox u-margin-right-sm" name="locationinput" id="address" type="textbox" placeholder=" Enter a location" />
-                                <input class="btn btn--map" id="submit" type="button" value="View Location" />
+                            <div class="map__input--map-btn" id="floating-pane">
+                                <input class="u-margin-right-sm" id="address" type="textbox" placeholder=" Enter a location" />
+                                <input id="submit" class="btn btn--white" type="button" value="View Location" />
                             </div>
                             <div class="map__input--map-btn">
-                                <div class="u-margin-right-sm">
-                                    <input class="btn-rt u-margin-right-sm btn btn--white" type="button" id="clearBtn" name="clearBtn" value="Clear Route">
-                                </div>
+                                <label class="contain ">Round Trip
+                                    <input type="checkbox" id="routeCheck">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <input class="u-margin-y-sm btn btn--white" type="button" id="clearBtn" name="clearBtn" value="Clear Route">
+
                                 <div class="field">
                                     <div class="control">
-                                        <input class="btn-rt u-margin-right-sm btn btn--white" type="button" id="testbtn" name="testbtn" value="See Route">
+                                        <input class="btn btn--white" type="button" id="testbtn" name="testbtn" value="See Route">
                                     </div>
                                 </div>
-                                <p class="btn-rt">
-                                    <label>
-                                        <input id="routeCheck" type="checkbox" />
-                                        <span> Round Trip</span>
-                                    </label>
-                                </p>
                             </div>
                             <div id="map"></div>
                         </div>
@@ -59,7 +56,7 @@
                                 <input class="map__input" type="text"  id="title" name="title" placeholder="Title" th:field="*{title}">
                                 <h4 th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"/>
                                 <br />
-                                <textarea class="map__input-long" type="text" id="description" name="description" placeholder="Description" th:field="*{description}"></textarea>
+                                <textarea class="map__input-long" type="text" id="description" name="description" placeholder="Description" th:field="*{description}" maxlength="2500"></textarea>
                                 <h4 th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger" />
                                 <br />
                                 <input class="map__input" type="text" id="distance" name="distance" placeholder="Distance" th:field="*{distance}" readonly>

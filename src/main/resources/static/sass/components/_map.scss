@@ -11,8 +11,12 @@
   padding: .5rem 2rem !important;
 }
 
+#address {
+  margin: auto 2rem auto 0;
+}
+
 .map {
-  max-width: 90%;
+  max-width: 100%;
   margin: 5rem auto;
 
   &:not(:last-child) {
@@ -48,6 +52,9 @@
     @include respond(tab-port) {
       width: 100% !important;
     }
+    @include respond(nav-collapse) {
+      
+    }
   }
 
   &-data {
@@ -56,7 +63,7 @@
   }
 
   &-box {
-    padding: 2rem;
+    padding: 2rem 2rem 3rem;
     background-image: linear-gradient(
                     to right bottom,
                     $color-primary-light,
@@ -120,7 +127,9 @@
     &--map-btn {
       display: flex;
       flex-direction: row;
-      padding: .5rem 2rem !important;
+      justify-content: center;
+      margin: 1.5rem auto;
+      padding-bottom: 1rem;
       
       @include respond(tab-port){
         padding: .5rem 1rem;
@@ -206,7 +215,6 @@
 .col-map-2{
   width: calc(2* ((100% - 2 * #{$gutter-horizontal}) / 3) + #{$gutter-horizontal});
 }
-
 .col-map-show {
   width: calc((100% - #{$gutter-horizontal}) / 2);
 }

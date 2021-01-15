@@ -58,7 +58,8 @@ public class UserController {
     public String saveUser(@Valid User user,
                            Errors validation,
                            Model model,
-                           @ModelAttribute User newUser
+                           @ModelAttribute User newUser,
+                           @RequestParam(name = "photo_url") String photo_url
     ){
         if(validation.hasErrors() || (!newUser.getPassword().equals(newUser.getPassword_confirm()))){
             model.addAttribute("errors", validation);
@@ -94,12 +95,14 @@ public class UserController {
     public String editUser (@PathVariable(value = "id") long id,
                             @RequestParam(name = "username") String username,
                             @RequestParam(name = "email") String email,
-                            @RequestParam(name = "zipcode") String zipcode
+                            @RequestParam(name = "zipcode") String zipcode,
+                            @RequestParam(name = "photo_url") String photo_url
     ){
             User user = (userDao.getUserById(id));
             user.setUsername(username);
             user.setEmail(email);
             user.setZipcode(zipcode);
+            user.setPhoto_url(photo_url);
             user.setPassword(user.getPassword());
             user.setPassword_confirm(user.getPassword());
 

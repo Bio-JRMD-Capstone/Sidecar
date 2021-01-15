@@ -35,7 +35,7 @@
                                 <input class="poi__input" type="text"  th:field="*{name}" id="name" name="name" placeholder="title">
                                 <br />
 
-                                <textarea class="poi__input-long" th:field="*{description}" type="text" id="description" name="description" placeholder="description" ></textarea>
+                                <textarea class="poi__input-long" th:field="*{description}" type="text" id="description" name="description" placeholder="description" maxlength="2500"></textarea>
                                 <br />
 
                                 <h4>Category: </h4>
@@ -93,7 +93,7 @@
                                 </div>
 
                                 <div class="u-center-text u-margin-top-md">
-                                    <button class="btn" id="imageButton">Add a Picture</button>
+                                    <button class="btn btn--white" id="imageButton">Add a Picture</button>
                                 </div>
                                 <!-- Submit changes / cancel buttons -->
                                 <div class="u-center-text u-margin-top-sm">
