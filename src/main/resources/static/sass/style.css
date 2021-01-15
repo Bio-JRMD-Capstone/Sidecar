@@ -598,7 +598,7 @@ body {
   padding: 1rem;
 }
 .card__details ul li:not(:last-child) {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #aaa;
 }
 .card__cta {
   position: absolute;
@@ -1796,7 +1796,7 @@ body {
   font-weight: bold;
 }
 .profile__table--title a:hover {
-  color: #3F3622;
+  color: #aaa;
 }
 @media (max-width: 56.25em) {
   .profile__table--title {
