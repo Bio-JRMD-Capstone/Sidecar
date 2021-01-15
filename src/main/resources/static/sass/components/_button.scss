@@ -4,12 +4,17 @@
     &:visited {
         text-transform: uppercase;
         text-decoration: none;
-        padding: 1rem 4rem;
+        padding: 1rem 3.5rem;
         display: inline-block;
         border-radius: 10rem;
         transition: all .2s;
         position: relative;
-
+        @include respond(nav-collapse) {
+            padding: 1rem 2.5rem;
+        }
+        @include respond(tab-port) {
+            padding: .5rem 1.5rem;
+        }
         //Change for the <button> element
         border: none;
         cursor: pointer;
@@ -21,6 +26,7 @@
     &-edit {
         border-radius: 3px !important;
         padding: .5rem !important;
+        margin: 1rem 0;
         color: $color-white;
         background-color: rgba($color-primary-dark, .3);
         border: $color-gray-dark solid .5px !important;
@@ -28,6 +34,7 @@
     &-delete {
         border-radius: 3px !important;
         padding: .5rem !important;
+        margin: 1rem 0;
         color: $color-white;
         background-color: rgba($color-delete, .3);
         border: $color-delete-dark solid .5px !important;

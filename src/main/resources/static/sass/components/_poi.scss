@@ -1,5 +1,5 @@
 .poi {
-  width: 90%;
+  width: 100%;
   margin: 5rem auto;
 
   &:not(:last-child) {
@@ -22,8 +22,9 @@
   }
   @include clearfix;
 
-  [class^="col-"]{
+  [class^="col-"] {
     float: left;
+
     &:not(:last-child) {
       margin-right: $gutter-horizontal;
 
@@ -32,6 +33,7 @@
         margin-bottom: $gutter-vertical-sm;
       }
     }
+
     @include respond(tab-port) {
       width: 100% !important;
     }
