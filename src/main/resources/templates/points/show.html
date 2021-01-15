@@ -12,57 +12,58 @@
         <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
 
         <main class="poi">
-            <a class="btn btn--green u-margin-bottom-sm" th:href="@{/points}">Back to all Points of Interest</a>
-            <div class="map">
+            <div class="map__heading">
+                <a class="btn btn--green u-margin-bottom-sm" th:href="@{/points}">Back to all Points of Interest</a>
                 <h3 class="heading-tertiary" th:text="${point.name}"></h3>
-                <div class="map-box">
-                    <section class="col-map-2">
-                        <div class="map__input">
-                            <div id="map"></div>
-    <!--                        <div class="poi__map-coords">-->
-                                <input type="hidden" id="lat" th:value="${point.lat}">
-                                <input type="hidden" id="lng" th:value="${point.lon}">
-    <!--                        </div>-->
-                        </div>
-                        <hr>
-                        <div class="map__input">
-                            <h3 class="heading-tertiary">Comments:</h3>
-                            <!-- Comments here -->
-                            <div th:each="aComment: ${poiComments}">
-                                <p class="map__comment" th:text="${aComment.comment}"></p>
+            </div>
+            <div class="map-box">
+                <!-- Map -->
+                <section class="col-map-2">
+                    <div class="map__input">
+                        <div id="map"></div>
+<!--                        <div class="poi__map-coords">-->
+                            <input type="hidden" id="lat" th:value="${point.lat}">
+                            <input type="hidden" id="lng" th:value="${point.lon}">
+<!--                        </div>-->
+                    </div>
+                    <hr>
+                    <div class="map__input">
+                        <h3 class="heading-tertiary">Comments:</h3>
+                        <!-- Comments here -->
+                        <div th:each="aComment: ${poiComments}">
+                            <p class="map__comment" th:text="${aComment.comment}"></p>
 
-                                <div class="u-right-align">
-                                    <div th:if ="${#authentication.getName()} == ${aComment.user.username}">
-                                        <form  th:action="@{/points/{id}/delete-comment-{commentId} (id = ${point.id}, commentId = ${aComment.id})}" method="POST">
-                                            <button class="btn btn-delete u-right-align" type="submit">Delete comment?</button>
-                                        </form>
-                                    </div>
-                                    <p class="u-right-align" th:text="'Posted by: ' + ${aComment.user.username} + ' on ' + ${aComment.getFormattedDate()}"></p>
+                            <div class="u-right-align">
+                                <div th:if ="${#authentication.getName()} == ${aComment.user.username}">
+                                    <form  th:action="@{/points/{id}/delete-comment-{commentId} (id = ${point.id}, commentId = ${aComment.id})}" method="POST">
+                                        <button class="btn btn-delete u-right-align" type="submit">Delete comment?</button>
+                                    </form>
                                 </div>
-                                <hr>
+                                <p class="u-right-align" th:text="'Posted by: ' + ${aComment.user.username} + ' on ' + ${aComment.getFormattedDate()}"></p>
                             </div>
-                            <p sec:authorize="!isAuthenticated()" class="paragraph">Like to leave a comment? Please <a th:href="@{/login}">Login</a> or
-                                <a th:href="@{/register}">Register</a>.</p>
-                            <form sec:authorize="isAuthenticated()" class="" th:action="@{/points/{id}/comment (id=${point.id})} " method="POST">
-                                <textarea class="map__input-long" id="newComment" name="route-comment"  th:field="*{newComment.comment}"></textarea>
-                                <button class="btn btn--white u-right-align u-margin-top-sm" type="submit">Submit</button>
-                            </form>
+                            <hr>
                         </div>
-                    </section>
+                        <p sec:authorize="!isAuthenticated()" class="paragraph">Like to leave a comment? Please <a th:href="@{/login}">Login</a> or
+                            <a th:href="@{/register}">Register</a>.</p>
+                        <form sec:authorize="isAuthenticated()" class="" th:action="@{/points/{id}/comment (id=${point.id})} " method="POST">
+                            <textarea class="map__input-long" id="newComment" name="route-comment"  th:field="*{newComment.comment}"></textarea>
+                            <button class="btn btn--white u-right-align u-margin-top-sm" type="submit">Submit</button>
+                        </form>
+                    </div>
+                </section>
 
-                    <section class="col-map-1">
-                        <div class="map__input">
-                            <div class="poi__info-img">
-                                <img class="poi-img" th:if="${point.photo_url == ''}" src="/images/placeholders/point.png" height="300rem" alt="placeholder image" />
-                                <img class="poi-img" th:if="${point.photo_url != ''}" th:src="${point.photo_url}" height="300rem" alt="poi image" />
-                            </div>
-                            <div class="poi__info-text">
-                                <p th:text="${point.category}" id="category"></p>
-                                <p th:text="${point.description}"></p>
-                            </div>
+                <section class="col-map-1">
+                    <div class="map__input">
+                        <div class="poi__info-img">
+                            <img class="poi-img" th:if="${point.photo_url == ''}" src="/images/placeholders/point.png" height="300rem" alt="placeholder image" />
+                            <img class="poi-img" th:if="${point.photo_url != ''}" th:src="${point.photo_url}" height="300rem" alt="poi image" />
                         </div>
-                    </section>
-                </div>
+                        <div class="poi__info-text">
+                            <p th:text="${point.category}" id="category"></p>
+                            <p th:text="${point.description}"></p>
+                        </div>
+                    </div>
+                </section>
             </div>
         </main>
       

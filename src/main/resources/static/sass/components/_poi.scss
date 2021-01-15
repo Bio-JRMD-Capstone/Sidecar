@@ -42,8 +42,11 @@
   &-img {
     height: 20rem;
   }
+  &__heading {
+    margin: 0 1rem 0;
+  }
   &-box {
-    padding: 2rem;
+    padding: 2rem 2rem 3rem;
     background-image: linear-gradient(
                     to right bottom,
                     $color-primary-light,
@@ -52,7 +55,8 @@
     display: flex;
     flex-wrap: wrap;
     overflow: auto;
-    margin-bottom: 3rem;
+    margin: 0 1rem 3rem;
+    box-shadow: 0 1rem 2rem rgba($color-black, .2);
 
     @include respond(nav-collapse) {
       padding: 1.5rem;
@@ -81,7 +85,8 @@
 
   &__location{
     width: 95%;
-    margin: 0 auto;
+    margin: 0 auto 1rem;
+    justify-content: left;
     @include respond(tab-port){
       width: 75%;
     }

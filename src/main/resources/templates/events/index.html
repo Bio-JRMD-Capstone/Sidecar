@@ -12,14 +12,16 @@
 <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
 
 <main class="poi">
-    <h1 class="heading-primary--sub">All Events</h1>
-    <div>
-        <p sec:authorize="!isAuthenticated()" class="paragraph">Have an event to share? Please <a th:href="@{/login}">Login</a> or
-            <a th:href="@{/register}">Register</a>.</p>
-        <a sec:authorize="isAuthenticated()" class="btn btn--green u-margin-bottom-sm" th:href="@{/events/create}">Add an Event</a>
+    <div class="event__heading">
+        <h1 class="heading-primary--sub">All Events</h1>
+        <div>
+            <p sec:authorize="!isAuthenticated()" class="paragraph">Have an event to share? Please <a th:href="@{/login}">Login</a> or
+                <a th:href="@{/register}">Register</a>.</p>
+            <a sec:authorize="isAuthenticated()" class="btn btn--green u-margin-bottom-sm" th:href="@{/events/create}">Add an Event</a>
+        </div>
     </div>
     <section class="poi-box">
-        <div class="poi__location">
+        <div class="event__location">
             <form name="locationbox">
                 <div id="floating-panel">
                     <input class="map__input--textbox u-margin-right-sm" name="locationinput" id="address" type="textbox" placeholder="Enter a location" />
