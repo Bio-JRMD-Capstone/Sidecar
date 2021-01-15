@@ -1780,7 +1780,7 @@ body {
 .profile__info {
   margin-left: 3rem;
 }
-.profile__table tr {
+.profile__table tr:not(:last-child) {
   border-bottom: 0.5px solid #3F3622;
 }
 .profile__table--heading {
@@ -1792,6 +1792,11 @@ body {
 }
 .profile__table--title a {
   color: inherit;
+  text-decoration: none;
+  font-weight: bold;
+}
+.profile__table--title a:hover {
+  color: #3F3622;
 }
 @media (max-width: 56.25em) {
   .profile__table--title {
