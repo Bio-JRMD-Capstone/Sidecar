@@ -4,12 +4,17 @@
     &:visited {
         text-transform: uppercase;
         text-decoration: none;
-        padding: 1rem 4rem;
+        padding: 1rem 3.5rem;
         display: inline-block;
         border-radius: 10rem;
         transition: all .2s;
         position: relative;
-
+        @include respond(nav-collapse) {
+            padding: 1rem 2.5rem;
+        }
+        @include respond(tab-port) {
+            padding: .5rem 1.5rem;
+        }
         //Change for the <button> element
         border: none;
         cursor: pointer;

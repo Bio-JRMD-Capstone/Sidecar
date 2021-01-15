@@ -366,13 +366,23 @@ body {
 .btn, .btn:link, .btn:visited {
   text-transform: uppercase;
   text-decoration: none;
-  padding: 1rem 4rem;
+  padding: 1rem 3.5rem;
   display: inline-block;
   border-radius: 10rem;
   transition: all 0.2s;
   position: relative;
   border: none;
   cursor: pointer;
+}
+@media (max-width: 61.94em) {
+  .btn, .btn:link, .btn:visited {
+    padding: 1rem 2.5rem;
+  }
+}
+@media (max-width: 56.25em) {
+  .btn, .btn:link, .btn:visited {
+    padding: 0.5rem 1.5rem;
+  }
 }
 .btn-nav {
   border: none !important;
@@ -616,7 +626,7 @@ body {
   display: block;
   position: relative;
   padding-left: 35px;
-  margin: auto 2rem auto auto;
+  margin: auto 3rem;
   cursor: pointer;
   font-size: 22px;
   -webkit-user-select: none;
@@ -884,15 +894,15 @@ body {
   float: left;
 }
 .event__card [class^=col-]:not(:last-child) {
-  margin-right: 3rem;
+  margin-right: 6rem;
 }
-@media (max-width: 75em) {
+@media (max-width: 56.25em) {
   .event__card [class^=col-]:not(:last-child) {
     margin-right: 0;
     margin-bottom: 6rem;
   }
 }
-@media (max-width: 75em) {
+@media (max-width: 56.25em) {
   .event__card [class^=col-] {
     width: 100% !important;
   }
@@ -1247,7 +1257,7 @@ body {
 }
 
 .map {
-  max-width: 90%;
+  max-width: 100%;
   margin: 5rem auto;
 }
 .map:not(:last-child) {
@@ -1297,7 +1307,7 @@ body {
   flex-direction: column;
 }
 .map-box {
-  padding: 2rem;
+  padding: 2rem 2rem 3rem;
   background-image: linear-gradient(to right bottom, #BEB6A6, #3F3622);
   height: 100%;
   display: flex;
@@ -1365,9 +1375,9 @@ body {
 .map__input--map-btn {
   display: flex;
   flex-direction: row;
-  align-items: end;
-  margin: auto 2rem auto 0;
-  padding-bottom: 2rem;
+  justify-content: center;
+  margin: 1.5rem auto;
+  padding-bottom: 1rem;
 }
 @media (max-width: 56.25em) {
   .map__input--map-btn {
