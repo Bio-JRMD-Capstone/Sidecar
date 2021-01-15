@@ -47,7 +47,8 @@
                                 <div class="col-1-of-2 u-center-text u-margin-top-sm">
                                     <div class="image-stack">
                                         <div class="image-stack__item--top">
-                                            <img class="poi-img" th:src="${userToEdit.photo_url}" alt="profile image">
+                                            <img th:if="${userToEdit.photo_url == ''}" src="/images/placeholders/user.png" alt="placeholder image" class="profile__image">
+                                            <img class="poi-img" th:if="${userToEdit.photo_url != ''}" th:src="${userToEdit.photo_url}" alt="profile image">
                                         </div>
 
                                         <div class="image-stack__item--bottom">
