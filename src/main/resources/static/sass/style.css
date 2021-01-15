@@ -1984,22 +1984,6 @@ body {
     padding: 3rem 0;
   }
 }
-.footer__logo-box {
-  display: flex;
-  align-content: center;
-  align-items: center;
-  margin-bottom: 4rem;
-}
-@media (max-width: 56.25em) {
-  .footer__logo-box {
-    margin-bottom: 2rem;
-  }
-}
-.footer__logo-box span {
-  margin-right: auto;
-  text-align: center;
-  padding-left: 3rem;
-}
 .footer__logo {
   margin-left: auto;
   height: 8rem;
@@ -2010,6 +1994,22 @@ body {
   .footer__logo {
     height: 6rem;
   }
+}
+.footer__logo--box {
+  display: flex;
+  align-content: center;
+  margin-bottom: 4rem;
+  align-items: center;
+}
+@media (max-width: 56.25em) {
+  .footer__logo--box {
+    margin-bottom: 2rem;
+  }
+}
+.footer__logo--box span {
+  margin-right: auto;
+  text-align: center;
+  padding-left: 3rem;
 }
 .footer__navigation {
   border-top: 1px solid #555;

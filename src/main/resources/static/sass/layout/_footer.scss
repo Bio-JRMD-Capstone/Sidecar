@@ -9,22 +9,6 @@
         padding: 3rem 0;
     }
 
-    &__logo-box {
-
-        display: flex;
-        align-content: center;
-        align-items: center;
-        margin-bottom: 4rem;
-        @include respond(tab-port){
-            margin-bottom: 2rem;
-        }
-        & span {
-            margin-right: auto;
-            text-align: center;
-            padding-left: 3rem;
-        }
-    }
-
     &__logo {
         margin-left: auto;
         height: 8rem;
@@ -35,6 +19,21 @@
             height: 6rem;
         }
 
+        &--box {
+
+            display: flex;
+            align-content: center;
+            margin-bottom: 4rem;
+            align-items: center;
+            @include respond(tab-port){
+                margin-bottom: 2rem;
+            }
+            & span {
+                margin-right: auto;
+                text-align: center;
+                padding-left: 3rem;
+            }
+        }
     }
 
     &__navigation {
