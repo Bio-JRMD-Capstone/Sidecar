@@ -25,17 +25,17 @@
                             <div class="error" th:if="${param.error}">
                                 Invalid Username and/or Password.
                             </div>
-                            <div class="paragraph text-danger" th:if="${param.logout}">
+                            <div class="error" th:if="${param.logout}">
                                 You have been logged out.
                             </div>
                             <div class="form__group">
-                                <input type="text" class="form__input" placeholder="username" id="username" name="username" required>
-                                <label for="username" class="form__label">Username:</label>
+                                <input type="text" class="form__input" placeholder="Username" id="username" name="username" required>
+                                <label for="username" class="form__label"></label>
                             </div>
 
                             <div class="form__group">
-                                <input type="password" class="form__input" placeholder="password" id="password" name="password" required>
-                                <label for="password" class="form__label">Password</label>
+                                <input type="password" class="form__input" placeholder="Password" id="password" name="password" required>
+                                <label for="password" class="form__label"></label>
                             </div>
 
                             <div class="form__group">

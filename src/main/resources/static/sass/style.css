@@ -366,13 +366,23 @@ body {
 .btn, .btn:link, .btn:visited {
   text-transform: uppercase;
   text-decoration: none;
-  padding: 1rem 4rem;
+  padding: 1rem 3.5rem;
   display: inline-block;
   border-radius: 10rem;
   transition: all 0.2s;
   position: relative;
   border: none;
   cursor: pointer;
+}
+@media (max-width: 61.94em) {
+  .btn, .btn:link, .btn:visited {
+    padding: 1rem 2.5rem;
+  }
+}
+@media (max-width: 56.25em) {
+  .btn, .btn:link, .btn:visited {
+    padding: 0.5rem 1.5rem;
+  }
 }
 .btn-nav {
   border: none !important;
@@ -588,7 +598,7 @@ body {
   padding: 1rem;
 }
 .card__details ul li:not(:last-child) {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #aaa;
 }
 .card__cta {
   position: absolute;
@@ -616,7 +626,7 @@ body {
   display: block;
   position: relative;
   padding-left: 35px;
-  margin: auto 2rem auto auto;
+  margin: auto 3rem;
   cursor: pointer;
   font-size: 22px;
   -webkit-user-select: none;
@@ -884,15 +894,15 @@ body {
   float: left;
 }
 .event__card [class^=col-]:not(:last-child) {
-  margin-right: 3rem;
+  margin-right: 6rem;
 }
-@media (max-width: 75em) {
+@media (max-width: 56.25em) {
   .event__card [class^=col-]:not(:last-child) {
     margin-right: 0;
     margin-bottom: 6rem;
   }
 }
-@media (max-width: 75em) {
+@media (max-width: 56.25em) {
   .event__card [class^=col-] {
     width: 100% !important;
   }
@@ -1247,7 +1257,7 @@ body {
 }
 
 .map {
-  max-width: 90%;
+  max-width: 100%;
   margin: 5rem auto;
 }
 .map:not(:last-child) {
@@ -1297,7 +1307,7 @@ body {
   flex-direction: column;
 }
 .map-box {
-  padding: 2rem;
+  padding: 2rem 2rem 3rem;
   background-image: linear-gradient(to right bottom, #BEB6A6, #3F3622);
   height: 100%;
   display: flex;
@@ -1365,9 +1375,9 @@ body {
 .map__input--map-btn {
   display: flex;
   flex-direction: row;
-  align-items: end;
-  margin: auto 2rem auto 0;
-  padding-bottom: 2rem;
+  justify-content: center;
+  margin: 1.5rem auto;
+  padding-bottom: 1rem;
 }
 @media (max-width: 56.25em) {
   .map__input--map-btn {
@@ -1770,14 +1780,23 @@ body {
 .profile__info {
   margin-left: 3rem;
 }
-.profile__table tr {
+.profile__table tr:not(:last-child) {
   border-bottom: 0.5px solid #3F3622;
+}
+.profile__table--heading {
+  display: flex;
+  align-items: center;
 }
 .profile__table--title {
   min-width: 30rem;
 }
 .profile__table--title a {
   color: inherit;
+  text-decoration: none;
+  font-weight: bold;
+}
+.profile__table--title a:hover {
+  color: #aaa;
 }
 @media (max-width: 56.25em) {
   .profile__table--title {
@@ -1965,22 +1984,6 @@ body {
     padding: 3rem 0;
   }
 }
-.footer__logo-box {
-  display: flex;
-  align-content: center;
-  align-items: center;
-  margin-bottom: 4rem;
-}
-@media (max-width: 56.25em) {
-  .footer__logo-box {
-    margin-bottom: 2rem;
-  }
-}
-.footer__logo-box span {
-  margin-right: auto;
-  text-align: center;
-  padding-left: 3rem;
-}
 .footer__logo {
   margin-left: auto;
   height: 8rem;
@@ -1991,6 +1994,22 @@ body {
   .footer__logo {
     height: 6rem;
   }
+}
+.footer__logo--box {
+  display: flex;
+  align-content: center;
+  margin-bottom: 4rem;
+  align-items: center;
+}
+@media (max-width: 56.25em) {
+  .footer__logo--box {
+    margin-bottom: 2rem;
+  }
+}
+.footer__logo--box span {
+  margin-right: auto;
+  text-align: center;
+  padding-left: 3rem;
 }
 .footer__navigation {
   border-top: 1px solid #555;
@@ -2027,7 +2046,8 @@ body {
 }
 .footer__copyright {
   border-top: 1px solid #555;
-  padding: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
   width: 80%;
   float: right;
 }
