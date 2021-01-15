@@ -22,7 +22,7 @@
                                     Login:
                                 </h2>
                             </div>
-                            <div class="paragraph text-danger" th:if="${param.error}">
+                            <div class="error" th:if="${param.error}">
                                 Invalid Username and/or Password.
                             </div>
                             <div class="paragraph text-danger" th:if="${param.logout}">
