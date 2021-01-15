@@ -9,7 +9,8 @@
     <body>
         <nav th:replace="partials/navbar :: nav"></nav>
         <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
-        <main>
+        <main class="map">
+            <a class="btn btn--green u-margin-bottom-sm" th:href="@{/routes}">Back to all Routes</a>
             <div class="map">
                 <h3 class="heading-tertiary" th:text="${route.title}"></h3>
                 <div class="map-box">
@@ -21,9 +22,10 @@
                             </div>
                             <div id="map"></div>
                         </div>
-                        <div class="u-margin-top-sm u-margin-bottom-sm u-center-text">
-                            <a class="btn btn--light" href="#">Open in Google Maps</a>
-                        </div>
+<!-- Open in Google Maps button. Currently doesn't work, so it is commented out. When functionality is added it can be brought back in -->
+<!--                        <div class="u-margin-top-sm u-margin-bottom-sm u-center-text">-->
+<!--                            <a class="btn btn&#45;&#45;light" href="#">Open in Google Maps</a>-->
+<!--                        </div>-->
                         <hr>
                         <div class="map__input">
                             <h3 class="heading-tertiary">Comments:</h3>
@@ -34,7 +36,7 @@
                                 <div class="u-right-align">
                                     <div th:if ="${#authentication.getName()} == ${aComment.user.username}">
                                         <form  th:action="@{/route/{id}/delete-comment-{commentId} (id = ${route.id}, commentId = ${aComment.id})}" method="POST">
-                                            <button class="btn btn-edit u-right-align" type="submit">Delete comment?</button>
+                                            <button class="btn btn-delete u-right-align" type="submit">Delete comment?</button>
                                         </form>
                                     </div>
                                     <p class="u-right-align" th:text="'Posted by: ' + ${aComment.user.username} + ' on ' + ${aComment.getFormattedDate()}"></p>

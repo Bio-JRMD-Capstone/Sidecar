@@ -4,11 +4,15 @@
 
   &-box {
     padding: 3rem;
-    background-color: $color-primary-light;
+    background-image: linear-gradient(
+                    to right bottom,
+                    $color-primary-light,
+                    $color-primary-dark);
     height: 100%;
     display: flex;
     overflow: auto;
     margin-bottom: 3rem;
+    box-shadow: 0 1rem 2rem rgba($color-black, .2);
     & form {
       width: 100%;
     }
@@ -41,17 +45,19 @@
     @include respond(tab-port) {
       width: 100%;
     }
-    [class^="col-"]{
+    [class^="col-"] {
       float: left;
-      &:not(:last-child) {
-        margin-right: $gutter-small;
 
-        @include respond(tab-land) {
+      &:not(:last-child) {
+        margin-right: $gutter-horizontal;
+
+        @include respond(tab-port) {
           margin-right: 0;
           margin-bottom: $gutter-vertical-sm;
         }
       }
-      @include respond(tab-land) {
+
+      @include respond(tab-port) {
         width: 100% !important;
       }
     }

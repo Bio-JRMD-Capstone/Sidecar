@@ -22,8 +22,9 @@
   }
   @include clearfix;
 
-  [class^="col-"]{
+  [class^="col-"] {
     float: left;
+
     &:not(:last-child) {
       margin-right: $gutter-horizontal;
 
@@ -32,6 +33,7 @@
         margin-bottom: $gutter-vertical-sm;
       }
     }
+
     @include respond(tab-port) {
       width: 100% !important;
     }
@@ -41,14 +43,22 @@
     height: 20rem;
   }
   &-box {
-    padding: 3rem;
-    background-color: $color-primary-light;
+    padding: 2rem;
+    background-image: linear-gradient(
+                    to right bottom,
+                    $color-primary-light,
+                    $color-primary-dark);
     height: 100%;
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
     overflow: auto;
     margin-bottom: 3rem;
+
+    @include respond(nav-collapse) {
+      padding: 1.5rem;
+    }
     @include respond(tab-port) {
-      padding: 2rem;
+      padding: 1rem;
     }
   }
 
@@ -70,7 +80,8 @@
   }
 
   &__location{
-    width: 40%;
+    width: 95%;
+    margin: 0 auto;
     @include respond(tab-port){
       width: 75%;
     }

@@ -18,23 +18,21 @@
                 <div class="map-box">
                     <!-- Map -->
                     <section class="col-map-2">
-                        <div class="map__input">
+                        <div class="map__input u-margin-bottom-sm">
                             <div class="map__input--map-btn" id="floating-pane">
-                                <input id="address" type="textbox" placeholder="Enter a location" />
+                                <input class="u-margin-right-sm" id="address" type="textbox" placeholder=" Enter a location" />
                                 <input id="submit" class="btn btn--white" type="button" value="View Location" />
                             </div>
                             <div class="map__input--map-btn">
-                                <p>
-                                    <label>
-                                        <input id="routeCheck" type="checkbox" />
-                                        <span> Round Trip</span>
-                                    </label>
-                                </p>
-                                <input class="btn-rt u-margin-right-sm btn btn--white" type="button" id="clearBtn" name="clearBtn" value="Clear Route">
+                                <label class="contain ">Round Trip
+                                    <input type="checkbox" id="routeCheck">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <input class="u-margin-y-sm btn btn--white" type="button" id="clearBtn" name="clearBtn" value="Clear Route">
 
                                 <div class="field">
                                     <div class="control">
-                                        <input class="btn-rt btn btn--white" type="button" id="testbtn" name="testbtn" value="See Route">
+                                        <input class="btn btn--white" type="button" id="testbtn" name="testbtn" value="See Route">
                                     </div>
                                 </div>
                             </div>
@@ -58,17 +56,17 @@
 
                                 <input class="map__input" type="text"  id="title" name="title" placeholder="Title" th:field="*{title}">
                                 <h4 th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"/>
-
-                                <textarea class="map__input-long" type="text" id="description" name="description" placeholder="Description" th:field="*{description}"></textarea>
+                                <br />
+                                <textarea class="map__input-long" type="text" id="description" name="description" placeholder="Description" th:field="*{description}" maxlength="2500"></textarea>
                                 <h4 th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger" />
-
+                                <br />
                                 <input class="map__input" type="text" id="distance" name="distance" placeholder="Distance" th:field="*{distance}" readonly>
-
+                                <br />
                                 <input type="hidden" class="form-control" id="coordinates" name="coordinates" th:field="*{coordinates}">
 
-                                <input class="map__input" type="text" id="time" name="time"  placeholder="Time(Hours)" th:field="*{time}">
+                                <input class="map__input" type="text" id="time" name="time"  placeholder="Minutes, Hours, Days, etc." th:field="*{time}">
                                 <h4 th:if="${#fields.hasErrors('time')}" th:errors="*{time}" class="text-danger" />
-
+                                <br />
                                 <h4 th:if="${#fields.hasErrors('coordinates')}" th:errors="*{coordinates}" class="text-danger" />
 
                                 <div class="control u-margin-top-sm">

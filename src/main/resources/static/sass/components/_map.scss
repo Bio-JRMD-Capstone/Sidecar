@@ -4,14 +4,19 @@
   margin: auto;
 
 }
+
 #floating-panel {
-  width: 100%;
-  margin-left: 3.5rem;
-  padding-bottom: 2rem;
   display: flex;
+  flex-direction: row;
+  padding: .5rem 2rem !important;
 }
+
+#address {
+  margin: auto 2rem auto 0;
+}
+
 .map {
-  max-width: 90%;
+  max-width: 100%;
   margin: 5rem auto;
 
   &:not(:last-child) {
@@ -27,6 +32,7 @@
     max-width: 75rem;
     padding: 0 2rem;
   }
+
   @include respond(phone) {
     max-width: 60rem;
     padding: 0 2rem;
@@ -46,6 +52,9 @@
     @include respond(tab-port) {
       width: 100% !important;
     }
+    @include respond(nav-collapse) {
+      
+    }
   }
 
   &-data {
@@ -54,18 +63,20 @@
   }
 
   &-box {
-
-    padding: 1rem;
-    background-color: $color-primary-light;
+    padding: 2rem 2rem 3rem;
+    background-image: linear-gradient(
+                    to right bottom,
+                    $color-primary-light,
+                    $color-primary-dark);
     height: 100%;
     display: flex;
     flex-wrap: wrap;
     overflow: auto;
     margin-bottom: 3rem;
-
+    box-shadow: 0 1rem 2rem rgba($color-black, .2);
 
     @include respond(nav-collapse) {
-      padding: 2rem;
+      padding: 1.5rem;
     }
     @include respond(tab-port) {
       padding: 1rem;
@@ -75,7 +86,8 @@
     margin-bottom: 2rem;
   }
   &__location {
-    width: 40%;
+    width: 95%;
+    margin: 0 auto;
     @include respond(tab-port){
       width: 75%;
     }
@@ -108,13 +120,16 @@
       padding: .5rem 1rem;
     }
     &--textbox{
+      font-size: 1.4rem;
       width: 50%;
       height: 4rem;
     }
     &--map-btn {
       display: flex;
       flex-direction: row;
-      padding: .5rem 2rem !important;
+      justify-content: center;
+      margin: 1.5rem auto;
+      padding-bottom: 1rem;
       
       @include respond(tab-port){
         padding: .5rem 1rem;
@@ -200,7 +215,6 @@
 .col-map-2{
   width: calc(2* ((100% - 2 * #{$gutter-horizontal}) / 3) + #{$gutter-horizontal});
 }
-
 .col-map-show {
   width: calc((100% - #{$gutter-horizontal}) / 2);
 }

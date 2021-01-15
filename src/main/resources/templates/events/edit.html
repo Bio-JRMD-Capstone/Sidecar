@@ -19,10 +19,10 @@
                 <div class="event-box">
                     <!-- Map -->
                     <div class="col-event-2">
-                        <div class="event__input">
+                        <div class="event__input u-margin-bottom-sm">
                             <div id="floating-panel">
-                                <input id="address" type="textbox" placeholder="Enter a location" />
-                                <input id="submit" type="button" value="View Location" />
+                                <input class="map__input--textbox u-margin-right-sm" name="locationinput" id="address" type="textbox" placeholder=" Enter a location" />
+                                <input class="btn btn--map" id="submit" type="button" value="View Location" />
                             </div>
                             <div id="map">Map</div>
                         </div>
@@ -30,22 +30,19 @@
 
                     <div class="col-event-1">
                         <div class="event__input">
+                            <h3>Event Information</h3>
                             <form name="editevent" th:action="@{'/event/' + ${eventToEdit.id} + '/edit'}" th:method="post" th:object="${event}">
                                 <!-- Input fields -->
                                 <input type="hidden" th:field="${eventToEdit}">
                                 <input type="hidden" th:field="${eventToEdit.user.id}">
 
-                                <label class="form__label--edit-event paragraph" for="name"><h4>Event Title:</h4></label>
-                                <input class="form__input--edit-event paragraph" type="text" th:field="${eventToEdit.name}" name="name" id="name"/>
+                                <input class="event__input paragraph" type="text" th:field="${eventToEdit.name}" name="name" id="name"/>
 
-                                <label class="form__label--edit-event paragraph" for="description"><h4>Event Description:</h4></label>
-                                <textarea class="form__input--edit-event paragraph" th:field="${eventToEdit.description}" name="description" id="description" ></textarea>
+                                <textarea class="event__input paragraph" th:field="${eventToEdit.description}" name="description" id="description" maxlength="2500"></textarea>
 
-                                <label class="form__label--edit-event paragraph" for="date"><h4>Event Date:</h4></label>
-                                <input class="form__input--edit-event paragraph" type="date" th:field="${eventToEdit.date}" name="date" id="date" />
+                                <input class="event__input paragraph" type="date" th:field="${eventToEdit.date}" name="date" id="date" />
 
-                                <label class="form__label--edit-event paragraph" for="zipcode"><h4>Event Zipcode:</h4></label>
-                                <input class="form__input--edit-event paragraph" type="text" th:field="${eventToEdit.zipcode}" name="date" id="zipcode" />
+                                <input class="event__input paragraph" type="text" th:field="${eventToEdit.zipcode}" name="date" id="zipcode" />
 
                             <!--    Radio buttons for categories-->
                                 <h4>Select Event Category: </h4>
@@ -53,21 +50,23 @@
                                     <input class="form-check-input" th:value="${category.id}" type="radio" name="eventCategories" th:id="${category.id}">
                                     <label class="form-check-label paragraph" th:for="${category.id}" th:text=" ${category.name}"></label>
                                 </div>
+                                <br />
 
-                            <!-- Current and updated flyer -->
-                                <div class="image-stack">
-                                    <div class="image-stack__item--top">
-                                        <img class="event__card--image-edit poi-img" th:src="${eventToEdit.filePath}" alt="Event Flyer" />
-                                    </div>
+                                <!-- Current and updated flyer -->
+                                    <div class="image-stack">
+                                        <div class="image-stack__item--top">
+                                            <img class="event__card--image-edit poi-img" th:if="${eventToEdit.filePath != ''}" th:src="${eventToEdit.filePath}" alt="Event Flyer" />
+                                            <img class="event__card--image-edit poi-img" th:if="${eventToEdit.filePath == ''}" src="/images/placeholders/event.png" alt="placeholder event image"/>
+                                        </div>
 
-                                    <div class="image-stack__item--bottom">
-                                        <label for="newImage"><img class="poi-img event__card--image-edit" id="imagePreview" src="" alt=""></label>
-                                        <input type="hidden" id="newImage" th:field="${eventToEdit.filePath}" th:value="${eventToEdit.filePath}" name="filePath">
+                                        <div class="image-stack__item--bottom">
+                                            <label for="newImage"><img class="poi-img event__card--image-edit" id="imagePreview" src="" alt=""></label>
+                                            <input type="hidden" id="newImage" th:field="${eventToEdit.filePath}" th:value="${eventToEdit.filePath}" name="filePath">
+                                        </div>
                                     </div>
-                                </div>
 
                                 <div class="u-center-text u-margin-top-md">
-                                    <button class="btn" id="imageButton">Add/Change Flyer</button>
+                                    <button class="btn btn--white" id="imageButton">Add/Change Flyer</button>
                                 </div>
 
                                 <input type="hidden" id="lat" value="" th:field="${eventToEdit.lat}">
@@ -75,7 +74,7 @@
 
                                 <!-- Submit changes / cancel buttons -->
                                 <div class="u-center-text u-margin-top-sm">
-                                    <input class="btn btn--white u-margin-y-md" type="submit" value="Update"/>
+                                    <input class="btn btn--white u-margin-y-sm" type="submit" value="Update"/>
                                     <a class="btn btn--green u-margin-y-md" href="/profile">Cancel</a>
                                 </div>
                             </form>
