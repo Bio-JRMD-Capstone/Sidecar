@@ -8,8 +8,8 @@
     </head>
 
     <body>
-        <nav th:replace="partials/nav-search :: nav"></nav>
-    <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+        <nav sec:authorize="isAuthenticated()" th:replace="partials/navC :: nav"></nav>
+        <nav sec:authorize="!isAuthenticated()" th:replace="partials/navD :: nav"></nav>
 
         <header class="header">
             <div class="header__logo-box">

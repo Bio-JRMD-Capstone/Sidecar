@@ -2284,8 +2284,13 @@ body {
   }
 }
 
+.nav-item {
+  min-width: 5rem;
+}
+
 #myprofile {
-  min-width: 10rem;
+  min-width: 9rem;
+  text-align: center;
 }
 
 .navigation button {

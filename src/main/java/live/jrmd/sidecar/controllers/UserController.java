@@ -46,7 +46,7 @@ public class UserController {
 
     @GetMapping("/about-us")
     public String aboutUs(){
-        return "/about-us";
+        return "about-us";
     }
     @GetMapping("/register")
     public String showRegisterForm(Model model){
