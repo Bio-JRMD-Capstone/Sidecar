@@ -270,11 +270,13 @@ function initMapClear() {
     document.getElementById("address").value = "";
 
     var map;
-    let markers = []
 
-    var lat_lng = {lat: 39.63476588674744, lng: -101.15442912683487 };
+    var lat_lng = markParsed[0];
+    // var lat_lng = {lat: 39.63476588674744, lng: -101.15442912683487 };
+
+    let markers = [];
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 5,
+        zoom: 6,
         center: lat_lng
     });
 
