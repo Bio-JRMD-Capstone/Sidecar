@@ -187,7 +187,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
             origin: markers[0],
             destination: markers[markers.length-1],
             waypoints: waypts,
-            optimizeWaypoints: true,
+            optimizeWaypoints: false,
             travelMode: google.maps.TravelMode.DRIVING,
         },
         (response, status) => {

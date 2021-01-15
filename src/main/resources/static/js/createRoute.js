@@ -214,7 +214,7 @@ function initMap() {
                 origin: markers[0],
                 destination: markers[markers.length-1],
                 waypoints: waypts,
-                optimizeWaypoints: true,
+                optimizeWaypoints: false,
                 travelMode: google.maps.TravelMode.DRIVING,
             },
             (response, status) => {
@@ -229,9 +229,9 @@ function initMap() {
                     let totalDuration = 0;
 
                     // For each route, display summary information.
-                    if (document.getElementById("routeCheck").checked === true) {
-                        for (let i = 1; i < route.legs.length; i++) {
-                            const routeSegment = i;
+                    // if (document.getElementById("routeCheck").checked === true) {
+                        for (let i = 0; i < route.legs.length; i++) {
+                            const routeSegment = i + 1;
 
                             totalDistance += parseFloat(route.legs[i].distance.text);
 
@@ -244,21 +244,21 @@ function initMap() {
                             summaryPanel.innerHTML += route.legs[i].distance.text + "<br>";
                             summaryPanel.innerHTML += route.legs[i].duration.text + "<br><hr><br>"
                         }
-                    } else {
-                        for (let i = 0; i < route.legs.length-1; i++) {
-                            const routeSegment = i + 1;
-
-                            totalDistance += parseFloat(route.legs[i].distance.text);
-                            totalDuration += parseInt(route.legs[i].duration.text);
-
-                            summaryPanel.innerHTML +=
-                                "<b>Leg: " + routeSegment + "</b><br>";
-                            summaryPanel.innerHTML += route.legs[i].start_address + "<br> to <br>";
-                            summaryPanel.innerHTML += route.legs[i].end_address + "<br>";
-                            summaryPanel.innerHTML += route.legs[i].distance.text + "<br>";
-                            summaryPanel.innerHTML += route.legs[i].duration.text + "<br><hr><br>"
-                        }
-                    }
+                    // } else {
+                    //     for (let i = 0; i < route.legs.length-1; i++) {
+                    //         const routeSegment = i + 1;
+                    //
+                    //         totalDistance += parseFloat(route.legs[i].distance.text);
+                    //         totalDuration += parseInt(route.legs[i].duration.text);
+                    //
+                    //         summaryPanel.innerHTML +=
+                    //             "<b>Leg: " + routeSegment + "</b><br>";
+                    //         summaryPanel.innerHTML += route.legs[i].start_address + "<br> to <br>";
+                    //         summaryPanel.innerHTML += route.legs[i].end_address + "<br>";
+                    //         summaryPanel.innerHTML += route.legs[i].distance.text + "<br>";
+                    //         summaryPanel.innerHTML += route.legs[i].duration.text + "<br><hr><br>"
+                    //     }
+                    // }
 
 
 

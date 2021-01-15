@@ -192,7 +192,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
             origin: markers[0],
             destination: markers[markers.length-1],
             waypoints: waypts,
-            optimizeWaypoints: true,
+            optimizeWaypoints: false,
             travelMode: google.maps.TravelMode.DRIVING,
         },
         (response, status) => {
@@ -500,7 +500,7 @@ function initMapClear() {
                 origin: markers[0],
                 destination: markers[markers.length-1],
                 waypoints: waypts,
-                optimizeWaypoints: true,
+                optimizeWaypoints: false,
                 travelMode: google.maps.TravelMode.DRIVING,
             },
             (response, status) => {
@@ -531,7 +531,7 @@ function initMapClear() {
                             summaryPanel.innerHTML += route.legs[i].duration.text + "<br><hr><br>"
                         }
                     } else {
-                        for (let i = 0; i < route.legs.length-1; i++) {
+                        for (let i = 0; i < route.legs.length; i++) {
                             const routeSegment = i + 1;
 
                             totalDistance += parseFloat(route.legs[i].distance.text);
