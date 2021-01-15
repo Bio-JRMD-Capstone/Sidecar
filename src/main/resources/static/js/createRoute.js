@@ -147,52 +147,52 @@ function initMap() {
             });
         }
 
-        displayRoute(
-            markers[0],
-            markers[markers.length-1],
-            directionsService,
-            directionsRenderer
-        );
+        // displayRoute(
+        //     markers[0],
+        //     markers[markers.length-1],
+        //     directionsService,
+        //     directionsRenderer
+        // );
         calculateAndDisplayRoute(directionsService, directionsRenderer);
     }
-    function displayRoute(origin, destination, service, display) {
-        markers = markers.map(n => {
-            const markerMapped = {location: n};
-            return markerMapped
-        });
-
-        console.log(markers)
-
-        console.log(markers[0].location.lat)
-
-
-
-        let markersString = [];
-        for(let i = 0; i < markers.length; i++){
-
-            markersString.push("{location: {lat: " + markers[i].location.lat + ", lng: " + markers[i].location.lng + " }}");
-            console.log(markersString)
-        }
-        console.log("{location: {lat: " + markers[0].location.lat + ", lng: " + markers[0].location.lng + " }}");
-
-        document.getElementById("coordinates").value = markersString;
-        console.log(markers)
-        service.route(
-            {
-                origin: origin,
-                destination: destination,
-                waypoints: markers,
-                travelMode: google.maps.TravelMode.DRIVING,
-            },
-            (result, status) => {
-                if (status === "OK") {
-                    display.setDirections(result);
-                } else {
-                    alert("Could not display directions due to: " + status);
-                }
-            }
-        );
-    }
+    // function displayRoute(origin, destination, service, display) {
+    //     markers = markers.map(n => {
+    //         const markerMapped = {location: n};
+    //         return markerMapped
+    //     });
+    //
+    //     console.log(markers)
+    //
+    //     console.log(markers[0].location.lat)
+    //
+    //
+    //
+    //     let markersString = [];
+    //     for(let i = 0; i < markers.length; i++){
+    //
+    //         markersString.push("{location: {lat: " + markers[i].location.lat + ", lng: " + markers[i].location.lng + " }}");
+    //         console.log(markersString)
+    //     }
+    //     console.log("{location: {lat: " + markers[0].location.lat + ", lng: " + markers[0].location.lng + " }}");
+    //
+    //     document.getElementById("coordinates").value = markersString;
+    //     console.log(markers)
+    //     service.route(
+    //         {
+    //             origin: origin,
+    //             destination: destination,
+    //             waypoints: markers,
+    //             travelMode: google.maps.TravelMode.DRIVING,
+    //         },
+    //         (result, status) => {
+    //             if (status === "OK") {
+    //                 display.setDirections(result);
+    //             } else {
+    //                 alert("Could not display directions due to: " + status);
+    //             }
+    //         }
+    //     );
+    // }
 
 
     function calculateAndDisplayRoute(directionsService, directionsRenderer) {
