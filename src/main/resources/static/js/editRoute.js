@@ -183,14 +183,16 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
             location: markers[i],
             stopover: true,
         });
-
     }
+
+    console.log(waypts)
+
     directionsService.route(
         {
             origin: markers[0],
             destination: markers[markers.length-1],
             waypoints: waypts,
-            optimizeWaypoints: true,
+            optimizeWaypoints: false,
             travelMode: google.maps.TravelMode.DRIVING,
         },
         (response, status) => {
@@ -210,24 +212,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
                 }
 
                 // For each route, display summary information.
-                if (markers[markers.length-1].lat === markers[0].lat + .000000000000001) {
-                    for (let i = 1; i < route.legs.length; i++) {
-                        const routeSegment = i;
-
-                        totalDistance += parseFloat(route.legs[i].distance.text);
-                        totalDuration += parseInt(route.legs[i].duration.text);
-
-
-                        console.log(route.legs[i].distance.text)
-
-                        summaryPanel.innerHTML +=
-                            "<b>Route Segment: " + routeSegment + "</b><br>";
-                        summaryPanel.innerHTML += route.legs[i].start_address + "<br> to <br>";
-                        summaryPanel.innerHTML += route.legs[i].end_address + "<br>";
-                        summaryPanel.innerHTML += route.legs[i].distance.text + "<br>";
-                        summaryPanel.innerHTML += route.legs[i].duration.text + "<br><hr><br>"
-                    }
-                } else {
+                // if (markers[markers.length-1].lat === markers[0].lat + .000000000000001) {
                     for (let i = 0; i < route.legs.length; i++) {
                         const routeSegment = i + 1;
 
@@ -244,7 +229,24 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
                         summaryPanel.innerHTML += route.legs[i].distance.text + "<br>";
                         summaryPanel.innerHTML += route.legs[i].duration.text + "<br><hr><br>"
                     }
-                }
+                // } else {
+                //     for (let i = 0; i < route.legs.length; i++) {
+                //         const routeSegment = i + 1;
+                //
+                //         totalDistance += parseFloat(route.legs[i].distance.text);
+                //         totalDuration += parseInt(route.legs[i].duration.text);
+                //
+                //
+                //         console.log(route.legs[i].distance.text)
+                //
+                //         summaryPanel.innerHTML +=
+                //             "<b>Route Segment: " + routeSegment + "</b><br>";
+                //         summaryPanel.innerHTML += route.legs[i].start_address + "<br> to <br>";
+                //         summaryPanel.innerHTML += route.legs[i].end_address + "<br>";
+                //         summaryPanel.innerHTML += route.legs[i].distance.text + "<br>";
+                //         summaryPanel.innerHTML += route.legs[i].duration.text + "<br><hr><br>"
+                //     }
+                // }
 
 
 
@@ -470,13 +472,14 @@ function initMapClear() {
     function calculateAndDisplayRoute(directionsService, directionsRenderer) {
         let waypts = [];
 
-        for (let i = 1; i < markers.length; i++) {
+        for (let i = 1; i < markers.length-1; i++) {
             waypts.push({
                 location: markers[i],
                 stopover: true,
             });
-
         }
+
+        console.log(waypts)
 
         markers = markers.map(n => {
             const markerMapped = {location: n};
@@ -497,7 +500,7 @@ function initMapClear() {
                 origin: markers[0],
                 destination: markers[markers.length-1],
                 waypoints: waypts,
-                optimizeWaypoints: true,
+                optimizeWaypoints: false,
                 travelMode: google.maps.TravelMode.DRIVING,
             },
             (response, status) => {
@@ -528,7 +531,7 @@ function initMapClear() {
                             summaryPanel.innerHTML += route.legs[i].duration.text + "<br><hr><br>"
                         }
                     } else {
-                        for (let i = 0; i < route.legs.length-1; i++) {
+                        for (let i = 0; i < route.legs.length; i++) {
                             const routeSegment = i + 1;
 
                             totalDistance += parseFloat(route.legs[i].distance.text);
