@@ -348,6 +348,8 @@ function initMapClear() {
 
     document.getElementById("address").value = "";
 
+    document.getElementById("coordinates").value = "";
+
     var map;
 
     var lat_lng = markParsed[0];
@@ -646,6 +648,8 @@ function initMapClear() {
         }
 
         document.getElementById("coordinates").value = markersString;
+
+        console.log(markers)
 
         directionsService.route(
             {
