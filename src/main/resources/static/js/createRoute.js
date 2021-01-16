@@ -307,3 +307,4 @@ function setLocation(geocoder, map, location) {
         map.setZoom(11);
     }
 }
+
