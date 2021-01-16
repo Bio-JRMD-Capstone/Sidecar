@@ -29,6 +29,8 @@
                                     </div>
                                 </form>
                             </div>
+                            <!-- Do not delete this span, it is what allows maps to center on a user's location. Feel free to move wherever you want. -->
+                            <span hidden th:text="${location}" id="location"></span>
                             <div id="map"></div>
                             <div class="map__location d-flex justify-content-end u-margin-top-sm">
                                 <label class="contain ">Round Trip
