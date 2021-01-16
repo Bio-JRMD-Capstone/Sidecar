@@ -10,7 +10,7 @@
     <body>
     <!-- Navbar w/out search logged out -->
     <nav th:fragment="navA" class="navbar navbar-expand-lg navbar-light bg-light paragraph">
-        <a class="navbar-brand" href="/"><img src="/images/compass-rose.jpeg" alt="Sidecar" /></a>
+        <a class="navbar-brand u-margin-y-sm" href="/"><img src="/images/compass-rose.jpeg" alt="Sidecar" /></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -25,11 +25,13 @@
                 <li class="nav-item active">
                     <a class="nav-link" aria-current="page" href="/events">Events</a>
                 </li>
+            </ul>
+            <ul class="navbar-nav navbar-right">
                 <li class="nav-item">
                     <a class="nav-link mr-3" href="/register">Register</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="/login" tabindex="-1" >Login</a>
+                    <a class="nav-link u-margin-right-sm" href="/login" tabindex="-1" >Login</a>
                 </li>
             </ul>
         </div>
