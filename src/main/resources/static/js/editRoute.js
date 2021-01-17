@@ -78,6 +78,8 @@ function initMap() {
         center: {lat: 34.7062978, lng: -116.1274117},
     });
 
+    // INITMAP
+    document.getElementById("resetBtn").style.display = "none";
 
 
 
@@ -267,7 +269,10 @@ function initMapClear() {
     //     window.location.reload();
     // }
 
-    document.getElementById("clearBtn").disabled = true;
+    // INITMAPCLEAR
+    document.getElementById("resetBtn").style.display = "block";
+
+    document.getElementById("clearBtn").style.display = "none";
 
     document.getElementById("address").value = "";
 
@@ -364,7 +369,6 @@ function initMapClear() {
 
 
     function initMapRoute() {
-        document.getElementById("clearBtn").disabled = false;
 
         const map = new google.maps.Map(document.getElementById("map"), {
             zoom: 4,
@@ -572,7 +576,16 @@ function initMapClear() {
         $( "#testbtn" ).on( 'click', initMapRoute);
 
         $( "#clearBtn" ).on( 'click', initMapClear);
+        //function with other functions
+        $("#resetBtn").on('click', function (){
+            location.reload()
+        })
     });
+
+
+
+
+
 
 
 
