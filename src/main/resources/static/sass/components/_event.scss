@@ -2,17 +2,22 @@
   max-width: 100%;
   margin: 5rem auto;
 
+  &__heading {
+    margin: 0 1rem 0;
+  }
   &-box {
-    padding: 3rem;
+    padding: 2rem 2rem 3rem;
     background-image: linear-gradient(
                     to right bottom,
                     $color-primary-light,
                     $color-primary-dark);
     height: 100%;
     display: flex;
+    flex-wrap: wrap;
     overflow: auto;
-    margin-bottom: 3rem;
+    margin: 0 1rem 3rem;
     box-shadow: 0 1rem 2rem rgba($color-black, .2);
+
     & form {
       width: 100%;
     }
@@ -22,7 +27,14 @@
       margin: 2rem auto;
     }
   }
-
+  &__location {
+    width: 95%;
+    margin: 0 auto 1rem;
+    justify-content: left;
+    @include respond(tab-port) {
+      width: 75%;
+    }
+  }
   &__cards {
     display: flex;
     flex-wrap: wrap;

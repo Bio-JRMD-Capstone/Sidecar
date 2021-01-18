@@ -11,28 +11,30 @@
         <nav th:replace="partials/navbar :: nav"></nav>
     <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
 
-        <main>
-            <div class="event">
+        <main class="event">
                 <div class="u-margin-bottom-md u-center-text">
-                    <h2 class="heading-primary--sub">Edit Event:</h2>
+                    <h2 class="heading-primary--sub">Edit Event</h2>
                 </div>
                 <div class="event-box">
                     <!-- Map -->
                     <div class="col-event-2">
-                        <div class="event__input u-margin-bottom-sm">
-                            <div id="floating-panel">
-                                <input class="map__input--textbox u-margin-right-sm" name="locationinput" id="address" type="textbox" placeholder=" Enter a location" />
-                                <input class="btn btn--map" id="submit" type="button" value="View Location" />
+                        <div class="event__input">
+                            <div class="event__location">
+                                <form name="locationbox">
+                                    <div id="floating-panel">
+                                        <input class="map__input--textbox u-margin-right-sm" name="locationinput" id="address" type="textbox" placeholder=" Enter a location" />
+                                        <input class="btn btn--map" id="submit" type="button" value="View Location" />
+                                    </div>
+                                </form>
                             </div>
                             <div id="map">Map</div>
                         </div>
                     </div>
-
+                    <!-- Input fields -->
                     <div class="col-event-1">
                         <div class="event__input">
                             <h3>Event Information</h3>
                             <form name="editevent" th:action="@{'/event/' + ${eventToEdit.id} + '/edit'}" th:method="post" th:object="${event}">
-                                <!-- Input fields -->
                                 <input type="hidden" th:field="${eventToEdit}">
                                 <input type="hidden" th:field="${eventToEdit.user.id}">
 
@@ -68,20 +70,20 @@
                                 <div class="u-center-text u-margin-top-md">
                                     <button class="btn btn--white" id="imageButton">Add/Change Flyer</button>
                                 </div>
-
+                                <!-- lons & lats for mapt -->
                                 <input type="hidden" id="lat" value="" th:field="${eventToEdit.lat}">
                                 <input type="hidden" id="lon" value="" th:field="${eventToEdit.lon}">
 
                                 <!-- Submit changes / cancel buttons -->
-                                <div class="u-center-text u-margin-top-sm">
-                                    <input class="btn btn--white u-margin-y-sm" type="submit" value="Update"/>
-                                    <a class="btn btn--green u-margin-y-md" href="/profile">Cancel</a>
+                                <!-- Submit changes / cancel buttons -->
+                                <div class="control u-right-align u-margin-top-sm">
+                                    <input class="btn btn--white center-y center-x paragraph" type="submit" value="Save">
+                                    <a class="btn btn--green paragraph center-y" href="/profile" >Cancel</a>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div>
         </main>
 
         <div th:include="partials/footer :: footer"></div>
