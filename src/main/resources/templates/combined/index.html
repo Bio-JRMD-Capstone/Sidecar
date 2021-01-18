@@ -15,7 +15,6 @@
                 <div>
                     <p sec:authorize="!isAuthenticated()" class="paragraph">Have a route, point of interest or event to share? Please <a th:href="@{/login}">Login</a> or
                         <a th:href="@{/register}">Register</a>.</p>
-                    <a sec:authorize="isAuthenticated()" class="btn btn--green u-margin-bottom-sm" th:href="@{/routes/create}">Plot your Route</a>
                 </div>
             </section>
             <section class="map-box">
