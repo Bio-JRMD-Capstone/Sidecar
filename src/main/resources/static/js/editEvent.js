@@ -13,20 +13,6 @@ function initMap() {
     });
     infoWindow = new google.maps.InfoWindow();
 
-    //Pans the map back to the point if the center of the map changes
-    //Currently Commented out as the functionality on edit pages leaves something to be desired
-    //If user tries to move the map to change marker or just look around it moves them back after 5 secs
-    //Even if they are in the middle of moving the map around. Very annoying, especially if the point is not where you
-    //want to change it to
-
-    // map.addListener("center_changed", () => {
-    //     // 5 seconds after the center of the map has changed, pan back to the
-    //     // marker.
-    //     window.setTimeout(() => {
-    //         map.panTo({ lat: thisEventLat, lng: thisEventLng});
-    //     }, 5000);
-    // });
-
     //Set the POI to be edited on the map
     let editEventCoords = {
         'lat': thisEventLat,
