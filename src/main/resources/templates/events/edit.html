@@ -47,7 +47,7 @@
                             <!--    Radio buttons for categories-->
                                 <h4>Select Event Category: </h4>
                                 <div class="form-check" th:each="category : ${categories}">
-                                <input type="radio" th:field="*{eventCategories}" th:value="${category.id}" th:text=" ${category.name}" />
+                                    <input type="radio" th:field="*{eventCategories}" th:value="${category.id}" th:text=" ${category.name}" />
                                 </div>
                                 <br />
 
