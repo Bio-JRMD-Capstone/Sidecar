@@ -31,7 +31,7 @@
                     <div class="col-event-1">
                         <div class="event__input">
                             <h3>Event Information</h3>
-                            <form name="editevent" th:action="@{'/event/' + ${eventToEdit.id} + '/edit'}" th:method="post" th:object="${event}">
+                            <form name="editevent" th:action="@{'/event/' + ${eventToEdit.id} + '/edit'}" th:method="post" th:object="${eventToEdit}">
                                 <!-- Input fields -->
                                 <input type="hidden" th:field="${eventToEdit}">
                                 <input type="hidden" th:field="${eventToEdit.user.id}">
@@ -47,8 +47,7 @@
                             <!--    Radio buttons for categories-->
                                 <h4>Select Event Category: </h4>
                                 <div class="form-check" th:each="category : ${categories}">
-                                    <input class="form-check-input" th:value="${category.id}" type="radio" name="eventCategories" th:id="${category.id}">
-                                    <label class="form-check-label paragraph" th:for="${category.id}" th:text=" ${category.name}"></label>
+                                <input type="radio" th:field="*{eventCategories}" th:value="${category.id}" th:text=" ${category.name}" />
                                 </div>
                                 <br />
 
