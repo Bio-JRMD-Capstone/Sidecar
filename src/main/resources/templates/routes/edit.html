@@ -11,6 +11,7 @@
     <body onload="document.editpoint.name.focus()">
         <nav th:replace="partials/navbar :: nav"></nav>
         <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+      
         <main class="map">
             <div class="u-margin-bottom-md u-center-text">
                 <h2 class="heading-primary--sub">Edit your route</h2>
@@ -34,7 +35,8 @@
                                 <input type="checkbox" id="routeCheck">
                                 <span class="checkmark"></span>
                             </label>
-                            <input class="u-margin-y-sm btn btn--clearMap" type="button" id="clearBtn" name="clearBtn" value="Clear">
+                            <input class="u-margin-y-sm btn btn--clearMap" type="button" id="clearBtn" name="clearBtn" value="Clear Route">
+                            <input class="u-margin-y-sm btn btn--white" type="button" id="resetBtn" name="resetBtn" value="Reset Route">
 
                             <div class="field">
                                 <div class="control">
