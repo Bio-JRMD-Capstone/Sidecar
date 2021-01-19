@@ -1,26 +1,45 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <title th:text="'Error: ' + ${error}"></title>
-</head>
-<body>
-<th:block th:switch="${error}">
-    <div th:case="'Not Found'">
-        <h1>Page not found!</h1>
-    </div>
-    <div th:case="'Forbidden'">
-        <h1>You don't have permission to view this page.</h1>
-    </div>
-</th:block>
-    <p>Watch a video instead:</p>
-    <iframe
-        width="420"
-        height="315"
-        src="https://www.youtube.com/embed/NN75im_us4k?autoplay=1"
-        frameborder="0"
-        allowfullscreen="allowfullscreen"
-    >
-    </iframe>
-</body>
+
+    <head th:replace="partials/head :: head('Error: ' + ${error})">
+        <meta charset="UTF-8">
+        <title>Error</title>
+        <link rel="stylesheet" href="/sass/style.css">
+    </head>
+    <body>
+        <nav sec:authorize="isAuthenticated()" th:replace="partials/navC :: nav"></nav>
+        <nav sec:authorize="!isAuthenticated()" th:replace="partials/navD :: nav"></nav>
+
+        <main>
+            <th:block th:switch="${error}">
+                <div th:case="'Not Found'">
+                    <div class="bg-error">
+                        <!-- background image -->
+                        <img class="bg-error__content" src="/images/generic-man-working-on-motorcycle.jpg" alt="">
+                    </div>
+                    <div class="u-center-text u-margin-bottom-md w-50">
+                        <!-- error text 500 -->
+                        <h2 class="u-center-text">They say, “Not all who wander are lost”, but clearly something went wrong. What do you say we make a u-turn?</h2>
+                        <!-- back to homepage btn-->
+                        <button class="btn btn--green u-margin-top-md" th:href="/">Back to Sidecar</button>
+                    </div>
+                </div>
+                <div th:case="'Forbidden'">
+                    <div class="bg-error">
+                        <!-- background image -->
+                        <img class="bg-error__content" src="/images/generic-man-working-on-motorcycle.jpg" alt="">
+                    </div>
+                    <div class="u-center-text u-margin-bottom-md w-50">
+                        <!-- error text 500 -->
+                        <h2 class="u-center-text">They say, “Not all who wander are lost”, but clearly something went wrong. What do you say we make a u-turn?</h2>
+                        <!-- back to homepage btn-->
+                        <button class="btn btn--green u-margin-top-md" th:href="/">Back to Sidecar</button>
+                    </div>
+                </div>
+            </th:block>
+        </main>
+
+        <div th:replace="partials/footer :: footer"></div>
+        <div th:include="partials/scripts :: scripts"></div>
+    </body>
 </html>
