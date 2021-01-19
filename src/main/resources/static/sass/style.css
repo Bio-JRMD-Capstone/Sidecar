@@ -309,7 +309,7 @@ body {
 }
 
 .about {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.9);
   font-size: 1.5rem;
   padding: 2.5rem;
   text-align: center;
@@ -318,7 +318,7 @@ body {
   transition: transform 0.3s;
 }
 .about__project {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.9);
   font-size: 1.5rem;
   padding: 2.5rem;
   text-align: center;
@@ -371,7 +371,7 @@ body {
   height: 100%;
   width: 100%;
   z-index: -1;
-  opacity: 0.15;
+  opacity: 0.3;
   overflow: hidden;
 }
 @media (max-width: 56.25em) {
@@ -380,6 +380,33 @@ body {
   }
 }
 .bg-image__content {
+  height: 100%;
+  width: 100%;
+}
+
+.bg-wht {
+  background-color: rgba(255, 255, 255, 0.9);
+  width: 100%;
+  padding: 0.5rem 0;
+  margin: auto;
+}
+
+.bg-about {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  opacity: 0.4;
+  overflow: hidden;
+}
+@media (max-width: 56.25em) {
+  .bg-about {
+    visibility: hidden;
+  }
+}
+.bg-about__content {
   height: 100%;
   width: 100%;
   object-fit: cover;
@@ -1843,7 +1870,7 @@ body {
 }
 
 .profile {
-  width: 98%;
+  width: 100%;
   margin: 0 auto;
   box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
   background-color: rgba(255, 255, 255, 0.6);
@@ -2543,7 +2570,7 @@ body {
 
 .section-box {
   width: 80%;
-  margin: 3rem auto 1rem;
+  margin: auto;
   padding: 5rem 0;
   background-image: linear-gradient(to right bottom, #BEB6A6, #3F3622);
 }
@@ -2555,7 +2582,7 @@ body {
 
 .section-profile {
   width: 95%;
-  margin: 3rem auto 1rem;
+  margin: auto;
   padding: 5rem 0;
   background-image: linear-gradient(to right bottom, #BEB6A6, #3F3622);
 }
@@ -2564,7 +2591,6 @@ body {
     padding: 3rem 0;
   }
 }
-
 .section-profile-edit {
   width: 75%;
   margin: 3rem auto 1rem;

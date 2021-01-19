@@ -23,7 +23,31 @@
     height: 100%;
     width: 100%;
     z-index: -1;
-    opacity: .15;
+    opacity: .3;
+    overflow: hidden;
+    @include respond(tab-port) {
+        visibility: hidden;
+    }
+    &__content {
+        height: 100%;
+        width: 100%;
+        //object-fit: fill;
+    }
+}
+.bg-wht{
+    background-color: rgba($color-white, .9);
+    width: 100%;
+    padding: .5rem 0;
+    margin: auto;
+}
+.bg-about {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    opacity: .4;
     overflow: hidden;
     @include respond(tab-port) {
         visibility: hidden;
