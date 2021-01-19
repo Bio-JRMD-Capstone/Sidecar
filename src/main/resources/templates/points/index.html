@@ -10,9 +10,14 @@
     <body onload="document.locationbox.locationinput.focus()">
         <nav sec:authorize="isAuthenticated()" th:replace="partials/navB :: nav"></nav>
         <nav sec:authorize="!isAuthenticated()" th:replace="partials/navA :: nav"></nav>
-        <img class="map__bg" src="/images/topo-bg.jpg" alt="">
+
         <main class="poi">
-            <div class="poi__heading">
+
+            <div class="bg-image">
+                <img class="bg-image__content" src="/images/topo-bg.jpg" alt="">
+            </div>
+
+            <div class="poi__heading u-padding-top-md">
                 <h1 class="heading-primary--sub">All Points of Interest</h1>
                 <div>
                     <p sec:authorize="!isAuthenticated()" class="paragraph">Have a Point of Interest to share? Please <a th:href="@{/login}">Login</a> or
@@ -24,7 +29,7 @@
                 <div class="poi__location">
                     <form name="locationbox">
                         <div id="floating-panel">
-                            <input class="map__input--textbox u-margin-right-sm" name="locationinput" id="address" type="textbox" placeholder="Enter a location" />
+                            <input class="map__input--textbox u-margin-right-sm" name="locationinput" id="address" type="textbox" placeholder="  Enter a location" />
                             <input class="btn btn--map" id="submit" type="button" value="View Location" />
                         </div>
                     </form>

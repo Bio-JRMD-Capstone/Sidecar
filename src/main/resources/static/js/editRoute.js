@@ -559,7 +559,11 @@ function initMapClear() {
 
 
 
-                    distance.value = totalDistance.toFixed(2);
+                    if (route.legs[0].distance.text.includes("mi")){
+                        distance.value = totalDistance.toFixed(2) + " Miles"
+                    } else {
+                        distance.value = totalDistance.toFixed(2) + " Kilometers"
+                    }
 
 
 

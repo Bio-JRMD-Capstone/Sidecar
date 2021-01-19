@@ -26,7 +26,7 @@ html {
 body {
     box-sizing: border-box;
     //padding: 1.5rem 3rem;
-    position: relative;
+    //position: relative;
 
     @include respond(tab-port){
         font-size: 50%;
@@ -35,24 +35,7 @@ body {
 
 }
 main {
-    min-height: 90vh;
+    min-height: 100vh;
     position: relative;
 }
-.map__bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    z-index: -1;
-    opacity: .15;
-    overflow: hidden;
-    @include respond(tab-port) {
-        visibility: hidden;
-    }
-    &__content {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-    }
-}
+

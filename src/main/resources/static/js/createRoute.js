@@ -173,6 +173,7 @@ function initMap() {
             markersString.push("{location: {lat: " + markers[i].location.lat + ", lng: " + markers[i].location.lng + " }}");
             console.log(markersString)
         }
+
         console.log("{location: {lat: " + markers[0].location.lat + ", lng: " + markers[0].location.lng + " }}");
 
         document.getElementById("coordinates").value = markersString;
@@ -237,6 +238,7 @@ function initMap() {
 
                             console.log(route.legs[i].distance.text)
 
+
                             summaryPanel.innerHTML +=
                                 "<b>Leg: " + routeSegment + "</b><br>";
                             summaryPanel.innerHTML += route.legs[i].start_address + "<br> to <br>";
@@ -261,9 +263,11 @@ function initMap() {
                     // }
 
 
-
-                    distance.value = totalDistance.toFixed(2);
-
+                    if (route.legs[0].distance.text.includes("mi")){
+                        distance.value = totalDistance.toFixed(2) + " Miles"
+                    } else {
+                        distance.value = totalDistance.toFixed(2) + " Kilometers"
+                    }
 
 
 
