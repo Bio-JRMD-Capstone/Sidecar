@@ -9,10 +9,13 @@
     </head>
 
     <body onload="document.editform.username.focus()">
-        <nav th:replace="partials/navbar :: nav"></nav>
-        <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+        <nav th:replace="partials/navC :: nav"></nav>
 
-        <main>
+        <div class="bg-image">
+            <img class="bg-image__content" src="/images/topo-bg.jpg" alt="">
+        </div>
+
+        <main class="profile">
             <div class="section-profile-edit">
                 <div class="box">
                     <div class="form">

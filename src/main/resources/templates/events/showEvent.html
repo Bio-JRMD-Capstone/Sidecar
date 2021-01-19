@@ -8,13 +8,20 @@
     </head>
 
     <body>
-        <nav th:replace="partials/navbar :: nav"></nav>
-        <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+        <nav sec:authorize="isAuthenticated()" th:replace="partials/navB :: nav"></nav>
+        <nav sec:authorize="!isAuthenticated()" th:replace="partials/navA :: nav"></nav>
 
         <main class="event">
-            <div class="event__heading">
+
+            <div class="bg-image">
+                <img class="bg-image__content" src="/images/topo-bg.jpg" alt="">
+            </div>
+
+            <div class="event__heading u-padding-top-md">
                 <a class="btn btn--green u-margin-bottom-sm" th:href="@{/events}">Back to all events</a>
-                <h3 class="heading-tertiary" th:text="${event.name}"></h3>
+                <div class="u-center-text">
+                    <h3 class="heading-secondary--sub" th:text="${event.name}"></h3>
+                </div>
             </div>
 
             <div class="event-box">

@@ -8,12 +8,18 @@
         <title>Document</title>
     </head>
 
-    <body onload="document.editpoint.name.focus()">
-        <nav th:replace="partials/navbar :: nav"></nav>
-        <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
-      
+    <body onload="document.editroute.title.focus()">
+
+        <nav sec:authorize="isAuthenticated()" th:replace="partials/navB :: nav"></nav>
+        <nav sec:authorize="!isAuthenticated()" th:replace="partials/navA :: nav"></nav>
+
         <main class="map">
-            <div class="u-margin-bottom-md u-center-text">
+
+            <div class="bg-image">
+                <img class="bg-image__content" src="/images/topo-bg.jpg" alt="">
+            </div>
+
+            <div class="map__heading u-margin-bottom-md u-center-text u-padding-top-md">
                 <h2 class="heading-primary--sub">Edit your route</h2>
             </div>
             <div class="map-box">
@@ -24,7 +30,7 @@
                         <div class="map__location">
                             <form name="locationbox">
                                 <div id="floating-panel">
-                                    <input class="map__input--textbox u-margin-right-sm" name="locationinput" id="address" type="textbox" placeholder="Enter a location" />
+                                    <input class="map__input--textbox u-margin-right-sm" name="locationinput" id="address" type="textbox" placeholder="  Enter a location" />
                                     <input class="btn btn--map" id="submit" type="button" value="View Location" />
                                 </div>
                             </form>
@@ -36,7 +42,7 @@
                                 <span class="checkmark"></span>
                             </label>
                             <input class="u-margin-y-sm btn btn--clearMap" type="button" id="clearBtn" name="clearBtn" value="Clear Route">
-                            <input class="u-margin-y-sm btn btn--white" type="button" id="resetBtn" name="resetBtn" value="Reset Route">
+                            <input class="u-margin-y-sm btn btn--resetMap" type="button" id="resetBtn" name="resetBtn" value="Reset Route">
 
                             <div class="field">
                                 <div class="control">
@@ -55,7 +61,7 @@
                     <!-- Route Info -->
                     <div class="map__input">
                         <h3>Route Information</h3>
-                        <form name="editpoint" class="map-data"  th:action="@{'/route/' + ${routeToEdit.id} + '/edit'}" th:method="POST" th:object="${routeToEdit}">
+                        <form name="editroute" class="map-data"  th:action="@{'/route/' + ${routeToEdit.id} + '/edit'}" th:method="POST" th:object="${routeToEdit}">
 
                             <input class="map__input" type="text"  id="title" name="title" placeholder="Title" th:field="*{title}">
                             <h4 th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"/>

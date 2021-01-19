@@ -8,19 +8,18 @@
 </head>
 
 <body onload="document.createpoint.name.focus()">
-<nav th:replace="partials/navbar :: nav"></nav>
-<!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+<nav sec:authorize="isAuthenticated()" th:replace="partials/navB :: nav"></nav>
+<nav sec:authorize="!isAuthenticated()" th:replace="partials/navA :: nav"></nav>
 <main>
     <section class="section-stories">
-        <div class="bg-video">
-            <video class="bg-video__content" autoplay muted loop>
-                <source src="/images/1057124396-preview.mp4" type="video/mp4">
-                Your browser is not supported!
-            </video>
+        <div class="bg-about">
+            <img class="bg-about__content" src="/images/altumcode-XMFZqrGyV-Q-unsplash.jpg" alt="">
         </div>
-        <h2 class="heading-primary--sub u-center-text u-margin-bottom-md">
-            Meet the Developers!
-        </h2>
+        <div class="row">
+            <h2 class="heading-primary--sub u-center-text bg-wht">
+                Meet the Developers!
+            </h2>
+        </div>
         <div>
             <div class="row  u-margin-bottom-md">
                 <div class="col-1-of-4">
@@ -49,7 +48,7 @@
                 </div>
                 <div class="col-1-of-4">
                     <div class="about">
-                        <img src="/images/RyanKendall.jpg" height="150px" alt="Ryan Kendall">
+                        <img src="/images/RyanKendall.jpeg" height="150px" alt="Ryan Kendall">
                         <h2 class="heading-tertiary u-margin-x-sm">Ryan Kendall</h2>
                         <div>
                             <a href="https://www.linkedin.com/in//ryan-m-kendall/" target="_blank">
@@ -73,7 +72,7 @@
                 </div>
                 <div class="col-1-of-4">
                     <div class="about">
-                        <img src="/images/MichaelMeyer.jpg" height="150px" alt="Michael Meyer">
+                        <img src="/images/MichaelMeyer.jpeg" height="150px" alt="Michael Meyer">
                         <h2 class="heading-tertiary u-margin-x-sm">Michael Meyer</h2>
                         <div>
                             <a href="https://www.linkedin.com/in/michaelmeyer26/" target="_blank">

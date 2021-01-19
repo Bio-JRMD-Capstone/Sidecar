@@ -1,15 +1,8 @@
 .poi {
   width: 100%;
-  margin: 5rem auto;
-
-  &:not(:last-child) {
-    margin-bottom: $gutter-vertical;
+  //margin: 5rem auto;
 
 
-    @include respond(tab-port) {
-      margin-bottom: $gutter-vertical-sm;
-    }
-  }
 
   @include respond(tab-port) {
     max-width: 75rem;
@@ -20,6 +13,7 @@
     max-width: 60rem;
     padding: 0 2rem;
   }
+
   @include clearfix;
 
   [class^="col-"] {

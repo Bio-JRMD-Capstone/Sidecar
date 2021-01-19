@@ -6,13 +6,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
     </head>
-    <body>
-        <nav th:replace="partials/navbar :: nav"></nav>
-    <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+
+    <body  onload="document.createroute.title.focus()">
+        <nav sec:authorize="isAuthenticated()" th:replace="partials/navB :: nav"></nav>
+        <nav sec:authorize="!isAuthenticated()" th:replace="partials/navA :: nav"></nav>
+
+        <div class="bg-image">
+            <img class="bg-image__content" src="/images/topo-bg.jpg" alt="">
+        </div>
+
         <main>
             <!-- Map w/ input fields and button to create -->
             <div class="map">
-                <div class="u-margin-bottom-md u-center-text">
+                <div class="map__heading u-margin-bottom-md u-padding-top-md u-center-text">
                     <h2 class="heading-primary--sub">Add a Route</h2>
                 </div>
                 <div class="map-box">
@@ -23,7 +29,7 @@
                             <div class="map__location">
                                 <form name="locationbox">
                                     <div id="floating-panel">
-                                        <input class="map__input--textbox u-margin-right-sm" name="locationinput" id="address" type="textbox" placeholder="Enter a location" />
+                                        <input class="map__input--textbox u-margin-right-sm" name="locationinput" id="address" type="textbox" placeholder="  Enter a location" />
                                         <input class="btn btn--map" id="submit" type="button" value="View Location" />
                                     </div>
                                 </form>
@@ -54,7 +60,7 @@
                     <section class="col-map-1">
                         <div class="map__input">
                             <h3>Route Info</h3>
-                            <form class="map-data"  th:action="@{/routes/create}" th:method="POST" th:object="${route}">
+                            <form class="map-data" name="createroute" th:action="@{/routes/create}" th:method="POST" th:object="${route}">
 
 
                                 <input class="map__input" type="text"  id="title" name="title" placeholder="Title" th:field="*{title}">

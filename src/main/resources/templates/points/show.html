@@ -4,27 +4,34 @@
 
     <head th:replace="partials/head :: head('Selected Point')">
         <meta charset="UTF-8">
-        <title>Index</title>
+        <title>Selected Point</title>
     </head>
 
     <body onload="document.createpoint.name.focus()">
-        <nav th:replace="partials/navbar :: nav"></nav>
-        <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+        <nav sec:authorize="isAuthenticated()" th:replace="partials/navB :: nav"></nav>
+        <nav sec:authorize="!isAuthenticated()" th:replace="partials/navA :: nav"></nav>
 
         <main class="poi">
-            <div class="map__heading">
-                <a class="btn btn--green u-margin-bottom-sm" th:href="@{/points}">Back to all Points of Interest</a>
-                <h3 class="heading-tertiary" th:text="${point.name}"></h3>
+
+            <div class="bg-image">
+                <img class="bg-image__content" src="/images/topo-bg.jpg" alt="">
             </div>
+
+            <div class="poi__heading u-padding-top-md">
+                <a class="btn btn--green u-margin-bottom-sm" th:href="@{/points}">Back to all Points of Interest</a>
+                <div class="u-center-text">
+                    <h3 class="heading-secondary--sub" th:text="${point.name}"></h3>
+                </div>
+            </div>
+
             <div class="map-box">
                 <!-- Map -->
                 <section class="col-map-2">
                     <div class="map__input">
                         <div id="map"></div>
-<!--                        <div class="poi__map-coords">-->
-                            <input type="hidden" id="lat" th:value="${point.lat}">
-                            <input type="hidden" id="lng" th:value="${point.lon}">
-<!--                        </div>-->
+
+                        <input type="hidden" id="lat" th:value="${point.lat}">
+                        <input type="hidden" id="lng" th:value="${point.lon}">
                     </div>
                     <hr>
                     <div class="map__input">

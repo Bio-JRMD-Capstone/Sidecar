@@ -8,10 +8,12 @@
     </head>
 
     <body onload="document.loginform.username.focus()">
-        <nav th:replace="partials/navbar :: nav"></nav>
-    <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
-
-        <main>
+        <nav th:replace="partials/navD :: nav"></nav>
+        
+        <main class="profile">
+            <div class="bg-image">
+                <img class="bg-image__content" src="/images/topo-bg.jpg" alt="">
+            </div>
             <section class="section-box">
                 <div class="box-login">
                     <div class="box__form">
