@@ -10,6 +10,7 @@
     <body>
         <nav sec:authorize="isAuthenticated()" th:replace="partials/navB :: nav"></nav>
         <nav sec:authorize="!isAuthenticated()" th:replace="partials/navA :: nav"></nav>
+        <img class="map__bg" src="/images/topo-bg.jpg" alt="">
 
         <main class="event">
             <div class="event__heading">

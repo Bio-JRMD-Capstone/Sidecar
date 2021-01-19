@@ -16,3 +16,44 @@
         object-fit: cover;
     }
 }
+.map__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    opacity: .15;
+    overflow: hidden;
+    @include respond(tab-port) {
+        visibility: hidden;
+    }
+    &__content {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+}
+.error__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-height: 100%;
+    max-width: 100%;
+    margin: auto;
+    z-index: -1;
+    opacity: .9;
+    overflow: hidden;
+    @include respond(tab-port) {
+        visibility: hidden;
+    }
+
+    &__content {
+        z-index: 1;
+        background-color: rgba($color-white, .8);
+        position: absolute;
+        top: 40%;
+        left: 5%;
+        object-fit: cover;
+    }
+}

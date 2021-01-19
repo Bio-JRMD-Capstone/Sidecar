@@ -10,6 +10,8 @@
     <body>
         <nav sec:authorize="isAuthenticated()" th:replace="partials/navB :: nav"></nav>
         <nav sec:authorize="!isAuthenticated()" th:replace="partials/navA :: nav"></nav>
+        <img class="map__bg" src="/images/topo-bg.jpg" alt="">
+
         <main>
             <!-- Map w/ input fields and button to create -->
             <div class="map">

@@ -12,7 +12,7 @@
 
         <nav sec:authorize="isAuthenticated()" th:replace="partials/navB :: nav"></nav>
         <nav sec:authorize="!isAuthenticated()" th:replace="partials/navA :: nav"></nav>
-
+        <img class="map__bg" src="/images/topo-bg.jpg" alt="">
 
         <main class="map">
             <div class="u-margin-bottom-md u-center-text">
@@ -38,7 +38,7 @@
                                 <span class="checkmark"></span>
                             </label>
                             <input class="u-margin-y-sm btn btn--clearMap" type="button" id="clearBtn" name="clearBtn" value="Clear Route">
-                            <input class="u-margin-y-sm btn btn--white" type="button" id="resetBtn" name="resetBtn" value="Reset Route">
+                            <input class="u-margin-y-sm btn btn--resetMap" type="button" id="resetBtn" name="resetBtn" value="Reset Route">
 
                             <div class="field">
                                 <div class="control">
