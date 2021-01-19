@@ -10,7 +10,7 @@
     <body onload="document.locationbox.locationinput.focus()">
         <nav sec:authorize="isAuthenticated()" th:replace="partials/navB :: nav"></nav>
         <nav sec:authorize="!isAuthenticated()" th:replace="partials/navA :: nav"></nav>
-
+        <img class="map__bg" src="/images/topo-bg.jpg" alt="">
         <main class="map">
             <section class="map__heading">
                 <h1 class="heading-primary--sub">All Routes</h1>
@@ -21,9 +21,9 @@
                 </div>
             </section>
             <section class="map-box">
-                <div class="map__location justify-content-left">
+                <div class="map__location">
                     <form name="locationbox">
-                        <div id="floating-panel ">
+                        <div id="floating-panel">
                             <input class="map__input--textbox u-margin-right-sm" name="locationinput" id="address" type="textbox" placeholder="Enter a location" />
                             <input class="btn btn--map" id="submit" type="button" value="View Location" />
                         </div>

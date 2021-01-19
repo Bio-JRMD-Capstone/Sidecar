@@ -80,6 +80,7 @@ html {
 
 body {
   box-sizing: border-box;
+  position: relative;
 }
 @media (max-width: 56.25em) {
   body {
@@ -91,6 +92,27 @@ body {
 main {
   min-height: 90vh;
   position: relative;
+}
+
+.map__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  opacity: 0.15;
+  overflow: hidden;
+}
+@media (max-width: 56.25em) {
+  .map__bg {
+    visibility: hidden;
+  }
+}
+.map__bg__content {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 body {
@@ -2034,6 +2056,11 @@ body {
   .footer {
     padding: 3rem 0;
   }
+}
+.footer__about {
+  display: block;
+  font-size: 2rem;
+  text-transform: uppercase;
 }
 .footer__logo {
   margin-left: auto;
