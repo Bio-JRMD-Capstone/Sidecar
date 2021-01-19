@@ -11,12 +11,11 @@
         <nav sec:authorize="isAuthenticated()" th:replace="partials/navB :: nav"></nav>
         <nav sec:authorize="!isAuthenticated()" th:replace="partials/navA :: nav"></nav>
 
+        <div class="bg-image">
+            <img class="bg-image__content" src="/images/topo-bg.jpg" alt="">
+        </div>
+
         <main>
-
-            <div class="bg-image">
-                <img class="bg-image__content" src="/images/topo-bg.jpg" alt="">
-            </div>
-
             <!-- Map w/ input fields and button to create -->
             <div class="map">
                 <div class="map__heading u-margin-bottom-md u-padding-top-md u-center-text">
