@@ -39,6 +39,7 @@
                             <input type="hidden" th:field="${eventToEdit}">
                             <input type="hidden" th:field="${eventToEdit.user.id}">
 
+
                         <textarea class="event__input paragraph" th:field="${eventToEdit.description}" name="description" id="description" maxlength="2500"></textarea>
 
                         <input class="event__input paragraph" type="date" th:field="${eventToEdit.date}" name="date" id="date" />
@@ -59,6 +60,7 @@
                                     <img class="event__card--image-edit poi-img" th:if="${eventToEdit.filePath != ''}" th:src="${eventToEdit.filePath}" alt="Event Flyer" />
                                     <img class="event__card--image-edit poi-img" th:if="${eventToEdit.filePath == ''}" src="/images/placeholders/event.png" alt="placeholder event image"/>
                                 </div>
+
 
                                 <div class="image-stack__item--bottom">
                                     <label for="newImage"><img class="poi-img event__card--image-edit" id="imagePreview" src="" alt=""></label>

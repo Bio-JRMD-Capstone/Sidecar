@@ -327,7 +327,6 @@ function initMapClear() {
     summaryPanel.innerHTML = "";
 
     document.getElementById("distance").value = "";
-    document.getElementById("time").value = "";
 
     var currentId = 0;
     var uniqueId = function () {
@@ -528,8 +527,8 @@ function initMapClear() {
 
                     // For each route, display summary information.
                     if (document.getElementById("routeCheck").checked === true) {
-                        for (let i = 1; i < route.legs.length; i++) {
-                            const routeSegment = i;
+                        for (let i = 0; i < route.legs.length; i++) {
+                            const routeSegment = i + 1;
 
                             totalDistance += parseFloat(route.legs[i].distance.text);
 
