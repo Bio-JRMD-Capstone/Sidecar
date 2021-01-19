@@ -12,7 +12,12 @@
         <nav sec:authorize="!isAuthenticated()" th:replace="partials/navA :: nav"></nav>
 
         <main class="event">
-            <div class="u-margin-bottom-md u-center-text">
+
+            <div class="bg-image">
+                <img class="bg-image__content" src="/images/topo-bg.jpg" alt="">
+            </div>
+
+            <div class="event__heading u-padding-top-md u-margin-bottom-md u-center-text">
                 <h2 class="heading-primary--sub">Add an Event</h2>
             </div>
             <div class="event-box">

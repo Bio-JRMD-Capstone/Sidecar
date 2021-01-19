@@ -1,14 +1,6 @@
 .event {
   max-width: 100%;
-  margin: 5rem auto;
-
-  &:not(:last-child) {
-    margin-bottom: $gutter-vertical;
-
-    @include respond(tab-port) {
-      margin-bottom: $gutter-vertical-sm;
-    }
-  }
+  //margin: 5rem auto;
 
   @include respond(tab-port) {
     max-width: 75rem;

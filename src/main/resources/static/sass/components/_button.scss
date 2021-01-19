@@ -90,6 +90,10 @@
         background-color: $color-tertiary-light;
         font-size: $default-font-size;
     }
+    &--resetMap {
+        background-color: $color-white;
+        font-size: $default-font-size;
+    }
     &--seeRoute {
         background-color: #4E9F66;
         color: $color-white;

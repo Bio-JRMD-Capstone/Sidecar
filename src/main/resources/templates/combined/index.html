@@ -7,11 +7,17 @@
         <title>Document</title>
     </head>
     <body>
-    <nav th:replace="partials/navA :: nav"></nav>
-    <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+        <nav sec:authorize="isAuthenticated()" th:replace="partials/navB :: nav"></nav>
+        <nav sec:authorize="!isAuthenticated()" th:replace="partials/navA :: nav"></nav>
+
         <main class="map">
-            <section class="map__heading">
-                <h1 class="heading-primary--sub">Where to?</h1>
+
+            <div class="bg-image">
+                <img class="bg-image__content" src="/images/topo-bg.jpg" alt="">
+            </div>
+
+            <section class="event__heading u-padding-top-md">
+                <h1 class="heading-primary--sub u-padding-top-md">Where to?</h1>
                 <div>
                     <p sec:authorize="!isAuthenticated()" class="paragraph">Have a route, point of interest or event to share? Please <a th:href="@{/login}">Login</a> or
                         <a th:href="@{/register}">Register</a>.</p>

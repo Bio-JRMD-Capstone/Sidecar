@@ -10,9 +10,14 @@
     <body onload="document.locationbox.locationinput.focus()">
         <nav sec:authorize="isAuthenticated()" th:replace="partials/navB :: nav"></nav>
         <nav sec:authorize="!isAuthenticated()" th:replace="partials/navA :: nav"></nav>
-        <img class="map__bg" src="/images/topo-bg.jpg" alt="">
+
         <main class="poi">
-            <div class="event__heading">
+
+            <div class="bg-image">
+                <img class="bg-image__content" src="/images/topo-bg.jpg" alt="">
+            </div>
+
+            <div class="event__heading u-padding-top-md">
                 <h1 class="heading-primary--sub">All Events</h1>
                 <div>
                     <p sec:authorize="!isAuthenticated()" class="paragraph">Have an event to share? Please <a th:href="@{/login}">Login</a> or

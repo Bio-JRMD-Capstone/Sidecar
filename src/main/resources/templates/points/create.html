@@ -12,7 +12,12 @@
         <nav sec:authorize="!isAuthenticated()" th:replace="partials/navA :: nav"></nav>
 
         <main class="poi">
-            <div class="u-margin-bottom-md u-center-text">
+
+            <div class="bg-image">
+                <img class="bg-image__content" src="/images/topo-bg.jpg" alt="">
+            </div>
+
+            <div class="poi__heading u-margin-bottom-md u-center-text u-padding-top-md">
                 <h2 class="heading-primary--sub">Add a Point of Interest</h2>
             </div>
             <div class="poi-box">
