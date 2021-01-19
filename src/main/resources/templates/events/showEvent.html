@@ -8,38 +8,40 @@
     </head>
 
     <body>
-        <nav th:replace="partials/navbar :: nav"></nav>
-        <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+        <nav sec:authorize="isAuthenticated()" th:replace="partials/navB :: nav"></nav>
+        <nav sec:authorize="!isAuthenticated()" th:replace="partials/navA :: nav"></nav>
 
         <main class="event">
-
+            <div class="event__heading">
                 <a class="btn btn--green u-margin-bottom-sm" th:href="@{/events}">Back to all events</a>
-                <div class="event-box">
-                    <section class="col-event-2">
-                        <div class="poi__map">
-                            <div id="map"></div>
+                <h3 class="heading-tertiary" th:text="${event.name}"></h3>
+            </div>
 
-                            <div class="poi__map-coords">
-                                <input type="hidden" id="lat" th:value="${event.lat}">
-                                <input type="hidden" id="lng" th:value="${event.lon}">
-                            </div>
-                        </div>
-                    </section>
-                    <div class="col-event-1">
-                        <div class="event__input" >
-                            <div class="event__single--image">
-                                <img class="poi-img" th:if="${event.filePath == ''}" src="/images/placeholders/event.png" alt="placeholder event image">
-                                <img class="poi-img" th:if="${event.filePath != ''}" th:src="${event.filePath}" th:alt="${event.name}">
-                            </div>
-                            <p class="heading-tertiary" th:text="${event.name}"></p>
-                            <p class="event__single--text">Category: <span th:each="eventCategory : ${event.eventCategories}" th:text=" ${eventCategory.name}"></span></p>
-                            <p class="event__single--text" th:text="'Date: ' + ${event.date}"></p>
-                            <hr>
-                            <p class="event__single--text" th:text="${event.description}"></p>
+            <div class="event-box">
+                <section class="col-event-2">
+                    <div class="poi__map">
+                        <div id="map"></div>
+
+                        <div class="poi__map-coords">
+                            <input type="hidden" id="lat" th:value="${event.lat}">
+                            <input type="hidden" id="lng" th:value="${event.lon}">
                         </div>
                     </div>
+                </section>
+                <div class="col-event-1">
+                    <div class="event__input" >
+                        <div class="event__single--image">
+                            <img class="poi-img" th:if="${event.filePath == ''}" src="/images/placeholders/event.png" alt="placeholder event image">
+                            <img class="poi-img" th:if="${event.filePath != ''}" th:src="${event.filePath}" th:alt="${event.name}">
+                        </div>
+                        <p class="heading-tertiary" th:text="${event.name}"></p>
+                        <p class="event__single--text">Category: <span th:each="eventCategory : ${event.eventCategories}" th:text=" ${eventCategory.name}"></span></p>
+                        <p class="event__single--text" th:text="'Date: ' + ${event.date}"></p>
+                        <hr>
+                        <p class="event__single--text" th:text="${event.description}"></p>
+                    </div>
                 </div>
-
+            </div>
         </main>
 
         <div th:include="partials/footer :: footer"></div>

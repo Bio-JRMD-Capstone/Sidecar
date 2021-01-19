@@ -78,6 +78,8 @@ function initMap() {
         center: {lat: 34.7062978, lng: -116.1274117},
     });
 
+    // INITMAP
+    document.getElementById("resetBtn").style.display = "none";
 
 
 
@@ -183,14 +185,16 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
             location: markers[i],
             stopover: true,
         });
-
     }
+
+    console.log(waypts)
+
     directionsService.route(
         {
             origin: markers[0],
             destination: markers[markers.length-1],
             waypoints: waypts,
-            optimizeWaypoints: true,
+            optimizeWaypoints: false,
             travelMode: google.maps.TravelMode.DRIVING,
         },
         (response, status) => {
@@ -210,24 +214,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
                 }
 
                 // For each route, display summary information.
-                if (markers[markers.length-1].lat === markers[0].lat + .000000000000001) {
-                    for (let i = 1; i < route.legs.length; i++) {
-                        const routeSegment = i;
-
-                        totalDistance += parseFloat(route.legs[i].distance.text);
-                        totalDuration += parseInt(route.legs[i].duration.text);
-
-
-                        console.log(route.legs[i].distance.text)
-
-                        summaryPanel.innerHTML +=
-                            "<b>Route Segment: " + routeSegment + "</b><br>";
-                        summaryPanel.innerHTML += route.legs[i].start_address + "<br> to <br>";
-                        summaryPanel.innerHTML += route.legs[i].end_address + "<br>";
-                        summaryPanel.innerHTML += route.legs[i].distance.text + "<br>";
-                        summaryPanel.innerHTML += route.legs[i].duration.text + "<br><hr><br>"
-                    }
-                } else {
+                // if (markers[markers.length-1].lat === markers[0].lat + .000000000000001) {
                     for (let i = 0; i < route.legs.length; i++) {
                         const routeSegment = i + 1;
 
@@ -244,7 +231,24 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
                         summaryPanel.innerHTML += route.legs[i].distance.text + "<br>";
                         summaryPanel.innerHTML += route.legs[i].duration.text + "<br><hr><br>"
                     }
-                }
+                // } else {
+                //     for (let i = 0; i < route.legs.length; i++) {
+                //         const routeSegment = i + 1;
+                //
+                //         totalDistance += parseFloat(route.legs[i].distance.text);
+                //         totalDuration += parseInt(route.legs[i].duration.text);
+                //
+                //
+                //         console.log(route.legs[i].distance.text)
+                //
+                //         summaryPanel.innerHTML +=
+                //             "<b>Route Segment: " + routeSegment + "</b><br>";
+                //         summaryPanel.innerHTML += route.legs[i].start_address + "<br> to <br>";
+                //         summaryPanel.innerHTML += route.legs[i].end_address + "<br>";
+                //         summaryPanel.innerHTML += route.legs[i].distance.text + "<br>";
+                //         summaryPanel.innerHTML += route.legs[i].duration.text + "<br><hr><br>"
+                //     }
+                // }
 
 
 
@@ -265,15 +269,18 @@ function initMapClear() {
     //     window.location.reload();
     // }
 
-    document.getElementById("clearBtn").disabled = true;
+    // INITMAPCLEAR
+    document.getElementById("resetBtn").style.display = "block";
+
+    document.getElementById("clearBtn").style.display = "none";
 
     document.getElementById("address").value = "";
 
     var map;
 
-    var lat_lng = markParsed[0];
+    let lat_lng = markParsed[0];
     // var lat_lng = {lat: 39.63476588674744, lng: -101.15442912683487 };
-
+    let markersString = [];
     let markers = [];
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 6,
@@ -362,18 +369,21 @@ function initMapClear() {
 
 
     function initMapRoute() {
-        document.getElementById("clearBtn").disabled = false;
 
         const map = new google.maps.Map(document.getElementById("map"), {
             zoom: 4,
             center: {lat: 34.7062978, lng: -116.1274117},
         });
         if (document.getElementById("routeCheck").checked === true) {
-            let objRepeat = {}
-            objRepeat["lat"] = markers[0].lat + .000000000000001
-            objRepeat["lng"] = markers[0].lng
+            // let objRepeat = {}
+            // objRepeat["lat"] = markers[0].lat + .000000000000001
+            // objRepeat["lng"] = markers[0].lng
+            //
+            // console.log(objRepeat)
+            // markers.push(objRepeat)
 
-            markers.push(objRepeat)
+            markers.push(markers[0]);
+
         }
 
         const startMarker = new google.maps.Marker({
@@ -426,62 +436,67 @@ function initMapClear() {
 
         calculateAndDisplayRoute(directionsService, directionsRenderer);
     }
-    function displayRoute(origin, destination, service, display) {
-        markers = markers.map(n => {
-            const markerMapped = {location: n};
-            return markerMapped
-        });
-
-        console.log(markers)
-
-        console.log(markers[0].location.lat)
-
-
-
-        let markersString = [];
-        for(let i = 0; i < markers.length; i++){
-
-            markersString.push("{location: {lat: " + markers[i].location.lat + ", lng: " + markers[i].location.lng + " }}");
-            console.log(markersString)
-        }
-        console.log("{location: {lat: " + markers[0].location.lat + ", lng: " + markers[0].location.lng + " }}");
-
-        document.getElementById("coordinates").value = markersString;
-        console.log(markers)
-        service.route(
-            {
-                origin: origin,
-                destination: destination,
-                waypoints: markers,
-                travelMode: google.maps.TravelMode.DRIVING,
-                avoidTolls: true,
-            },
-            (result, status) => {
-                if (status === "OK") {
-                    display.setDirections(result);
-                } else {
-                    alert("Could not display directions due to: " + status);
-                }
-            }
-        );
-    }
+    // function displayRoute(origin, destination, service, display) {
+    //     markers = markers.map(n => {
+    //         const markerMapped = {location: n};
+    //         return markerMapped
+    //     });
+    //
+    //     console.log(markers)
+    //
+    //     console.log(markers[0].location.lat)
+    //
+    //
+    //
+    //     let markersString = [];
+    //     for(let i = 0; i < markers.length; i++){
+    //
+    //         markersString.push("{location: {lat: " + markers[i].location.lat + ", lng: " + markers[i].location.lng + " }}");
+    //         console.log(markersString)
+    //     }
+    //     console.log("{location: {lat: " + markers[0].location.lat + ", lng: " + markers[0].location.lng + " }}");
+    //
+    //     document.getElementById("coordinates").value = markersString;
+    //     console.log(markers)
+    //     service.route(
+    //         {
+    //             origin: origin,
+    //             destination: destination,
+    //             waypoints: markers,
+    //             travelMode: google.maps.TravelMode.DRIVING,
+    //             avoidTolls: true,
+    //         },
+    //         (result, status) => {
+    //             if (status === "OK") {
+    //                 display.setDirections(result);
+    //             } else {
+    //                 alert("Could not display directions due to: " + status);
+    //             }
+    //         }
+    //     );
+    // }
 
 
     function calculateAndDisplayRoute(directionsService, directionsRenderer) {
         let waypts = [];
 
-        for (let i = 1; i < markers.length; i++) {
+        console.log(markers)
+
+        for (let i = 1; i < markers.length-1; i++) {
             waypts.push({
                 location: markers[i],
                 stopover: true,
             });
-
         }
+
+        console.log(waypts)
 
         markers = markers.map(n => {
             const markerMapped = {location: n};
             return markerMapped
         });
+
+        console.log(markers)
 
         let markersString = [];
         for(let i = 0; i < markers.length; i++){
@@ -497,7 +512,7 @@ function initMapClear() {
                 origin: markers[0],
                 destination: markers[markers.length-1],
                 waypoints: waypts,
-                optimizeWaypoints: true,
+                optimizeWaypoints: false,
                 travelMode: google.maps.TravelMode.DRIVING,
             },
             (response, status) => {
@@ -528,7 +543,7 @@ function initMapClear() {
                             summaryPanel.innerHTML += route.legs[i].duration.text + "<br><hr><br>"
                         }
                     } else {
-                        for (let i = 0; i < route.legs.length-1; i++) {
+                        for (let i = 0; i < route.legs.length; i++) {
                             const routeSegment = i + 1;
 
                             totalDistance += parseFloat(route.legs[i].distance.text);
@@ -561,7 +576,16 @@ function initMapClear() {
         $( "#testbtn" ).on( 'click', initMapRoute);
 
         $( "#clearBtn" ).on( 'click', initMapClear);
+        //function with other functions
+        $("#resetBtn").on('click', function (){
+            location.reload()
+        })
     });
+
+
+
+
+
 
 
 

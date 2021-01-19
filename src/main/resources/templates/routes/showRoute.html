@@ -6,70 +6,72 @@
         <meta charset="UTF-8">
         <title>All Routes</title>
     </head>
+
     <body>
-        <nav th:replace="partials/navbar :: nav"></nav>
-        <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+        <nav sec:authorize="isAuthenticated()" th:replace="partials/navB :: nav"></nav>
+        <nav sec:authorize="!isAuthenticated()" th:replace="partials/navA :: nav"></nav>
+
         <main class="map">
-            <a class="btn btn--green u-margin-bottom-sm" th:href="@{/routes}">Back to all Routes</a>
-            <div class="map">
+            <div class="map__heading">
+                <a class="btn btn--green u-margin-bottom-sm" th:href="@{/routes}">Back to all Routes</a>
                 <h3 class="heading-tertiary" th:text="${route.title}"></h3>
-                <div class="map-box">
-                <!-- Map -->
-                    <div class="col-map-2">
-                        <div class="map__input ">
-                            <div class="map__input--map-btn">
-                                <div class="field"></div>
-                            </div>
-                            <div id="map"></div>
+            </div>
+            <div class="map-box">
+            <!-- Map -->
+                <div class="col-map-2">
+                    <div class="map__input ">
+                        <div class="map__input--map-btn">
+                            <div class="field"></div>
                         </div>
+                        <div id="map"></div>
+                    </div>
 <!-- Open in Google Maps button. Currently doesn't work, so it is commented out. When functionality is added it can be brought back in -->
 <!--                        <div class="u-margin-top-sm u-margin-bottom-sm u-center-text">-->
 <!--                            <a class="btn btn&#45;&#45;light" href="#">Open in Google Maps</a>-->
 <!--                        </div>-->
-                        <hr>
-                        <div class="map__input">
-                            <h3 class="heading-tertiary">Comments:</h3>
-                            <!-- Comments here -->
-                            <div th:each="aComment: ${routeComments}">
-                                <p class="map__comment" th:text="${aComment.comment}"></p>
+                    <hr>
+                    <div class="map__input">
+                        <h3 class="heading-tertiary">Comments:</h3>
+                        <!-- Comments here -->
+                        <div th:each="aComment: ${routeComments}">
+                            <p class="map__comment" th:text="${aComment.comment}"></p>
 
-                                <div class="u-right-align">
-                                    <div th:if ="${#authentication.getName()} == ${aComment.user.username}">
-                                        <form  th:action="@{/route/{id}/delete-comment-{commentId} (id = ${route.id}, commentId = ${aComment.id})}" method="POST">
-                                            <button class="btn btn-delete u-right-align" type="submit">Delete comment?</button>
-                                        </form>
-                                    </div>
-                                    <p class="u-right-align" th:text="'Posted by: ' + ${aComment.user.username} + ' on ' + ${aComment.getFormattedDate()}"></p>
+                            <div class="u-right-align">
+                                <div th:if ="${#authentication.getName()} == ${aComment.user.username}">
+                                    <form  th:action="@{/route/{id}/delete-comment-{commentId} (id = ${route.id}, commentId = ${aComment.id})}" method="POST">
+                                        <button class="btn btn-delete u-right-align" type="submit">Delete comment?</button>
+                                    </form>
                                 </div>
-                                <hr>
+                                <p class="u-right-align" th:text="'Posted by: ' + ${aComment.user.username} + ' on ' + ${aComment.getFormattedDate()}"></p>
                             </div>
-                            <p sec:authorize="!isAuthenticated()" class="paragraph">Like to leave a comment? Please <a th:href="@{/login}">Login</a> or
-                                <a th:href="@{/register}">Register</a>.</p>
-                            <form sec:authorize="isAuthenticated()" class="" th:action="@{/route/{id}/comment (id=${route.id})} " method="POST">
-                                <textarea class="map__input-long" id="newComment" name="route-comment"  th:field="*{newComment.comment}"></textarea>
-                                <button class="btn btn--white u-right-align u-margin-top-sm" type="submit">Submit</button>
-                            </form>
+                            <hr>
                         </div>
+                        <p sec:authorize="!isAuthenticated()" class="paragraph">Like to leave a comment? Please <a th:href="@{/login}">Login</a> or
+                            <a th:href="@{/register}">Register</a>.</p>
+                        <form sec:authorize="isAuthenticated()" class="" th:action="@{/route/{id}/comment (id=${route.id})} " method="POST">
+                            <textarea class="map__input-long" id="newComment" name="route-comment"  th:field="*{newComment.comment}"></textarea>
+                            <button class="btn btn--white u-right-align u-margin-top-sm" type="submit">Submit</button>
+                        </form>
                     </div>
-                <!-- Route Data-->
-                    <div class="col-map-1">
-                        <div class="map__input">
-                            <form class="map-data"  th:action="@{/routes/create}" th:method="POST" th:object="${route}">
-                                <input class="map__input" type="hidden"  id="title" name="title" placeholder="Title" th:field="*{title}" readonly>
-                                <label for="description">Route Description: </label>
-                                <textarea class="map__input-long" id="description" name="description" placeholder="Description" th:field="*{description}" readonly></textarea>
-                                <label for="distance">Approximate Distance: </label>
-                                <input class="map__input" type="text" id="distance" name="distance" placeholder="Distance" th:field="*{distance}" readonly>
-                                <label for="time">Approximate time to ride: </label>
-                                <input class="map__input" type="text" id="time" name="time"  placeholder="Time(Hours)" th:field="*{time}" readonly>
-                                <label class="d-none" for="coordinates">Route Coordinates: </label><p class="d-none" th:text="${route.coordinates}" id="coords"></p>
-                                <input type="hidden" class="map__input" id="coordinates" name="coordinates" th:field="*{coordinates}" readonly>
-                            </form>
-                        </div>
-                        <hr>
-                        <div class="map__input">
-                            <p id="directions-panel"></p>
-                        </div>
+                </div>
+            <!-- Route Data-->
+                <div class="col-map-1">
+                    <div class="map__input">
+                        <form class="map-data"  th:action="@{/routes/create}" th:method="POST" th:object="${route}">
+                            <input class="map__input" type="hidden"  id="title" name="title" placeholder="Title" th:field="*{title}" readonly>
+                            <label for="description">Route Description: </label>
+                            <textarea class="map__input-long" id="description" name="description" placeholder="Description" th:field="*{description}" readonly></textarea>
+                            <label for="distance">Approximate Distance: </label>
+                            <input class="map__input" type="text" id="distance" name="distance" placeholder="Distance" th:field="*{distance}" readonly>
+                            <label for="time">Approximate time to ride: </label>
+                            <input class="map__input" type="text" id="time" name="time"  placeholder="Time(Hours)" th:field="*{time}" readonly>
+                            <label class="d-none" for="coordinates">Route Coordinates: </label><p class="d-none" th:text="${route.coordinates}" id="coords"></p>
+                            <input type="hidden" class="map__input" id="coordinates" name="coordinates" th:field="*{coordinates}" readonly>
+                        </form>
+                    </div>
+                    <hr>
+                    <div class="map__input">
+                        <p id="directions-panel"></p>
                     </div>
                 </div>
             </div>

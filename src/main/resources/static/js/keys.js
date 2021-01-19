@@ -1,2 +1,2 @@
  const googleMapAPI = "AIzaSyCMpJ-NawmnjMOSlkw5uXkLYjDTSzEmvag"
- const fileStackAPI = "AVQDSwWMqSSOe8rY5RPkNz"
+ const fileStackAPI = "AFNHaVU3QRuRqMy2aKd0Az"

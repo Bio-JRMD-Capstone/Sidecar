@@ -6,45 +6,49 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
     </head>
+
     <body>
-        <nav th:replace="partials/navbar :: nav"></nav>
-    <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+        <nav sec:authorize="isAuthenticated()" th:replace="partials/navB :: nav"></nav>
+        <nav sec:authorize="!isAuthenticated()" th:replace="partials/navA :: nav"></nav>
         <main>
             <!-- Map w/ input fields and button to create -->
             <div class="map">
                 <div class="u-margin-bottom-md u-center-text">
-                    <h2 class="heading-primary--sub">Add a Route:</h2>
+                    <h2 class="heading-primary--sub">Add a Route</h2>
                 </div>
                 <div class="map-box">
                     <!-- Map -->
                     <section class="col-map-2">
-                        <div class="map__input u-margin-bottom-sm">
-                            <div class="map__input--map-btn" id="floating-pane">
-                                <input class="u-margin-right-sm" id="address" type="textbox" placeholder=" Enter a location" />
-                                <input id="submit" class="btn btn--white" type="button" value="View Location" />
+                        <!-- Route Map & Options -->
+                        <div class="map__input">
+                            <div class="map__location">
+                                <form name="locationbox">
+                                    <div id="floating-panel">
+                                        <input class="map__input--textbox u-margin-right-sm" name="locationinput" id="address" type="textbox" placeholder="Enter a location" />
+                                        <input class="btn btn--map" id="submit" type="button" value="View Location" />
+                                    </div>
+                                </form>
                             </div>
-                            <div class="map__input--map-btn">
+                            <!-- Do not delete this span, it is what allows maps to center on a user's location. Feel free to move wherever you want. -->
+                            <span hidden th:text="${location}" id="location"></span>
+                            <div id="map"></div>
+                            <div class="map__location d-flex justify-content-end u-margin-top-sm">
                                 <label class="contain ">Round Trip
                                     <input type="checkbox" id="routeCheck">
                                     <span class="checkmark"></span>
                                 </label>
-                                <input class="u-margin-y-sm btn btn--white" type="button" id="clearBtn" name="clearBtn" value="Clear Route">
+                                <input class="u-margin-y-sm btn btn--clearMap" type="button" id="clearBtn" name="clearBtn" value="Clear">
 
                                 <div class="field">
                                     <div class="control">
-                                        <input class="btn btn--white" type="button" id="testbtn" name="testbtn" value="See Route">
+                                        <input class="btn btn--seeRoute center-y" type="button" id="testbtn" name="testbtn" value="Plot">
                                     </div>
                                 </div>
                             </div>
-
-                            <span th:text="${location}" hidden id="location"></span>
-
-                            <div id="map"></div>
                         </div>
-                        <div class="map__input">
-                            <div class="map__input">
-                                <p id="directions-panel"></p>
-                            </div>
+                        <!-- Route Directions -->
+                        <div class="map__input u-margin-top-sm">
+                            <p id="directions-panel"></p>
                         </div>
                     </section>
 
@@ -69,8 +73,9 @@
                                 <br />
                                 <h4 th:if="${#fields.hasErrors('coordinates')}" th:errors="*{coordinates}" class="text-danger" />
 
-                                <div class="control u-margin-top-sm">
-                                    <input class="btn btn--white" type="submit" value="Save Route">
+                                <div class="control u-right-align">
+                                    <input class="btn btn--white center-y center-x paragraph" type="submit" value="Save">
+                                    <a class="btn btn--green paragraph center-y" href="/routes" >Cancel</a>
                                 </div>
                             </form>
                         </div>
