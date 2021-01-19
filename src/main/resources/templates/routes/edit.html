@@ -9,8 +9,10 @@
     </head>
 
     <body onload="document.editpoint.name.focus()">
+
         <nav sec:authorize="isAuthenticated()" th:replace="partials/navB :: nav"></nav>
         <nav sec:authorize="!isAuthenticated()" th:replace="partials/navA :: nav"></nav>
+
 
         <main class="map">
             <div class="u-margin-bottom-md u-center-text">
