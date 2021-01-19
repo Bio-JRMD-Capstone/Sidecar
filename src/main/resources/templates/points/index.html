@@ -4,19 +4,21 @@
 
     <head th:replace="partials/head :: head('Points of Interest')">
         <meta charset="UTF-8">
-        <title>Index</title>
+        <title>Points of Interest</title>
     </head>
 
     <body onload="document.locationbox.locationinput.focus()">
-            <nav th:replace="partials/navbar :: nav"></nav>
-        <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
-
+        <nav sec:authorize="isAuthenticated()" th:replace="partials/navB :: nav"></nav>
+        <nav sec:authorize="!isAuthenticated()" th:replace="partials/navA :: nav"></nav>
+        <img class="map__bg" src="/images/topo-bg.jpg" alt="">
         <main class="poi">
-            <h1 class="heading-primary--sub">All Points of Interest</h1>
-            <div>
-                <p sec:authorize="!isAuthenticated()" class="paragraph">Have a Point of Interest to share? Please <a th:href="@{/login}">Login</a> or
-                    <a th:href="@{/register}">Register</a>.</p>
-                <a sec:authorize="isAuthenticated()" class="btn btn--green u-margin-bottom-sm" th:href="@{/points/create}">Add a Point of Interest</a>
+            <div class="poi__heading">
+                <h1 class="heading-primary--sub">All Points of Interest</h1>
+                <div>
+                    <p sec:authorize="!isAuthenticated()" class="paragraph">Have a Point of Interest to share? Please <a th:href="@{/login}">Login</a> or
+                        <a th:href="@{/register}">Register</a>.</p>
+                    <a sec:authorize="isAuthenticated()" class="btn btn--green u-margin-bottom-sm" th:href="@{/points/create}">Add a Point of Interest</a>
+                </div>
             </div>
             <section class="poi-box">
                 <div class="poi__location">
@@ -30,7 +32,6 @@
                 <span th:text="${location}" hidden id="location"></span>
                 <div id="map"></div>
             </section>
-
         </main>
 
         <div th:include="partials/footer :: footer"></div>

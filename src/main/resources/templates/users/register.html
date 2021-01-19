@@ -8,8 +8,7 @@
     </head>
 
     <body onload="document.registerform.username.focus()">
-        <nav th:replace="partials/navbar :: nav"></nav>
-    <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+        <nav th:replace="partials/navD :: nav"></nav>
 
         <main>
             <section class="section-box">
@@ -24,11 +23,13 @@
                             <div class="form__group">
                                 <input type="text" class="form__input" placeholder="Username" id="username" name="username" required>
                                 <label for="username" class="form__label"  th:field="*{username}"> </label>
+                                <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error"/>
                             </div>
 
                             <div class="col-1-of-2">
                                 <input type="email" class="form__input" placeholder="Email" id="email" name="email" required>
                                 <label for="email" class="form__label" th:field="*{email}"> </label>
+                                <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"/>
                             </div>
 
                             <div class="col-1-of-2">
@@ -42,7 +43,8 @@
                             </div>
 
                             <div class="form__group">
-                                <input type="password" class="form__input" placeholder="Confirm Password" id="password_confirm" name="password_confirm" required>
+                                <input type="password" class="form__input" placeholder="Confirm Password" id="password_confirm" name="password_confirm"
+                                       required oninput="checkPasswordMatch(this);">
                                 <label for="password_confirm" class="form__label" th:field="*{password_confirm}"> </label>
                             </div>
 
@@ -68,6 +70,15 @@
         <div th:include="partials/footer :: footer"></div>
         <script src="/js/keys.js"></script>
         <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+        <script>
+            function checkPasswordMatch(fieldConfirmPassword) {
+                if (fieldConfirmPassword.value != $("#password").val()) {
+                    fieldConfirmPassword.setCustomValidity("Passwords do not match!");
+                } else {
+                    fieldConfirmPassword.setCustomValidity("");
+                }
+            }
+        </script>
         <script src="/js/filestack.js"></script>
         <div th:include="partials/scripts :: scripts"></div>
 
