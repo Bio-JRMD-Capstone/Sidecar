@@ -3,7 +3,6 @@ package live.jrmd.sidecar.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,10 +14,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     @Column(nullable = false, length = 24, unique = true)
+//    @Unique(message = "Username already in use.")
     private String username;
 
+
     @Column(nullable = false, length = 100, unique = true)
+//    @Unique(message = "Email already in use.")
     private String email;
 
     @Column(nullable = false)

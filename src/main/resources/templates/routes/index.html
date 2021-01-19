@@ -8,16 +8,18 @@
     </head>
 
     <body onload="document.locationbox.locationinput.focus()">
-        <nav th:replace="partials/navbar :: nav"></nav>
-        <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
-
+        <nav sec:authorize="isAuthenticated()" th:replace="partials/navB :: nav"></nav>
+        <nav sec:authorize="!isAuthenticated()" th:replace="partials/navA :: nav"></nav>
+        <img class="map__bg" src="/images/topo-bg.jpg" alt="">
         <main class="map">
-            <h1 class="heading-primary--sub">All Routes</h1>
-            <div>
-                <p sec:authorize="!isAuthenticated()" class="paragraph">Have a Route to share? Please <a th:href="@{/login}">Login</a> or
-                    <a th:href="@{/register}">Register</a>.</p>
-                <a sec:authorize="isAuthenticated()" class="btn btn--green u-margin-bottom-sm" th:href="@{/routes/create}">Plot your Route</a>
-            </div>
+            <section class="map__heading">
+                <h1 class="heading-primary--sub">All Routes</h1>
+                <div>
+                    <p sec:authorize="!isAuthenticated()" class="paragraph">Have a Route to share? Please <a th:href="@{/login}">Login</a> or
+                        <a th:href="@{/register}">Register</a>.</p>
+                    <a sec:authorize="isAuthenticated()" class="btn btn--green u-margin-bottom-sm" th:href="@{/routes/create}">Plot your Route</a>
+                </div>
+            </section>
             <section class="map-box">
                 <div class="map__location">
                     <form name="locationbox">
@@ -27,12 +29,11 @@
                         </div>
                     </form>
                 </div>
-
                 <span th:text="${location}" hidden id="location"></span>
                 <div id="map"></div>
             </section>
-
         </main>
+
         <div th:replace="partials/footer :: footer"></div>
         <div th:replace="partials/scripts :: scripts"></div>
         <script src="/js/allRoutes.js"></script>
