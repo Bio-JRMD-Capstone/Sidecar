@@ -38,7 +38,13 @@
                             <input type="hidden" th:field="${eventToEdit}">
                             <input type="hidden" th:field="${eventToEdit.user.id}">
 
-                            <input class="event__input paragraph" type="text" th:field="${eventToEdit.name}" name="name" id="name"/>
+                    <div class="col-event-1">
+                        <div class="event__input">
+                            <h3>Event Information</h3>
+                            <form name="editevent" th:action="@{'/event/' + ${eventToEdit.id} + '/edit'}" th:method="post" th:object="${eventToEdit}">
+                                <!-- Input fields -->
+                                <input type="hidden" th:field="${eventToEdit}">
+                                <input type="hidden" th:field="${eventToEdit.user.id}">
 
                             <textarea class="event__input paragraph" th:field="${eventToEdit.description}" name="description" id="description" maxlength="2500"></textarea>
 
@@ -54,6 +60,12 @@
                             </div>
                             <br />
 
+                            <!--    Radio buttons for categories-->
+                                <h4>Select Event Category: </h4>
+                                <div class="form-check" th:each="category : ${categories}">
+                                    <input type="radio" th:field="*{eventCategories}" th:value="${category.id}" th:text=" ${category.name}" />
+                                </div>
+                                <br />
                             <!-- Current and updated flyer -->
                                 <div class="image-stack">
                                     <div class="image-stack__item--top">

@@ -2281,20 +2281,11 @@ body {
   }
 }
 .navbar__search-btn {
-  background-color: #3F3622;
-  color: #fff;
+  background-image: url("../../images/search-brown.png");
+  background-size: cover;
   height: 4rem;
   margin-top: 0.5rem;
   padding: 0.25rem 2.5rem;
-}
-.navbar__search-btn::after {
-  background-color: #674A21;
-}
-@media (max-width: 43.75em) {
-  .navbar__search-btn {
-    padding: 0 2rem;
-    height: auto;
-  }
 }
 @media (max-width: 56.25em) {
   .navbar__search-btn {
