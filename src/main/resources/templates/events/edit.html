@@ -10,10 +10,14 @@
     <body onload="document.editevent.name.focus()">
         <nav sec:authorize="isAuthenticated()" th:replace="partials/navB :: nav"></nav>
         <nav sec:authorize="!isAuthenticated()" th:replace="partials/navA :: nav"></nav>
-        <img class="map__bg" src="/images/topo-bg.jpg" alt="">
 
         <main class="event">
-            <div class="u-margin-bottom-md u-center-text">
+
+            <div class="bg-image">
+                <img class="bg-image__content" src="/images/topo-bg.jpg" alt="">
+            </div>
+
+            <div class="event__heading u-padding-top-md u-margin-bottom-md u-center-text">
                 <h2 class="heading-primary--sub">Edit Event</h2>
             </div>
             <div class="event-box">
@@ -40,12 +44,13 @@
                             <input type="hidden" th:field="${eventToEdit}">
                             <input type="hidden" th:field="${eventToEdit.user.id}">
 
+                            <input class="event__input paragraph" type="text" th:field="${eventToEdit.name}" name="name" id="name" />
 
-                        <textarea class="event__input paragraph" th:field="${eventToEdit.description}" name="description" id="description" maxlength="2500"></textarea>
+                            <textarea class="event__input paragraph" th:field="${eventToEdit.description}" name="description" id="description" maxlength="2500"></textarea>
 
-                        <input class="event__input paragraph" type="date" th:field="${eventToEdit.date}" name="date" id="date" />
+                            <input class="event__input paragraph" type="date" th:field="${eventToEdit.date}" name="date" id="date" />
 
-                        <input class="event__input paragraph" type="text" th:field="${eventToEdit.zipcode}" name="date" id="zipcode" />
+                            <input class="event__input paragraph" type="text" th:field="${eventToEdit.zipcode}" name="date" id="zipcode" />
 
                         <br />
 

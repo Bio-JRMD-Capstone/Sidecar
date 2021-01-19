@@ -10,13 +10,20 @@
     <body onload="document.createpoint.name.focus()">
         <nav sec:authorize="isAuthenticated()" th:replace="partials/navB :: nav"></nav>
         <nav sec:authorize="!isAuthenticated()" th:replace="partials/navA :: nav"></nav>
-        <img class="map__bg" src="/images/topo-bg.jpg" alt="">
 
         <main class="poi">
-            <div class="map__heading">
-                <a class="btn btn--green u-margin-bottom-sm" th:href="@{/points}">Back to all Points of Interest</a>
-                <h3 class="heading-tertiary" th:text="${point.name}"></h3>
+
+            <div class="bg-image">
+                <img class="bg-image__content" src="/images/topo-bg.jpg" alt="">
             </div>
+
+            <div class="poi__heading u-padding-top-md">
+                <a class="btn btn--green u-margin-bottom-sm" th:href="@{/points}">Back to all Points of Interest</a>
+                <div class="u-center-text">
+                    <h3 class="heading-secondary--sub" th:text="${point.name}"></h3>
+                </div>
+            </div>
+
             <div class="map-box">
                 <!-- Map -->
                 <section class="col-map-2">

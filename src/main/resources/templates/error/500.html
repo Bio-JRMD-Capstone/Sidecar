@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <title th:text="'Error: ' + ${error}"></title>
-</head>
-<body>
-    <div><p>Internal Server Error.</p></div>
-    <p>Watch a video instead:</p>
-    <iframe
-        width="420"
-        height="315"
-        src="https://www.youtube.com/embed/NN75im_us4k?autoplay=1"
-        frameborder="0"
-        allowfullscreen="allowfullscreen"
-    >
-    </iframe>
-</body>
+    <head th:replace="partials/head :: head('Error: ' + ${error})">
+        <meta charset="UTF-8">
+        <title>Error</title>
+        <link rel="stylesheet" href="/sass/style.css">
+    </head>
+    <body>
+        <nav sec:authorize="isAuthenticated()" th:replace="partials/navC :: nav"></nav>
+        <nav sec:authorize="!isAuthenticated()" th:replace="partials/navD :: nav"></nav>
+
+        <main>
+            <div class="bg-error">
+                <!-- background image -->
+                <img class="bg-error__content" src="/images/generic-man-working-on-motorcycle.jpg" alt="">
+            </div>
+            <div class="u-center-text u-margin-bottom-md w-50">
+                <!-- error text 500 -->
+                <h2 class="u-center-text">They say, “Not all who wander are lost”, but clearly something went wrong. What do you say we make a u-turn?</h2>
+                <!-- back to homepage btn-->
+                <button class="btn btn--green u-margin-top-md" th:href="/">Back to Sidecar</button>
+            </div>
+        </main>
+
+        <div th:replace="partials/footer :: footer"></div>
+        <div th:include="partials/scripts :: scripts"></div>
+    </body>
 </html>
