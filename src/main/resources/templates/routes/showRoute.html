@@ -6,9 +6,10 @@
         <meta charset="UTF-8">
         <title>All Routes</title>
     </head>
+
     <body>
-        <nav th:replace="partials/navbar :: nav"></nav>
-        <!--<div th:replace="partials/expand-nav :: navigation"></div>-->
+        <nav sec:authorize="isAuthenticated()" th:replace="partials/navB :: nav"></nav>
+        <nav sec:authorize="!isAuthenticated()" th:replace="partials/navA :: nav"></nav>
 
         <main class="map">
             <div class="map__heading">

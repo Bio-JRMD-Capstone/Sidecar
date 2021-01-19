@@ -2,6 +2,43 @@
   max-width: 100%;
   margin: 5rem auto;
 
+  &:not(:last-child) {
+    margin-bottom: $gutter-vertical;
+
+    @include respond(tab-port) {
+      margin-bottom: $gutter-vertical-sm;
+    }
+  }
+
+  @include respond(tab-port) {
+    max-width: 75rem;
+    padding: 0 2rem;
+  }
+
+  @include respond(phone) {
+    max-width: 60rem;
+    padding: 0 2rem;
+  }
+
+  @include clearfix;
+
+  [class^="col-"] {
+    float: left;
+
+    &:not(:last-child) {
+      margin-right: $gutter-horizontal;
+
+      @include respond(tab-port) {
+        margin-right: 0;
+        margin-bottom: $gutter-vertical-sm;
+      }
+    }
+
+    @include respond(tab-port) {
+      width: 100% !important;
+    }
+  }
+
   &__heading {
     margin: 0 1rem 0;
   }
@@ -57,22 +94,7 @@
     @include respond(tab-port) {
       width: 100%;
     }
-    [class^="col-"] {
-      float: left;
 
-      &:not(:last-child) {
-        margin-right: $gutter-horizontal;
-
-        @include respond(tab-port) {
-          margin-right: 0;
-          margin-bottom: $gutter-vertical-sm;
-        }
-      }
-
-      @include respond(tab-port) {
-        width: 100% !important;
-      }
-    }
     &:not(:last-child) {
       margin-right: 1em;
       margin-bottom: 1em;
@@ -136,18 +158,6 @@
       font-size: $default-font-size;
       margin-left: 2rem;
     }
-
-
-  &:not(:last-child) {
-    margin-bottom: $gutter-vertical;
-  }
-  @include clearfix;
-  [class^="col-"]{
-    float: left;
-    &:not(:last-child) {
-      margin-right: $gutter-horizontal;
-    }
-  }
 
   &__group:not(:last-child) {
     margin-bottom: 2rem;

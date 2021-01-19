@@ -5,7 +5,6 @@
   &:not(:last-child) {
     margin-bottom: $gutter-vertical;
 
-
     @include respond(tab-port) {
       margin-bottom: $gutter-vertical-sm;
     }
@@ -20,6 +19,7 @@
     max-width: 60rem;
     padding: 0 2rem;
   }
+
   @include clearfix;
 
   [class^="col-"] {
